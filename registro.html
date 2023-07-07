@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="icon" type="image/jpg" href="Imagenes/Logo_quickcarry.png">
+    <link rel="stylesheet" href="estilo.css">
+    <title>QuickCarry</title>
+</head>
+
+<body>
+    <header>
+        <div class="home">
+            <a href="http://localhost/Cloudware/"><img src="imagenes/imagen-home.png" width="70px" height="70px"></a>
+        </div>
+    </header>
+
+
+
+
+    <form action="php/verificacion.php" method="post">
+        <div class="formulario">
+            <img id="imgLogin" img src="Imagenes/Logo_quickcarry-sin-fondo.png" alt="logo" height="70px" width="70px">
+            <h2>Registro</h2>
+
+            <br>
+
+            <div>
+                <input type="text" id="myInput" placeholder="Nombre/s" maxlength="30" required name="Nombre">
+                <label for="myInput" id="myLabel">Nombre</label>
+            </div>
+
+            <br>
+
+            <div>
+                <input type="text" id="myInput" placeholder="Apellido/s" maxlength="30" required name="apellido">
+                <label for="myInput" id="myLabel">Apellido</label>
+            </div>
+
+            <br>
+
+            <div>
+                <input type="text" id="myInput" placeholder="Mail" maxlength="30" required name="mail">
+                <label for="myInput" id="myLabel">Mail</label>
+            </div>
+
+
+            <br>
+
+            <div>
+                <input type="password" id="myInput" placeholder="Contraseña:" maxlength="15">
+                <label for="myInput" id="myLabel">Contraseña:</label>
+            </div>
+
+            <br>
+
+            <div class="btn">
+                <button type="submit">Enviar</button>
+            </div>
+
+    </form>
+    </div>
+
+</body>
+
+</html>

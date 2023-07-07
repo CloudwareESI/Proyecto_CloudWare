@@ -1,0 +1,227 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+
+body {
+    min-height: 90vh;
+    max-height: 120vh;
+    align-items: center;
+    background-color: #2f2f2f;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+/* LOGIN Y REGISTRO */
+.home {
+    position: absolute;
+    top: -30px;
+    left: 0;
+    padding: 10px;
+    z-index: 1; /* Asegura que .home esté sobre otros elementos */
+  }
+
+h1 {
+    font-size: 4vh;
+    color: #d2b265;
+    text-align: center;
+}
+
+img{
+    display: flex;
+    margin: auto;
+    padding-top: 3vh;
+}
+
+h2 {
+    font-size: 4.5vh;
+    color: #d2b265;
+    text-align: center;
+}
+
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+form {
+   
+    justify-content: center;
+    color: #eae096;
+    padding: 35px 30px;
+    padding-bottom: 0;
+    padding-top: 0px;
+    box-shadow: 0 0 20px #000000;
+    border-radius: 20px;
+    width: 340px;
+    height: auto;
+        
+}
+
+div {
+    position: relative;
+    margin-bottom: 20px;
+}
+ 
+input {
+    width: 100%;
+    padding: 10px;
+    font-family: 'calibri';
+    font-size: 15px;
+}
+
+label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    pointer-events: none;
+    transition: 0.2s;
+    color: gray;
+    opacity: 0%;
+}
+
+input:focus~label,
+input:not(:placeholder-shown)~label {
+    top: -20px;
+    left: 6px;
+    font-size: 17px;
+    color: #eae096;
+    opacity: 100%;
+}
+
+
+input,
+textarea {
+    padding: 2px;
+    border-radius: 10px;
+    background-color: #484847;
+    border: 2px solid #d2b265;
+    outline: none;  
+    color:#eae096 ;
+}
+
+.btn{ 
+    display: flex;
+    justify-content: right;
+}
+button{
+    
+    height: fit-content;
+    border: 2px solid #d2b265;
+    background-color: #484847;
+    width: fit-content;
+    font-size: 1.2em;
+    color: #eae096 ;
+    transition: 0.5s;
+}
+
+/* Estilo Almacen */
+
+
+
+table{
+    box-shadow: 0 0 20px #000000;
+    font-size: 4vh;
+    
+   
+}
+td{
+    border-radius: 2px;
+    padding:15px ;
+    border: 2px solid #d2b265;
+    color: #FFDF94;
+    font-size: 2.5vh;  
+    font-family:'Courier New', Courier, monospace;
+}
+
+
+#sape{
+    color: #eae096;
+    font-size: 2.8vh;
+    letter-spacing: 2px;
+    font-family: 'Roboto Condensed', sans-serif;
+    
+}
+#imagenTabla{
+   
+    justify-content: center;
+    padding-top: 0;
+}
+
+/* Estilo Almacen */
+
+/* titulo */
+
+.titulo {
+    display: flex;
+    padding: 20px;
+
+}
+
+thead {
+    /* Cabezal de la tabla */
+    color: #eae096;
+    max-width: 2vh;
+    font-family: 'Roboto Condensed';
+    letter-spacing: 2px;
+    font-size: 3.6vh;
+}
+
+/*--------------------------------------*/
+
+/* cuerpo */
+
+tbody {
+    /* Cuerpo de la tabla */
+    color: #FFDF94;
+    font-size: 2.5vh;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+table tbody tr:hover {
+    transition: ease-in-out 0.2s;
+    background-color: #222222;
+}
+
+table tbody td:hover {
+    transition: ease-in-out 0.2s;
+    background-color: #101010;
+}
+
+/*--------------------------------------*/
+
+/* Contenido */
+table {
+    box-shadow: 0 0 20px #000000;
+}
+
+td {
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 2px;
+    border: 2px solid #d2b265;
+}
+
+
+#imagenTabla {
+    justify-content: center;
+    text-align: center;
+}
+
+/*--------------------------------------*/
+
+
+
+/* ¡COLORES MANO
+ 996836 DORADO CACA
+d2b265  DORADO ELEGANTE
+eae096  DORADO CLARITO
+F9C748  DORADO 
+FFDF94  DORADO PALIDO 
+373739  gris mas claro que el fondo
+F9DB5C  dorado oscuro
+
+
+*/
