@@ -19,7 +19,7 @@
             $personas = $p->fetch_array(MYSQLI_ASSOC);
             echo '<h4>¿Esta seguro que desea eliminar a ' . $personas['nombre'] .' '. $personas['apellido'] . ' ?</h4>';
 
-            echo '<div class="box subcontenedor"><a href="eliminar.php?id=' . $personas['id'] . '"><b>CONFIRMAR</b><img class="icnEliminar" src="../assets/eliminar.png"></a></div>';
+            echo '<div class="box subcontenedor"><a href="eliminar.php?id=' . $personas['id'] . '"><b>CONFIRMAR</b><img class="http://localhost/Proyecto_Cloudware/imagenes/imagenBorrar.png"></a></div>';
             ?>
         </div>
         </div>

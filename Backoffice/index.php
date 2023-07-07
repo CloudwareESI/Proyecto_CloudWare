@@ -27,8 +27,8 @@
             <td>' . $fila['apellido'] . '</td>
             <td>' . $fila['password'] . '</td>
             <td>' . $fila['email'] . '</td>
-            <td><div class="box"><a href="php/ventanaMod.php?id=' . $fila['id'] . '"><img class="icnModificar" src="assets/modificar.png"></a></div></td>
-            <td><div class="box"><a href="php/EliminarConfirmacion.php?id=' . $fila['id'] . '"><img class="icnEliminar" src="assets/eliminar.png"></a>
+            <td><div class="box"><a href="php/ventanaMod.php?id=' . $fila['id'] . '"><img class="icnModificar" img id="imagenTabla" src="http://localhost/Proyecto_Cloudware/imagenes/imagenEditar.png"></a></div></td>
+            <td><div class="box"><a href="php/EliminarConfirmacion.php?id=' . $fila['id'] . '"><img class="icnEliminar" img id="imagenTabla" src="http://localhost/Proyecto_Cloudware/imagenes/imagenBorrar.png"></a>
             </div></td>
             </tr>';
             }
@@ -37,7 +37,7 @@
         ?>
         <button class="btnAniadir" onclick="window.location.href='php/ventanaAgregar.php';">
 
-            <div class="box">Agregar<img class="icnAniadir" src="assets/agregar.png"></div>
+            <div class="box">Agregar<img class="icnAniadir" img id="imagenTabla" src="http://localhost/Proyecto_Cloudware/imagenes/imagenEditar.png" width="60px" height="60px"></div>
         </button>
 
 
