@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/jpg" href="Imagenes/Logo_quickcarry.png">
-    <link rel="stylesheet" href="http://localhost/Proyecto_Cloudware/css/estilo.css">
+    <link rel="stylesheet" href="http://localhost/Proyecto_Cloudware/estilos/estilo.css">
     <title>Almacen <?php echo "1"; //aqui pondremos el id eventualmente 
                     ?></title>
 </head>

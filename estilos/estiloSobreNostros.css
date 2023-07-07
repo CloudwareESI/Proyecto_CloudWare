@@ -13,10 +13,11 @@ h1 {
     color: #d2b265;
     display: flex;
     justify-content: center;
+    text-decoration: underline #FFDF94;
 }
 
 h2 {
-    text-decoration: underline;
+    text-decoration: underline #FFDF94;
     justify-content: center;
     font-size: 3.2vh;
     color: #d2b265;
@@ -24,28 +25,6 @@ h2 {
     font-family: ' Roboto', sans-serif;
     letter-spacing: 2px;
     display: flex;
-}
-.todo{
-    display: flex;
-    justify-content: space-between;
-    padding: 40px;
-}
-
-.mv{
-    height: 210px;
-    width: 700px;
-    border: 1px solid #000000;
-    box-shadow: 0 0 10px #FFDF94;   
-}
-.historia{
-    border: 1px solid #000000;
-    width: 700px;
-    height: 210px;
-   
-}
-.mas {
-    display: flex;
-    justify-content: space-between;
 }
 
 h3 {
@@ -66,9 +45,64 @@ p {
     justify-content: justifys;
 }
 
+.home {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    padding: 10px;
+    z-index: 1;/* Asegura que .home esté sobre otros elementos */
+}
 
-
-.nosotros {
+.todo {
     display: flex;
+    justify-content: space-between;
+    padding-left: 120PX;
+    padding-right: 120PX;
+}
+
+.mv {
+    height: 248;
+    width: 700px;
+    border: 1px solid #000000;
+    box-shadow: 0 0 8px #FFDF94;
+}
+
+.contenedorHistoria {
+    height: 248;
+    width: 700px;
+    margin: 0 auto;/* Agrega esta línea para centrar horizontalmente */
+    margin-top: 20px; /* Ajusta el margen superior según tu preferencia */
+    border: 1px solid #000000;
+    box-shadow: 0 0 8px #FFDF94;
+
+}
+
+.historia {
     justify-content: center;
+    text-align: justify;
+}
+
+.mas {
+    justify-content: space-around;
+    display: flex;
+    height: fit-content;
+    padding-top: 20px;
+}
+
+.espacio {
+    width: fit-content;
+    height: fit-content;
+}
+
+.espacio p {
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    transition: opacity 0.3s ease, height 0.3s ease
+}
+
+.espacio:hover p {
+    opacity: 1;
+    height: auto;
+    transition: opacity 0.3s ease, height 0.3s ease;
 }
