@@ -28,17 +28,17 @@ if ($valor == null) {
             '&modelo=' . $fila['modelo'] .
             '&estado=' . $fila['estado'] .
             '&rol=' . $fila['rol'] .
-            '"><img class="icnModificar" img id="imagenTabla" src="http://localhost/Proyecto_Cloudware_v2/imagenes/imagenEditar.png"></a></div></td>
+            '"><img class="icnModificar" img id="imagenTabla" src="http://localhost/Proyecto_Cloudware/imagenes/imagenEditar.png"></a></div></td>
     <td><div class="box"><a href="vehiculos/views_vehiculos/eliminar_confirmacion.php?matricula=' . $fila['matricula'] . '&modelo=' . $fila['modelo'] . '&estado=' . $fila['estado'] . '"><img class="icnEliminar" img id="imagenTabla" src="http://localhost/Proyecto_Cloudware/imagenes/imagenBorrar.png"></a>
     </div></td>
     <td>
     <div class="box">
-    <a href="http://localhost/Proyecto_Cloudware_v2/vehiculos/views_vehiculos/vehiculo.php?matricula='
+    <a href="http://localhost/Proyecto_Cloudware/vehiculos/views_vehiculos/vehiculo.php?matricula='
             . $fila['matricula'] . '&rol='
             . $fila['rol'] . '&estado='
             . $fila['estado'] . '
     ">
-    <img class="icnEliminar" img id="imagenTabla" src="http://localhost/Proyecto_Cloudware_v2/imagenes/imagenBorrar.png"></a>
+    <img class="icnEliminar" img id="imagenTabla" src="http://localhost/Proyecto_Cloudware/imagenes/imagenBorrar.png"></a>
     </div>
     </td>
     </tr>';
@@ -48,7 +48,7 @@ if ($valor == null) {
 ?>
 <button class="btnAniadir" onclick="window.location.href='vehiculos/views_vehiculos/agregar_vehiculos.html';">
 
-    <div class="box">Agregar<img class="icnAniadir" img id="imagenTabla" src="http://localhost/Proyecto_Cloudware_v2/imagenes/imagenEditar.png" width="60px" height="60px"></div>
+    <div class="box">Agregar<img class="icnAniadir" img id="imagenTabla" src="http://localhost/Proyecto_Cloudware/imagenes/imagenEditar.png" width="60px" height="60px"></div>
 </button>
 
 </div>
