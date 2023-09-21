@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+
+body {
+    min-height: 90vh;
+    max-height: 120vh;
+    align-items: center;
+    background-color: #2f2f2f;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+/* LOGIN Y REGISTRO */
+.home {
+    position: absolute;
+    top: -30px;
+    left: 0;
+    padding: 10px;
+    z-index: 1;
+    /* Asegura que .home esté sobre otros elementos */
+}
+
+h1 {
+    font-size: 4vh;
+    color: #d2b265;
+    text-align: center;
+}
+
+img {
+    display: flex;
+    margin: auto;
+    padding-top: 3vh;
+}
+
+h2 {
+    font-size: 4.5vh;
+    color: #d2b265;
+    text-align: center;
+}
+
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+form {
+    background-color: #24262B;
+    justify-content: center;
+    color: #eae096;
+    padding: 20px;
+    box-shadow: 0 0 20px #000000;
+    border-radius: 20px;
+    width: 340px;
+    height: auto;
+
+}
+
+div {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    width: 100%;
+    font-family: 'calibri';
+    font-size: 15px;
+}
+
+
+
+input,
+textarea {
+    padding: 2px;
+    border-radius: 10px;
+    background-color: #484847;
+    border: 2px solid #d2b265;
+    outline: none;
+    color: #eae096;
+}
+
+.botonModificar {
+    display: flex;
+    float: right;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    height: fit-content;
+    border-radius: 10px;
+
+    width: 85px;
+    font-size: 1.2em;
+
+    transition: 0.5s;
+}
+
+.botonModificar:hover {
+    transform: scale(1.1);
+    transition: 0.5s;
+}
+
+.botonModificar:active {
+    transform: scale(0.9);
+}
+
+#destino {
+    display: flex;
+    justify-content: center;
+    width: 350px;
+    font-size: 15px;
+    border: 1px solid #eae096;
+    border-radius: 10px;
+    background-color: #2f2f2f;
+    color: #eae096;
+}
+
+#destino option {
+    font-size: 15px;
+    background-color: #2f2f2f;
+    color: #d2b265;
+}

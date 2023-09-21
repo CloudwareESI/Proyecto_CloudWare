@@ -1,0 +1,126 @@
+    /*tablas*/
+    table {
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 1em;
+        font-family: sans-serif;
+        min-width: 450px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        color: #ffffff;
+        border-radius: 5px 5px 0 0;
+        overflow: hidden;
+
+    }
+    table thead tr {
+        background-color: #d2b265;
+        color: #ffffff;
+        text-align: middle;
+    }
+
+    table th,
+    table td {
+        padding: 12px 15px;
+    }
+
+    table tbody tr {
+        border-bottom: 1px solid #000000;
+    }
+
+    table tbody tr:nth-of-type(even) {
+        background-color: #ffffff33;
+    }
+
+    table tbody tr:last-of-type {
+        border-bottom: 2px solid #eae096;
+    }
+    h3 {   
+        color: #d2b265;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 17px;
+        font-weight: bold;
+    }
+/*Tabla Usuarios*/
+ 
+    .contenedorUsuario h3 {
+        justify-content: center;
+        display: flex;
+    }
+
+    .contenedorUsuario {
+        display: flex;
+        flex-direction: column;
+        margin: 0 20%;
+
+    }
+
+    .tablaUsuario {
+        width: 300px;
+       
+    }
+    .botonUsuario {
+        display: flex;
+        justify-content: center;}
+
+
+/*Tabla Vehiculos*/
+.contenedorVehiculos h3 {
+    justify-content: center;
+    display: flex;
+}
+
+.contenedorVehiculos {
+    display: flex;
+    flex-direction: column;
+    margin: 0 20%;
+
+}
+
+.tablaVehiculos {
+    width: 300px;
+   
+}
+.botonVehiculos{
+    display: flex;
+    justify-content: center;}
+
+/*Tabla Paquetes*/
+.contenedorPaquetes h3 {
+    justify-content: center;
+    display: flex;
+}
+
+.contenedorPaquetes {
+    display: flex;
+    flex-direction: column;
+    margin: 0 20%;
+
+}
+
+.tablaPaquetes {
+    width: 300px;
+   
+}
+
+/*Tabla Paquetes y lotes ENVIAR*/
+.contenedorPaquetesLotes h3 {
+    justify-content: center;
+    display: flex;
+}
+
+.contenedorPaquetesLotes {
+    display: flex;
+    flex-direction: column;
+    margin: 0 13%;
+    
+
+}
+
+.tablaPaquetesLotes {
+    width: 300px;
+   padding: 25px;
+}
+
+.botonPaquetesLotes{
+    display: flex;
+    justify-content: center;}
