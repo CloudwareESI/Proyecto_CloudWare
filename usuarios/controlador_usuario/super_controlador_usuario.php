@@ -3,12 +3,12 @@
 
 function get_all()
 {
-    $L = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware_v2/usuarios/controlador_usuario/REST_usuario.php", NULL);
+    $L = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/usuarios/controlador_usuario/REST_usuario.php", NULL);
 
     $valor = json_decode($L, true);
 
     $curl = curl_init();
-    curl_setopt($curl, CURLOPT_URL,  "http://127.0.0.1//Proyecto_Cloudware_v2/usuarios/views_usuario/mostrar_usuarios.php",);
+    curl_setopt($curl, CURLOPT_URL,  "http://127.0.0.1//Proyecto_Cloudware/usuarios/views_usuario/mostrar_usuarios.php",);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     $json = json_encode($valor);
 
@@ -29,7 +29,7 @@ function get_all()
 
 function get_persona($id)
 {
-    $L = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware_v2/usuarios/controlador_usuario/REST_usuario.php", $id);
+    $L = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/usuarios/controlador_usuario/REST_usuario.php", $id);
 
     $valor = json_decode($L, true);
     return $valor;
@@ -37,6 +37,6 @@ function get_persona($id)
 
 function del_persona($id)
 {
-    $L = llamadoDeAPI("DELETE", "http://127.0.0.1//Proyecto_Cloudware_v2/usuarios/controlador_usuario/REST_usuario.php", $id);
+    $L = llamadoDeAPI("DELETE", "http://127.0.0.1//Proyecto_Cloudware/usuarios/controlador_usuario/REST_usuario.php", $id);
     return $L;
 }

@@ -17,7 +17,7 @@
             $id = array($a);
             del_lote($id);
 
-            //header("Location:http://localhost/Proyecto_Cloudware_v2/Index.php?Almacen");
+            //header("Location:http://localhost/Proyecto_Cloudware/Index.php?Almacen");
         }
         ?>
 

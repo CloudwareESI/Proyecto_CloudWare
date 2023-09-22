@@ -15,13 +15,13 @@ if (isset($valor["0"]) && isset($valor["1"])) {
 
     if (empty($usuario)) {
 
-        header("Location:http://localhost/AAAAA/login.html?error=User Name is required");
+        header("Location:http://localhost/Proyecto_Cloudware/login.html?error=User Name is required");
         //en el caso que alguien entrara a esta pagina por otros medios sin email esto los devolvera a login
 
         exit();
     } else if (empty($password)) {
 
-        header("Location:http://localhost/AAAAA/login.html?error=Password is required");
+        header("Location:http://localhost/Proyecto_Cloudware/login.html?error=Password is required");
         //en el caso que alguien entrara a esta pagina por otros medios sin password esto los devolvera a login
         exit();
     } else {
@@ -51,7 +51,7 @@ if (isset($valor["0"]) && isset($valor["1"])) {
                 exit();
             } else {
 
-                header("Location:http://localhost/AAAAA/login.html?error=Incorect User name or password"); //si la password esta incorrecta nos devuelve al login
+                header("Location:http://localhost/Proyecto_Cloudware/login.html?error=Incorect User name or password"); //si la password esta incorrecta nos devuelve al login
 
                 exit();
             }
@@ -64,7 +64,7 @@ if (isset($valor["0"]) && isset($valor["1"])) {
     }
 } else {
 
-    header("Location:http://localhost/AAAAA/login.html"); //si falta la password nos devuelve a login
+    header("Location:http://localhost/Proyecto_Cloudware/login.html"); //si falta la password nos devuelve a login
 
     exit();
 }
