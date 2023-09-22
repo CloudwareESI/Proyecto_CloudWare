@@ -62,7 +62,7 @@ if ($valor == null) {
             '&id=' . $fila['id_empleado'] .
             '&email=' . $fila['email'] .
             '">
-    <img class="icnModificar" img id="imagenTabla" src="http://localhost/Proyecto_Cloudware_v2/imagenes/imagenEditar.png">
+    <img class="icnModificar" img id="imagenTabla" src="http://localhost/Proyecto_Cloudware/imagenes/imagenEditar.png">
         </a>
         </div>
         </td>
@@ -71,7 +71,7 @@ if ($valor == null) {
             '&apellido=' . $fila['apellido'] .
             '&id=' . $fila['id_empleado'] .
             '">
-    <img class="icnEliminar" img id="imagenTabla" src="http://localhost/Proyecto_Cloudware_v2/imagenes/imagenBorrar.png">
+    <img class="icnEliminar" img id="imagenTabla" src="http://localhost/Proyecto_Cloudware/imagenes/imagenBorrar.png">
     </a>
     </div>
     </td>

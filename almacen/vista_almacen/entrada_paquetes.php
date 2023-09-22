@@ -142,7 +142,7 @@ if ($valor == null) {
                     $fila['id_lote'] .
                     '">
                 <img class="icnEliminar" img id="imagenTabla" 
-                src="http://localhost/Proyecto_Cloudware_v2/imagenes/imagenBorrar.png"></a>
+                src="http://localhost/Proyecto_Cloudware/imagenes/imagenBorrar.png"></a>
             
             </div></td>
             </tr>

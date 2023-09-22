@@ -28,11 +28,11 @@ if ($valor == null) {
     <td>' . $fila['nombre_localidad'] . '</td> 
     <td>' . $fila['nombre_departamento'] . '</td>
 
-    <td><div class="box"><a href="http://localhost/Proyecto_Cloudware_v2/index.php?id_almacen=' . $fila['id_almacen'] . '
+    <td><div class="box"><a href="http://localhost/Proyecto_Cloudware/index.php?id_almacen=' . $fila['id_almacen'] . '
         &Almacenes=1
     ">
     
-    <img class="icnEliminar" img id="imagenTabla" src="http://localhost/Proyecto_Cloudware_v2/imagenes/imagenBorrar.png"></a>
+    <img class="icnEliminar" img id="imagenTabla" src="http://localhost/Proyecto_Cloudware/imagenes/imagenBorrar.png"></a>
     </div></td>
     </tr>';
     }

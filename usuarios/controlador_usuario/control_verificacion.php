@@ -7,7 +7,7 @@ echo session_id();
 
 
 $curl = curl_init();
-curl_setopt($curl, CURLOPT_URL,  "http://127.0.0.1//Proyecto_Cloudware_v2/usuarios/modelo_usuario/verificador.php",);
+curl_setopt($curl, CURLOPT_URL,  "http://127.0.0.1//Proyecto_Cloudware/usuarios/modelo_usuario/verificador.php",);
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 $json = json_encode($login);
 
@@ -35,9 +35,9 @@ if(isset($datos)){
     $_SESSION['apellido'] = $variables['apellido'];
     var_dump( $_SESSION );
     
-    header("Location:http://localhost/Proyecto_Cloudware_v2/index.php?Bienvenido=1");
+    header("Location:http://localhost/Proyecto_Cloudware/index.php?Bienvenido=1");
 }else{
 
-    header("Location:http://localhost/Proyecto_Cloudware_v2/login.html?error=".json_decode($datos));
+    header("Location:http://localhost/Proyecto_Cloudware/login.html?error=".json_decode($datos));
 }
 

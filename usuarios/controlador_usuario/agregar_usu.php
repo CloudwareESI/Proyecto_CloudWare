@@ -22,7 +22,7 @@ switch ($op) {
         $login = array($email, $password);
         $valor = array($op, $persona, $login);
 
-        $L = llamadoDeAPI("PUT", "http://127.0.0.1//Proyecto_Cloudware_v2/usuarios/controlador_usuario/REST_usuario.php", $valor);
+        $L = llamadoDeAPI("PUT", "http://127.0.0.1//Proyecto_Cloudware/usuarios/controlador_usuario/REST_usuario.php", $valor);
 
         break;
 
@@ -48,8 +48,8 @@ switch ($op) {
         $login = array($email, $password, $email_viejo);
         $valor = array($persona, $login);
 
-        $L = llamadoDeAPI("POST", "http://127.0.0.1//Proyecto_Cloudware_v2/usuarios/controlador_usuario/REST_usuario.php", $valor);
-        echo "<br> Proyecto_Cloudware_v2Proyecto_Cloudware_v2";
+        $L = llamadoDeAPI("POST", "http://127.0.0.1//Proyecto_Cloudware/usuarios/controlador_usuario/REST_usuario.php", $valor);
+        echo "<br> Proyecto_CloudwareProyecto_Cloudware";
         break;
 
     case 'asignar_vehiculo':
@@ -58,10 +58,10 @@ switch ($op) {
         foreach ($id as $fila) {
             $asignar = array($matricula, $fila);
             $valor = array($op, $asignar);
-            $L = llamadoDeAPI("PUT", "http://127.0.0.1//Proyecto_Cloudware_v2/usuarios/controlador_usuario/REST_usuario.php", $valor);    
+            $L = llamadoDeAPI("PUT", "http://127.0.0.1//Proyecto_Cloudware/usuarios/controlador_usuario/REST_usuario.php", $valor);    
         }
 
         break;
 }
-header("Location:http://localhost/Proyecto_Cloudware_v2/index.php");
+header("Location:http://localhost/Proyecto_Cloudware/index.php");
 ?>

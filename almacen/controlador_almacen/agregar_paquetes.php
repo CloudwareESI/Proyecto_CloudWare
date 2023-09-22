@@ -25,7 +25,7 @@ switch ($op) {
             $id_localidad_destino,
         );
 
-        $L = llamadoDeAPI("PUT", "http://127.0.0.1//Proyecto_Cloudware_v2/almacen/controlador_almacen/REST_paquetes.php", $paquete);
+        $L = llamadoDeAPI("PUT", "http://127.0.0.1//Proyecto_Cloudware/almacen/controlador_almacen/REST_paquetes.php", $paquete);
 
         break;
 
@@ -79,9 +79,9 @@ switch ($op) {
             $id_paquete,
         );
 
-        $L = llamadoDeAPI("POST", "http://127.0.0.1//Proyecto_Cloudware_v2/almacen/controlador_almacen/REST_paquetes.php", $paquete);
+        $L = llamadoDeAPI("POST", "http://127.0.0.1//Proyecto_Cloudware/almacen/controlador_almacen/REST_paquetes.php", $paquete);
 
-        echo "<br> Proyecto_Cloudware_v2Proyecto_Cloudware_v2";
+        echo "<br> Proyecto_CloudwareProyecto_Cloudware";
         break;
 
 
@@ -89,6 +89,6 @@ switch ($op) {
         # code...
         break;
 }
-//header("Location:http://localhost/Proyecto_Cloudware_v2/Administracion.php");
+//header("Location:http://localhost/Proyecto_Cloudware/Administracion.php");
 
 ?>
