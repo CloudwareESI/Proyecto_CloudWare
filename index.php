@@ -10,13 +10,14 @@
     <link rel="icon" type="image/jpg" href="Imagenes/Logo_quickcarry-sin-fondo.png">
     <link rel="stylesheet" href="estilos/estilo.css">
     <link rel="stylesheet" href="estilos/estiloTablas.css">
+    <link rel="stylesheet" href="estilos/estiloPopUp.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <title>QuickCarry</title>
 </head>
 
+
 <?php
 session_start();
-var_dump($_SESSION);
 include "db/funciones_utiles.php";
 if (isset($_GET['Bienvenido'])) {
 ?>
@@ -42,7 +43,7 @@ if (isset($_GET['Bienvenido'])) {
                     </a>
                 </li>
                 <li>
-                    <a href="?Seguimiento">
+                    <a href="#paquete">
                         <p>Mi Paquete</p>
                     </a>
                 </li>
@@ -99,11 +100,6 @@ if (isset($_GET['Bienvenido'])) {
                 }
                 ?>
 
-                <li>
-                    <a href="sobreNosotros.html">
-                        <p>Nosotros</p>
-                    </a>
-                </li>
                 </div>
         </nav>
     </header>
@@ -112,6 +108,8 @@ if (isset($_GET['Bienvenido'])) {
     <?php
     if(isset($_GET['Inicio']) 
     or 
+    (isset($_GET['Seguimiento']))
+    or
     empty($_GET)){
     ?>
     <!-- Slider -->
@@ -186,8 +184,13 @@ if (isset($_GET['Bienvenido'])) {
         get_all_vehiculos();
     }
 
-    if (isset($_GET['Seguimiento'])) {
+    if(isset($_GET['Inicio']) 
+    or 
+    (isset($_GET['Seguimiento']))
+    or
+    empty($_GET)){
         echo '
+        <a href="paquete"></a>
         <div class="paquete">
             <form action="php/apis/verificacion.php" method="post">
 
@@ -236,6 +239,9 @@ if (isset($_GET['Bienvenido'])) {
                 </div>
                 <script src="boton.js"></script>
             </li>
+            <li>
+            <a href="terminar.php"><i class="fa-regular fa-circle-xmark"></i></a>
+            </li>
 
         </ul>
     </aside>
@@ -250,28 +256,22 @@ if (isset($_GET['Bienvenido'])) {
                 <div class="enlaces">
                     <h4>Comapañia</h4>
                     <ul>
-                        <li><a href="">nosotros</a></li>
-                        <li><a href="">nosotros</a></li>
-                        <li><a href="">nosotros</a></li>
-                        <li><a href="">nosotros</a></li>
+                        <li><a href="sobreNosotrosQC.html">Nosotros</a></li>
+                        <li><a href="sobreNosotros.html">Cloudware</a></li>
+                    </ul>
+                </div>
+
+                <div class="enlaces">
+                    <h4>Contacto</h4>
+                    <ul>
+                        <li><a href="">cloudwareESI23@gmail.com</a></li>
+                        <li><a href="">2622 8856</a></li>
                     </ul>
                 </div>
                 <div class="enlaces">
                     <h4>ayuda</h4>
                     <ul>
-                        <li><a href="">aaaa</a></li>
-                        <li><a href="">aaaa</a></li>
-                        <li><a href="">aaaa</a></li>
-                        <li><a href="">aaaa</a></li>
-                    </ul>
-                </div>
-                <div class="enlaces">
-                    <h4>Contacto</h4>
-                    <ul>
-                        <li><a href="">Correo</a></li>
-                        <li><a href="">telefono</a></li>
-                        <li><a href="">aaaa</a></li>
-                        <li><a href="">aaaa</a></li>
+                        <li><a href="">¿Cómo utilizar nuestra página?</a></li>
                     </ul>
                 </div>
                 <div class="enlaces">
