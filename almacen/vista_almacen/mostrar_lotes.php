@@ -10,7 +10,6 @@ $matriz = $resultado->fetch_all(MYSQLI_ASSOC);
 
 $data = file_get_contents("php://input");
 $valor = json_decode($data, true);
-var_dump($matriz);
 
 if ($valor == null) {
     echo "ERROR JSON VACIO";

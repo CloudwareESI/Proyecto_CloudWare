@@ -66,7 +66,13 @@ if ($valor == null) {
         </a>
         </div>
         </td>
-    <td><div class="box">
+       
+       
+        <td>
+   
+        </td>
+    <td>
+    <div class="box">
     <a href="usuarios/views_usuario/eliminar_confirmacion.php?nombre=' . $fila['nombre'] .
             '&apellido=' . $fila['apellido'] .
             '&id=' . $fila['id_empleado'] .

@@ -277,8 +277,8 @@ input[type="radio"]:checked+label.btnSlider::after {
 .paquete {
     display: flex;
     justify-content: center;  
-    margin-top: 15%;  
-    padding-bottom: 40px;
+    margin-top: 10%;  
+    margin-bottom: 10%;
 }
 .paquete h2{
     font-family: 'Playfair Display', serif;
@@ -305,6 +305,7 @@ form {
     font-size: 15px;
     font-weight: 300;
     letter-spacing: 1px;
+    margin: 26px;
 }
 input,
 textarea {
@@ -317,7 +318,7 @@ textarea {
 }
 .form label {
     position: absolute;
-    top: 0px;
+    top: 10px;
     left: 1px;
     pointer-events: none;
     transition: 0.3s;
@@ -329,8 +330,8 @@ textarea {
 
 .form input:focus~label,
 .form input:not(:placeholder-shown)~label {
-    top:-21px;
-    left: 1px;
+    top:5px;
+    left: 16px;
     font-size: 18px;
     color: #eae096;
     opacity: 100%;
@@ -383,6 +384,13 @@ button {
 .botones a:hover {
     color: #eae096;
     font-size: 1.75rem;
+}
+i {
+    display: flex;
+    padding-top: 5px;
+    color: #d2b265;
+    font-size: 30px;
+    margin-left:10%;
 }
 
 /*cambiar tema*/
@@ -472,12 +480,24 @@ body.active{
     transition: all .5s ease;
 }
 
+.redes a:hover{
+    transform: scale(1.1);
+}
+
 .redes a:hover {
     color: #eae096;
      font-size: 1.45rem;;
 }
 
-
+.enlaces i {
+    margin-right: 4px;
+    margin-top: 5px;
+    font-size: 20px;
+    transition: 200ms;
+}
+.enlaces i:hover{
+    color: #eae096;
+}
 /* Estilo Almacen */
 
 .imgPeque {
