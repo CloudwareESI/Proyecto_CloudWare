@@ -2,6 +2,9 @@
 
 
 session_start();
+if($_SESSION['rol'] == "2" OR $_SESSION['rol'] == "0"){
+
+}
 require_once "../../db/funciones_utiles.php";
 require_once "../controlador_vehiculos/super_controlador_vehiculos.php";
 

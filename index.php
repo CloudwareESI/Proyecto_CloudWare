@@ -16,7 +16,6 @@
 
 <?php
 session_start();
-var_dump($_SESSION);
 include "db/funciones_utiles.php";
 if (isset($_GET['Bienvenido'])) {
 ?>
