@@ -224,7 +224,7 @@ ALTER TABLE `ubicacion`
 
 ALTER TABLE `vehiculo`
   ADD PRIMARY KEY (`matricula`),
-  ADD KEY `id_parada` (`id_almacen`);
+  ADD KEY `id_parada` (`id_parada`);
 
 ALTER TABLE `almacen`
   MODIFY `id_almacen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;

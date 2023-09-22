@@ -2,6 +2,9 @@
 
 
 session_start();
+if($_SESSION['cargo'] == "2" OR $_SESSION['cargo'] == "0"){
+
+
 require_once "../../db/funciones_utiles.php";
 require_once "../controlador_vehiculos/super_controlador_vehiculos.php";
 
@@ -158,3 +161,7 @@ $carga = json_decode(obtener_carga($_GET['matricula'], $_GET['rol']), true);
 </body>
 
 </html>
+
+<?php
+} 
+?>
