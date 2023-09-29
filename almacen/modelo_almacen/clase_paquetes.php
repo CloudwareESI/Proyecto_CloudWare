@@ -202,6 +202,29 @@ class paquetes
 
     return $matriz;
   }
+  public function get_paquete_lot($ids)
+  {
+    $query = "SELECT 
+    nombre_paquete, peso, 
+    dimenciones, fragil, 
+    id_paquete, 
+    fecha_recibido, fecha_entrega, 
+    fecha_cargado, fecha_ingreso,
+    id_lote_portador, destino_calle, 
+    id_localidad_destino , 
+    nombre_localidad, id_departamento , nombre_departamento , id_almacen
+    FROM paquete p 
+    INNER JOIN Localidad l ON p.id_localidad_destino  = l.id_localidad 
+    INNER JOIN departamento d ON l.id_dep = d.id_departamento
+	  LEFT JOIN lote g ON p.id_lote_portador = g.id_lote
+    WHERE id_lote_portador  = ? and id_paquete= ?";
+    $resultado = $this->base_datos->conexion()->execute_query($query, $ids);
+    $matriz = array();
+    $matriz = $resultado->fetch_all(MYSQLI_ASSOC);
+
+    return $matriz;
+  }
+
 
   public function delete_paquetes($id)
   {
