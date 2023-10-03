@@ -189,10 +189,10 @@ if (isset($_GET['Bienvenido'])) {
     (isset($_GET['Seguimiento']))
     or
     empty($_GET)){
-        ?>
+        echo '
         <a href="paquete"></a>
         <div class="paquete">
-            <form action="seguimientoDePaquete.php" method="post">
+            <form action="seguimientoDePaquete.php" method="GET">
 
               <div class="idPaquete">
                     <img src="Imagenes/Logo_quickcarry-sin-fondo1.png" alt="logo" height="70px" width="70px">
@@ -210,7 +210,7 @@ if (isset($_GET['Bienvenido'])) {
             
             </form>
             </div>
-        <?php
+        ';
     }
 
     if (isset($_GET['Usuarios']) and  $_SESSION['cargo'] == "0") {

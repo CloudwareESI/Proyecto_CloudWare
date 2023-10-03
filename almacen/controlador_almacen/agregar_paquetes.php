@@ -59,6 +59,10 @@ switch ($op) {
         if (isset($id_lote)) {
             $id_lote = NULL;
         }
+        $matricula_transporte = $_POST['matricula_transporte'];
+        if (isset($matricula_transporte)) {
+            $matricula_transporte = NULL;
+        }
 
         $id_almacen = $_POST['id_almacen'];
 
@@ -76,6 +80,7 @@ switch ($op) {
             $fecha_ingreso,
             $id_lote,
             $id_localidad_destino,
+            $matricula_transporte,
             $id_paquete,
         );
 

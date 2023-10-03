@@ -134,8 +134,8 @@ INSERT INTO `paquete` (`id_paquete`, `nombre_paquete`, `dimenciones`, `peso`, `f
 (3, '', 500, 500, 1, '8 de octubre y 2', NULL, '2023-09-09', NULL, '2023-09-09', NULL, 2, 'STL569'),
 (4, '', 800, 200, 1, 'a', NULL, '2023-09-09', NULL, '2023-09-09', NULL, 1, 'STP1986'),
 (5, 'Pistones', 15, 100, 0, 'agua fria', NULL, '2023-09-09', NULL, '2023-09-08', 3, 2, NULL),
-(6, 'GA', 66, 66, 1, 'Menas y Estafas', NULL, NULL, NULL, '2023-09-09', NULL, 2, NULL),
-(7, 'pack de vasos ', 700, 1000, 1, 'salvia y larga', NULL, NULL, NULL, '2023-09-08', 3, 2, NULL),
+(6, 'GA', 66, 66, 1, '-', NULL, NULL, NULL, '2023-09-09', NULL, 2, NULL),
+(7, 'pack de vasos ', 700, 1000, 1, '-', NULL, NULL, NULL, '2023-09-08', 3, 2, NULL),
 (8, 'botellas', 700, 500, 135, '', NULL, NULL, NULL, '2023-09-10', 2, 2, NULL);
 
 CREATE TABLE `ruta` (

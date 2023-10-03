@@ -107,7 +107,8 @@ function get_paquetes_alm($id_alm)
 
 function get_paquete($id)
 {
-    $L = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/almacen/controlador_almacen/REST_paquetes.php", $id);
+    $id_paquete = array($id);
+    $L = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/almacen/controlador_almacen/REST_paquetes.php", $id_paquete );
 
     $valor = json_decode($L, true);
 

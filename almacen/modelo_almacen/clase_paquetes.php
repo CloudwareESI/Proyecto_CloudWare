@@ -121,7 +121,7 @@ class paquetes
     fecha_recibido, fecha_entrega, 
     fecha_cargado, fecha_ingreso,
     id_lote_portador, destino_calle, 
-    id_localidad_destino , 
+    id_localidad_destino , matricula_transporte,
     nombre_localidad, id_departamento , nombre_departamento , id_almacen
     FROM paquete p 
     INNER JOIN Localidad l ON p.id_localidad_destino  = l.id_localidad 
@@ -144,7 +144,7 @@ class paquetes
     fecha_recibido, fecha_entrega, 
     fecha_cargado, fecha_ingreso,
     id_lote_portador, destino_calle, 
-    id_localidad_destino , 
+    id_localidad_destino , matricula_transporte,
     nombre_localidad, id_departamento , nombre_departamento , id_almacen
     FROM paquete p 
     INNER JOIN Localidad l ON p.id_localidad_destino  = l.id_localidad 
@@ -166,7 +166,7 @@ class paquetes
     fecha_recibido, fecha_entrega, 
     fecha_cargado, fecha_ingreso,
     id_lote_portador, destino_calle, 
-    id_localidad_destino , 
+    id_localidad_destino , matricula_transporte,
     nombre_localidad, id_departamento , nombre_departamento , id_almacen
     FROM paquete p 
     INNER JOIN Localidad l ON p.id_localidad_destino  = l.id_localidad 
@@ -189,7 +189,7 @@ class paquetes
     fecha_recibido, fecha_entrega, 
     fecha_cargado, fecha_ingreso,
     id_lote_portador, destino_calle, 
-    id_localidad_destino , 
+    id_localidad_destino , matricula_transporte,
     nombre_localidad, id_departamento , nombre_departamento , id_almacen
     FROM paquete p 
     INNER JOIN Localidad l ON p.id_localidad_destino  = l.id_localidad 
@@ -211,7 +211,7 @@ class paquetes
     fecha_recibido, fecha_entrega, 
     fecha_cargado, fecha_ingreso,
     id_lote_portador, destino_calle, 
-    id_localidad_destino , 
+    id_localidad_destino , matricula_transporte,
     nombre_localidad, id_departamento , nombre_departamento , id_almacen
     FROM paquete p 
     INNER JOIN Localidad l ON p.id_localidad_destino  = l.id_localidad 
@@ -224,7 +224,28 @@ class paquetes
 
     return $matriz;
   }
+  public function get_paquetes_cam($matricula)
+  {
+    $query = "SELECT 
+    nombre_paquete, peso, 
+    dimenciones, fragil, 
+    id_paquete, 
+    fecha_recibido, fecha_entrega, 
+    fecha_cargado, fecha_ingreso,
+    id_lote_portador, destino_calle, 
+    id_localidad_destino , matricula_transporte,
+    nombre_localidad, id_departamento , nombre_departamento , id_almacen
+    FROM paquete p 
+    INNER JOIN Localidad l ON p.id_localidad_destino  = l.id_localidad 
+    INNER JOIN departamento d ON l.id_dep = d.id_departamento
+	  LEFT JOIN lote g ON p.id_lote_portador = g.id_lote
+    WHERE matricula_transporte= ?";
+    $resultado = $this->base_datos->conexion()->execute_query($query, $matricula);
+    $matriz = array();
+    $matriz = $resultado->fetch_all(MYSQLI_ASSOC);
 
+    return $matriz;
+  }
 
   public function delete_paquetes($id)
   {
@@ -237,6 +258,7 @@ class paquetes
     echo "<br>";
     var_dump($variables);
     echo "<br>";
+
     $insert = "UPDATE paquete SET 
     nombre_paquete= ? , 
     dimenciones= ? , 
@@ -248,7 +270,8 @@ class paquetes
     fecha_cargado= ?, 
     fecha_ingreso= ?, 
     id_lote_portador= ?, 
-    id_localidad_destino = ?
+    id_localidad_destino = ?,
+    matricula_transporte = ?
     where paquete.id_paquete= ? ";
 
     $this->base_datos->conexion()->execute_query($insert, $variables);

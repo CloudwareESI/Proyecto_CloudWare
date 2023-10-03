@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-09-2023 a las 13:57:05
--- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.2.4
+-- Tiempo de generación: 21-09-2023 a las 15:29:53
+-- Versión del servidor: 10.4.27-MariaDB
+-- Versión de PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,18 +29,9 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `almacen` (
   `id_almacen` int(11) NOT NULL,
-  `calle` varchar(11) NOT NULL,
-  `chapa` int(4) NOT NULL,
+  `calle` int(11) NOT NULL,
   `id_localidad_almacen` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `almacen`
---
-
-INSERT INTO `almacen` (`id_almacen`, `calle`, `chapa`, `id_localidad_almacen`) VALUES
-(1, 'a', 1111, 1),
-(2, 'a', 1101, 3);
 
 -- --------------------------------------------------------
 
@@ -60,7 +51,7 @@ CREATE TABLE `asignado` (
 --
 
 CREATE TABLE `conduce` (
-  `id_vheiculo` varchar(255) NOT NULL,
+  `id_vheiculo` varchar(10) NOT NULL,
   `id_empleado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -72,7 +63,7 @@ CREATE TABLE `conduce` (
 
 CREATE TABLE `departamento` (
   `id_departamento` int(11) NOT NULL,
-  `nombre_departamento` varchar(255) NOT NULL
+  `nombre_departamento` varchar(64) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -108,21 +99,13 @@ INSERT INTO `departamento` (`id_departamento`, `nombre_departamento`) VALUES
 
 CREATE TABLE `empleado` (
   `id_empleado` int(11) NOT NULL,
-  `email` varchar(32) NOT NULL,
-  `nombre` varchar(32) NOT NULL,
-  `apellido` varchar(32) NOT NULL,
+  `email` varchar(64) NOT NULL,
+  `nombre` varchar(64) NOT NULL,
+  `apellido` varchar(64) NOT NULL,
   `CI` int(11) NOT NULL,
   `nro_telefono` int(11) DEFAULT NULL,
   `cargo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `empleado`
---
-
-INSERT INTO `empleado` (`id_empleado`, `email`, `nombre`, `apellido`, `CI`, `nro_telefono`, `cargo`) VALUES
-(1, 'long65tyco@gmail.com', 'Jose', 'Maria', 54788621, 935577, 0),
-(3, 'NatLong9905@gmail.com', 'Nataniel', 'Long', 1247789, 934455, 1);
 
 -- --------------------------------------------------------
 
@@ -132,7 +115,7 @@ INSERT INTO `empleado` (`id_empleado`, `email`, `nombre`, `apellido`, `CI`, `nro
 
 CREATE TABLE `localidad` (
   `id_localidad` int(11) NOT NULL,
-  `nombre_localidad` varchar(255) NOT NULL,
+  `nombre_localidad` varchar(16) NOT NULL,
   `id_dep` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -143,7 +126,7 @@ CREATE TABLE `localidad` (
 INSERT INTO `localidad` (`id_localidad`, `nombre_localidad`, `id_dep`) VALUES
 (1, 'Centro', 10),
 (2, 'Union', 10),
-(3, 'Colonia del sacramento', 4);
+(3, 'Colonia del sacr', 4);
 
 -- --------------------------------------------------------
 
@@ -152,17 +135,9 @@ INSERT INTO `localidad` (`id_localidad`, `nombre_localidad`, `id_dep`) VALUES
 --
 
 CREATE TABLE `login` (
-  `email` varchar(32) NOT NULL,
-  `password` varchar(32) NOT NULL
+  `email` varchar(64) NOT NULL,
+  `password` varchar(64) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `login`
---
-
-INSERT INTO `login` (`email`, `password`) VALUES
-('long65tyco@gmail.com', 'Loooong'),
-('NatLong9905@gmail.com', 'Nana45');
 
 -- --------------------------------------------------------
 
@@ -176,17 +151,9 @@ CREATE TABLE `lote` (
   `fecha_de_entrega` date DEFAULT NULL,
   `fecha_transporte` date DEFAULT NULL,
   `id_almacen` int(11) DEFAULT NULL,
-  `matricula_camion` varchar(12) DEFAULT NULL,
-  `id_destino` int(11) DEFAULT NULL
+  `matricula_camion` varchar(10) DEFAULT NULL,
+  `id_destino` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `lote`
---
-
-INSERT INTO `lote` (`id_lote`, `fecha_creacion`, `fecha_de_entrega`, `fecha_transporte`, `id_almacen`, `matricula_camion`, `id_destino`) VALUES
-(2, '2023-09-10', NULL, NULL, 1, NULL, 2),
-(3, '2023-09-11', NULL, NULL, NULL, NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -196,31 +163,18 @@ INSERT INTO `lote` (`id_lote`, `fecha_creacion`, `fecha_de_entrega`, `fecha_tran
 
 CREATE TABLE `paquete` (
   `id_paquete` int(11) NOT NULL,
-  `nombre_paquete` varchar(255) NOT NULL,
   `dimenciones` int(11) DEFAULT NULL,
   `peso` int(11) DEFAULT NULL,
   `fragil` int(11) DEFAULT NULL,
   `destino_calle` varchar(16) NOT NULL,
-  `fecha_entrega` date DEFAULT NULL,
-  `fecha_recibido` date DEFAULT NULL,
+  `fecha_de_entrega` date DEFAULT NULL,
+  `fecha_recivido` date DEFAULT NULL,
   `fecha_cargado` date DEFAULT NULL,
   `fecha_ingreso` date NOT NULL,
   `id_lote_portador` int(11) DEFAULT NULL,
   `id_localidad_destino` int(11) NOT NULL,
-  `matricula_transporte` varchar(12) DEFAULT NULL
+  `matricula_transporte` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `paquete`
---
-
-INSERT INTO `paquete` (`id_paquete`, `nombre_paquete`, `dimenciones`, `peso`, `fragil`, `destino_calle`, `fecha_entrega`, `fecha_recibido`, `fecha_cargado`, `fecha_ingreso`, `id_lote_portador`, `id_localidad_destino`, `matricula_transporte`) VALUES
-(3, '', 500, 500, 1, '8 de octubre y 2', NULL, '2023-09-09', NULL, '2023-09-09', NULL, 2, 'STL569'),
-(4, '', 800, 200, 1, 'a', NULL, '2023-09-09', NULL, '2023-09-09', NULL, 1, 'STP1986'),
-(5, 'Pistones', 15, 100, 0, 'agua fria', NULL, '2023-09-09', NULL, '2023-09-08', 3, 2, NULL),
-(6, 'GA', 66, 66, 1, 'Menas y Estafas', NULL, NULL, NULL, '2023-09-09', NULL, 2, NULL),
-(7, 'pack de vasos ', 700, 1000, 1, 'salvia y larga', NULL, NULL, NULL, '2023-09-08', 3, 2, NULL),
-(8, 'botellas', 700, 500, 135, '', NULL, NULL, NULL, '2023-09-10', 2, 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -229,8 +183,7 @@ INSERT INTO `paquete` (`id_paquete`, `nombre_paquete`, `dimenciones`, `peso`, `f
 --
 
 CREATE TABLE `ruta` (
-  `id_ruta` int(11) NOT NULL,
-  `orden` int(11) NOT NULL
+  `id_ruta` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -241,7 +194,7 @@ CREATE TABLE `ruta` (
 
 CREATE TABLE `sigue` (
   `id_ruta` int(11) NOT NULL,
-  `id_camion` varchar(12) NOT NULL
+  `Matricula` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -251,6 +204,7 @@ CREATE TABLE `sigue` (
 --
 
 CREATE TABLE `ubicacion` (
+  `posición` int(11) NOT NULL,
   `id_ruta` int(11) NOT NULL,
   `id_almacen` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -262,19 +216,12 @@ CREATE TABLE `ubicacion` (
 --
 
 CREATE TABLE `vehiculo` (
-  `matricula` varchar(12) NOT NULL,
+  `matricula` varchar(10) NOT NULL,
   `estado` int(11) NOT NULL,
-  `modelo` varchar(255) DEFAULT NULL,
-  `rol` int(11) NOT NULL
+  `modelo` varchar(16) DEFAULT NULL,
+  `rol` int(11) NOT NULL,
+  `id_almacen` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `vehiculo`
---
-
-INSERT INTO `vehiculo` (`matricula`, `estado`, `modelo`, `rol`) VALUES
-('STL569', 1, 'Camioneta', 2),
-('STP1986', 1, 'Camión pesado', 1);
 
 --
 -- Índices para tablas volcadas
@@ -355,7 +302,7 @@ ALTER TABLE `ruta`
 --
 ALTER TABLE `sigue`
   ADD PRIMARY KEY (`id_ruta`),
-  ADD KEY `id_camion` (`id_camion`);
+  ADD KEY `Matricula` (`Matricula`);
 
 --
 -- Indices de la tabla `ubicacion`
@@ -368,17 +315,12 @@ ALTER TABLE `ubicacion`
 -- Indices de la tabla `vehiculo`
 --
 ALTER TABLE `vehiculo`
-  ADD PRIMARY KEY (`matricula`);
+  ADD PRIMARY KEY (`matricula`),
+  ADD KEY `id_almacen` (`id_almacen`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
-
---
--- AUTO_INCREMENT de la tabla `almacen`
---
-ALTER TABLE `almacen`
-  MODIFY `id_almacen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `departamento`
@@ -390,7 +332,7 @@ ALTER TABLE `departamento`
 -- AUTO_INCREMENT de la tabla `empleado`
 --
 ALTER TABLE `empleado`
-  MODIFY `id_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_empleado` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `localidad`
@@ -402,13 +344,13 @@ ALTER TABLE `localidad`
 -- AUTO_INCREMENT de la tabla `lote`
 --
 ALTER TABLE `lote`
-  MODIFY `id_lote` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_lote` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `paquete`
 --
 ALTER TABLE `paquete`
-  MODIFY `id_paquete` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_paquete` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `ruta`
@@ -467,7 +409,7 @@ ALTER TABLE `paquete`
 --
 ALTER TABLE `sigue`
   ADD CONSTRAINT `sigue_ibfk_1` FOREIGN KEY (`id_ruta`) REFERENCES `ruta` (`id_ruta`),
-  ADD CONSTRAINT `sigue_ibfk_2` FOREIGN KEY (`id_camion`) REFERENCES `vehiculo` (`matricula`);
+  ADD CONSTRAINT `sigue_ibfk_2` FOREIGN KEY (`Matricula`) REFERENCES `vehiculo` (`matricula`);
 
 --
 -- Filtros para la tabla `ubicacion`
@@ -475,6 +417,12 @@ ALTER TABLE `sigue`
 ALTER TABLE `ubicacion`
   ADD CONSTRAINT `ubicacion_ibfk_1` FOREIGN KEY (`id_ruta`) REFERENCES `ruta` (`id_ruta`),
   ADD CONSTRAINT `ubicacion_ibfk_2` FOREIGN KEY (`id_almacen`) REFERENCES `almacen` (`id_almacen`);
+
+--
+-- Filtros para la tabla `vehiculo`
+--
+ALTER TABLE `vehiculo`
+  ADD CONSTRAINT `vehiculo_ibfk_1` FOREIGN KEY (`id_almacen`) REFERENCES `almacen` (`id_almacen`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

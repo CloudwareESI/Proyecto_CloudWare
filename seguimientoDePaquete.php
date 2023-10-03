@@ -1,8 +1,8 @@
 <?php
 session_start();
 include "db/funciones_utiles.php";
-require "almacen/super_controlador_almacen.php";
-$paquete = get_paquete($_GET["id"]);
+require "almacen/controlador_almacen/super_controlador_almacen.php";
+$paquete = get_paquete($_GET["Codigo"]);
 var_dump($paquete);
 ?>
 <!DOCTYPE html>
