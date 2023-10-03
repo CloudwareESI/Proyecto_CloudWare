@@ -1,0 +1,146 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: #2f2f2f;
+}
+
+.barras{
+    margin-top: 20%;
+    display: flex;
+    width: auto;
+    height: 300px;
+    justify-content: center;
+    margin-top: 25%;
+}
+
+.barra1{
+    border: 1px solid #eae096;
+    background-color: #eae096;
+    margin-top: 60px;
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 130px;
+    height: 20px;
+    border-radius: 20px;
+}
+.transicion1{
+    background-color: #eae096;
+    width: 20px;
+    height: 20px;
+    border-radius: 50px;
+}
+#barra1{
+    height: fit-content;
+    margin-top: 45px;
+    font-size: 40px;
+    color: #eae096;
+    border-radius: 20px;
+
+}
+ .barra2{
+    border: 1px solid #d2b265;
+    background-color: #24262B;
+    margin-top: 60px;
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 130px;
+    height: 20px;
+    border-radius: 20px;
+}
+.transicion2{
+    background-color: #d2b265;
+    width: 20px;
+    height: 20px;
+    border-radius: 50px;
+} 
+#barra2{
+    height: fit-content;
+    margin-top: 45px;
+    font-size: 40px;
+    color: #d2b265;
+    border-radius: 20px
+}
+ 
+.barra3{
+    border: 1px solid #d2b265;
+    background-color: #24262B;
+    margin-top: 60px;
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 130px;
+    height: 20px;
+    border-radius: 20px;
+}
+.transicion3{
+    background-color: #d2b265;
+    width: 20px;
+    height: 20px;
+    border-radius: 50px;
+}
+#barra3{
+    height: fit-content;
+    margin-top: 45px;
+    font-size: 40px;
+    color: #d2b265;
+    border-radius: 20px
+}
+ .barra4{
+    border: 1px solid #d2b265;
+    background-color: #24262B;
+    margin-top: 60px;
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 130px;
+    height: 20px;
+    border-radius: 20px;
+}
+.transicion4{
+    background-color: #d2b265;
+    width: 20px;
+    height: 20px;
+    border-radius: 50px;
+}
+#barra4{
+    height: fit-content;
+    margin-top: 45px;
+    font-size: 40px;
+    color: #d2b265;
+    border-radius: 20px
+}
+ 
+
+
+
+
+
+
+
+
+
+
+/*APAGADO
+I{
+    margin-top: 45px;
+    font-size: 40px;
+    color: rgb(77, 76, 76);
+}
+*/
+
+/*ENCENDIDO*/
+I{
+  
+}
+
+/* comando ingresado al sistema<i class="fa-solid fa-house-laptop"> </i>*/
+/* comando en almacen general <i class="fa-solid fa-boxes-packing"></i> */
+/* comando en sub almacen <i class="fa-solid fa-truck-arrow-right"></i>*/
+/* comando destino <i class="fa-solid fa-house-user"></i>*/
+ 
+
+/*
+ #d2b265; 
+ #eae096;
+  background: #24262B;
+ */
