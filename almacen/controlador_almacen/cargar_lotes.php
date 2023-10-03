@@ -23,3 +23,5 @@ foreach ($_POST["lotes"] as $fila) {
 $lotes->update_lote($lote);
 
 }
+
+header("Location:http://localhost/Proyecto_Cloudware/index.php");

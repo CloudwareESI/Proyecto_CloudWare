@@ -80,7 +80,7 @@ foreach ($almacenes as $fila) {
             $P = llamadoDeAPI("POST", "http://127.0.0.1//Proyecto_Cloudware/almacen/controlador_almacen/REST_paquetes.php", $pack);
         }
 
-        //header("Location:http://localhost/Proyecto_Cloudware/index.php");
+        header("Location:http://localhost/Proyecto_Cloudware/index.php");
 
 
         exit;

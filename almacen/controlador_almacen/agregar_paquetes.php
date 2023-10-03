@@ -89,6 +89,6 @@ switch ($op) {
         # code...
         break;
 }
-//header("Location:http://localhost/Proyecto_Cloudware/Administracion.php");
+header("Location:http://localhost/Proyecto_Cloudware/Administracion.php");
 
 ?>
