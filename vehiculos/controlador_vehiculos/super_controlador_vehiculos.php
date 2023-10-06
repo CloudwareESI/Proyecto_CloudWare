@@ -27,9 +27,16 @@ function get_all_vehiculos()
     curl_close($curl);
 }
 
-function get_vehiculos($id)
+function get_vehiculo($id)
 {
     $L = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/vehiculos/controlador_vehiculos/REST_vehiculos.php", $id);
+
+    $valor = json_decode($L, true);
+    return $valor;
+}
+function get_vehiculos_lista()
+{
+    $L = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/vehiculos/controlador_vehiculos/REST_vehiculos.php", NULL);
 
     $valor = json_decode($L, true);
     return $valor;

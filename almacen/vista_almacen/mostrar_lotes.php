@@ -1,13 +1,4 @@
 <?php
-require "../../db/db_conn.php";
-
-$base_datos = new base_de_datos();
-
-$query = "SELECT * FROM vehiculo v WHERE rol='1'";
-$resultado = $base_datos->conexion()->execute_query($query);
-$matriz = $resultado->fetch_all(MYSQLI_ASSOC);
-
-
 $data = file_get_contents("php://input");
 $valor = json_decode($data, true);
 
@@ -68,10 +59,14 @@ if ($valor == null) {
 
 
         echo '<select name="matricula">';
-        foreach ($matriz as $fila) {
-            echo "<option value='" . $fila["matricula"] . "'>"
+        foreach ($valor["2"] as $fila) {
+
+            if($fila["rol"] == "1"){
+                echo "<option value='" . $fila["matricula"] . "'>"
                 . $fila["matricula"] .
                 "</option>";
+            }
+                
         }
 
         echo '</select>

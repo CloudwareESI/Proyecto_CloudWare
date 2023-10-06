@@ -186,3 +186,12 @@ button {
     color: #eae096;
     transition: 0.5s;
 }
+
+#map {
+    margin: auto;
+    position: fixed;
+    margin-top: 0;
+    height: 100%;
+    width: 71%;
+    margin-left: 29%;
+}
