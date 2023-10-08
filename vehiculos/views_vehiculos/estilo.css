@@ -191,7 +191,8 @@ button {
     margin: auto;
     position: fixed;
     margin-top: 0;
-    height: 100%;
-    width: 71%;
+    height: 500px;
+    width:  500px;
     margin-left: 29%;
+    margin-right: 90%;
 }

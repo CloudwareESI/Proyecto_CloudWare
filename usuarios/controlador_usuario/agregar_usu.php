@@ -16,7 +16,7 @@ switch ($op) {
 
         $cargo = $_POST['cargo'];
 
-        $password = $_POST['password'];
+        $password = $contraseniaHash = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
         $persona = array($email, $nombre, $apellido, $CI, $telefono, $cargo);
         $login = array($email, $password);
@@ -40,7 +40,7 @@ switch ($op) {
         $CI = $_POST['CI'];
         $cargo = $_POST['cargo'];
 
-        $password = $_POST['password'];
+        $password = $contraseniaHash = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
         $id = $_POST['id'];
 

@@ -25,9 +25,8 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
         <title>QuickCarry</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
+        <link rel="stylesheet" href="leaflet-routing-machine.css" />
 
         <script>
             $(document).ready(function() {
@@ -62,6 +61,7 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
                     $("#formRuta").hide();
                 });
             });
+
             $(document).ready(function() {
                 $("#enviar").click(function() {
                     $("#formRuta").hide();
@@ -89,8 +89,8 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
                 </div>
                 <div class="opcion">
                     <a id="enviar" href="../controlador_vehiculos/extra_vehiculo.php?matricula=<?php
-                                                                                                echo $_GET['matricula']; ?>
-                &rol=<?php echo $_GET['rol']; ?>&estado=<?php echo $_GET['estado']; ?>">
+                    echo $_GET['matricula']; ?>
+                    &rol=<?php echo $_GET['rol']; ?>&estado=<?php echo $_GET['estado']; ?>">
                         <i class="fa-solid fa-truck-fast"></i></a>
                     <h2>
                         <?php
@@ -111,38 +111,34 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
 
 
                 <table id="tablaCarga">
-                    <?php
-                    echo '<form action="../controlador_vehiculos/entregar.php" method="post">';
-                    ?>
-                    <thead>
-                        <tr>
-                            <th>ID lote</th>
-                            <th>Destino</th>
-                            <th>Entregar</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        foreach ($carga as $fila) {
+                    <form action="../controlador_vehiculos/entregar.php" method="post">
 
-                            echo '<tr>
+                        <thead>
+                            <tr>
+                                <th>ID lote</th>
+                                <th>Destino</th>
+                                <th>Entregar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            foreach ($carga as $fila) {
+
+                                echo '<tr>
                         <td>' . $fila['id_lote'] . '</td>
 
                         <td>' . $fila['nombre_localidad'] . " " . $fila['nombre_departamento'] . '</td>
                         <td> <input type="checkbox" id="seleccionar" name="lotes[]" value="'
-                                . $fila['id_lote'] .
-                                '">
+                                    . $fila['id_lote'] .
+                                    '">
                         </td>
                     </tr>';
-                        }
-                        ?>
-                    </tbody>
-                    <?php
-                    echo '</select>
-                <input id="btnAniadir" type="submit" value="Cargar en camion">
-                </form>
-                ';
-                    ?>
+                            }
+                            ?>
+                        </tbody>
+                        </select>
+                        <input id="btnAniadir" type="submit" value="Cargar en camion">
+                    </form>
                 </table>
 
             </div>
@@ -154,19 +150,26 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
                 <script src="leaflet-routing-machine-3.2.12/dist/leaflet-routing-machine.js"></script>
                 <link rel="stylesheet" href="leaflet-routing-machine-3.2.12/dist/leaflet-routing-machine.css">
 
-                <div id="mapa"></div>
-                <script>
-                    var map = L.map("map", {
-                        trackRezise: true
-                    }).setView([ -34.0 , -56.1 ], 13);
+                <div id="map"></div>
+                <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+                <script src="leaflet-routing-machine.js"></script>
 
-                    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" ,{
+                <script>
+                    var map = L.map('map', {
+                        trackRezise: true
+                    }).setView([-34.0, -56.1], 13);
+
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                         maxZoom: 19
                     }).addTo(map);
 
+                    //var map = L.map("map", {
+                    //    trackRezise: true
+                    //}).setView([-34.0, -56.1], 13);
 
-
-
+                    //L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+                    //    maxZoom: 19
+                    //}).addTo(map);
                 </script>
 
 

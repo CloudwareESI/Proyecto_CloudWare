@@ -26,7 +26,7 @@ if (isset($valor["0"]) && isset($valor["1"])) {
         exit();
     } else {
 
-        $sql = "SELECT * FROM login WHERE email='$usuario' AND password='$password'";
+        $sql = "SELECT * FROM login WHERE email='$usuario'";
 
         $result = mysqli_query($conn->conexion(), $sql);
 
@@ -34,7 +34,12 @@ if (isset($valor["0"]) && isset($valor["1"])) {
 
             $linea = mysqli_fetch_assoc($result);
 
-            if ($linea['email'] === $usuario && $linea['password'] === $password) {
+            $email_sql = "SELECT * FROM login WHERE email='$usuario'";
+
+            $result_email = mysqli_query($conn->conexion(), $email_sql);
+            $login = mysqli_fetch_assoc($result_email);
+            
+            if ($linea['email'] === $usuario && password_verify($password, $login['password']) === true) {
 
 
                 $usu_sql = "SELECT * FROM empleado WHERE email='$usuario'";
