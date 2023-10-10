@@ -25,7 +25,7 @@ if ($valor == null) {
 
 
                 echo '
-            <form action="almacen/controlador_almacen/cargar_lotes.php" method="post">
+            <form action="almacen/controlador_almacen/cargar_carga.php" method="post">
             <tr>
             <td>' . $fila['id_lote'] . '</td>  
             <td>' . $fila['fecha_creacion'] . '</td>';
@@ -70,6 +70,7 @@ if ($valor == null) {
         }
 
         echo '</select>
+        <input type="hidden" name="opcion" value="lote">
     <input class="btnAniadir" type="submit" value="Cargar en camion">
     </form>
     ';

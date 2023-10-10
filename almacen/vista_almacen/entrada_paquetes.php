@@ -31,7 +31,7 @@ if ($valor == null) {
                     if (isset($fila["id_almacen"])) {
                     } else {
                         echo '
-            <form action="almacen/controlador_almacen/formar_lote.php" method="post">
+            <form action="almacen/controlador_almacen/cargar_carga.php" method="post">
             <tr>
             <td>' . $fila['id_paquete'] . '</td>  
             <td>' . $fila['nombre_paquete'] . '</td>
@@ -85,6 +85,7 @@ if ($valor == null) {
 
             echo '
         <input type="hidden" name="id_almacen" value="' . NULL . '">
+        <input type="hidden" name="opcion" value="formar">
         <input class="btnAniadir" type="submit" value="Crear Lote">
 </form>
 ';
@@ -112,7 +113,7 @@ if ($valor == null) {
 
 
                 echo '
-                <form action="almacen/controlador_almacen/cargar_lotes.php" method="post">
+                <form action="almacen/controlador_almacen/cargar_carga.php" method="post">
             <tr>
             <td>' . $fila['id_lote'] . '</td>  
             <td>' . $fila['fecha_creacion'] . '</td>';
