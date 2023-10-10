@@ -89,7 +89,7 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
                 </div>
                 <div class="opcion">
                     <a id="enviar" href="../controlador_vehiculos/extra_vehiculo.php?matricula=<?php
-                    echo $_GET['matricula']; ?>
+                                                                                                echo $_GET['matricula']; ?>
                     &rol=<?php echo $_GET['rol']; ?>&estado=<?php echo $_GET['estado']; ?>">
                         <i class="fa-solid fa-truck-fast"></i></a>
                     <h2>
@@ -113,31 +113,72 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
                 <table id="tablaCarga">
                     <form action="../controlador_vehiculos/entregar.php" method="post">
 
-                        <thead>
-                            <tr>
-                                <th>ID lote</th>
-                                <th>Destino</th>
-                                <th>Entregar</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+
+                        <?php switch ($_GET['rol']) {
+                            case '1':
+                        ?>
+                                <thead>
+                                    <tr>
+                                        <th>ID lote</th>
+                                        <th>Destino</th>
+                                        <th>Seleccionar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    foreach ($carga as $fila) {
+
+                                        echo '<tr>
+                                    <td>' . $fila['id_lote'] . '</td>
+
+                                    <td>' . $fila['nombre_localidad'] . " " .
+                                            $fila['nombre_departamento'] . '</td>
+                                    <td> <input type="checkbox" id="seleccionar" name="lotes[]" value="'
+                                            . $fila['id_lote'] .
+                                            '">
+                                    </td>
+                                    </tr>';
+                                    }
+                                    ?>
+                                </tbody>
+                                <input id="opcion_entrega" type="hidden" value="Entregar lote">
                             <?php
-                            foreach ($carga as $fila) {
+                                break;
 
-                                echo '<tr>
-                        <td>' . $fila['id_lote'] . '</td>
 
-                        <td>' . $fila['nombre_localidad'] . " " . $fila['nombre_departamento'] . '</td>
-                        <td> <input type="checkbox" id="seleccionar" name="lotes[]" value="'
-                                    . $fila['id_lote'] .
-                                    '">
-                        </td>
-                    </tr>';
-                            }
+                            case '2':
                             ?>
-                        </tbody>
-                        </select>
-                        <input id="btnAniadir" type="submit" value="Cargar en camion">
+                                <thead>
+                                    <tr>
+                                        <th>ID Paquete</th>
+                                        <th>Destino</th>
+                                        <th>Seleccionar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    foreach ($carga as $fila) {
+
+                                        echo '<tr>
+                                    <td>' . $fila['id_paquete'] . '</td>
+
+                                    <td>' . $fila['destino_calle'] . " " . $fila['nombre_localidad'] . " " .
+                                            $fila['nombre_departamento'] . '</td>
+                                    <td> <input type="checkbox" id="seleccionar" name="paquetes[]" value="'
+                                            . $fila['id_paquete'] .
+                                            '">
+                                    </td>
+                                    </tr>';
+                                    }
+                                    ?>
+                                </tbody>
+                                <input id="opcion_entrega" type="hidden" value="Entregar paquete">
+                        <?php
+                                break;
+                        } ?>
+
+
+                        <input id="btnAniadir" type="submit" value="Entregar">
                     </form>
                 </table>
 
@@ -163,13 +204,49 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
                         maxZoom: 19
                     }).addTo(map);
 
-                    //var map = L.map("map", {
-                    //    trackRezise: true
-                    //}).setView([-34.0, -56.1], 13);
 
-                    //L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-                    //    maxZoom: 19
-                    //}).addTo(map);
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                        var latitud = position.coords.latitude;
+                        var longitud = position.coords.longitude;
+
+                        map.setView([latitud, longitud], 13);
+
+
+                        var marker = L.marker([latitud, longitud], {
+
+                        }).addTo(map);
+                        marker.bindPopup("Mi ubicacion").openPopup()
+
+                        <?php
+                        switch ($_GET['rol']) {
+                            case '1':
+
+                                foreach ($carga as $fila) {
+                                    //aqui se vera las almacenes a visitar y decidir la ruta que se debe seleccionar
+
+
+                                }
+                                ?>
+                                //aqui va el codigo para marcar la ruta en el mapa
+
+                                <?php
+                                break;
+
+                            case '2':
+                                foreach ($carga as $fila) {
+                                    $destino =
+                                        $fila['destino_calle'] . " " .
+                                        $fila['nombre_localidad'] . " " .
+                                        $fila['nombre_departamento'];
+                                ?>
+                                    //aqui se pondran puntos en el mapa por cada paquete a entregar segun $destino
+                                <?php
+                                }
+                                break;
+                        }
+                        ?>
+
+                    });
                 </script>
 
 

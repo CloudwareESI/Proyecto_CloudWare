@@ -7,7 +7,7 @@ require "super_controlador_almacen.php";
 
 
 
-switch ($variable) {
+switch ($opcion) {
     case 'lote':
         $lotes = new lotes();
         $matricula = $_POST['matricula'];
@@ -38,9 +38,9 @@ switch ($variable) {
         $matricula = $_POST['matricula'];
 
         foreach ($_POST["paquete"] as $fila) {
-            $id_lote = array($fila);
+            $id_paquete = array($fila);
 
-            $valor = $lotes->get_lote($id_lote);
+            $valor = $paquetes->get_paquete($id_paquete);
             $valor_extraido =  $valor[0];
             $lote = array(
                 $valor_extraido["fecha_creacion"],
