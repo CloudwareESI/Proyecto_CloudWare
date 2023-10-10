@@ -226,13 +226,14 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
 
 
                                 }
-                                ?>
+                        ?>
                                 //aqui va el codigo para marcar la ruta en el mapa
 
                                 <?php
                                 break;
 
                             case '2':
+                                
                                 foreach ($carga as $fila) {
                                     $destino =
                                         $fila['destino_calle'] . " " .
@@ -240,7 +241,23 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
                                         $fila['nombre_departamento'];
                                 ?>
                                     //aqui se pondran puntos en el mapa por cada paquete a entregar segun $destino
-                                <?php
+                                    var urlDestino = 'https://nominatim.openstreetmap.org/search?format=json&q=' +
+                                        encodeURIComponent(<?php echo $destino; ?>);
+
+                                    fetch(urlDestino)
+                                        .then(function(response) {
+                                            return response.json();
+                                        })
+                                        .then(function(data) {
+                                            if (data.length > 0) {
+                                                var lat = parseFloat(data[0].lat);
+                                                var lon = parseFloat(data[0].lon);
+                                                var marker = L.marker([lat, lon], {}).addTo(map);
+                                            } else {
+                                                alert('No se encontró la locacion');
+                                            }
+                                        })
+                        <?php
                                 }
                                 break;
                         }
