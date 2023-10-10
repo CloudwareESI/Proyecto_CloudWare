@@ -117,6 +117,25 @@ class lotes
 
   public function delete_lotes($id_lote)
   {
+    //Se encuentra a todos los paquetes del lote
+    $query_pqt_lote= "SELECT * FROM paquete where paquete.id_lote_portador = ?";
+    $resultado = $this->base_datos->conexion()->execute_query($query_pqt_lote, $id_lote);
+    $matriz = array();
+    $matriz = $resultado->fetch_all(MYSQLI_ASSOC);
+var_dump($matriz);
+    //Cada paquete asignado a este lote es deasignado
+    if (isset($matriz)) {
+      foreach ($matriz as $fila) {
+        $id_paquete = array($fila['id_paquete']);
+        $insert = "UPDATE paquete SET 
+        id_lote_portador= NULL
+        where paquete.id_paquete= ? ";
+        $this->base_datos->conexion()->execute_query($insert, $id_paquete);   
+      }
+    }
+
+    
+    //El lote es eliminado
     $query = "DELETE FROM lote where id_lote = ? ";
     $this->base_datos->conexion()->execute_query($query, $id_lote);
   }

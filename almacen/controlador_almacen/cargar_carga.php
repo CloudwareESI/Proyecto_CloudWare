@@ -7,7 +7,7 @@ require "super_controlador_almacen.php";
 
 
 
-switch ($opcion) {
+switch ($_POST["opcion"]) {
     case 'lote':
         $lotes = new lotes();
         $matricula = $_POST['matricula'];
@@ -42,16 +42,10 @@ switch ($opcion) {
 
             $valor = $paquetes->get_paquete($id_paquete);
             $valor_extraido =  $valor[0];
-            $lote = array(
-                $valor_extraido["fecha_creacion"],
-                $valor_extraido["fecha_de_entrega"],
-                $valor_extraido["fecha_transporte"],
-                $valor_extraido["id_almacen"],
-                $matricula,
-                $valor_extraido["id_destino"],
-                $valor_extraido["id_lote"]
+            $paquete = array(
+
             );
-            $lotes->update_lote($lote);
+            $paquetes->update_paquetes($paquete);
         }
         break;
 
@@ -99,9 +93,9 @@ switch ($opcion) {
 
 
 
-                $L = llamadoDeAPI("PUT", "http://127.0.0.1//Proyecto_Cloudware/almacen/controlador_almacen/REST_lotes.php", $var);
+                $id_lote = llamadoDeAPI("PUT", "http://127.0.0.1//Proyecto_Cloudware/almacen/controlador_almacen/REST_lotes.php", $var);
 
-                var_dump($L);
+                var_dump($id_lote);
 
 
                 foreach ($_POST["paquetes"] as $fila) {
@@ -112,9 +106,6 @@ switch ($opcion) {
                     $paquete = $valor[0];
                     var_dump($paquete);
 
-
-                    $paquete['id_lote_portador'] = $L;
-
                     echo "<br>";
                     var_dump($paquete);
                     $pack = array(
@@ -123,18 +114,19 @@ switch ($opcion) {
                         $paquete['peso'],
                         $paquete['fragil'],
                         $paquete['destino_calle'],
-                        $paquete['fecha_recibido'],
                         $paquete['fecha_entrega'],
+                        $paquete['fecha_recibido'],
                         $paquete['fecha_cargado'],
                         $paquete['fecha_ingreso'],
-                        $paquete['id_lote_portador'],
+                        $id_lote,
                         $paquete['id_localidad_destino'],
+                        $paquete['matricula_transporte'],
                         $paquete['id_paquete'],
                     );
-                    $P = llamadoDeAPI("POST", "http://127.0.0.1//Proyecto_Cloudware/almacen/controlador_almacen/REST_paquetes.php", $pack);
+                    llamadoDeAPI("POST", "http://127.0.0.1//Proyecto_Cloudware/almacen/controlador_almacen/REST_paquetes.php", $pack);
                 }
 
-                header("Location:http://localhost/Proyecto_Cloudware/index.php");
+                //header("Location:http://localhost/Proyecto_Cloudware/index.php");
 
 
                 exit;
@@ -146,4 +138,4 @@ switch ($opcion) {
         # code...
         break;
 }
-header("Location:http://localhost/Proyecto_Cloudware/index.php");
+//header("Location:http://localhost/Proyecto_Cloudware/index.php");
