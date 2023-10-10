@@ -126,7 +126,7 @@ switch ($_POST["opcion"]) {
                     llamadoDeAPI("POST", "http://127.0.0.1//Proyecto_Cloudware/almacen/controlador_almacen/REST_paquetes.php", $pack);
                 }
 
-                //header("Location:http://localhost/Proyecto_Cloudware/index.php");
+                header("Location:http://localhost/Proyecto_Cloudware/index.php");
 
 
                 exit;
@@ -134,8 +134,5 @@ switch ($_POST["opcion"]) {
         }
 
         break;
-    default:
-        # code...
-        break;
 }
-//header("Location:http://localhost/Proyecto_Cloudware/index.php");
+header("Location:http://localhost/Proyecto_Cloudware/index.php");
