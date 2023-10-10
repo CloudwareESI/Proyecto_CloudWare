@@ -11,41 +11,44 @@ if ($valor == null) {
         <h3>Lotes de el almacen N°" <?php echo $valor["0"]; ?>
         </h3>
         <table>
-            <tr>
-                <td>N° lote</td>
-                <td>Fecha de creacion</td>
-                <td>Destino</td>
-                <td>Seleccionar</td>
-                <td>Eliminar</td>
-            </tr>
-        <?php
-        foreach ($valor["1"] as $fila) {
+            <thead>
+                <tr>
+                    <th>N° lote</th>
+                    <th>Fecha de creacion</th>
+                    <th>Destino</th>
+                    <th>Seleccionar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php
+            foreach ($valor["1"] as $fila) {
 
-            if ($valor["0"]  == $fila["id_almacen"]) {
+                if ($valor["0"]  == $fila["id_almacen"]) {
 
 
-                echo '
+                    echo '
             <form action="almacen/controlador_almacen/cargar_carga.php" method="post">
             <tr>
             <td>' . $fila['id_lote'] . '</td>  
             <td>' . $fila['fecha_creacion'] . '</td>';
 
-                /*<td>' . $fila['id_almacen'] . '</td>
+                    /*<td>' . $fila['id_almacen'] . '</td>
             <td>' . $fila['matricula_camion'] . '</td>
             <td>' . $fila['id_destino'] . '</td>
             <td>' . $fila['fecha_recibido'] . '</td>*/
 
-                echo '
+                    echo '
             <td>' . $fila['nombre_localidad'] . " " . $fila['nombre_departamento'] . '</td>
             <td> <input type="checkbox" id="seleccionar" name="lotes[]" value="'
-                    . $fila['id_lote'] .
-                    '">
+                        . $fila['id_lote'] .
+                        '">
             </td>
 
             <td>
             <div class="box"><a href="almacen/vista_almacen/eliminar_confirmacion_lotes.php?id_lote=' .
-                    $fila['id_lote'] .
-                    '">
+                        $fila['id_lote'] .
+                        '">
                 <img class="icnEliminar" img id="imagenTabla" 
                 src="http://localhost/Proyecto_Cloudware/imagenes/imagenBorrar.png"></a>
             
@@ -53,27 +56,28 @@ if ($valor == null) {
             </tr>
             
             ';
+                }
             }
-        }
-        echo "</table>";
+            echo "</tbody></table>";
 
 
-        echo '<select name="matricula">';
-        foreach ($valor["2"] as $fila) {
+            echo '<select name="matricula">';
+            foreach ($valor["2"] as $fila) {
 
-            if($fila["rol"] == "1"){
-                echo "<option value='" . $fila["matricula"] . "'>"
-                . $fila["matricula"] .
-                "</option>";
+                if ($fila["rol"] == "1") {
+                    echo "<option value='" . $fila["matricula"] . "'>"
+                        . $fila["matricula"] .
+                        "</option>";
+                }
             }
-                
-        }
 
-        echo '</select>
+            echo '</select>
         <input type="hidden" name="opcion" value="lote">
     <input class="btnAniadir" type="submit" value="Cargar en camion">
     </form>
+    
     ';
-    }
-        ?>
+        }
+            ?>
     </div>
+    <br><br>

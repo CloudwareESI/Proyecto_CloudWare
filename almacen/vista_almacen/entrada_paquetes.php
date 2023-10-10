@@ -11,18 +11,20 @@ if ($valor == null) {
             Paquetes para enviar a central.
         </h3>
         <table>
-            <tr>
-                <td>Codigo</td>
-                <td>Nombre</td>
-                <td>Peso</td>
-                <td>Dimensiones</td>
-                <td>Fragil?</td>
-                <td>Fecha_recivido</td>
-                <td>Destino</td>
-                <td>Seleccionar</td>
-                <td>Modificar</td>
-                <td>Eliminar</td>
-            </tr>
+            <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Nombre</th>
+                    <th>Peso</th>
+                    <th>Dimensiones</th>
+                    <th>Fragil?</th>
+                    <th>Fecha_recivido</th>
+                    <th>Destino</th>
+                    <th>Seleccionar</th>
+                    <th>Modificar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
             <?php
             foreach ($valor["0"] as $fila) {
 
@@ -35,10 +37,16 @@ if ($valor == null) {
             <tr>
             <td>' . $fila['id_paquete'] . '</td>  
             <td>' . $fila['nombre_paquete'] . '</td>
-            <td>' . $fila['peso'] . '</td>
-            <td>' . $fila['dimenciones'] . '</td>
-            <td>' . $fila['fragil'] . '</td>
-            
+            <td>' . $fila['peso'] . ' gramos</td>
+            <td>' . $fila['dimenciones'] . ' cm3</td>
+            <td>'; 
+            if ($fila['fragil'] == "1") {
+                echo "Si";
+            }else{
+                echo "No";
+            }
+             
+            echo '</td>
             <td>' . $fila['fecha_ingreso'] . "/" . $fila['fecha_recibido'] . '</td>
             <td>' . $fila['destino_calle'] . " " . $fila['nombre_localidad'] . " " . $fila['nombre_departamento'] . '</td>
             <td> <input type="checkbox" id="seleccionar" name="paquetes[]" value="'
@@ -81,7 +89,7 @@ if ($valor == null) {
                 }
             }
 
-            echo "</table>";
+            echo "</tbody></table>";
 
             echo '
         <input type="hidden" name="id_almacen" value="' . NULL . '">
@@ -98,13 +106,16 @@ if ($valor == null) {
             Lotes para enviar a central.
         </h3>
         <table>
-            <tr>
-                <td>N° lote</td>
-                <td>Fecha de creacion</td>
-                <td>Destino</td>
-                <td>Seleccionar</td>
-                <td>Eliminar</td>
-            </tr>
+            <thead>
+                <tr>
+                    <th>N° lote</th>
+                    <th>Fecha de creacion</th>
+                    <th>Destino</th>
+                    <th>Seleccionar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
         <?php
         foreach ($valor["1"] as $fila) {
 
@@ -143,7 +154,7 @@ if ($valor == null) {
             ';
             }
         }
-        echo "</table>";
+        echo "</tbody></table>";
 
 
         echo '<select name="matricula">';
