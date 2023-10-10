@@ -43,6 +43,10 @@ switch ($_SERVER['REQUEST_METHOD']) {
 		$valor = json_decode($data, true);
 		var_dump($valor);
 		switch ($valor[0]) {
+			case 'asignar_almacen':
+				$persona->put_almacen($valor[1]);
+				break;
+
 			case 'asignar_vehiculo':
 				$persona->put_conduce($valor[1]);
 				break;

@@ -98,6 +98,14 @@ class persona
     $this->base_datos->conexion()->execute_query($insert_login, $variables_login);
   }
 
+  public function put_almacen($variables)
+  {
+
+    //email nombre apellido CI nro_telefono cargo
+    $insert = "INSERT INTO asignado VALUES (?, ?)";
+    $this->base_datos->conexion()->execute_query($insert, $variables);
+  }
+
   public function put_conduce($variables)
   {
 

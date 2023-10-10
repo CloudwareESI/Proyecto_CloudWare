@@ -8,10 +8,10 @@ $resultado = $base_datos->conexion()->execute_query($query);
 $matriz = $resultado->fetch_all(MYSQLI_ASSOC);
 
 $data = file_get_contents("php://input");
-$valor = json_decode($data, true);
+$valores = json_decode($data, true);
 
 
-if ($valor == null) {
+if ($valores["0"] == null) {
     echo "ERROR JSON VACIO";
 } else {
     echo "<div class='contenedorUsuario'>";
@@ -28,7 +28,7 @@ if ($valor == null) {
     <th>Eliminar</th> 
     </tr>
     </thead><tbody>";
-    foreach ($valor as $fila) {
+    foreach ($valores["0"] as $fila) {
         echo '
         <tr>
     <td>' . $fila['id_empleado'] . '</td>  
@@ -96,7 +96,7 @@ if ($valor == null) {
 </div>
 
 <?php
-if ($valor == null) {
+if ($valores == null) {
     echo "ERROR JSON VACIO";
 } else {
     echo "<div class='contenedorUsuario'>";
@@ -115,7 +115,7 @@ if ($valor == null) {
     echo '
     <form action="usuarios/controlador_usuario/agregar_usu.php" method="post">
     <input type="hidden" name="op" value="asignar_vehiculo">';
-    foreach ($valor as $fila) {
+    foreach ($valores["0"] as $fila) {
         if($fila['cargo'] == "2"){
 
 
@@ -135,7 +135,7 @@ if ($valor == null) {
 }
     echo "</tbody></table>";
     echo '<select name="matricula">';
-    foreach ($matriz as $fila) {
+    foreach ($valores["1"] as $fila) {
         echo "<option value='" . $fila["matricula"] . "'>"
             . $fila["matricula"] .
             "</option>";
@@ -146,5 +146,59 @@ if ($valor == null) {
     </form>';
 }
 ?>
+
+<?php
+if ($valores["0"] == null) {
+    echo "ERROR JSON VACIO";
+} else {
+    echo "<div class='contenedorUsuario'>";
+    echo "<h3>Gestion Almaceneros</h3>
+    <table class='tablaUsuario'>
+    <thead>
+    <tr>
+    <th>ID</th> 
+    <th>Nombre</th> 
+    <th>Apellido</th> 
+
+    <th>Asignar</th> 
+    </tr>
+    </thead><tbody>";
+    
+    echo '
+    <form action="usuarios/controlador_usuario/agregar_usu.php" method="post">
+    <input type="hidden" name="op" value="asignar_almacen">';
+    foreach ($valores["0"] as $fila) {
+        if($fila['cargo'] == "1"){
+
+
+        echo '
+        <tr>
+    <td>' . $fila['id_empleado'] . '</td>  
+    <td>' . $fila['nombre'] . '</td>
+    <td>' . $fila['apellido'] . '</td>
+    <td> <input type="checkbox" id="seleccionar" name="id_empleado[]" value="'
+    . $fila['id_empleado'] .
+    '">
+    </td>
+   
+    </tr>
+    ';
+    }
+}
+    echo "</tbody></table>";
+    echo '<select name="almacen">';
+    foreach ($valores["2"] as $fila) {
+        echo "<option value='" . $fila["id_almacen"] . "'> Almacen:"
+        . $fila["id_almacen"] . "-" . $fila["nombre_localidad"] .
+         " " . $fila["nombre_departamento"] .
+            "</option>";
+    }
+
+    echo '</select>
+    <input class="btnAniadir" type="submit" value="Asignar empleado/s a almacen">
+    </form>';
+}
+?>
+
 </div>
 </div>

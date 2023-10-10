@@ -58,7 +58,18 @@ switch ($op) {
         foreach ($id as $fila) {
             $asignar = array($matricula, $fila);
             $valor = array($op, $asignar);
-            $L = llamadoDeAPI("PUT", "http://127.0.0.1//Proyecto_Cloudware/usuarios/controlador_usuario/REST_usuario.php", $valor);    
+            $L = llamadoDeAPI("PUT", "http://127.0.0.1//Proyecto_Cloudware/usuarios/controlador_usuario/REST_usuario.php", $valor);
+        }
+
+        break;
+
+    case 'asignar_almacen':
+        $id = $_POST['id_empleado'];
+        $almacen = $_POST['almacen'];
+        foreach ($id as $fila) {
+            $asignar = array($almacen, $fila);
+            $valor = array($op, $asignar);
+            $L = llamadoDeAPI("PUT", "http://127.0.0.1//Proyecto_Cloudware/usuarios/controlador_usuario/REST_usuario.php", $valor);
         }
 
         break;
