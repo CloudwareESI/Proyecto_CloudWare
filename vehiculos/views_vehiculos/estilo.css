@@ -171,12 +171,12 @@ label {
 }
 
 .btn {
-    display: flex;
     justify-content: center;
     margin-top: 60px;
 }
 
 button {
+    display: none;
     height: fit-content;
     border: 2px solid #d2b265;
     border-radius: 10px;
@@ -188,11 +188,15 @@ button {
 }
 
 #map {
-    margin: auto;
+    display: none;
     position: fixed;
     margin-top: 0;
-    height: 500px;
-    width:  500px;
-    margin-left: 29%;
-    margin-right: 90%;
+    height: 100%;
+    width:  100%;
+
+    margin-right: 100%;
+}
+
+#btnAniadir {
+    display: none;
 }

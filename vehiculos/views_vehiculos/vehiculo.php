@@ -52,19 +52,19 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
         <script>
             $(document).ready(function() {
                 $("#seleccionarRuta").click(function() {
-                    $("#formRuta").fadeIn();
+                    $("#map").fadeIn();
                 });
             });
 
             $(document).ready(function() {
                 $("#mostrarTabla").click(function() {
-                    $("#formRuta").hide();
+                    $("#map").hide();
                 });
             });
 
             $(document).ready(function() {
                 $("#enviar").click(function() {
-                    $("#formRuta").hide();
+                    $("#map").hide();
                 });
             });
         </script>
@@ -178,7 +178,7 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
                         } ?>
 
 
-                        <input id="btnAniadir" type="submit" value="Entregar">
+                        <input id="btnAniadir" class="btn" type="submit" value="Entregar">
                     </form>
                 </table>
 
@@ -191,7 +191,11 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
                 <script src="leaflet-routing-machine-3.2.12/dist/leaflet-routing-machine.js"></script>
                 <link rel="stylesheet" href="leaflet-routing-machine-3.2.12/dist/leaflet-routing-machine.css">
 
-                <div id="map"></div>
+
+                <div class="container">
+                    <div id="map"></div>
+                </div>
+
                 <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
                 <script src="leaflet-routing-machine.js"></script>
 
@@ -217,8 +221,52 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
                         }).addTo(map);
                         marker.bindPopup("Mi ubicacion").openPopup()
 
+                        //Switch que se encarga de marcar la ruta /los paquetes
+                        <?php
+                        switch ($_GET['rol']) {
+                            case '1':
+
+                                foreach ($carga as $fila) {
+                                    //aqui se vera las almacenes a visitar y decidir la ruta que se debe seleccionar
 
 
+                                }
+                        ?>
+                                //aqui va el codigo para marcar la ruta en el mapa
+
+                                <?php
+                                break;
+
+                            case '2':
+
+                                foreach ($carga as $fila) {
+                                    $destino =
+                                        $fila['destino_calle'] . " " .
+                                        $fila['nombre_localidad'] . " " .
+                                        $fila['nombre_departamento'];
+                                ?>
+                                    //aqui se pondran puntos en el mapa por cada paquete a entregar segun $destino
+                                    var urlDestino = 'https://nominatim.openstreetmap.org/search?format=json&q=' +
+                                        encodeURIComponent(<?php echo $destino; ?>);
+
+                                    fetch(urlDestino)
+                                        .then(function(response) {
+                                            return response.json();
+                                        })
+                                        .then(function(data) {
+                                            if (data.length > 0) {
+                                                var lat = parseFloat(data[0].lat);
+                                                var lon = parseFloat(data[0].lon);
+                                                var marker = L.marker([lat, lon], {}).addTo(map);
+                                            } else {
+                                                alert('No se encontró la locacion');
+                                            }
+                                        })
+                        <?php
+                                }
+                                break;
+                        }
+                        ?>
                     });
                 </script>
 
