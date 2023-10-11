@@ -247,7 +247,7 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
                                 ?>
                                     //aqui se pondran puntos en el mapa por cada paquete a entregar segun $destino
                                     var urlDestino = 'https://nominatim.openstreetmap.org/search?format=json&q=' +
-                                        encodeURIComponent(<?php echo $destino; ?>);
+                                        encodeURIComponent("<?php echo $destino; ?>");
 
                                     fetch(urlDestino)
                                         .then(function(response) {
