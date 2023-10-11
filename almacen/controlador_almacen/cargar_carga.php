@@ -6,7 +6,6 @@ require "super_controlador_almacen.php";
 
 
 
-
 switch ($_POST["opcion"]) {
     case 'lote':
         $lotes = new lotes();
@@ -52,16 +51,15 @@ switch ($_POST["opcion"]) {
 
 
     case 'formar':
-        $paquetes = new paquetes();
-
         $locacion = NULL;
 
 
         foreach ($_POST["paquetes"] as $fila) {
             $id_paquete = array("id_paquete" => $fila);
+            
+            $valor =json_decode(llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/almacen/controlador_almacen/REST_paquetes.php", $id_paquete), true);
 
-            $valor = get_paquete($id_paquete);
-
+            
             $paquete = $valor[0];
 
 
@@ -101,7 +99,7 @@ switch ($_POST["opcion"]) {
                 foreach ($_POST["paquetes"] as $fila) {
                     $id_paquete = array("id_paquete" => $fila);
 
-                    $valor = get_paquete($id_paquete);
+                    $valor =json_decode(llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/almacen/controlador_almacen/REST_paquetes.php", $id_paquete), true);
 
                     $paquete = $valor[0];
                     var_dump($paquete);
@@ -126,7 +124,7 @@ switch ($_POST["opcion"]) {
                     llamadoDeAPI("POST", "http://127.0.0.1//Proyecto_Cloudware/almacen/controlador_almacen/REST_paquetes.php", $pack);
                 }
 
-                header("Location:http://localhost/Proyecto_Cloudware/index.php");
+                //header("Location:http://localhost/Proyecto_Cloudware/index.php");
 
 
                 exit;
@@ -135,4 +133,4 @@ switch ($_POST["opcion"]) {
 
         break;
 }
-header("Location:http://localhost/Proyecto_Cloudware/index.php");
+//header("Location:http://localhost/Proyecto_Cloudware/index.php");

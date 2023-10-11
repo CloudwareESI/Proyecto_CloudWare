@@ -13,11 +13,8 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
 		if (isset($valor['id_paquete'])) {
 			$id = array($valor['id_paquete']);
-
 			$paq = $paquetes->get_paquete($id);
 			$encryptado = json_encode($paq);
-
-
 			echo $encryptado;
 			die;
 		} else if (isset($valor['id_lote'])) {

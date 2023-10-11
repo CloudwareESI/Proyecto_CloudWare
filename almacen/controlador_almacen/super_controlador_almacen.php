@@ -153,6 +153,7 @@ function entrada_paquetes(){
     
     $paquetes = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/almacen/controlador_almacen/REST_paquetes.php", NULL);
     $lotes = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/almacen/controlador_almacen/REST_lotes.php", NULL);
+    var_dump($lotes);
     $vehiculos = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/vehiculos/controlador_vehiculos/REST_vehiculos.php", NULL);
 
     $valor = array(json_decode($paquetes, true), json_decode($lotes, true), json_decode($vehiculos, true));
