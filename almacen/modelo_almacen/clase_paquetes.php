@@ -159,6 +159,7 @@ class paquetes
 
   public function get_paquetes_alm($id_alm)
   {
+    
     $query = "SELECT 
     nombre_paquete, peso, 
     dimenciones, fragil, 
@@ -171,12 +172,12 @@ class paquetes
     FROM paquete p 
     INNER JOIN Localidad l ON p.id_localidad_destino  = l.id_localidad 
     INNER JOIN departamento d ON l.id_dep = d.id_departamento
-	  LEFT JOIN lote g ON p.id_lote_portador = g.id_lote
+	  INNER JOIN lote g ON p.id_lote_portador = g.id_lote
     WHERE id_almacen  = ?";
     $resultado = $this->base_datos->conexion()->execute_query($query, $id_alm);
     $matriz = array();
     $matriz = $resultado->fetch_all(MYSQLI_ASSOC);
-
+    
     return $matriz;
   }
 

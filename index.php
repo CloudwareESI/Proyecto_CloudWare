@@ -106,75 +106,84 @@ if (isset($_GET['Bienvenido'])) {
 
 
     <?php
-    if(isset($_GET['Inicio']) 
-    or 
-    (isset($_GET['Seguimiento']))
-    or
-    empty($_GET)){
+    if (
+        isset($_GET['Inicio'])
+        or
+        (isset($_GET['Seguimiento']))
+        or
+        empty($_GET)
+    ) {
     ?>
-    <!-- Slider -->
-    <div class="slider">
-        <div class="sliderContainer">
+        <!-- Slider -->
+        <div class="slider">
+            <div class="sliderContainer">
 
-            <!-- BUTTONS (input/labels) -->
-            <input type="radio" name="slider" id="slide-1-trigger" class="trigger" checked>
-            <label class="btnSlider" for="slide-1-trigger"></label>
-            <input type="radio" name="slider" id="slide-2-trigger" class="trigger">
-            <label class="btnSlider" for="slide-2-trigger"></label>
-            <input type="radio" name="slider" id="slide-3-trigger" class="trigger">
-            <label class="btnSlider" for="slide-3-trigger"></label>
-            <input type="radio" name="slider" id="slide-4-trigger" class="trigger">
-            <label class="btnSlider" for="slide-4-trigger"></label>
+                <!-- BUTTONS (input/labels) -->
+                <input type="radio" name="slider" id="slide-1-trigger" class="trigger" checked>
+                <label class="btnSlider" for="slide-1-trigger"></label>
+                <input type="radio" name="slider" id="slide-2-trigger" class="trigger">
+                <label class="btnSlider" for="slide-2-trigger"></label>
+                <input type="radio" name="slider" id="slide-3-trigger" class="trigger">
+                <label class="btnSlider" for="slide-3-trigger"></label>
+                <input type="radio" name="slider" id="slide-4-trigger" class="trigger">
+                <label class="btnSlider" for="slide-4-trigger"></label>
 
-            <!-- SLIDES -->
-            <div class="slide-wrapper">
-                <div id="slide-role">
-                    <div class="slide slide-1"></div>
-                    <div class="slide slide-2"></div>
-                    <div class="slide slide-3"></div>
-                    <div class="slide slide-4"></div>
+                <!-- SLIDES -->
+                <div class="slide-wrapper">
+                    <div id="slide-role">
+                        <div class="slide slide-1"></div>
+                        <div class="slide slide-2"></div>
+                        <div class="slide slide-3"></div>
+                        <div class="slide slide-4"></div>
+                    </div>
                 </div>
-            </div>
 
+            </div>
         </div>
-    </div>
     <?php
     }
     ?>
+
+
+
     <?php
     if (isset($_GET['Almacenes'])) {
-        require_once("almacen/controlador_almacen/super_controlador_almacen.php");
-        if (isset($_GET['id_almacen'])) {
-            get_paquetes_alm($_GET['id_almacen']);
-            echo "<br>";
-            get_lotes_alm($_GET['id_almacen']);
-        } else {
+        if (isset($_SESSION['cargo'])) {
+            if ($_SESSION['cargo'] == "1" or $_SESSION['cargo'] == "0") {
+                require_once("almacen/controlador_almacen/super_controlador_almacen.php");
+                if (isset($_GET['id_almacen'])) {
+                    get_paquetes_alm($_GET['id_almacen']);
+                    echo "<br>";
+                    get_lotes_alm($_GET['id_almacen']);
+                } else {
 
-            get_all_almacenes();
+                    get_all_almacenes();
+                }
+            }
         }
     }
 
-    if (isset($_GET['Entrada'])) {
-        require_once("almacen/controlador_almacen/super_controlador_almacen.php");
 
-        entrada_paquetes();
+    
+    if (isset($_GET['Entrada'])) {
+        if (isset($_SESSION['cargo'])) {
+            if ($_SESSION['cargo'] == "1" or $_SESSION['cargo'] == "0" or $_SESSION['cargo'] == "4") {
+                require_once("almacen/controlador_almacen/super_controlador_almacen.php");
+
+                entrada_paquetes();
 
     ?>
-        <div class='contenedor'>
-            <button class="btnAniadir" onclick="window.location.href='almacen/vista_almacen/agregar_paquete.php';">
-                Agregar
-            </button>
-        </div>
-
-
-
-
-
-
-
+                <div class='contenedor'>
+                    <button class="btnAniadir" onclick="window.location.href='almacen/vista_almacen/agregar_paquete.php';">
+                        Agregar
+                    </button>
+                </div>
 
     <?php
+            }
+        }
     }
+
 
 
 
@@ -184,11 +193,13 @@ if (isset($_GET['Bienvenido'])) {
         get_all_vehiculos();
     }
 
-    if(isset($_GET['Inicio']) 
-    or 
-    (isset($_GET['Seguimiento']))
-    or
-    empty($_GET)){
+    if (
+        isset($_GET['Inicio'])
+        or
+        (isset($_GET['Seguimiento']))
+        or
+        empty($_GET)
+    ) {
         echo '
         <a href="paquete"></a>
         <div class="paquete">
@@ -240,7 +251,7 @@ if (isset($_GET['Bienvenido'])) {
                 <script src="boton.js"></script>
             </li>
             <li>
-            <a href="terminar.php"><i class="fa-regular fa-circle-xmark"></i></a>
+                <a href="terminar.php"><i class="fa-regular fa-circle-xmark"></i></a>
             </li>
 
         </ul>

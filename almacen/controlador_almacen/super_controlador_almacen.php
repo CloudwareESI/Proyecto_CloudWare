@@ -84,9 +84,14 @@ function get_lotes_alm($id_alm)
 
 function get_paquetes_alm($id_alm)
 {
-    $L = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/almacen/controlador_almacen/REST_paquetes.php", $id_alm);
+    
+    $identificador = array('id_alm' => $id_alm);
 
-    $valor = array($id_alm, json_decode($L, true));
+    $paquetes = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/almacen/controlador_almacen/REST_paquetes.php", $identificador);
+
+
+
+    $valor = array($id_alm, json_decode($paquetes, true));
 
     $curl = curl_init();
     curl_setopt($curl, CURLOPT_URL,  "http://127.0.0.1//Proyecto_Cloudware/almacen/vista_almacen/mostrar_paquetes.php",);
@@ -108,12 +113,12 @@ function get_paquetes_alm($id_alm)
     curl_close($curl);
 }
 
-function get_paquete($id)
+function get_paquete($id_paquete)
 {
-    $id_paquete = array($id);
-    $L = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/almacen/controlador_almacen/REST_paquetes.php", $id_paquete );
+    $identificador = array('id_paquete' => $id_paquete);
+    $paquetes = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/almacen/controlador_almacen/REST_paquetes.php", $identificador);
 
-    $valor = json_decode($L, true);
+    $valor = json_decode($paquetes, true);
 
     return $valor;
 }
