@@ -9,6 +9,9 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
     require_once "../controlador_vehiculos/super_controlador_vehiculos.php";
 
     $carga = json_decode(obtener_carga($_GET['matricula'], $_GET['rol']), true);
+
+    //Recordatorio de agregar un control de ruta aqui 
+    
 ?>
 
     <!DOCTYPE html>
