@@ -11,15 +11,15 @@ if ($valor == null) {
 } else {
     echo "<div class='contenedor'>";
     echo "<h3>Almacenes</h3>
-    <table><tr>
+    <table><thead><tr>
     <td>Numero</td> 
     
-    <td>Calle</td> 
-    <td>Chapa</td> 
-    <td>Localidad</td> 
-    <td>Departamento</td> 
-    <td>Acceder</td> 
-    </tr>";
+    <th>Calle</th> 
+    <th>Chapa</th> 
+    <th>Localidad</th> 
+    <th>Departamento</th> 
+    <th>Acceder</th> 
+    </tr></thead><tbody>";
     foreach ($valor as $fila) {
         echo '<tr>
     <td>' . $fila['id_almacen'] . '</td>  
@@ -36,7 +36,7 @@ if ($valor == null) {
     </div></td>
     </tr>';
     }
-    echo "</table>";
+    echo "</tbody></table>";
 }
 ?>
 

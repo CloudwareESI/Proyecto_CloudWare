@@ -1,9 +1,10 @@
 <?php
 session_start();
-include "db/funciones_utiles.php";
-require "almacen/controlador_almacen/super_controlador_almacen.php";
+require_once "db/funciones_utiles.php";
+require_once "almacen/controlador_almacen/super_controlador_almacen.php";
+
 $paquete = get_paquete($_GET["Codigo"]);
-var_dump($paquete);
+var_dump($paquete[0]);
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +27,7 @@ var_dump($paquete);
     <form action="" method="get">
 
         <div class="barras">
-            <i  id="barra1" class="fa-solid fa-house-laptop"></i>
+            <i id="barra1" class="fa-solid fa-house-laptop"></i>
             <div class="barra1">
                 <div class="transicion1"></div>
             </div>
@@ -44,11 +45,32 @@ var_dump($paquete);
             <div class="barra4">
                 <div class="transicion"></div>
             </div>
-            <i id="barra4"class="fa-solid fa-house-user"></i>
+            <i id="barra4" class="fa-solid fa-house-user"></i>
         </div>
+        <?php
+        if (isset($paquete["fecha_ingreso"])) {
 
 
 
+            if (isset($paquete["fecha_transporte"])) {
+
+
+
+                if (isset($paquete["fecha_recibido"])) {
+
+
+
+                    if (isset($paquete["fecha_cargado"])) {
+
+
+
+                        if (isset($paquete["fecha_entrega"])) {
+                        }
+                    }
+                }
+            }
+        }
+        ?>
     </form>
 </body>
 

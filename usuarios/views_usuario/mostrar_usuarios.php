@@ -93,13 +93,13 @@ if ($valores["0"] == null) {
     </button>
 </div>
 </div>
-</div>
+
 
 <?php
 if ($valores == null) {
     echo "ERROR JSON VACIO";
 } else {
-    echo "<div class='contenedorUsuario'>";
+    echo "<br><br><br><div class='contenedorUsuario'>";
     echo "<h3>Gestion camioneros</h3>
     <table class='tablaUsuario'>
     <thead>
@@ -146,12 +146,14 @@ if ($valores == null) {
     </form>';
 }
 ?>
+</div>
+</div>
 
 <?php
 if ($valores["0"] == null) {
     echo "ERROR JSON VACIO";
 } else {
-    echo "<div class='contenedorUsuario'>";
+    echo "<br><br><br><div class='contenedorUsuario'>";
     echo "<h3>Gestion Almaceneros</h3>
     <table class='tablaUsuario'>
     <thead>

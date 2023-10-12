@@ -119,7 +119,7 @@ class paquetes
     dimenciones, fragil, 
     id_paquete, 
     fecha_recibido, fecha_entrega, 
-    fecha_cargado, fecha_ingreso,
+    fecha_cargado, fecha_ingreso, fecha_de_entrega , fecha_transporte,
     id_lote_portador, destino_calle, 
     id_localidad_destino , matricula_transporte,
     nombre_localidad, id_departamento , nombre_departamento , id_almacen
