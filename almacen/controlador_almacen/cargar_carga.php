@@ -8,13 +8,12 @@ require "super_controlador_almacen.php";
 
 switch ($_POST["opcion"]) {
     case 'lote':
-        $lotes = new lotes();
         $matricula = $_POST['matricula'];
 
         foreach ($_POST["lotes"] as $fila) {
             $id_lote = array($fila);
 
-            $valor = $lotes->get_lote($id_lote);
+            $valor = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/almacen/controlador_almacen/REST_lotes.php", $id_lote);
             $valor_extraido =  $valor[0];
             $lote = array(
                 $valor_extraido["fecha_creacion"],
@@ -25,7 +24,8 @@ switch ($_POST["opcion"]) {
                 $valor_extraido["id_destino"],
                 $valor_extraido["id_lote"]
             );
-            $lotes->update_lote($lote);
+            llamadoDeAPI("POST", "http://127.0.0.1//Proyecto_Cloudware/almacen/controlador_almacen/REST_lotes.php", $lote);
+            
         }
         break;
 
@@ -33,18 +33,32 @@ switch ($_POST["opcion"]) {
 
 
     case 'paquete':
-        $paquetes = new paquetes();
         $matricula = $_POST['matricula'];
 
         foreach ($_POST["paquete"] as $fila) {
             $id_paquete = array($fila);
 
-            $valor = $paquetes->get_paquete($id_paquete);
+            $identificador = array('id_paquete' => $id_paquete);
+            $valor = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/almacen/controlador_almacen/REST_paquetes.php", $identificador);
+
             $valor_extraido =  $valor[0];
             $paquete = array(
-
+                $valor_extraido["nombre_paquete"],
+                $valor_extraido["dimenciones"],
+                $valor_extraido["peso"],
+                $valor_extraido["fragil"],
+                $valor_extraido["destino_calle"],
+                $valor_extraido["fecha_recibido"],
+                $valor_extraido["fecha_entrega"],
+                $valor_extraido["fecha_cargado"],
+                $valor_extraido["fecha_ingreso"],
+                $valor_extraido["id_lote_portador"],
+                $valor_extraido["id_localidad_destino"],
+                $matricula,
+                $valor_extraido["id_paquete"]
             );
-            $paquetes->update_paquetes($paquete);
+            $paquetes->llamadoDeAPI("POST", "http://127.0.0.1//Proyecto_Cloudware/almacen/controlador_almacen/REST_paquetes.php", $paquete);
+
         }
         break;
 

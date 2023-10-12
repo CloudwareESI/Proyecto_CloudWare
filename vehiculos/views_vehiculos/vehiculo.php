@@ -225,13 +225,22 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
                         <?php
                         switch ($_GET['rol']) {
                             case '1':
-
+                        ?>
+                                L.Routing.control({
+                                    waypoints: [
+                                        L.latLng(-34.74, -56.94),
+                                        L.latLng(-34.6792, -56.949)
+                                    ],
+                                    routeWhileDragging: true
+                                }).addTo(map);
+                                
+                                <?php
                                 foreach ($carga as $fila) {
                                     //aqui se vera las almacenes a visitar y decidir la ruta que se debe seleccionar
 
 
                                 }
-                        ?>
+                                ?>
                                 //aqui va el codigo para marcar la ruta en el mapa
 
                                 <?php
