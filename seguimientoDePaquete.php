@@ -64,7 +64,7 @@ $paquete = get_paquete($_GET["Codigo"]);
 
         <div class="infoPaquete">
             <h1>Estado actual</h1>
-            <p>Su paquete se encuentra en camino al almacén más cercano</p>
+            <p id="msjEstado">Su paquete se encuentra en camino al almacén más cercano</p>
         </div>
         <!-- Cuadro de información de paquete -->
         <div class="cuadroInfo">
@@ -74,6 +74,8 @@ $paquete = get_paquete($_GET["Codigo"]);
                 <p>Peso: </p>
                 <p>Tamaño: </p>
             </div>
+
+
         <?php
         if (isset($paquete["fecha_ingreso"])) {
 
