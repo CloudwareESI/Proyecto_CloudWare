@@ -13,7 +13,7 @@ switch ($_POST["opcion"]) {
         foreach ($_POST["lotes"] as $fila) {
             $id_lote = array($fila);
 
-            $valor = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/almacen/controlador_almacen/REST_lotes.php", $id_lote);
+            $valor = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/almacen/modelo_almacen/REST_lotes.php", $id_lote);
             $valor_extraido =  $valor[0];
             $lote = array(
                 $valor_extraido["fecha_creacion"],
@@ -24,7 +24,7 @@ switch ($_POST["opcion"]) {
                 $valor_extraido["id_destino"],
                 $valor_extraido["id_lote"]
             );
-            llamadoDeAPI("POST", "http://127.0.0.1//Proyecto_Cloudware/almacen/controlador_almacen/REST_lotes.php", $lote);
+            llamadoDeAPI("POST", "http://127.0.0.1//Proyecto_Cloudware/almacen/modelo_almacen/REST_lotes.php", $lote);
             
         }
         break;
@@ -39,7 +39,7 @@ switch ($_POST["opcion"]) {
             $id_paquete = array($fila);
 
             $identificador = array('id_paquete' => $id_paquete);
-            $valor = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/almacen/controlador_almacen/REST_paquetes.php", $identificador);
+            $valor = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php", $identificador);
 
             $valor_extraido =  $valor[0];
             $paquete = array(
@@ -57,7 +57,7 @@ switch ($_POST["opcion"]) {
                 $matricula,
                 $valor_extraido["id_paquete"]
             );
-            $paquetes->llamadoDeAPI("POST", "http://127.0.0.1//Proyecto_Cloudware/almacen/controlador_almacen/REST_paquetes.php", $paquete);
+            $paquetes->llamadoDeAPI("POST", "http://127.0.0.1//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php", $paquete);
 
         }
         break;

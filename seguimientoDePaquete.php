@@ -4,7 +4,7 @@ require_once "db/funciones_utiles.php";
 require_once "almacen/controlador_almacen/super_controlador_almacen.php";
 
 $paquete = get_paquete($_GET["Codigo"]);
-var_dump($paquete[0]);
+//var_dump($paquete[0]);
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +24,21 @@ var_dump($paquete[0]);
 
 
 <body>
+<header>
+        <div class="home">
+           <a href="http://localhost/Proyecto_Cloudware/"><img src="imagenes/imagen-home.png" width="70px" height="70px"></a>
+        </div>
+    </header>
+    
     <form action="" method="get">
+
+    
+        
+        <div class="seguimientoMuestra">
+        <div class="tituloSeguimiento">
+        <h1>Delivery de QuickCarry</h1>
+        <h2>ID: </h2>
+        </div>
 
         <div class="barras">
             <i id="barra1" class="fa-solid fa-house-laptop"></i>
@@ -47,6 +61,19 @@ var_dump($paquete[0]);
             </div>
             <i id="barra4" class="fa-solid fa-house-user"></i>
         </div>
+
+        <div class="infoPaquete">
+            <h1>Estado actual</h1>
+            <p>Su paquete se encuentra en camino al almacén más cercano</p>
+        </div>
+        <!-- Cuadro de información de paquete -->
+        <div class="cuadroInfo">
+                <p>Nombre: </p>
+                <p>Fecha de salida: </p>
+                <p>Fecha de llegada:</p>
+                <p>Peso: </p>
+                <p>Tamaño: </p>
+            </div>
         <?php
         if (isset($paquete["fecha_ingreso"])) {
 

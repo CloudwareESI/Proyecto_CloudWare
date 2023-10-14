@@ -3,9 +3,9 @@
 
 function get_all()
 {
-    $empleados = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/usuarios/controlador_usuario/REST_usuario.php", NULL);
-    $vehiculos = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/vehiculos/controlador_vehiculos/REST_vehiculos.php", NULL);
-    $almacenes = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/almacen/controlador_almacen/REST_almacen.php", NULL);
+    $empleados = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/usuarios/modelo_usuario/REST_usuario.php", NULL);
+    $vehiculos = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_vehiculos.php", NULL);
+    $almacenes = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/almacen/modelo_almacen/REST_almacen.php", NULL);
 
     $valor = array(json_decode($empleados, true,), json_decode($vehiculos, true), json_decode($almacenes, true));
 
@@ -31,7 +31,7 @@ function get_all()
 
 function get_persona($id)
 {
-    $L = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/usuarios/controlador_usuario/REST_usuario.php", $id);
+    $L = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/usuarios/modelo_usuario/REST_usuario.php", $id);
 
     $valor = json_decode($L, true);
     return $valor;
@@ -39,6 +39,6 @@ function get_persona($id)
 
 function del_persona($id)
 {
-    $L = llamadoDeAPI("DELETE", "http://127.0.0.1//Proyecto_Cloudware/usuarios/controlador_usuario/REST_usuario.php", $id);
+    $L = llamadoDeAPI("DELETE", "http://127.0.0.1//Proyecto_Cloudware/usuarios/modelo_usuario/REST_usuario.php", $id);
     return $L;
 }

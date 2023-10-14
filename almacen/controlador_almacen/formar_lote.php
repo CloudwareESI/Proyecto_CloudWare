@@ -30,7 +30,7 @@ foreach ($_POST["paquetes"] as $fila) {
 
 
 
-$Alms = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/almacen/controlador_almacen/REST_almacen.php", NULL);
+$Alms = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/almacen/modelo_almacen/REST_almacen.php", NULL);
 $almacenes = json_decode($Alms, true);
 echo "<br>";
 var_dump($almacenes);
@@ -45,7 +45,7 @@ foreach ($almacenes as $fila) {
 
 
 
-        $L = llamadoDeAPI("PUT", "http://127.0.0.1//Proyecto_Cloudware/almacen/controlador_almacen/REST_lotes.php", $var);
+        $L = llamadoDeAPI("PUT", "http://127.0.0.1//Proyecto_Cloudware/almacen/modelo_almacen/REST_lotes.php", $var);
 
         var_dump($L);
 
@@ -77,7 +77,7 @@ foreach ($almacenes as $fila) {
                 $paquete['id_localidad_destino'],
                 $paquete['id_paquete'],
             );
-            $P = llamadoDeAPI("POST", "http://127.0.0.1//Proyecto_Cloudware/almacen/controlador_almacen/REST_paquetes.php", $pack);
+            $P = llamadoDeAPI("POST", "http://127.0.0.1//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php", $pack);
         }
 
         header("Location:http://localhost/Proyecto_Cloudware/index.php");

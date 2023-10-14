@@ -3,7 +3,7 @@
 
 function get_all_vehiculos()
 {
-    $L = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/vehiculos/controlador_vehiculos/REST_vehiculos.php", NULL);
+    $L = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_vehiculos.php", NULL);
 
     $valor = json_decode($L, true);
 
@@ -29,14 +29,14 @@ function get_all_vehiculos()
 
 function get_vehiculo($id)
 {
-    $L = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/vehiculos/controlador_vehiculos/REST_vehiculos.php", $id);
+    $L = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_vehiculos.php", $id);
 
     $valor = json_decode($L, true);
     return $valor;
 }
 function get_vehiculos_lista()
 {
-    $L = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/vehiculos/controlador_vehiculos/REST_vehiculos.php", NULL);
+    $L = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_vehiculos.php", NULL);
 
     $valor = json_decode($L, true);
     return $valor;
@@ -44,7 +44,7 @@ function get_vehiculos_lista()
 
 function del_vehiculos($id)
 {
-    $L = llamadoDeAPI("DELETE", "http://127.0.0.1//Proyecto_Cloudware/vehiculos/controlador_vehiculos/REST_vehiculos.php", $id);
+    $L = llamadoDeAPI("DELETE", "http://127.0.0.1//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_vehiculos.php", $id);
     return $L;
 }
 
@@ -53,11 +53,11 @@ function obtener_carga($matricula , $tipo){
     $valor = NULL;
 
     if ($tipo == "1"){
-        $L = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/almacen/controlador_almacen/REST_lotes.php", $id);
+        $L = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/almacen/modelo_almacen/REST_lotes.php", $id);
         return $L;
         $valor= array(json_decode($L), $matricula, $tipo);
     }else{
-        $L = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/almacen/controlador_almacen/REST_paquetes.php", $id);
+        $L = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php", $id);
         return $L;
         $valor= array(json_decode($L), $matricula, $tipo);
     }
