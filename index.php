@@ -1,3 +1,8 @@
+<?php
+session_start();
+include "db/funciones_utiles.php";
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,12 +20,10 @@
     <title>QuickCarry</title>
 </head>
 
-
-<?php
-session_start();
-include "db/funciones_utiles.php";
+<?php 
 if (isset($_GET['Bienvenido'])) {
 ?>
+
     <script>
         var nombre = "<?php echo  $_SESSION['nombre'];  ?>";
         if (nombre !== "") {
@@ -62,7 +65,7 @@ if (isset($_GET['Bienvenido'])) {
                 } else {
                 }
                 if (isset($_SESSION['cargo'])) {
-                    if ($_SESSION['cargo'] == "1" or $_SESSION['cargo'] == "0") {
+                    if ($_SESSION['cargo'] == "1" or $_SESSION['cargo'] == "4" or $_SESSION['cargo'] == "0") {
                         echo "
                             <li>
                             <a href='?Entrada'>
@@ -150,7 +153,7 @@ if (isset($_GET['Bienvenido'])) {
     if (isset($_GET['Almacenes'])) {
         if (isset($_SESSION['cargo'])) {
             if ($_SESSION['cargo'] == "1" or $_SESSION['cargo'] == "0") {
-                require_once("almacen/controlador_almacen/super_controlador_almacen.php");
+                require("almacen/controlador_almacen/super_controlador_almacen.php");
                 if (isset($_GET['id_almacen'])) {
                     get_paquetes_alm($_GET['id_almacen']);
                     echo "<br>";
@@ -168,16 +171,12 @@ if (isset($_GET['Bienvenido'])) {
     if (isset($_GET['Entrada'])) {
         if (isset($_SESSION['cargo'])) {
             if ($_SESSION['cargo'] == "1" or $_SESSION['cargo'] == "0" or $_SESSION['cargo'] == "4") {
-                require_once("almacen/controlador_almacen/super_controlador_almacen.php");
+                require("almacen/controlador_almacen/super_controlador_almacen.php");
 
-                entrada_paquetes();
+                entrada_paquetes($_SESSION['cargo']);
 
     ?>
-                <div class='contenedor'>
-                    <button class="btnAniadir" onclick="window.location.href='almacen/vista_almacen/agregar_paquete.php';">
-                        Agregar
-                    </button>
-                </div>
+
 
     <?php
             }
@@ -188,7 +187,7 @@ if (isset($_GET['Bienvenido'])) {
 
 
     if (isset($_GET['Camiones'])) {
-        require_once("vehiculos/controlador_vehiculos/super_controlador_vehiculos.php");
+        require("vehiculos/controlador_vehiculos/super_controlador_vehiculos.php");
 
         get_all_vehiculos();
     }
@@ -227,7 +226,7 @@ if (isset($_GET['Bienvenido'])) {
     if (isset($_GET['Usuarios']) and  $_SESSION['cargo'] == "0") {
 
 
-        require_once("usuarios/controlador_usuario/super_controlador_usuario.php");
+        require("usuarios/controlador_usuario/super_controlador_usuario.php");
 
         get_all();
     }

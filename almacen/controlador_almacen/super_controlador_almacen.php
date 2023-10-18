@@ -149,14 +149,14 @@ function del_almacen_almacen($id_a)
 }
 
 
-function entrada_paquetes(){
+function entrada_paquetes($rol){
     
     $paquetes = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php", NULL);
     $lotes = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/almacen/modelo_almacen/REST_lotes.php", NULL);
-    var_dump($lotes);
+    
     $vehiculos = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_vehiculos.php", NULL);
 
-    $valor = array(json_decode($paquetes, true), json_decode($lotes, true), json_decode($vehiculos, true));
+    $valor = array(json_decode($paquetes, true), json_decode($lotes, true), json_decode($vehiculos, true), $rol);
 
     $curl = curl_init();
     curl_setopt($curl, CURLOPT_URL,  "http://127.0.0.1//Proyecto_Cloudware/almacen/vista_almacen/entrada_paquetes.php",);
