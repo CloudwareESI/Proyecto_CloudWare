@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-10-2023 a las 04:23:46
+-- Tiempo de generación: 17-10-2023 a las 06:40:37
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -40,7 +40,10 @@ CREATE TABLE `almacen` (
 
 INSERT INTO `almacen` (`id_almacen`, `calle`, `chapa`, `id_localidad_almacen`) VALUES
 (1, 'a', 1111, 1),
-(2, 'a', 1101, 3);
+(2, 'a', 1101, 3),
+(3, 'd', 5555, 37),
+(4, 'f', 7777, 30),
+(5, 'e', 8896, 22);
 
 -- --------------------------------------------------------
 
@@ -140,7 +143,9 @@ INSERT INTO `empleado` (`id_empleado`, `email`, `nombre`, `apellido`, `CI`, `nro
 (1, 'long65tyco@gmail.com', 'Jose', 'Maria', 54788621, 935577, 0),
 (3, 'NatLong9905@gmail.com', 'Nataniel', 'Long', 1247789, 934455, 1),
 (4, 'sam@long', 'Sam', 'Sam', 4365467, 934444, 2),
-(8, 'SALVATION', 'Mathias', 'Torres', 0, 0, 0);
+(9, 'camionero23@mail.com', 'Manuel', 'Martinez', 5446798, 945678, 2),
+(10, 'almacenero23@mail.com', 'Thomas', 'Torres', 2345678, 999999, 1),
+(11, 'almacenero23@crecom.com', 'Maria', 'Jose', 1256777, 999999, 4);
 
 -- --------------------------------------------------------
 
@@ -161,7 +166,24 @@ CREATE TABLE `localidad` (
 INSERT INTO `localidad` (`id_localidad`, `nombre_localidad`, `id_dep`) VALUES
 (1, 'Centro', 10),
 (2, 'Union', 10),
-(3, 'Colonia del sacramento', 4);
+(3, 'Colonia del sacramento', 4),
+(22, 'Artigas', 1),
+(23, 'Canelones', 2),
+(24, 'Melo', 3),
+(25, 'Durazno', 5),
+(26, 'Trinidad', 6),
+(27, 'Florida', 7),
+(28, 'Minas', 8),
+(29, 'Maldonado', 9),
+(30, 'Paysandú', 11),
+(31, 'Fray Bentos', 12),
+(32, 'Rivera', 13),
+(33, 'Rocha', 14),
+(34, 'Salto', 15),
+(35, 'San José de Mayo', 16),
+(36, 'Mercedes', 17),
+(37, 'Tacuarembó', 18),
+(38, 'Treinta y Tres', 19);
 
 -- --------------------------------------------------------
 
@@ -179,10 +201,11 @@ CREATE TABLE `login` (
 --
 
 INSERT INTO `login` (`email`, `password`) VALUES
-('Lama', 'Fa'),
+('almacenero23@crecom.com', '$2y$10$./5O8MeFqn0OVgY3S2J0oeMGhdD4JwRp6VGAV/ZT37zrfVMP7Eldq'),
+('almacenero23@mail.com', '$2y$10$./5O8MeFqn0OVgY3S2J0oeMGhdD4JwRp6VGAV/ZT37zrfVMP7Eldq'),
+('camionero23@mail.com', '$2y$10$./5O8MeFqn0OVgY3S2J0oeMGhdD4JwRp6VGAV/ZT37zrfVMP7Eldq'),
 ('long65tyco@gmail.com', '$2y$10$7PArTXWqqSIw/XU7cpm6OuQsRUrphZ9Ix2nPG9FOcfe6ip96hqAkC'),
 ('NatLong9905@gmail.com', 'Nana45'),
-('SALVATION', '$2y$10$G.I2wPa5Z4RJu57H6Wsf4.EpWBgfR73GXM2XID4oR5BjpUzNUqnM.'),
 ('sam@long', 'TT45OP');
 
 -- --------------------------------------------------------
@@ -206,9 +229,8 @@ CREATE TABLE `lote` (
 --
 
 INSERT INTO `lote` (`id_lote`, `fecha_creacion`, `fecha_de_entrega`, `fecha_transporte`, `id_almacen`, `matricula_camion`, `id_destino`) VALUES
-(2, '2023-09-10', NULL, NULL, 2, NULL, 2),
-(3, '2023-09-11', NULL, NULL, 2, NULL, 2),
-(4, '2023-09-17', NULL, NULL, 1, NULL, 1);
+(4, '2023-09-17', NULL, NULL, 1, NULL, 1),
+(10, '2023-10-12', NULL, NULL, NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -238,12 +260,12 @@ CREATE TABLE `paquete` (
 
 INSERT INTO `paquete` (`id_paquete`, `nombre_paquete`, `dimenciones`, `peso`, `fragil`, `destino_calle`, `fecha_entrega`, `fecha_recibido`, `fecha_cargado`, `fecha_ingreso`, `id_lote_portador`, `id_localidad_destino`, `matricula_transporte`) VALUES
 (3, '', 500, 500, 1, '8 de octubre 2340', NULL, '2023-09-17', NULL, '2023-09-09', 4, 2, 'STL569'),
-(4, '', 800, 200, 1, 'a', NULL, '2023-09-09', NULL, '2023-09-09', 4, 1, 'STP1986'),
+(4, '', 800, 200, 1, '', '2023-09-09', NULL, NULL, '2023-09-09', NULL, 1, 'STP1986'),
 (5, 'Pistones', 15, 100, 0, 'AguaFria 1789', NULL, '2023-09-09', NULL, '2023-09-08', 4, 2, NULL),
 (6, 'GA', 66, 66, 1, 'Flecha 2569', NULL, NULL, NULL, '2023-09-09', 4, 2, NULL),
 (7, 'pack de vasos ', 700, 1000, 1, 'Pje. Dr. Francisco Schinca 2540', NULL, NULL, NULL, '2023-09-08', 4, 2, NULL),
-(8, 'botellas', 700, 500, 1, '', NULL, NULL, NULL, '2023-09-10', 2, 2, NULL),
-(9, 'Agua', 50, 50, 0, 'Aduana 2156', NULL, NULL, NULL, '2023-09-17', NULL, 1, NULL);
+(8, 'botellas', 700, 500, 1, '', NULL, NULL, NULL, '2023-09-10', 10, 2, NULL),
+(9, 'Agua', 50, 50, 0, 'Aduana 2156', NULL, NULL, NULL, '2023-09-17', 10, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -416,7 +438,7 @@ ALTER TABLE `vehiculo`
 -- AUTO_INCREMENT de la tabla `almacen`
 --
 ALTER TABLE `almacen`
-  MODIFY `id_almacen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_almacen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `departamento`
@@ -428,19 +450,19 @@ ALTER TABLE `departamento`
 -- AUTO_INCREMENT de la tabla `empleado`
 --
 ALTER TABLE `empleado`
-  MODIFY `id_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `localidad`
 --
 ALTER TABLE `localidad`
-  MODIFY `id_localidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_localidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT de la tabla `lote`
 --
 ALTER TABLE `lote`
-  MODIFY `id_lote` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_lote` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `paquete`

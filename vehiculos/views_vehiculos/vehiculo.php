@@ -78,19 +78,19 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
             <i class="fa-solid fa-user-large"></i>
             <h2>Bienvenido <?php echo $_SESSION['nombre']; ?>!</h2>
         </div>
-        <div class="todito">
-            <div class="opciones">
+        <div class="Camionero">
+            <div class="opcionesCamionero">
 
-                <div class="opcion">
+                <div class="opcionCamionero">
                     <a id="seleccionarRuta" href="#"><i class="fa-solid fa-road"></i></a>
                     <h2>Seleccionar ruta</h2>
                 </div>
 
-                <div class="opcion">
+                <div class="opcionCamionero">
                     <a id="mostrarTabla" href="#"><i class="fa-solid fa-folder-open"></i></a>
                     <h2>Contenido del camion</h2>
                 </div>
-                <div class="opcion">
+                <div class="opcionCamionero">
                     <a id="enviar" href="../controlador_vehiculos/extra_vehiculo.php?matricula=<?php
                                                                                                 echo $_GET['matricula']; ?>
                     &rol=<?php echo $_GET['rol']; ?>&estado=<?php echo $_GET['estado']; ?>">
@@ -114,7 +114,7 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
 
 
                 <table id="tablaCarga">
-                    <form action="../controlador_vehiculos/entregar.php" method="post">
+                    <form id="formTablaCarga" action="../controlador_vehiculos/entregar.php" method="post">
 
 
                         <?php switch ($_GET['rol']) {
@@ -181,7 +181,7 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
                         } ?>
 
 
-                        <input id="btnAniadir" class="btn" type="submit" value="Entregar">
+                        <input id="btnAniadir" type="submit" value="Entregar">
                     </form>
                 </table>
 
@@ -195,7 +195,7 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
                 <link rel="stylesheet" href="leaflet-routing-machine-3.2.12/dist/leaflet-routing-machine.css">
 
 
-                <div class="container">
+                <div class="containerMapa">
                     <div id="map"></div>
                 </div>
 

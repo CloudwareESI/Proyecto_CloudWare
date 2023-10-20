@@ -1,7 +1,9 @@
 <?php
+var_dump($_SESSION);
+
 $data = file_get_contents("php://input");
 $valor = json_decode($data, true);
-
+$rol = $valor["3"]; 
 
 if ($valor == null) {
     echo "ERROR JSON VACIO";
@@ -90,15 +92,21 @@ if ($valor == null) {
             }
 
             echo "</tbody></table>";
-
+            if ($rol == "1" or $rol == "0"){
             echo '
         <input type="hidden" name="id_almacen" value="' . NULL . '">
         <input type="hidden" name="opcion" value="formar">
         <input class="btnAniadir" type="submit" value="Crear Lote">
 </form>
-';
+
+'; }
 
             ?>
+        <div class='contenedor'>
+            <button class="btnAniadir" onclick="window.location.href='almacen/vista_almacen/agregar_paquete.php';">
+                Agregar Paquete
+            </button>
+        </div>
     </div>
 
     <div class='contenedor'>
@@ -156,7 +164,7 @@ if ($valor == null) {
         }
         echo "</tbody></table>";
 
-
+        if ($rol == "1" or $rol == "0"){
         echo '<select name="matricula">';
         foreach ($valor["2"] as $fila) {
             if($fila["rol"] == "1"){
@@ -165,11 +173,13 @@ if ($valor == null) {
                 "</option>";
             }
         }
+        
 
+        
         echo '</select>
     <input class="btnAniadir" type="submit" value="Cargar en camion">
     </form>
     ';
-    }
+    }}
         ?>
     </div>
