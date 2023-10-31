@@ -1,9 +1,7 @@
 <?php
-var_dump($_SESSION);
-
 $data = file_get_contents("php://input");
 $valor = json_decode($data, true);
-$rol = $valor["3"]; 
+
 
 if ($valor == null) {
     echo "ERROR JSON VACIO";
@@ -91,25 +89,17 @@ if ($valor == null) {
             }
 
             echo "</tbody></table>";
-            if ($rol == "1" or $rol == "0"){
+
             echo '
             <input type="hidden" id="opcion" name="opcion" value="formar">
-        <input class="btnAniadir" type="submit" value="Crear Lote">
-<<<<<<< HEAD
+            <br>
+            <div class="btn">
+        <input id="btn" class="btn" type="submit" value="Crear Lote">
+        </div>
         </form>
         ';
-=======
-</form>
-
-'; }
->>>>>>> 7d0a31440c35cba4c0865310bee07bcd2599288b
 
             ?>
-        <div class='contenedor'>
-            <button class="btnAniadir" onclick="window.location.href='almacen/vista_almacen/agregar_paquete.php';">
-                Agregar Paquete
-            </button>
-        </div>
     </div>
 
     <div class='contenedorTablas'>
@@ -164,8 +154,7 @@ if ($valor == null) {
             }
             echo "</tbody></table>";
 
-<<<<<<< HEAD
-
+            echo '<br>';
             echo '<select name="matricula">';
             foreach ($valor["2"] as $fila) {
                 if ($fila["rol"] == "1") {
@@ -176,30 +165,14 @@ if ($valor == null) {
             }
 
             echo '</select>
+            <br>
             <input type="hidden" id="opcion" name="opcion" value="lote">
-    <input class="btnAniadir" type="submit" value="Cargar en camion">
+            <div class="btn">
+    <input id="btn" class="btn" type="submit" value="Cargar en camion">
+    </div>
     </form>
+
     ';
         }
             ?>
-=======
-        if ($rol == "1" or $rol == "0"){
-        echo '<select name="matricula">';
-        foreach ($valor["2"] as $fila) {
-            if($fila["rol"] == "1"){
-                echo "<option value='" . $fila["matricula"] . "'>"
-                . $fila["matricula"] .
-                "</option>";
-            }
-        }
-        
-
-        
-        echo '</select>
-    <input class="btnAniadir" type="submit" value="Cargar en camion">
-    </form>
-    ';
-    }}
-        ?>
->>>>>>> 7d0a31440c35cba4c0865310bee07bcd2599288b
     </div>
