@@ -11,7 +11,6 @@ if ($valor == null) {
     foreach ($valor as $subvalor) {
 
 
-
         echo "<table>
         <thead>
         <tr>
@@ -46,7 +45,7 @@ if ($valor == null) {
                 </div></td>
                 </tr>';
         }
-        echo "</tbody></table><br>";
+        echo "</tbody></table>";
     }
 }
 ?>

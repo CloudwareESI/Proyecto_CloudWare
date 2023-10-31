@@ -17,8 +17,8 @@ switch ($op) {
         );
 
         foreach ($rutas as $ruta) {
-            foreach ($ruta as $ubicacion) {
-                $id = array($ubicacion["id_ruta"]+1);
+            foreach ($ruta as $posicion) {
+                $id = array($posicion["id_ruta"]+1);
 
             }
 
@@ -28,13 +28,16 @@ switch ($op) {
 
         foreach ($_POST["almacen"] as $fila) {
             $ubicacion = array(
-                NULL,
+                $posicion["id_ruta"]+1,
                 $fila,
                 $x,
                 $_POST["tiempo"][$x]
             );
 
-
+            echo "<br>";
+            echo "<br>";
+            var_dump($ubicacion);
+            echo "<br>";
 
             $ubicaciones[$x] = $ubicacion;
             $x = $x + 1;

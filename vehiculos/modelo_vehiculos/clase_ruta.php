@@ -132,9 +132,16 @@ class rutas
     $conexion = $this->base_datos->conexion();
     $insert_ruta = "INSERT INTO ruta VALUES ( ? );";
     $conexion->execute_query($insert_ruta, $var_ruta);
-    $new_id = $conexion->insert_id;
 
-var_dump($new_id);
+    foreach ($var_ubicacion as $fila) {
+      $fila[0] = $var_ruta[0];
+      echo "<br>";
+      echo "<br>";
+      var_dump($fila);
+      echo "<br>";
+      
+      $this->put_ubicaciones($fila);
+    }
   }
 
   public function put_ubicaciones($var_ubicacion)
