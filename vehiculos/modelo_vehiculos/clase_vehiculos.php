@@ -79,7 +79,7 @@ class vehiculos
     echo "<br>";
     var_dump($variables);
     echo "<br>";
-    $insert = "UPDATE vehiculo SET matricula= ? , estado= ? , modelo= ?, rol= ? where vehiculo.matricula= ? ";
+    $insert = "UPDATE vehiculo SET estado= ? , modelo= ?, rol= ? where vehiculo.matricula= ? ";
 
     $this->base_datos->conexion()->execute_query($insert, $variables);
 

@@ -1,15 +1,15 @@
 <?php
 
-require_once "../modelo_vehiculos/clase_vehiculos.php";
+require_once "clase_ruta.php";
 
-$vehiculos = new vehiculos();
+$vehiculos = new rutas();
 
 
 
 $id = array('2');
 
 
-$veh = $vehiculos->get_vehiculos($id);
+$veh = $vehiculos->get_rutas_all();
 var_dump($veh);
 echo "<br>";
 echo "<br>";

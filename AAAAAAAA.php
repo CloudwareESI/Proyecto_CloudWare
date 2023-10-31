@@ -1,6 +1,10 @@
 <?php
+//Passwords
+//Admin long65tyco@gmail.com Long65Rep
+//Nata173AB
+//
 $usuario = "long65tyco@gmail.com";
-$password = "Long65Rep";
+$password = "Nata173AB";
 $conn = mysqli_connect("localhost", "root", "", "bd_quickcarry"); //conecta a la base de datos por medio de root
 
 $email_sql = "SELECT * FROM login WHERE email='$usuario'";

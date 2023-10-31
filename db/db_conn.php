@@ -9,7 +9,7 @@ public $unmae = "root";
 
 public $password = "";
 
-public $db_name = "bd_quickcarry";
+public $db_name = "base_quickcarry";
 
 public function __construct() {
   }

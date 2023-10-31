@@ -9,7 +9,7 @@ $valor = json_decode($data, true);
 if ($valor == null) {
     echo "ERROR JSON VACIO";
 } else {
-    echo "<div class='contenedor'>";
+    echo "<div class='contenedorTablas'>";
     echo "<h3>Almacenes</h3>
     <table><thead><tr>
     <td>Numero</td> 

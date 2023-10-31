@@ -51,7 +51,7 @@ function llamadoDeAPI($method, $url, $data)
     if (curl_errno($curl)) {
         echo 'Error: ' . curl_error($curl);
     } else {
-        //echo "<br>" . $response . "<br>";
+        echo "<br>" . $response . "<br>";
         return $response;
     }
     curl_close($curl);
@@ -67,4 +67,12 @@ function validate($data)
     $data = htmlspecialchars($data); //evita que caracteres especiales causen problemas
 
     return $data;
+}
+
+function get_localidades_lista()
+{
+    $L = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_localidad.php", NULL);
+
+    $valor = json_decode($L, true);
+    return $valor;
 }

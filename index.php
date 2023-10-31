@@ -13,14 +13,16 @@ include "db/funciones_utiles.php";
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="icon" type="image/jpg" href="Imagenes/Logo_quickcarry-sin-fondo.png">
-    <link rel="stylesheet" href="estilos/estilo.css">
-    <link rel="stylesheet" href="estilos/estiloTablas.css">
-    <link rel="stylesheet" href="estilos/estiloPopUp.css">
+    <link rel="stylesheet" href="estilos/estiloDef.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <title>QuickCarry</title>
 </head>
 
+<<<<<<< HEAD
+<?php
+=======
 <?php 
+>>>>>>> 7d0a31440c35cba4c0865310bee07bcd2599288b
 if (isset($_GET['Bienvenido'])) {
 ?>
 
@@ -101,6 +103,19 @@ if (isset($_GET['Bienvenido'])) {
                     }
                 } else {
                 }
+
+                if (isset($_SESSION['cargo'])) {
+                    if ($_SESSION['cargo'] == "0") {
+                        echo "
+                            <li>
+                            <a href='?Rutas'>
+                            <p>Rutas</p> 
+                            </a>
+                            </li>";
+                    } else {
+                    }
+                } else {
+                }
                 ?>
 
                 </div>
@@ -167,7 +182,7 @@ if (isset($_GET['Bienvenido'])) {
     }
 
 
-    
+
     if (isset($_GET['Entrada'])) {
         if (isset($_SESSION['cargo'])) {
             if ($_SESSION['cargo'] == "1" or $_SESSION['cargo'] == "0" or $_SESSION['cargo'] == "4") {
@@ -200,26 +215,29 @@ if (isset($_GET['Bienvenido'])) {
         empty($_GET)
     ) {
         echo '
-        <a href="paquete"></a>
-        <div class="paquete">
-            <form action="seguimientoDePaquete.php" method="GET">
+        <a href="paquete">  </a>
+        <div class="contenedorFormulario">
+            <form id="formPaquete" action="seguimientoDePaquete.php" method="GET">
 
-              <div class="idPaquete">
+              <div class="formulario">
                     <img src="Imagenes/Logo_quickcarry-sin-fondo1.png" alt="logo" height="70px" width="70px">
-                    <br>
+                   
                     <h2 id="paquete">Seguimiento de Paquete</h2>
-                    <br>
-                    <br>
-                    <div class="form">
+                        <br>
+                    <div>
                         <input type="text" class="controles" name="Codigo" id="Codigo" placeholder="Codigo:" maxlength="32" required>
                         <label for="myInput" id="paquete">Codigo:</label>
-                    </div>
-                    <br>
-                    <button>Ingresar</button>
                 </div>
-            
+                    <br>
+                    <div class="btn">
+                    <button>Ingresar</button>
+                    </div>
+                  
+                    </div> 
             </form>
-            </div>
+             
+                </div>
+              
         ';
     }
 
@@ -231,7 +249,13 @@ if (isset($_GET['Bienvenido'])) {
         get_all();
     }
 
+    if (isset($_GET['Rutas']) and  $_SESSION['cargo'] == "0") {
 
+
+        require("vehiculos/controlador_vehiculos/super_controlador_ruta.php");
+
+        get_all_rutas();
+    }
     ?>
 
 
@@ -247,10 +271,10 @@ if (isset($_GET['Bienvenido'])) {
                 <div id="tema">
                     <div class="boton"></div>
                 </div>
-                <script src="boton.js"></script>
+                <script src="Js/boton.js"></script>
             </li>
             <li>
-                <a href="terminar.php"><i class="fa-regular fa-circle-xmark"></i></a>
+                <a href="terminar.php"><i  class="fa-regular fa-circle-xmark"></i></a>
             </li>
 
         </ul>

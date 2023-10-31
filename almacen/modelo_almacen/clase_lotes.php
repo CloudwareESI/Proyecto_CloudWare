@@ -59,16 +59,17 @@ class lotes
   public function get_lote($id_lote)
   {
     $query = "SELECT 
-    id_lote, fecha_creacion, 
+    g.id_lote, fecha_creacion, 
     fecha_de_entrega, fecha_transporte, 
-    id_almacen, matricula_camion, 
-    id_destino, nombre_localidad, 
-    id_departamento, nombre_departamento 
+    e.id_almacen, v.matricula, nombre_localidad, 
+    id_departamento, nombre_departamento , e.id_ruta 
     FROM lote g 
-    INNER JOIN Localidad l ON g.id_destino = l.id_localidad 
+    INNER JOIN destinado e ON g.id_lote = e.id_lote 
+    INNER JOIN almacen a ON e.id_almacen = a.id_almacen
+    INNER JOIN localidad l ON a.id_localidad_almacen = l.id_localidad 
     INNER JOIN departamento d ON l.id_dep = d.id_departamento 
-    LEFT JOIN vehiculo v ON g.matricula_camion = v.matricula
-    where  id_lote = ? ";
+    LEFT JOIN vehiculo v ON e.matricula = v.matricula
+    where  g.id_lote = ? ";
     $resultado = $this->base_datos->conexion()->execute_query($query, $id_lote);
     $matriz = array();
     $matriz = $resultado->fetch_all(MYSQLI_ASSOC);
@@ -79,16 +80,17 @@ class lotes
   public function get_lote_cam($matricula)
   {
     $query = "SELECT 
-    id_lote, fecha_creacion, 
+    g.id_lote, fecha_creacion, 
     fecha_de_entrega, fecha_transporte, 
-    id_almacen, matricula_camion, 
-    id_destino, nombre_localidad, 
-    id_departamento, nombre_departamento 
+    e.id_almacen, v.matricula, nombre_localidad, 
+    id_departamento, nombre_departamento , e.id_ruta 
     FROM lote g 
-    INNER JOIN Localidad l ON g.id_destino = l.id_localidad 
+    INNER JOIN destinado e ON g.id_lote = e.id_lote 
+    INNER JOIN almacen a ON e.id_almacen = a.id_almacen
+    INNER JOIN localidad l ON a.id_localidad_almacen = l.id_localidad 
     INNER JOIN departamento d ON l.id_dep = d.id_departamento 
-    LEFT JOIN vehiculo v ON g.matricula_camion = v.matricula
-    where  matricula_camion = ? ";
+    LEFT JOIN vehiculo v ON e.matricula = v.matricula
+    where  e.matricula = ? ";
     $resultado = $this->base_datos->conexion()->execute_query($query, $matricula);
     $matriz = array();
     $matriz = $resultado->fetch_all(MYSQLI_ASSOC);
@@ -99,15 +101,16 @@ class lotes
   public function get_lotes_all()
   {
     $query = "SELECT 
-    id_lote, fecha_creacion, 
+    g.id_lote, fecha_creacion, 
     fecha_de_entrega, fecha_transporte, 
-    id_almacen, matricula_camion, 
-    id_destino, nombre_localidad, 
-    id_departamento, nombre_departamento 
+    e.id_almacen, v.matricula, nombre_localidad, 
+    id_departamento, nombre_departamento, e.id_ruta  
     FROM lote g 
-    INNER JOIN Localidad l ON g.id_destino = l.id_localidad 
+    INNER JOIN destinado e ON g.id_lote = e.id_lote 
+    INNER JOIN almacen a ON e.id_almacen = a.id_almacen
+    INNER JOIN localidad l ON a.id_localidad_almacen = l.id_localidad 
     INNER JOIN departamento d ON l.id_dep = d.id_departamento 
-    LEFT JOIN vehiculo v ON g.matricula_camion = v.matricula;  ";
+    LEFT JOIN vehiculo v ON e.matricula = v.matricula;  ";
     $resultado = $this->base_datos->conexion()->execute_query($query);
     $matriz = array();
     $matriz = $resultado->fetch_all(MYSQLI_ASSOC);
@@ -118,11 +121,12 @@ class lotes
   public function delete_lotes($id_lote)
   {
     //Se encuentra a todos los paquetes del lote
-    $query_pqt_lote= "SELECT * FROM paquete where paquete.id_lote_portador = ?";
+    $query_pqt_lote = "SELECT * FROM paquete where paquete.id_lote_portador = ?";
     $resultado = $this->base_datos->conexion()->execute_query($query_pqt_lote, $id_lote);
     $matriz = array();
     $matriz = $resultado->fetch_all(MYSQLI_ASSOC);
-var_dump($matriz);
+    var_dump($matriz);
+
     //Cada paquete asignado a este lote es deasignado
     if (isset($matriz)) {
       foreach ($matriz as $fila) {
@@ -130,61 +134,43 @@ var_dump($matriz);
         $insert = "UPDATE paquete SET 
         id_lote_portador= NULL
         where paquete.id_paquete= ? ";
-        $this->base_datos->conexion()->execute_query($insert, $id_paquete);   
+        $this->base_datos->conexion()->execute_query($insert, $id_paquete);
       }
     }
 
-    
+
     //El lote es eliminado
     $query = "DELETE FROM lote where id_lote = ? ";
     $this->base_datos->conexion()->execute_query($query, $id_lote);
   }
 
-  public function update_lote($variables)
+  public function update_lote($var_destino)
   {
-    $insert = "UPDATE lote SET  	
-    fecha_creacion= ? ,	fecha_de_entrega= ? ,	
-    fecha_transporte= ? ,	id_almacen= ? , 
-    matricula_camion= ? , id_destino= ?
-    where id_lote = ? ";
 
-    $this->base_datos->conexion()->execute_query($insert, $variables);
+    if (isset($var_destino)) {
+      $insert = "UPDATE destinado SET  	
+      matricula = ? ,
+      fecha_de_entrega = ? ,
+      fecha_transporte = ? 
+      where id_lote = ? ";
+
+      $this->base_datos->conexion()->execute_query($insert, $var_destino);
+    }
   }
 
-  public function put_lotes($variables)
+  public function put_lotes($var_lote, $var_destino)
   {
-    if (empty($variables[0])) {
-      if ($variables[0] = "0") {
-        $conexion = $this->base_datos->conexion();
-        $insert = "INSERT INTO lote VALUES ( NULL, CURDATE(), NULL , NULL, ? , NULL, ?);";
 
-        $conexion->execute_query($insert, $variables);
+    $conexion = $this->base_datos->conexion();
+    $insert_lote = "INSERT INTO lote VALUES ( NULL, NOW(), ? );";
+    $conexion->execute_query($insert_lote, $var_lote);
+    $new_id = $conexion->insert_id;
 
-        $new_id = $conexion->insert_id;
+    $var_destino[2] = $new_id;
 
-        return $new_id;
-      } else {
-        $variables = array($variables[1]);
-        $conexion = $this->base_datos->conexion();
-        $insert = "INSERT INTO lote VALUES ( NULL, CURDATE(), NULL , NULL, NULL , NULL, ?);";
+    $insert_destinacion = "INSERT INTO destinado VALUES ( ?, ?, ?, NULL, NULL, NULL );";
+    $conexion->execute_query($insert_destinacion, $var_destino);
 
-        $conexion->execute_query($insert, $variables);
-
-        $new_id = $conexion->insert_id;
-
-        return $new_id;
-      }
-    } else {
-
-
-      $conexion = $this->base_datos->conexion();
-      $insert = "INSERT INTO lote VALUES ( NULL, CURDATE(), NULL , NULL, ? , NULL, ?);";
-
-      $conexion->execute_query($insert, $variables);
-
-      $new_id = $conexion->insert_id;
-
-      return $new_id;
-    }
+    return $new_id;
   }
 }

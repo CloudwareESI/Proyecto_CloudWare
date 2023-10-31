@@ -1,8 +1,9 @@
-
 <?php
 include "../../db/funciones_utiles.php";
 $op = $_POST['op'];
+
 switch ($op) {
+
     case 'agregar':
 
         $nombre_paquete = $_POST['nombre_paquete'];
@@ -25,7 +26,9 @@ switch ($op) {
             $id_localidad_destino,
         );
 
-        $L = llamadoDeAPI("PUT", "http://127.0.0.1//Proyecto_Cloudware/almacen/controlador_almacen/REST_paquetes.php", $paquete);
+        $L = llamadoDeAPI("PUT", 
+        "http://127.0.0.1//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php", 
+        $paquete);
 
         break;
 
@@ -84,7 +87,9 @@ switch ($op) {
             $id_paquete,
         );
 
-        $L = llamadoDeAPI("POST", "http://127.0.0.1//Proyecto_Cloudware/almacen/controlador_almacen/REST_paquetes.php", $paquete);
+        $L = llamadoDeAPI("POST", 
+        "http://127.0.0.1//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php", 
+        $paquete);
 
         echo "<br> Proyecto_CloudwareProyecto_Cloudware";
         break;
@@ -94,6 +99,6 @@ switch ($op) {
         # code...
         break;
 }
-header("Location:http://localhost/Proyecto_Cloudware/Administracion.php");
+//header("Location:http://localhost/Proyecto_Cloudware");
 
 ?>

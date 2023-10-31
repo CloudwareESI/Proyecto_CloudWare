@@ -17,90 +17,105 @@ $paquete = get_paquete($_GET["Codigo"]);
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="icon" type="image/jpg" href="Imagenes/Logo_quickcarry-sin-fondo.png">
-    <link rel="stylesheet" href="estiloSeguimiento.css">
+    <link rel="stylesheet" href="estilos/estiloDef.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <title>QuickCarry</title>
 </head>
 
 
 <body>
-<header>
+    <header>
         <div class="home">
-           <a href="http://localhost/Proyecto_Cloudware/"><img src="imagenes/imagen-home.png" width="70px" height="70px"></a>
-        </div>
-    </header>
-    
-    <form action="" method="get">
-
-    
+            <a href="http://localhost/Proyecto_Cloudware/"><img src="imagenes/imagen-home.png" width="70px" height="70px"></a>
         
-        <div class="seguimientoMuestra">
-        <div class="tituloSeguimiento">
-        <h1>Delivery de QuickCarry</h1>
-        <h2>ID: </h2>
+        
+    </header>
+    <div class="tituloSeguimiento">
+            <h1>Delivery de QuickCarry</h1>
+            <h2>ID: </h2>
+        </div>
         </div>
 
-        <div class="barras">
-            <i id="barra1" class="fa-solid fa-house-laptop"></i>
-            <div class="barra1">
-                <div class="transicion1"></div>
+        <div class="contenedorSeguimiento">
+        <i id="barra1" class="fa-solid fa-house-laptop"></i>
+            <div class="seguimiento">
+                <div class="seguir">
+                    <div class="carga">
+                    </div>
+                </div>
             </div>
+
             <i id="barra2" class="fa-solid fa-truck-arrow-right"></i>
-            <div class="barra2">
-                <div class="transicion2"></div>
+            <div class="seguimiento">
+                <div class="seguir">
+                    <div class="carga">
+                    </div>
+                </div>
             </div>
             <i id="barra3" class="fa-solid fa-boxes-packing"></i>
 
-            <div class="barra3">
-                <div class="transicion3"></div>
+            <div class="seguimiento">
+                <div class="seguir">
+                    <div class="carga">
+                    </div>
+                </div>
             </div>
             <i id="barra4" class="fa-solid fa-truck-arrow-right"></i>
 
-            <div class="barra4">
-                <div class="transicion"></div>
+           <div class="seguimiento">
+                <div class="seguir">
+                    <div class="carga">
+                    </div>
+                </div>
             </div>
             <i id="barra4" class="fa-solid fa-house-user"></i>
         </div>
 
         <div class="infoPaquete">
             <h1>Estado actual</h1>
+            <br>
             <p id="msjEstado">Su paquete se encuentra en camino al almacén más cercano</p>
-        </div>
         <!-- Cuadro de información de paquete -->
         <div class="cuadroInfo">
-                <p>Nombre: </p>
-                <p>Fecha de salida: </p>
-                <p>Fecha de llegada:</p>
-                <p>Peso: </p>
-                <p>Tamaño: </p>
-            </div>
+            <h3>Nombre: </h3>
+            <br>
+            <h3>Peso: </h3>
+            <br>
+            <h3>Tamaño: </h3>
+            <br>
+            <h3>Fecha de salida: </h3>
+            <br>
+            <h3>Fecha de llegada:</h3>
+           
+        </div>
 
-
+        </div>
         <?php
         if (isset($paquete["fecha_ingreso"])) {
-
+            ?><?php
 
 
             if (isset($paquete["fecha_transporte"])) {
-
+                ?><?php
 
 
                 if (isset($paquete["fecha_recibido"])) {
-
+                    ?><?php
 
 
                     if (isset($paquete["fecha_cargado"])) {
-
+                        ?><?php
 
 
                         if (isset($paquete["fecha_entrega"])) {
+                            ?><?php
                         }
                     }
                 }
             }
         }
         ?>
-    </form>
+   
 </body>
 
 </html>
