@@ -18,11 +18,8 @@ include "db/funciones_utiles.php";
     <title>QuickCarry</title>
 </head>
 
-<<<<<<< HEAD
 <?php
-=======
-<?php 
->>>>>>> 7d0a31440c35cba4c0865310bee07bcd2599288b
+
 if (isset($_GET['Bienvenido'])) {
 ?>
 
