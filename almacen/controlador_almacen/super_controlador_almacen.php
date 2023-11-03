@@ -32,7 +32,6 @@ function get_almacenes_lista()
     $almacenes = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/almacen/modelo_almacen/REST_almacen.php", NULL);
 
     return json_decode($almacenes, true);
-
 }
 
 function get_all_paquetes()
@@ -74,21 +73,23 @@ function get_lotes_alm($id_alm)
 
 
     foreach (json_decode($lotes, true) as $fila) {
-        
-        if($fila["id_almacen"] == $id_alm 
-        AND isset($fila["fecha_de_entrega"])
-        ){
+
+        if (
+            $fila["id_almacen"] == $id_alm
+            and isset($fila["fecha_de_entrega"])
+        ) {
             $lotes_almacen[$numero_lotes] = $fila;
         }
 
-        if($id_alm == "1"){
-            if($fila["id_almacen"] != $id_alm 
-            AND !isset($fila["fecha_de_entrega"])
-            ){
+        if ($id_alm == "1") {
+            if (
+                $fila["id_almacen"] != $id_alm
+                and !isset($fila["fecha_de_entrega"])
+            ) {
                 $paquetes_lotes[$numero_lotes] = $fila;
             }
         }
-        $numero_lotes = $numero_lotes+"1";
+        $numero_lotes = $numero_lotes + "1";
     }
 
     $valor = array($id_alm, $lotes_almacen, json_decode($vehiculos, true));
@@ -126,23 +127,28 @@ function get_paquetes_alm($id_alm)
 
     //selecciona los paquetes que son del almacen
     foreach (json_decode($paquetes, true) as $fila) {
-        
-        if($fila["id_almacen"] == $id_alm 
-        AND isset($fila["fecha_de_entrega"])
-        AND !isset($fila["fecha_entrega"])
-        ){
+
+        if (
+            $fila["id_almacen"] == $id_alm
+            and isset($fila["fecha_de_entrega"])
+            and !isset($fila["fecha_entrega"])
+        ) {
             $paquetes_almacen[$numero_paquetes] = $fila;
+            var_dump($fila);
         }
 
-        if($id_alm == "1"){
-            if($fila["id_almacen"] != $id_alm 
-            AND !isset($fila["fecha_de_entrega"])
-            AND !isset($fila["fecha_entrega"]) 
-            ){
+        if ($id_alm == "1") {
+            if (
+                $fila["id_almacen"] != $id_alm
+                and isset($fila["id_lote"])
+                and !isset($fila["fecha_de_entrega"])
+                and !isset($fila["fecha_entrega"])
+            ) {
                 $paquetes_almacen[$numero_paquetes] = $fila;
+                var_dump($fila);
             }
         }
-        $numero_paquetes = $numero_paquetes+"1";
+        $numero_paquetes = $numero_paquetes + "1";
     }
 
     $valor = array($id_alm, $paquetes_almacen, json_decode($vehiculos, true), json_decode($rutas, true));
@@ -205,11 +211,12 @@ function del_almacen_almacen($id_a)
 }
 
 
-function entrada_paquetes($rol){
-    
+function entrada_paquetes($rol)
+{
+
     $paquetes = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php", NULL);
     $lotes = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/almacen/modelo_almacen/REST_lotes.php", NULL);
-    
+
     $vehiculos = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_vehiculos.php", NULL);
 
     $valor = array(json_decode($paquetes, true), json_decode($lotes, true), json_decode($vehiculos, true), $rol);
@@ -232,5 +239,4 @@ function entrada_paquetes($rol){
         echo $response;
     }
     curl_close($curl);
-
 }

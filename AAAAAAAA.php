@@ -2,7 +2,7 @@
 //Passwords
 //Admin long65tyco@gmail.com Long65Rep
 //Nata173AB
-//
+//wasduth97
 $usuario = "long65tyco@gmail.com";
 $password = "Nata173AB";
 $conn = mysqli_connect("localhost", "root", "", "bd_quickcarry"); //conecta a la base de datos por medio de root

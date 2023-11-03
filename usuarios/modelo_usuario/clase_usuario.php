@@ -50,7 +50,7 @@ class persona
 
   public function get_usuario($id)
   {
-    $query = "select * from empleado where  empleado.id = ? ";
+    $query = "select * from empleado where  empleado.id_empleado = ? ";
     $resultado = $this->base_datos->conexion()->execute_query($query, $id);
     $matriz = array();
     $matriz = $resultado->fetch_all(MYSQLI_ASSOC);
@@ -70,6 +70,10 @@ class persona
 
   public function delete_usuario($id)
   {
+    $query = "DELETE FROM asignado WHERE asignado.id_empleado= ?";
+    $this->base_datos->conexion()->execute_query($query, $id);
+    $query = "DELETE FROM conduce WHERE conduce.id_empleado= ?";
+    $this->base_datos->conexion()->execute_query($query, $id);
     $query = "DELETE FROM empleado WHERE empleado.id_empleado= ?";
     $this->base_datos->conexion()->execute_query($query, $id);
   }
@@ -79,7 +83,8 @@ class persona
     echo "<br>";
     var_dump($variables);
     echo "<br>";
-    $insert = "UPDATE empleado SET email= ? , nombre= ? , apellido= ?, CI= ?, nro_telefono= ?, cargo= ?  where empleado.id_empleado= ? ";
+    $insert = "UPDATE empleado SET email= ? , nombre= ? , 
+    apellido= ?, CI= ?, nro_telefono= ?, cargo= ?  where empleado.id_empleado= ? ";
 
     $this->base_datos->conexion()->execute_query($insert, $variables);
 
@@ -89,7 +94,6 @@ class persona
 
   public function put_usuario($variables, $variables_login)
   {
-
     //email nombre apellido CI nro_telefono cargo
     $insert = "INSERT INTO empleado VALUES (NULL, ?, ? , ? , ? , ? , ?)";
     $this->base_datos->conexion()->execute_query($insert, $variables);

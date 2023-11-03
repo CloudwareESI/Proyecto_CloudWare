@@ -24,6 +24,7 @@
             <h2>Agregar datos</h2>
             <div class="formulario">
                 <input type="hidden" name="op" value="agregar">
+                <input type="hidden" name="id_almacen" value="N/A">
                 <input type="hidden" name="id_almacen" value=<?php $_GET = "id_almacen" ?>>
 
                 <div class="formularioModificar">

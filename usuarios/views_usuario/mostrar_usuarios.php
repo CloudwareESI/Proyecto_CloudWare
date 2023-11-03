@@ -10,13 +10,29 @@ $matriz = $resultado->fetch_all(MYSQLI_ASSOC);
 $data = file_get_contents("php://input");
 $valores = json_decode($data, true);
 
-
+$x = 0;
 if ($valores["0"] == null) {
     echo "ERROR JSON VACIO";
 } else {
-    echo "<div class='contenedorUsuario'>";
+
+    if (array_key_exists('CONFIRMAR', $_POST)) {
+        eliminar();
+    }
+    function eliminar()
+    {
+        include "../../db/funciones_utiles.php";
+        require_once("../controlador_usuario/super_controlador_usuario.php");
+        $a = $_GET['id'];
+        $id = array($a);
+        del_persona($id);
+    }
+
+
+
+    echo "<script src='Js/popUp.js'></script>
+    <div class='contenedorTablas'>";
     echo "<h3>Backoffice de usuarios</h3>
-    <table class='tablaUsuario'>
+    <table>
     <thead>
     <tr>
     <th>ID</th> 
@@ -34,8 +50,7 @@ if ($valores["0"] == null) {
     <td>' . $fila['id_empleado'] . '</td>  
     <td>' . $fila['nombre'] . '</td>
     <td>' . $fila['apellido'] . '</td>
-    <td>' . $fila['email'] . '</td>
-    <td>';
+    <td>' . $fila['email'] . '</td>';
 
         switch ($fila['cargo']) {
             case '0':
@@ -56,42 +71,208 @@ if ($valores["0"] == null) {
 
 
         echo '</td>
-    <td><div class="box"><a href="usuarios/views_usuario/modificar_usuario.php?nombre=' .
-            $fila['nombre'] .
-            '&apellido=' . $fila['apellido'] .
-            '&id=' . $fila['id_empleado'] .
-            '&email=' . $fila['email'] .
-            '">
-    <img class="icnModificar" img id="imagenTabla" src="http://localhost/Proyecto_Cloudware/imagenes/imagenEditar.png">
-        </a>
-        </div>
-        </td>
-       
-       
         <td>
+    
+
+        </td>
+        <td>'; ?>
+
+
+        <button class="abrir" data-index="modificar<? echo $x; ?>"><i class="fas fa-wrench"></i></button>
+        <div class="contenedorModal" data-index="modificar<? echo $x; ?>">
+            <div class="modal">
+                <?php
+                $variables = $valores["0"][$x]; ?>
+                <div class="contenedorFormulario">
+
+                    <form action="usuarios/controlador_usuario/agregar_usu.php" method="post">
+                        <div class="formulario">
+                            <h2>Modificacion de datos</h2>
+                            <input type="hidden" name="op" value="modificar">
+                            <input type="hidden" name="id" value="<?= $variables['id_empleado'] ?>">
+                            <input type="hidden" name="viejo" value="<?= $variables['email'] ?>">
+
+                            <div class="formularioModificar">
+                                <?= "<p>Nombre actual: " . $variables['nombre'] . "</p>" ?>
+                                <label for="nombre">Nuevo nombre:</label>
+                                <input type="text" name="nombre">
+                            </div>
+
+                            <div class="formularioModificar">
+
+                                <?= "<p>Apellido actual: " . $variables['apellido'] . "</p>" ?>
+
+                                <label for="apellido">Nuevo apellido:</label>
+
+                                <input type="text" name="apellido">
+
+                            </div>
+                            <div class="formularioModificar">
+
+                                <?= "<p>Mail actual: " . $variables['email'] . "</p>" ?>
+
+                                <label for="apellido">Nuevo email:</label>
+
+                                <input type="text" name="email">
+
+                            </div>
+                            <div class="formularioModificar">
+
+                                <?= "<p>CI actual" . $variables['CI'] . "</p>" ?>
+
+                                <label for="apellido">CI:</label>
+
+                                <input type="text" name="CI">
+
+                            </div>
+                            <div class="formularioModificar">
+
+                                <?= "<p>Telefono actual" . $variables['nro_telefono'] . "</p>" ?>
+
+                                <label for="apellido">telefono:</label>
+
+                                <input type="text" name="telefono">
+
+                            </div>
+                            <div class="formularioModificar">
+
+                                <?= "<p>Insertar nueva contraseña</p>" ?>
+
+                                <label for="apellido">Nueva Contraseña:</label>
+
+                                <input type="text" name="password">
+
+                            </div>
+                            <div class="formularioModificar">
+
+                                <?= "<p>Cargo actual" . $variables['cargo'] . "</p>" ?>
+
+                                <label for="cargo">Cargo:</label>
+
+                                <input type="text" name="cargo">
+
+                            </div>
+                            <div class="btn">
+
+                                <input id="btn" type="submit" value="Actualizar">
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <button class="cerrar">Cancelar</button>
+
+            </div>
+        </div>
+
+        <?php echo '
    
         </td>
-    <td>
-    <div class="box">
-    <a href="usuarios/views_usuario/eliminar_confirmacion.php?nombre=' . $fila['nombre'] .
-            '&apellido=' . $fila['apellido'] .
-            '&id=' . $fila['id_empleado'] .
-            '">
-    <img class="icnEliminar" img id="imagenTabla" src="http://localhost/Proyecto_Cloudware/imagenes/imagenBorrar.png">
-    </a>
-    </div>
-    </td>
-    </tr>
-    ';
+        <td>'; ?>
+
+        <button class="abrir" data-index="eliminar<? echo $x; ?>"><i class="fas fa-trash"></i></button>
+        <div class="contenedorModal" data-index="eliminar<? echo $x; ?>">
+            <div class="modal">
+                <?php
+                $variables = $valores["0"][$x];
+                echo '<h2>Eliminar a ' . $variables['nombre'] . ' ' . $variables['apellido'] . '</h2>
+            <p>¿Esta seguro que desea eliminar al usuariov' .
+                    $variables['nombre'] . ' ' . $variables['apellido'] . '?</p>';
+
+                echo '
+            <div class="contenedorBtn">
+            <button class="cerrar">Cancelar</button>
+
+            <form action="usuarios/controlador_usuario/agregar_usu.php" method="post">
+                <input type="hidden" name="op" value="eliminar">
+                <input type="hidden" name="id" value="' . $variables["id_empleado"] . '">
+                <input id="CONFIRMAR" type="submit" name="CONFIRMAR" class="CONFIRMAR" value="CONFIRMAR" />
+            </form>
+
+            </div>
+            ';
+
+                ?>
+
+
+            </div>
+        </div>
+
+<?php echo '</td>
+</tr>';
+        $x = $x + 1;
     }
     echo "</tbody></table>";
 }
+
+
+//Popup agregar
 ?>
-<div class="botonUsuario">
-    <button onclick="window.location.href='usuarios/views_usuario/agregar_usuario.html';">
+
+<div class="btn">
+    <button class="abrir" data-index="agregar">
+        <i class="fas fa-trash"></i>
         Agregar
     </button>
 </div>
+<div class="contenedorModal" data-index="agregar">
+    <div class="modal">
+
+        <div class="contenedorFormulario">
+
+
+            <form action="usuarios/controlador_usuario/agregar_usu.php" method="post">
+                <div class="formulario">
+                    <h2>Agregar datos</h2>
+                    <input type="hidden" name="op" value="agregar">
+                    <div class="formularioModificar">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" name="nombre">
+                    </div>
+                    <div class="formularioModificar">
+                        <label for="apellido">Apellido:</label>
+                        <input type="text" name="apellido">
+                    </div>
+                    <div class="formularioModificar">
+                        <label for="apellido">Email:</label>
+                        <input type="text" name="email">
+                    </div>
+                    <div class="formularioModificar">
+                        <label for="apellido">Contraseña:</label>
+                        <input type="text" name="password">
+                    </div>
+                    <div class="formularioModificar">
+                        <label for="apellido">Numero de telefono:</label>
+                        <input type="text" name="telefono">
+                    </div>
+
+                    <div class="formularioModificar">
+                        <label for="CI">Cedula de identidad:</label>
+                        <input type="text" name="CI">
+                    </div>
+
+                    <div class="formularioModificar">
+                        <label for="cargo">Cargo:</label>
+                        <input type="text" name="cargo">
+                    </div>
+                </div>
+                <input id="btn" type="submit" value="Actualizar">
+            </form>
+            <div class="contenedorBtn">
+                <button class="cerrar">Cancelar</button>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+
+
+
+
+
+
 </div>
 
 
@@ -99,7 +280,7 @@ if ($valores["0"] == null) {
 if ($valores == null) {
     echo "ERROR JSON VACIO";
 } else {
-    echo "<br><br><br><div class='contenedorUsuario'>";
+    echo "<br><br><br><div class='contenedorTablas'>";
     echo "<h3>Gestion camioneros</h3>
     <table class='tablaUsuario'>
     <thead>
@@ -111,29 +292,30 @@ if ($valores == null) {
     <th>Asignar</th> 
     </tr>
     </thead><tbody>";
-    
+
     echo '
     <form action="usuarios/controlador_usuario/agregar_usu.php" method="post">
     <input type="hidden" name="op" value="asignar_vehiculo">';
     foreach ($valores["0"] as $fila) {
-        if($fila['cargo'] == "2"){
+        if ($fila['cargo'] == "2") {
 
 
-        echo '
+            echo '
         <tr>
     <td>' . $fila['id_empleado'] . '</td>  
     <td>' . $fila['nombre'] . '</td>
     <td>' . $fila['apellido'] . '</td>
     <td> <input type="checkbox" id="seleccionar" name="id_empleado[]" value="'
-    . $fila['id_empleado'] .
-    '">
+                . $fila['id_empleado'] .
+                '">
     </td>
    
     </tr>
     ';
+        }
     }
-}
     echo "</tbody></table>";
+    echo '<br>';
     echo '<select name="matricula">';
     foreach ($valores["1"] as $fila) {
         echo "<option value='" . $fila["matricula"] . "'>"
@@ -142,7 +324,10 @@ if ($valores == null) {
     }
 
     echo '</select>
-    <input class="btnAniadir" type="submit" value="Cargar en camion">
+    <br>
+ <div class="btn">
+    <input id="btn"  type="submit" value="Cargar en camion">
+    </div>
     </form>';
 }
 ?>
@@ -153,7 +338,7 @@ if ($valores == null) {
 if ($valores["0"] == null) {
     echo "ERROR JSON VACIO";
 } else {
-    echo "<br><br><br><div class='contenedorUsuario'>";
+    echo "<br><br><br><div class='contenedorTablas'>";
     echo "<h3>Gestion Almaceneros</h3>
     <table class='tablaUsuario'>
     <thead>
@@ -165,39 +350,43 @@ if ($valores["0"] == null) {
     <th>Asignar</th> 
     </tr>
     </thead><tbody>";
-    
+
     echo '
     <form action="usuarios/controlador_usuario/agregar_usu.php" method="post">
     <input type="hidden" name="op" value="asignar_almacen">';
     foreach ($valores["0"] as $fila) {
-        if($fila['cargo'] == "1"){
+        if ($fila['cargo'] == "1") {
 
 
-        echo '
+            echo '
         <tr>
     <td>' . $fila['id_empleado'] . '</td>  
     <td>' . $fila['nombre'] . '</td>
     <td>' . $fila['apellido'] . '</td>
     <td> <input type="checkbox" id="seleccionar" name="id_empleado[]" value="'
-    . $fila['id_empleado'] .
-    '">
+                . $fila['id_empleado'] .
+                '">
     </td>
    
     </tr>
     ';
+        }
     }
-}
     echo "</tbody></table>";
+    echo '<br>';
     echo '<select name="almacen">';
     foreach ($valores["2"] as $fila) {
         echo "<option value='" . $fila["id_almacen"] . "'> Almacen:"
-        . $fila["id_almacen"] . "-" . $fila["nombre_localidad"] .
-         " " . $fila["nombre_departamento"] .
+            . $fila["id_almacen"] . "-" . $fila["nombre_localidad"] .
+            " " . $fila["nombre_departamento"] .
             "</option>";
     }
 
     echo '</select>
-    <input class="btnAniadir" type="submit" value="Asignar empleado/s a almacen">
+    <br>
+    <div class="btn">
+    <input id="btn" type="submit" value="Asignar empleado/s a almacen">
+    </div>
     </form>';
 }
 ?>

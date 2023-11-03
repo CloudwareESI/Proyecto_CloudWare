@@ -170,4 +170,4 @@ switch ($_POST["opcion"]) {
 
         break;
 }
-header("Location:http://localhost/Proyecto_Cloudware/index.php");
+//header("Location:http://localhost/Proyecto_Cloudware/index.php");

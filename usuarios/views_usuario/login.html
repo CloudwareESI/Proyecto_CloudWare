@@ -8,7 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="icon" type="image/jpg" href="Imagenes/Logo_quickcarry-sin-fondo.png">
-    <link rel="stylesheet" href="../../estilos/estiloLogin.css">
+    <link rel="stylesheet" href="../../estilos/estiloDef.css">
     <title>QuickCarry</title>
 </head>
 
@@ -19,38 +19,38 @@
         </div>
     </header>
 
+<div class="contenedorFormulario">
+    <form action="../controlador_usuario/control_verificacion.php" method="post">
 
-    <form id="formLogin"action="../controlador_usuario/control_verificacion.php" method="post">
-
-        <div class="formularioLogin">
+        <div class="formulario">
 
             <img src="../../Imagenes/Logo_quickcarry-sin-fondo.png" alt="logo" height="70px" width="70px">
 
             <h2>Iniciar sesion</h2>
 
-
+            <br>
             <div>
                 <input type="text" class="controles" name="mail" id="mail" placeholder="Mail:" maxlength="32" required
                     name="Usuario:">
                 <label for="myInput" id="myLabel">Usuario:</label>
             </div>
 
-            <br>
+      
 
             <div>
                 <input type="password" class="controles" name="password" id="password" placeholder="Contraseña:" maxlength="15" required>
                 <label for="myInput" id="myLabel">Contraseña:</label>
             </div>
         
-            <br>
-            <div class="btnLogin">
+        
+            <div class="btn">
                 <button>Ingresar</button>
             </div>
 
 
     </form>
     </div>
-
+</div>
 </body>
 
 </html>

@@ -186,10 +186,12 @@ if (isset($_GET['Bienvenido'])) {
                 require("almacen/controlador_almacen/super_controlador_almacen.php");
 
                 entrada_paquetes($_SESSION['cargo']);
-
     ?>
-
-
+                <div class='contenedor'>
+                    <button class="btnAniadir" onclick="window.location.href='almacen/vista_almacen/agregar_paquete.php';">
+                        Agregar
+                    </button>
+                </div>
     <?php
             }
         }
@@ -271,7 +273,7 @@ if (isset($_GET['Bienvenido'])) {
                 <script src="Js/boton.js"></script>
             </li>
             <li>
-                <a href="terminar.php"><i  class="fa-regular fa-circle-xmark"></i></a>
+                <a href="terminar.php"><i class="fa-regular fa-circle-xmark"></i></a>
             </li>
 
         </ul>

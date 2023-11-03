@@ -12,58 +12,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <title>QuickCarry</title>
 </head>
-<?php
-require "../../db/funciones_utiles.php";
-require "../../almacen/controlador_almacen/super_controlador_almacen.php";
-
-$matriz = get_almacenes_lista();
-?>
 
 <body>
 
     <h2>Agregar ruta</h2>
-    <form action="../controlador_vehiculos/agregar_ruta.php" method="POST">
-        <input type="hidden" name="op" value="agregar">
-        <label> Punto de inicio de la ruta</label>
-        <select name="almacen[0]">
+    <form>
+        <label> Destino de trecho 1 de la ruta</label>
+        <select name="lotes[]">
 
-            <?php foreach ($matriz as $fila) {
-                echo "<option value='" . $fila["id_almacen"] . "'>"
-                    . $fila["id_almacen"] . " "
-                    . $fila["nombre_localidad"] . " "
-                    . $fila["nombre_departamento"] .
-                    "</option>";
-            } ?>
+            <option value=""></option>
 
         </select>
-        <input type="hidden" name="tiempo[0]" value="00:00">
-        <br><br>
-        <?php
-        for ($i = 1; $i <= $_POST["ubicaciones"]; $i++) {
+        <label>Tiempo estimado de trecho</label>
+        <input type="time">
 
-        ?>
-            <label> Destino de trecho <?php echo $i; ?> de la ruta</label>
-            <select name="almacen[<?php echo $i; ?>]">
-                <?php foreach ($matriz as $fila) {
-                    echo "<option value='" . $fila["id_almacen"] . "'>"
-                        . $fila["id_almacen"] . " "
-                        . $fila["nombre_localidad"] . " "
-                        . $fila["nombre_departamento"] .
-                        "</option>";
-                } ?>
-
-            </select>
-
-            <label>Tiempo estimado de trecho <?php echo $i; ?></label>
-            <input type="time" name="tiempo[<?php echo $i; ?>]">
-
-            <br><br>
-        <?php }
-        ?>
-
-        <div class="btn">
-            <input id="btn" type="submit" value="Actualizar">
-        </div>
     </form>
 
 </body>

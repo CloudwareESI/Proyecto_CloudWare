@@ -85,48 +85,11 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
     </head>
 
     <body>
-<<<<<<< HEAD
         <div class="contenedorInterfaz">
             <div class="usuarioCamionero">
                 <i class="fa-solid fa-user-large"></i>
                 <h2>Bienvenido <?php echo $_SESSION['nombre']; ?>!
                 </h2>
-=======
-        <div class="usuarioCamionero">
-            <i class="fa-solid fa-user-large"></i>
-            <h2>Bienvenido <?php echo $_SESSION['nombre']; ?>!</h2>
-        </div>
-        <div class="Camionero">
-            <div class="opcionesCamionero">
-
-                <div class="opcionCamionero">
-                    <a id="seleccionarRuta" href="#"><i class="fa-solid fa-road"></i></a>
-                    <h2>Seleccionar ruta</h2>
-                </div>
-
-                <div class="opcionCamionero">
-                    <a id="mostrarTabla" href="#"><i class="fa-solid fa-folder-open"></i></a>
-                    <h2>Contenido del camion</h2>
-                </div>
-                <div class="opcionCamionero">
-                    <a id="enviar" href="../controlador_vehiculos/extra_vehiculo.php?matricula=<?php
-                                                                                                echo $_GET['matricula']; ?>
-                    &rol=<?php echo $_GET['rol']; ?>&estado=<?php echo $_GET['estado']; ?>">
-                        <i class="fa-solid fa-truck-fast"></i></a>
-                    <h2>
-                        <?php
-                        switch ($_GET['estado']) {
-                            case '1':
-                                echo "Poner en marcha";
-                                break;
-                            case '0':
-                                echo "Parar";
-                                break;
-                        }
-                        ?>
-                    </h2>
-                </div>
->>>>>>> 7d0a31440c35cba4c0865310bee07bcd2599288b
             </div>
             <div class="contenedorOpciones">
                 <div class="opciones">
@@ -165,13 +128,8 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
                 <div class="tablaInterfazCamionero">
 
 
-<<<<<<< HEAD
                     <table id="tablaCarga">
                         <form action="../controlador_vehiculos/entregar.php" method="post">
-=======
-                <table id="tablaCarga">
-                    <form id="formTablaCarga" action="../controlador_vehiculos/entregar.php" method="post">
->>>>>>> 7d0a31440c35cba4c0865310bee07bcd2599288b
 
 
                             <?php
@@ -253,7 +211,6 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
                             } ?>
 
 
-<<<<<<< HEAD
                             <div class="1">
                                 <input id="btn" class="btn" type="submit" value="Entregar">
                             </div>
@@ -261,24 +218,6 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
                     </table>
 
 
-=======
-                        <input id="btnAniadir" type="submit" value="Entregar">
-                    </form>
-                </table>
-
-            </div>
-
-
-            <div class="seleccionarRuta">
-
-
-                <script src="leaflet-routing-machine-3.2.12/dist/leaflet-routing-machine.js"></script>
-                <link rel="stylesheet" href="leaflet-routing-machine-3.2.12/dist/leaflet-routing-machine.css">
-
-
-                <div class="containerMapa">
-                    <div id="map"></div>
->>>>>>> 7d0a31440c35cba4c0865310bee07bcd2599288b
                 </div>
 
                 <div class="contenedorRuta">
@@ -314,87 +253,8 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
                             marker.bindPopup("Mi ubicacion").openPopup()
 
                             //Switch que se encarga de marcar la ruta /los paquetes
-                            <?php
-                            switch ($_GET['rol']) {
-                                case '1':
+                            
 
-                            ?>
-
-                                    <?php
-                                    foreach ($ruta as $fila) {
-                                        $destino =
-                                            $fila['chapa'] . " " .
-                                            $fila['calle'] . " " .
-                                            $fila['nombre_localidad'] . " " .
-                                            $fila['nombre_departamento'];
-
-                                    ?>
-                                         
-                                        var urlDestino = 'https://nominatim.openstreetmap.org/search?format=json&q=' +
-                                            encodeURIComponent("<?php echo $destino; ?>");
-
-                                        fetch(urlDestino)
-                                            .then(function(response) {
-                                                return response.json();
-                                            })
-                                            .then(function(data) {
-                                                if (data.length > 0) {
-                                                    var lat = parseFloat(data[0].lat);
-                                                    var lon = parseFloat(data[0].lon);
-                                                    var marker = L.marker([lat, lon], {}).addTo(map);
-                                                } else {
-                                                    alert('No se encontró la locacion');
-                                                }
-                                            })
-
-
-                                    <?php
-                                    }
-
-                                    ?>
-                                    //aqui va el codigo para marcar la ruta en el mapa
-
-                                    <?php
-                                    break;
-                                    ?>
-
-
-
-
-
-                                    <?php
-                                case '2':
-
-                                    foreach ($carga as $fila) {
-                                        $destino =
-                                            $fila['destino_calle'] . " " .
-                                            $fila['nombre_localidad'] . " " .
-                                            $fila['nombre_departamento'];
-                                    ?>
-                                        //aqui se pondran puntos en el mapa por cada paquete a entregar segun $destino
-                                        var urlDestino = 'https://nominatim.openstreetmap.org/search?format=json&q=' +
-                                            encodeURIComponent("<?php echo $destino; ?>");
-
-                                        fetch(urlDestino)
-                                            .then(function(response) {
-                                                return response.json();
-                                            })
-                                            .then(function(data) {
-                                                if (data.length > 0) {
-                                                    var lat = parseFloat(data[0].lat);
-                                                    var lon = parseFloat(data[0].lon);
-                                                    var marker = L.marker([lat, lon], {}).addTo(map);
-                                                } else {
-                                                    alert('No se encontró la locacion');
-                                                }
-                                            })
-                                    <?php
-                                    }
-                                    break;
-                                    ?>
-                            <?php
-                            }
-                            ?>
                         });
                     </script>
 

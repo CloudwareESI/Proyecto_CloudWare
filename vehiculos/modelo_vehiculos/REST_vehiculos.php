@@ -45,9 +45,10 @@ switch ($_SERVER['REQUEST_METHOD']) {
 		break;
 
 	case 'DELETE':
+
 		$data = file_get_contents("php://input");
 		$valor = json_decode($data, true);
-
+		
 		$vehiculos->delete_vehiculos($valor);
 		break;
 }

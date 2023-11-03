@@ -70,6 +70,7 @@ class vehiculos
 
   public function delete_vehiculos($id)
   {
+    var_dump($id);
     $query = "DELETE FROM vehiculo WHERE vehiculo.matricula= ?";
     $this->base_datos->conexion()->execute_query($query, $id);
   }
