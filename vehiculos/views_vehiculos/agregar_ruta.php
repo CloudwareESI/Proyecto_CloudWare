@@ -22,7 +22,7 @@
     <body>
 
         <h2>Agregar ruta</h2>
-        <form action="../controlador_vehiculos/agregar_ruta.php" method="POST">
+        <form action="../controlador_vehiculos/gestion_ruta.php" method="POST">
             <input type="hidden" name="op" value="agregar">
             <label> Punto de inicio de la ruta</label>
             <select name="almacen[0]">

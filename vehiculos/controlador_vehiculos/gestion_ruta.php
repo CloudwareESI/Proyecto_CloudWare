@@ -56,7 +56,10 @@ switch ($op) {
 
     case 'eliminar_ruta':
 
-        $datos = array($id_almacen, $id_ruta);
+        $datos = array(
+            $id_almacen,
+            $id_ruta
+        );
         llamadoDeAPI("DELETE", "http://127.0.0.1//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_ruta.php", $datos);
 
         break;

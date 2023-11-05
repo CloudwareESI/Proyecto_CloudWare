@@ -4,10 +4,11 @@ $data = file_get_contents("php://input");
 $valor = json_decode($data, true);
 $y = 0;
 
+
 if ($valor == null) {
     echo "ERROR JSON VACIO";
 } else {
-    echo "<div class='contenedorTablas'><h3>Backoffice de Rutas</h3>
+    echo "<div class='contenedorTablas'><h3>Backoffice de Rutas</h3>        <script src='Js/popUp.js'></script>
     ";
     foreach ($valor as $subvalor) {
 
@@ -17,38 +18,39 @@ if ($valor == null) {
         <table>
         <thead>
         <tr>
-        <th id='thRuta'>Ruta N°" . $subvalor[0]['id_ruta'] . "</th> "; ?>
+        <th id='thRuta'>Ruta N°" .  $subvalor[0]['id_ruta'] . "</th> "; ?>
         <th id='thRuta'>
 
-            <button type="button" class="abrir" data-index="eliminarRuta<? echo $y; ?>">
+            <button type="button" class="abrir" data-index="eliminarRuta<? echo  $subvalor[0]['id_ruta']; ?>">
                 <i class="fas fa-trash"></i>
             </button>
 
-            <div class="contenedorModal" data-index="eliminarRuta<? echo $y; ?>">
+            <div class="contenedorModal" data-index="eliminarRuta<? echo $subvalor[0]['id_ruta']; ?>">
                 <div class="modal">
                     <?php
 
                     echo '<h2>Eliminar ruta ' . $subvalor[0]['id_ruta']  . '</h2>
                     <p>¿Esta seguro que desea eliminar a la ruta ' .
-                    $subvalor[0]['id_ruta']  . '?</p>';
+                        $subvalor[0]['id_ruta']  . '?</p>';
 
                     echo '
                     <div class="contenedorBtn">
                     <button class="cerrar">Cancelar</button>
 
-                    <form action="vehiculos/controlador_vehiculos/agregar_vehiculos.php" method="post">
+                    <form action="vehiculos/controlador_vehiculos/gestion_ruta.php" method="post">
                         <input type="hidden" name="op" value="eliminar_ruta">
                         <input type="hidden" name="id_ruta" value="' . $subvalor[0]['id_ruta']  . '">
                         <input id="CONFIRMAR" type="submit" name="CONFIRMAR" class="CONFIRMAR" value="CONFIRMAR" />
                     </form>
 
-                </div>
-                ';
+                    </div>
+                    ';
                     ?>
 
 
                 </div>
             </div>
+
 
         </th>
         <?php
@@ -64,7 +66,9 @@ if ($valor == null) {
         <th>Eliminar</th> 
         </tr>
         </thead><tbody>";
-        $numUbicacion = 0;
+
+
+        $numUbicacion = 1;
         foreach ($subvalor as $fila) {
 
             echo '<tr>
@@ -81,26 +85,25 @@ if ($valor == null) {
 
             <td>
 
-                <button type="button" class="abrir" data-index="eliminar<? echo $numUbicacion; ?>">
+                <button type="button" class="abrir" data-index="eliminarUbicacion<? echo $id_almacen; ?><? echo $id_ruta; ?>">
                     <i class="fas fa-trash"></i>
                 </button>
 
-                <div class="contenedorModal" data-index="eliminar<? echo $numUbicacion; ?>">
+                <div class="contenedorModal" data-index="eliminarUbicacion<? echo $id_almacen; ?><? echo $id_ruta; ?>">
                     <div class="modal">
                         <?php
-                        $variables = $valor[$x];
-                        echo '<h2>Eliminar camion ' . $variables['matricula'] . '</h2>
-                <p>¿Esta seguro que desea eliminar al camion ' .
-                            $variables['matricula'] . '?</p>';
+                        echo '<h2>Eliminar ubicacion numero ' . $numUbicacion . '</h2>
+                <p>¿Esta seguro que desea eliminar a la ubicacion ' .
+                            $numUbicacion . '?</p>';
 
                         echo '
                     <div class="contenedorBtn">
                     <button class="cerrar">Cancelar</button>
 
-                    <form action="vehiculos/controlador_vehiculos/agregar_vehiculos.php" method="post">
+                    <form action="vehiculos/controlador_vehiculos/gestion_ruta.php" method="post">
                         <input type="hidden" name="op" value="eliminar_ubicacion">
-                        <input type="hidden" name="id_ruta" value="' . $variables["id_ubicacion"] . '">
-                        <input type="hidden" name="id_almacen" value="' . $variables["id_ubicacion"] . '">
+                        <input type="hidden" name="id_ruta" value="' . $fila["id_ruta"] . '">
+                        <input type="hidden" name="id_almacen" value="' . $fila["id_almacen"] . '">
                         <input id="CONFIRMAR" type="submit" name="CONFIRMAR" class="CONFIRMAR" value="CONFIRMAR" />
                     </form>
 
@@ -115,9 +118,10 @@ if ($valor == null) {
             </tr>
 
 <?php
-            $numUbicacion = $numUbicacion + 1;
+            $numUbicacion++;
         }
-        $y = $y + 1;
+
+
 
         echo "</tbody></table></div>";
     }

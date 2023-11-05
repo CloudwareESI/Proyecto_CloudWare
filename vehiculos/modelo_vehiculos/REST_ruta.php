@@ -10,15 +10,15 @@ switch ($_SERVER['REQUEST_METHOD']) {
 		$data = file_get_contents("php://input");
 		$valor = json_decode($data, true);
 		header('content-type: application/json');
-		
 
-		if(isset($valor['id_ruta'])){
+
+		if (isset($valor['id_ruta'])) {
 			$ruta = $rutas->get_ruta($valor);
 
 			$encryptado = json_encode($ruta);
 			echo $encryptado;
 			die;
-		}else{
+		} else {
 			$ruta = $rutas->get_rutas_all();
 
 			$encryptado = json_encode($ruta);
@@ -26,7 +26,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 			die;
 		}
 		break;
-		
+
 	case 'POST':
 		echo "POST";
 		$data = file_get_contents("php://input");
@@ -35,7 +35,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 		break;
 
 	case 'PUT':
-		
+
 		$data = file_get_contents("php://input");
 		$valor = json_decode($data, true);
 		header('content-type: application/json');
@@ -47,9 +47,17 @@ switch ($_SERVER['REQUEST_METHOD']) {
 		break;
 
 	case 'DELETE':
-		$data = file_get_contents("php://input");
-		$valor = json_decode($data, true);
+		if (isset($valor['id_almacen'])) {
+			$data = file_get_contents("php://input");
+			$valor = json_decode($data, true);
 
-		$rutas->delete_rutas($valor);
-		break;
+			$rutas->delete_ubicacion($valor);
+			break;
+		}else{
+			$data = file_get_contents("php://input");
+			$valor = json_decode($data, true);
+
+			$rutas->delete_rutas($valor);
+			break;
+		}
 }
