@@ -51,7 +51,7 @@ if ($valor == null) {
         $y = 0;
         ?>
 
-
+<div class="tabla">
         <table>
             <thead>
                 <tr>
@@ -88,7 +88,7 @@ if ($valor == null) {
             ';
                     $y = $y + 1;
                 }
-                echo "</tbody></table>";
+                echo "</tbody></table></div>";
 
                 if ($valor["0"] == "1") {
 

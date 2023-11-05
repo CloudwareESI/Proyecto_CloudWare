@@ -11,14 +11,17 @@ if ($valor == null) {
 } else {
     echo "<div class='contenedorTablas'>";
     echo "<h3>Almacenes</h3>
-    <table><thead><tr>
+    <div class='tabla'>
+    <table>
+    <thead>
+    <tr>
     <td>Numero</td> 
     
     <th>Calle</th> 
     <th>Chapa</th> 
     <th>Localidad</th> 
     <th>Departamento</th> 
-    <th>Acceder</th> 
+    <th>Seleccionar</th> 
     </tr></thead><tbody>";
     foreach ($valor as $fila) {
         echo '<tr>
@@ -32,11 +35,11 @@ if ($valor == null) {
         &Almacenes=1
     ">
     
-    <img class="icnEliminar" img id="imagenTabla" src="http://localhost/Proyecto_Cloudware/imagenes/imagenBorrar.png"></a>
+    <button>  <i class="fa-solid fa-check"></i></button></a>
     </div></td>
     </tr>';
     }
-    echo "</tbody></table>";
+    echo "</tbody></table></div>";
 }
 ?>
 

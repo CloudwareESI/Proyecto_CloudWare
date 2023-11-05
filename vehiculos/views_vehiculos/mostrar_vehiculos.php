@@ -9,8 +9,9 @@ if ($valor == null) {
 } else {
     echo "<script src='Js/popUp.js'></script>
     <div class='contenedorTablas'>";
-    echo "<h3>Backoffice de vehiculos</h3><table><tr>
-        <table>
+    echo "<h3>Backoffice de vehiculos</h3>
+    <div class='tabla'>
+    <table>
     <thead>
     <tr>
     <th>Matricula</th> <th>Modelo</th> 
@@ -184,19 +185,17 @@ if ($valor == null) {
 
     <?php echo '</td>
         <td>
-        <div class="box">
         <a href="http://localhost/Proyecto_Cloudware/vehiculos/views_vehiculos/vehiculo.php?matricula='
             . $fila['matricula'] . '&rol='
             . $fila['rol'] . '&estado='
             . $fila['estado'] . '
         ">
-        <img class="icnEliminar" img id="imagenTabla" src="http://localhost/Proyecto_Cloudware/imagenes/imagenBorrar.png"></a>
-        </div>
+        <button>  <i class="fa-solid fa-check"></i></button></a>
         </td>
         </tr>';
         $x = $x + 1;
     }
-    echo "</tbody></table>";
+    echo "</tbody></table></div>";
 }
     ?>
     <br>
@@ -268,9 +267,9 @@ if ($valor == null) {
     </div>
 
 
-    <div class="btn">
-        <button type="button" class="abrir" data-index="eliminar<? echo $x; ?>">
+ <div class="btn">
+        <button type="button" id="btnTabla" class="abrir" data-index="eliminar<? echo $x; ?>">
             Agregar
-        </button>
+</div>
     </div>
     </div>

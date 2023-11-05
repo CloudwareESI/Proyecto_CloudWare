@@ -32,6 +32,7 @@ if ($valores["0"] == null) {
     echo "<script src='Js/popUp.js'></script>
     <div class='contenedorTablas'>";
     echo "<h3>Backoffice de usuarios</h3>
+    <div class='tabla'>
     <table>
     <thead>
     <tr>
@@ -50,7 +51,11 @@ if ($valores["0"] == null) {
     <td>' . $fila['id_empleado'] . '</td>  
     <td>' . $fila['nombre'] . '</td>
     <td>' . $fila['apellido'] . '</td>
-    <td>' . $fila['email'] . '</td>';
+    <td>' . $fila['email'] . '</td><td>';
+
+
+
+
 
         switch ($fila['cargo']) {
             case '0':
@@ -67,13 +72,7 @@ if ($valores["0"] == null) {
                 # code...
                 break;
         }
-
-
-
-        echo '</td>
-        <td>
-    
-
+        echo '
         </td>
         <td>'; ?>
 
@@ -91,78 +90,80 @@ if ($valores["0"] == null) {
                             <input type="hidden" name="op" value="modificar">
                             <input type="hidden" name="id" value="<?= $variables['id_empleado'] ?>">
                             <input type="hidden" name="viejo" value="<?= $variables['email'] ?>">
+                            <div class="formularioModificarPopUp">
+                                <div class="formularioModificar">
+                                    <?= "<p>Nombre actual: " . $variables['nombre'] . "</p>" ?>
+                                    <label for="nombre">Nuevo nombre:</label>
+                                    <input type="text" name="nombre">
+                                </div>
 
-                            <div class="formularioModificar">
-                                <?= "<p>Nombre actual: " . $variables['nombre'] . "</p>" ?>
-                                <label for="nombre">Nuevo nombre:</label>
-                                <input type="text" name="nombre">
+                                <div class="formularioModificar">
+
+                                    <?= "<p>Apellido actual: " . $variables['apellido'] . "</p>" ?>
+
+                                    <label for="apellido">Nuevo apellido:</label>
+
+                                    <input type="text" name="apellido">
+
+                                </div>
+                                <div class="formularioModificar">
+
+                                    <?= "<p>Mail actual: " . $variables['email'] . "</p>" ?>
+
+                                    <label for="apellido">Nuevo email:</label>
+
+                                    <input type="text" name="email">
+
+                                </div>
+
+                                <div class="formularioModificar">
+
+                                    <?= "<p>CI actual" . $variables['CI'] . "</p>" ?>
+
+                                    <label for="apellido">CI:</label>
+
+                                    <input type="text" name="CI">
+
+                                </div>
+                                <div class="formularioModificar">
+
+                                    <?= "<p>Telefono actual" . $variables['nro_telefono'] . "</p>" ?>
+
+                                    <label for="apellido">telefono:</label>
+
+                                    <input type="text" name="telefono">
+
+                                </div>
+                                <div class="formularioModificar">
+
+                                    <?= "<p>Insertar nueva contraseña</p>" ?>
+
+                                    <label for="apellido">Nueva Contraseña:</label>
+
+                                    <input type="text" name="password">
+
+                                </div>
+                                <div class="formularioModificar">
+
+                                    <?= "<p>Cargo actual" . $variables['cargo'] . "</p>" ?>
+
+                                    <label for="cargo">Cargo:</label>
+
+                                    <input type="text" name="cargo">
+
+                                </div>
+                                <div class="btn">
+
+                                    <input id="btn" type="submit" value="Actualizar">
+
+                                </div>
                             </div>
-
-                            <div class="formularioModificar">
-
-                                <?= "<p>Apellido actual: " . $variables['apellido'] . "</p>" ?>
-
-                                <label for="apellido">Nuevo apellido:</label>
-
-                                <input type="text" name="apellido">
-
-                            </div>
-                            <div class="formularioModificar">
-
-                                <?= "<p>Mail actual: " . $variables['email'] . "</p>" ?>
-
-                                <label for="apellido">Nuevo email:</label>
-
-                                <input type="text" name="email">
-
-                            </div>
-                            <div class="formularioModificar">
-
-                                <?= "<p>CI actual" . $variables['CI'] . "</p>" ?>
-
-                                <label for="apellido">CI:</label>
-
-                                <input type="text" name="CI">
-
-                            </div>
-                            <div class="formularioModificar">
-
-                                <?= "<p>Telefono actual" . $variables['nro_telefono'] . "</p>" ?>
-
-                                <label for="apellido">telefono:</label>
-
-                                <input type="text" name="telefono">
-
-                            </div>
-                            <div class="formularioModificar">
-
-                                <?= "<p>Insertar nueva contraseña</p>" ?>
-
-                                <label for="apellido">Nueva Contraseña:</label>
-
-                                <input type="text" name="password">
-
-                            </div>
-                            <div class="formularioModificar">
-
-                                <?= "<p>Cargo actual" . $variables['cargo'] . "</p>" ?>
-
-                                <label for="cargo">Cargo:</label>
-
-                                <input type="text" name="cargo">
-
-                            </div>
-                            <div class="btn">
-
-                                <input id="btn" type="submit" value="Actualizar">
-
-                            </div>
-                        </div>
                     </form>
                 </div>
-                <button class="cerrar">Cancelar</button>
-
             </div>
+            <button class="cerrar">Cancelar</button>
+
+        </div>
         </div>
 
         <?php echo '
@@ -202,7 +203,7 @@ if ($valores["0"] == null) {
 </tr>';
         $x = $x + 1;
     }
-    echo "</tbody></table>";
+    echo "</tbody></table></div>";
 }
 
 
@@ -210,8 +211,7 @@ if ($valores["0"] == null) {
 ?>
 
 <div class="btn">
-    <button class="abrir" data-index="agregar">
-        <i class="fas fa-trash"></i>
+    <button id="btnTabla" class="abrir" data-index="agregar">
         Agregar
     </button>
 </div>
@@ -282,7 +282,8 @@ if ($valores == null) {
 } else {
     echo "<br><br><br><div class='contenedorTablas'>";
     echo "<h3>Gestion camioneros</h3>
-    <table class='tablaUsuario'>
+    <div class='tabla'>
+    <table>
     <thead>
     <tr>
     <th>ID</th> 
@@ -314,9 +315,10 @@ if ($valores == null) {
     ';
         }
     }
-    echo "</tbody></table>";
+    echo "</tbody></table></div>";
     echo '<br>';
-    echo '<select name="matricula">';
+    echo '<div class="selectBoton">
+    <select name="matricula">';
     foreach ($valores["1"] as $fila) {
         echo "<option value='" . $fila["matricula"] . "'>"
             . $fila["matricula"] .
@@ -324,9 +326,10 @@ if ($valores == null) {
     }
 
     echo '</select>
-    <br>
- <div class="btn">
-    <input id="btn"  type="submit" value="Cargar en camion">
+   
+ 
+    <input id="btnSelect"  type="submit" value="Cargar en camion">
+   
     </div>
     </form>';
 }
@@ -340,7 +343,8 @@ if ($valores["0"] == null) {
 } else {
     echo "<br><br><br><div class='contenedorTablas'>";
     echo "<h3>Gestion Almaceneros</h3>
-    <table class='tablaUsuario'>
+    <div class='tabla'>
+    <table>
     <thead>
     <tr>
     <th>ID</th> 
@@ -372,7 +376,7 @@ if ($valores["0"] == null) {
     ';
         }
     }
-    echo "</tbody></table>";
+    echo "</tbody></table></div>";
     echo '<br>';
     echo '<select name="almacen">';
     foreach ($valores["2"] as $fila) {
@@ -383,9 +387,9 @@ if ($valores["0"] == null) {
     }
 
     echo '</select>
-    <br>
+   
     <div class="btn">
-    <input id="btn" type="submit" value="Asignar empleado/s a almacen">
+    <input id="btnTabla" type="submit" value="Asignar empleado/s a almacen">
     </div>
     </form>';
 }

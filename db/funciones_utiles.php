@@ -51,7 +51,7 @@ function llamadoDeAPI($method, $url, $data)
     if (curl_errno($curl)) {
         echo 'Error: ' . curl_error($curl);
     } else {
-        echo "<br>" . $response . "<br>";
+        //echo "<br>" . $response . "<br>";
         return $response;
     }
     curl_close($curl);

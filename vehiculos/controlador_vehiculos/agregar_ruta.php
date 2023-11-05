@@ -18,17 +18,15 @@ switch ($op) {
 
         foreach ($rutas as $ruta) {
             foreach ($ruta as $posicion) {
-                $id = array($posicion["id_ruta"]+1);
-
+                $id = array($posicion["id_ruta"] + 1);
             }
-
         }
 
         echo "<br> ";
 
         foreach ($_POST["almacen"] as $fila) {
             $ubicacion = array(
-                $posicion["id_ruta"]+1,
+                $posicion["id_ruta"] + 1,
                 $fila,
                 $x,
                 $_POST["tiempo"][$x]
@@ -48,13 +46,20 @@ switch ($op) {
 
         break;
 
-        case 'eliminar':
-    
-            $datos = array($id);
-            llamadoDeAPI("DELETE", "http://127.0.0.1//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_ruta.php", $datos);
-    
-            break;
+    case 'eliminar_ruta':
 
+        $datos = array($id);
+        llamadoDeAPI("DELETE", "http://127.0.0.1//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_ruta.php", $datos);
+
+        break;
+
+
+    case 'eliminar_ruta':
+
+        $datos = array($id_almacen, $id_ruta);
+        llamadoDeAPI("DELETE", "http://127.0.0.1//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_ruta.php", $datos);
+
+        break;
     default:
         # code...
         break;

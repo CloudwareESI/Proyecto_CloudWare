@@ -33,13 +33,13 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
         <title>QuickCarry</title>
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+       
         <link rel="stylesheet" href="../../leaflet-routing-machine-3.2.12/dist/leaflet-routing-machine.css" />
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
-        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+      
 
 
         <script>
@@ -53,13 +53,13 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
             $(document).ready(function() {
                 $("#seleccionarRuta").click(function() {
                     $("#tablaCarga").hide();
-                    $("#btn").hide();
+                    $("#btnVehiculo").hide();
                 });
             });
             $(document).ready(function() {
                 $("#enviar").click(function() {
                     $("#tablaCarga").hide();
-                    $("#btn").hide();
+                    $("#btnVehiculo").hide();
                 });
             });
         </script>
@@ -211,8 +211,8 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
                             } ?>
 
 
-                            <div class="1">
-                                <input id="btn" class="btn" type="submit" value="Entregar">
+                            <div class="btn">
+                                <input id="btnVehiculo" class="btn" type="submit" value="Entregar">
                             </div>
                         </form>
                     </table>
@@ -225,7 +225,7 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
                     <div class="contenedorMapa">
                         <div id="map" class="ignore-css"></div>
                     </div>
-                    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+                 
                     <script src="../../leaflet-routing-machine-3.2.12/dist/leaflet-routing-machine.js">
                     </script>
 

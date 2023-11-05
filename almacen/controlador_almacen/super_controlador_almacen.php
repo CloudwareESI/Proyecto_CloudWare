@@ -94,6 +94,7 @@ function get_lotes_alm($id_alm)
 
     $valor = array($id_alm, $lotes_almacen, json_decode($vehiculos, true));
 
+
     $curl = curl_init();
     curl_setopt($curl, CURLOPT_URL,  "http://127.0.0.1//Proyecto_Cloudware/almacen/vista_almacen/mostrar_lotes.php",);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -116,9 +117,26 @@ function get_lotes_alm($id_alm)
 
 function get_paquetes_alm($id_alm)
 {
-    $paquetes = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php", NULL);
-    $rutas = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_ruta.php", NULL);
-    $vehiculos = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_vehiculos.php", NULL);
+    $paquetes = llamadoDeAPI(
+        "GET",
+        "http://127.0.0.1//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php",
+        NULL
+    );
+    $rutas = llamadoDeAPI(
+        "GET",
+        "http://127.0.0.1//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_ruta.php",
+        NULL
+    );
+    $vehiculos = llamadoDeAPI(
+        "GET",
+        "http://127.0.0.1//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_vehiculos.php",
+        NULL
+    );
+    $localidades = llamadoDeAPI(
+        "GET",
+        "http://127.0.0.1//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_localidad.php",
+        NULL
+    );
 
     $paquetes_almacen = array();
 
@@ -151,7 +169,13 @@ function get_paquetes_alm($id_alm)
         $numero_paquetes = $numero_paquetes + "1";
     }
 
-    $valor = array($id_alm, $paquetes_almacen, json_decode($vehiculos, true), json_decode($rutas, true));
+    $valor = array(
+        $id_alm,
+        $paquetes_almacen,
+        json_decode($vehiculos, true),
+        json_decode($rutas, true),
+        json_decode($localidades, true)
+    );
 
     $curl = curl_init();
     curl_setopt($curl, CURLOPT_URL,  "http://127.0.0.1//Proyecto_Cloudware/almacen/vista_almacen/mostrar_paquetes.php",);
@@ -176,7 +200,11 @@ function get_paquetes_alm($id_alm)
 function get_paquete($id_paquete)
 {
     $identificador = array('id_paquete' => $id_paquete);
-    $paquetes = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php", $identificador);
+    $paquetes = llamadoDeAPI(
+        "GET",
+        "http://127.0.0.1//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php",
+        $identificador
+    );
 
     $valor = json_decode($paquetes, true);
 
@@ -185,18 +213,30 @@ function get_paquete($id_paquete)
 
 function del_paquete($id)
 {
-    $L = llamadoDeAPI("DELETE", "http://127.0.0.1//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php", $id);
+    $L = llamadoDeAPI(
+        "DELETE",
+        "http://127.0.0.1//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php",
+        $id
+    );
     return $L;
 }
 function del_lote($id)
 {
-    $L = llamadoDeAPI("DELETE", "http://127.0.0.1//Proyecto_Cloudware/almacen/modelo_almacen/REST_lotes.php", $id);
+    $L = llamadoDeAPI(
+        "DELETE",
+        "http://127.0.0.1//Proyecto_Cloudware/almacen/modelo_almacen/REST_lotes.php",
+        $id
+    );
     return $L;
 }
 
 function get_almacen_almacenes($id_a)
 {
-    $L = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/almacen/modelo_almacen/REST_almacen.php", $id_a);
+    $L = llamadoDeAPI(
+        "GET",
+        "http://127.0.0.1//Proyecto_Cloudware/almacen/modelo_almacen/REST_almacen.php",
+        $id_a
+    );
 
     $valor = json_decode($L, true);
     return $valor;
@@ -206,7 +246,11 @@ function get_almacen_almacenes($id_a)
 
 function del_almacen_almacen($id_a)
 {
-    $L = llamadoDeAPI("DELETE", "http://127.0.0.1//Proyecto_Cloudware/almacen/modelo_almacen/REST_almacen.php", $id_a);
+    $L = llamadoDeAPI(
+        "DELETE",
+        "http://127.0.0.1//Proyecto_Cloudware/almacen/modelo_almacen/REST_almacen.php",
+        $id_a
+    );
     return $L;
 }
 
@@ -214,12 +258,36 @@ function del_almacen_almacen($id_a)
 function entrada_paquetes($rol)
 {
 
-    $paquetes = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php", NULL);
-    $lotes = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/almacen/modelo_almacen/REST_lotes.php", NULL);
+    $paquetes = llamadoDeAPI(
+        "GET",
+        "http://127.0.0.1//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php",
+        NULL
+    );
+    $lotes = llamadoDeAPI(
+        "GET",
+        "http://127.0.0.1//Proyecto_Cloudware/almacen/modelo_almacen/REST_lotes.php",
+        NULL
+    );
 
-    $vehiculos = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_vehiculos.php", NULL);
+    $vehiculos = llamadoDeAPI(
+        "GET",
+        "http://127.0.0.1//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_vehiculos.php",
+        NULL
+    );
+    $localidades = llamadoDeAPI(
+        "GET",
+        "http://127.0.0.1//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_localidad.php",
+        NULL
+    );
 
-    $valor = array(json_decode($paquetes, true), json_decode($lotes, true), json_decode($vehiculos, true), $rol);
+    $valor = array(
+        json_decode($paquetes, true),
+        json_decode($lotes, true),
+        json_decode($vehiculos, true),
+        $rol,
+        json_decode($localidades, true)
+
+    );
 
     $curl = curl_init();
     curl_setopt($curl, CURLOPT_URL,  "http://127.0.0.1//Proyecto_Cloudware/almacen/vista_almacen/entrada_paquetes.php",);

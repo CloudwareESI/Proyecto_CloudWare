@@ -15,6 +15,73 @@ if ($valor == null) {
         </h3>
         <?php
         foreach ($valor["1"] as $fila) { ?>
+
+            <div class="contenedorModal" data-index="modificarPqt<? echo $x; ?>">
+                <div class="modal">
+                    <?php
+                    $variables = $valor[$x]; ?>
+                    <div class="formulario">
+                        <form action="almacen/controlador_almacen/agregar_paquetes.php" method="post">
+                            <h2>Modificacion de datos</h2>
+
+                            <input type="hidden" name="op" value="modificar">
+                            <input type="hidden" name="id_paquete" value="<?= $fila['id_paquete'] ?>">
+                            <input type="hidden" name="fecha_recibido" value="<?= $fila['fecha_recibido'] ?>">
+                            <input type="hidden" name="fecha_entrega" value="<?= $fila['fecha_entrega'] ?>">
+                            <input type="hidden" name="id_lote" value="<?= $fila['id_lote_portador'] ?>">
+
+                            <div class="formularioModificar">
+                                <?= "<p>Nombre actual: " . $fila['nombre_paquete'] . "</p>" ?>
+                                <br>
+                                <label for="matricula">Nombre de paquete:</label>
+                                <input type="text" name="nombre_paquete">
+                            </div>
+
+                            <div class="formularioModificar">
+                                <?= "<p>dimenciones actuales: " . $fila['dimenciones'] . "</p>" ?>
+                                <br>
+                                <label for="dimenciones">Nuevas dimenciones:</label>
+                                <input type="text" name="dimenciones">
+                            </div>
+                            <div class="formularioModificar">
+                                <?= "<p>Peso actual: " . $fila['peso'] . "</p>" ?>
+                                <br>
+                                <label for="peso">Nuevo peso:</label>
+                                <input type="text" name="peso">
+                            </div>
+                            <div class="formularioModificar">
+                                <?= "<p>Fragil?: " . $fila['fragil'] . "</p>" ?>
+                                <br>
+                                <label for="peso">0 para no 1 para si:</label>
+                                <input type="number" name="fragil">
+                            </div>
+                            <div class="formularioModificar">
+                                <label for="Localidad destino">Localidad:</label>
+
+                                <select name="localidad_destino">
+                                    <br>
+                                    <?php
+                                    foreach ($valor["4"] as $localidad) {
+                                        echo "<option value='" . $localidad["id_localidad"] . "'>"
+                                            . $localidad["nombre_localidad"] . " " . $localidad["nombre_departamento"] .
+                                            "</option>";
+                                    }
+                                    ?>
+                                </select>
+
+                            </div>
+                            <div class="btn">
+
+                                <input id="btn" type="submit" value="Actualizar">
+
+                            </div>
+                        </form>
+                    </div>
+                    <button type="button" class="cerrar">Cancelar</button>
+
+                </div>
+            </div>
+
             <div class="contenedorModal" data-index="eliminarPqt<? echo $x; ?>">
                 <div class="modal">
 
@@ -46,28 +113,29 @@ if ($valor == null) {
             </div>
         <?php }
         ?>
-        <table>
-            <form action="almacen/controlador_almacen/cargar_carga.php" method="post">
-                <thead>
-                    <tr>
-                        <th>Codigo</th>
-                        <th>Nombre</th>
-                        <th>Peso</th>
-                        <th>Dimensiones</th>
-                        <th>Fragil?</th>
-                        <th>Fecha_recivido</th>
-                        <th>Destino</th>
-                        <th>Seleccionar</th>
-                        <th>Modificar</th>
-                        <th>Eliminar</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    foreach ($valor["1"] as $fila) {
+        <div class="tabla">
+            <table>
+                <form action="almacen/controlador_almacen/cargar_carga.php" method="post">
+                    <thead>
+                        <tr>
+                            <th>Codigo</th>
+                            <th>Nombre</th>
+                            <th>Peso</th>
+                            <th>Dimensiones</th>
+                            <th>Fragil?</th>
+                            <th>Fecha_recivido</th>
+                            <th>Destino</th>
+                            <th>Seleccionar</th>
+                            <th>Modificar</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        foreach ($valor["1"] as $fila) {
 
 
-                        echo '
+                            echo '
             
             
                     <tr>
@@ -76,107 +144,94 @@ if ($valor == null) {
                     <td>' . $fila['peso'] . ' gramos</td>
                     <td>' . $fila['dimenciones'] . ' cm3</td>
                     <td>';
-                        if ($fila['fragil'] == "1") {
-                            echo "Si";
-                        } else {
-                            echo "No";
-                        }
+                            if ($fila['fragil'] == "1") {
+                                echo "Si";
+                            } else {
+                                echo "No";
+                            }
 
-                        echo '</td>
+                            echo '</td>
                     <td>' . $fila['fecha_ingreso'] . "/" . $fila['fecha_recibido'] . '</td>
                     <td>' . $fila['destino_calle'] . " " . $fila['nombre_localidad'] . " " . $fila['nombre_departamento'] . '</td>
                     <td> <input type="checkbox" id="seleccionar" name="paquetes[]" value="'
-                            . $fila['id_paquete'] .
-                            '">
-                    </td>
+                                . $fila['id_paquete'] .
+                                '">
+                    </td>'; ?>
 
-                    <td>
-                    <div class="box">
-                    <a href="almacen/vista_almacen/modificar_paquete.php?id_paquete=' .
-                            $fila['id_paquete'] .
-                            '&nombre_paquete=' . $fila['nombre_paquete'] .
-                            '&peso=' . $fila['peso'] .
-                            '&dimenciones=' . $fila['dimenciones'] .
-                            '&fecha_recibido=' . $fila['fecha_recibido'] .
-                            '&fecha_entrega=' . $fila['fecha_entrega'] .
-                            '&fecha_ingreso=' . $fila['fecha_ingreso'] .
-                            '&fecha_cargado=' . $fila['fecha_cargado'] .
-                            '&id_lote=' . $fila['id_lote_portador'] .
-                            '&fragil=' . $fila['fragil'] .
-                            '&id_almacen=' . $fila['id_almacen'] .
-                            '&id_cruce=' . $fila['id_localidad_destino'] .
-                            '">
-                <img class="icnModificar" img id="imagenTabla"
-                src="http://localhost/Proyecto_Cloudware/imagenes/imagenEditar.png"></a>
-                </div></td>
-                 
-                <td>';
-                    ?>
-                        <button type="button" class="abrir" data-index="eliminarPqt<? echo $x; ?>"><i class="fas fa-trash"></i></button>
+                            <td>
+                                <button type="button" class="abrir" data-index="modificarPqt<? echo $x; ?>">
+                                    <i class="fas fa-wrench"></i>
+                                </button>
+                            </td>
 
-                    <?php echo '</td>
-                </tr>
-            
-            ';
-                        $x = $x + 1;
-                    }
+                            <td>
+                                <button type="button" class="abrir" data-index="eliminarPqt<? echo $x; ?>">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                            </tr>
 
-                    echo "</tbody></table></div>";
+                        <?php
+                            $x = $x + 1;
+                        }
 
-                    echo '
+                        echo "</tbody></table>
+                    </div></div>";
+
+                        echo '
         <input type="hidden" name="id_almacen" value="' . $valor["0"] . '">';
-                    ?>
-                    <div class="tablasPaqueteLote">
-                        <label for="cargar_paquete">Cargar paquete</label>
-                        <input type="radio" id="cargar_paquete" name="opcion" value="paquete">
+                        ?>
+                        <div class="tablasPaqueteLote">
+                            <label for="cargar_paquete">Cargar paquete</label>
+                            <input type="radio" id="cargar_paquete" name="opcion" value="paquete">
 
 
 
 
-                        <label for="formar_lote">Formar Lote</label>
-                        <input type="radio" id="formar_lote" name="opcion" value="formar">
+                            <label for="formar_lote">Formar Lote</label>
+                            <input type="radio" id="formar_lote" name="opcion" value="formar">
 
-                    </div>
+                        </div>
 
-                    <?php
+                        <?php
 
-                    echo '<br>   ';
+                        echo '<br>   ';
 
-                    echo '<select name="matricula">';
-                    foreach ($valor["2"] as $fila) {
+                        echo '<select name="matricula">';
+                        foreach ($valor["2"] as $fila) {
 
-                        if ($fila["rol"] == "2") {
+                            if ($fila["rol"] == "2") {
 
-                            echo "<option value='" . $fila["matricula"] . "'>"
-                                . $fila["matricula"] .
-                                "</option>";
+                                echo "<option value='" . $fila["matricula"] . "'>"
+                                    . $fila["matricula"] .
+                                    "</option>";
+                            }
                         }
-                    }
-                    echo '</select>';
+                        echo '</select>';
 
-                    echo '<br>';
+                        echo '<br>';
 
-                    echo '<select name="destino">';
-                    foreach ($valor["3"] as $ruta) {
+                        echo '<select name="destino">';
+                        foreach ($valor["3"] as $ruta) {
 
-                        foreach ($ruta as $fila) {
-                            echo "<option value='" . $fila["id_ruta"] . "|" . $fila["id_almacen"] . "'>
+                            foreach ($ruta as $fila) {
+                                echo "<option value='" . $fila["id_ruta"] . "|" . $fila["id_almacen"] . "'>
                             Almacen " . $fila["nombre_localidad"] . "," .
-                                $fila["nombre_departamento"] . " por ruta N°" .
-                                $fila["id_ruta"] .
-                                "</option>";
+                                    $fila["nombre_departamento"] . " por ruta N°" .
+                                    $fila["id_ruta"] .
+                                    "</option>";
+                            }
                         }
-                    }
-                    echo '</select>';
+                        echo '</select>';
 
-                    echo '<br>   ';
+                        echo '<br>   ';
 
-                    ?>
+                        ?>
 
-                    <div class="btn">
-                        <input id="btn" class="btn" type="submit" value="Ejecutar">
-                    </div>
-            </form>
-        <?php
-    }
-        ?>
+                        <div class="btn">
+                            <input id="btn" class="btn" type="submit" value="Ejecutar">
+                        </div>
+                </form>
+            <?php
+        }
+            ?>

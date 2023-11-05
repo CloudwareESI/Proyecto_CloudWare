@@ -187,11 +187,7 @@ if (isset($_GET['Bienvenido'])) {
 
                 entrada_paquetes($_SESSION['cargo']);
     ?>
-                <div class='contenedor'>
-                    <button class="btnAniadir" onclick="window.location.href='almacen/vista_almacen/agregar_paquete.php';">
-                        Agregar
-                    </button>
-                </div>
+
     <?php
             }
         }

@@ -61,12 +61,11 @@ class rutas
     foreach ($matriz as $fila) {
 
       $id = array($fila["id_ruta"]);
-      
+
 
       $coleccion_rutas[$num_rutas] = $this->get_ruta($id);
 
-      $num_rutas = $num_rutas+1;
-
+      $num_rutas = $num_rutas + 1;
     }
 
     return $coleccion_rutas;
@@ -115,6 +114,13 @@ class rutas
     $this->base_datos->conexion()->execute_query($query, $id_ruta);
   }
 
+  public function delete_ubicacion($vars)
+  {
+
+    $insert = "DELETE FROM ubicacion
+        where id_ruta= ? and id_almacen= ?";
+    $this->base_datos->conexion()->execute_query($insert, $vars);
+  }
 
   public function update_ubicaciones($var_ubicacion)
   {
@@ -123,7 +129,6 @@ class rutas
     posicion= ?, tiempo_trecho= ? 
     where = id_ruta= ? , id_almacen= ? ;";
     $this->base_datos->conexion()->execute_query($insert_ubicacion, $var_ubicacion);
-
   }
 
   public function put_rutas($var_ruta, $var_ubicacion)
@@ -139,7 +144,7 @@ class rutas
       echo "<br>";
       var_dump($fila);
       echo "<br>";
-      
+
       $this->put_ubicaciones($fila);
     }
   }
@@ -149,6 +154,5 @@ class rutas
 
     $insert_ubicacion = "INSERT INTO ubicacion VALUES ( ?, ?, ?, ?);";
     $this->base_datos->conexion()->execute_query($insert_ubicacion, $var_ubicacion);
-
   }
 }
