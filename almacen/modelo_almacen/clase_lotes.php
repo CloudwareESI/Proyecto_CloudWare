@@ -139,6 +139,9 @@ class lotes
     }
 
 
+    $query = "DELETE FROM destinado where id_lote = ? ";
+    $this->base_datos->conexion()->execute_query($query, $id_lote);
+
     //El lote es eliminado
     $query = "DELETE FROM lote where id_lote = ? ";
     $this->base_datos->conexion()->execute_query($query, $id_lote);

@@ -81,6 +81,12 @@ switch ($_POST["opcion"]) {
     case 'formar':
         $locacion = NULL;
 
+        if ($_POST["id_almacen"] = "N/A") {
+            header("Location:http://" . $_SERVER["HTTP_HOST"] . "/Proyecto_Cloudware?id_almacen=" . $_POST["id_almacen"] . "&Almacenes=1");
+        } else {
+            header("Location:http://" . $_SERVER["HTTP_HOST"] . "/Proyecto_Cloudware/index.php?Entrada");
+        }
+
 
         foreach ($_POST["paquetes"] as $fila) {
             $id_paquete = array("id_paquete" => $fila);
