@@ -13,7 +13,6 @@ if ($valor == null) {
 
 
         <?php $x = 0;
-        var_dump($x);
         foreach ($valor["1"] as $fila) {
 
 

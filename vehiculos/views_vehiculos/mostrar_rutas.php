@@ -3,7 +3,6 @@
 $data = file_get_contents("php://input");
 $valor = json_decode($data, true);
 
-var_dump($valor);
 if ($valor == null) {
     echo "ERROR JSON VACIO";
 } else {
@@ -41,7 +40,6 @@ if ($valor == null) {
 
                 </div>
             </div>
-            <p>eliminarUbicacion<?php echo $fila['posicion'] . $fila['id_almacen'] . $fila['id_ruta']; ?></p>
         <?php
         }
     }
@@ -87,9 +85,7 @@ if ($valor == null) {
             <td>' . $fila['nombre_departamento'] . '</td>';
         ?>
 
-            <td>
-                <p>eliminarUbicacion<?php echo $fila['posicion'] . $fila['id_almacen'] . $fila['id_ruta']; ?></p>
-                <button type="button" class="abrir" data-index="eliminarUbicacion<?php echo $fila['posicion'] . $fila['id_almacen'] . $fila['id_ruta']; ?>">
+            <td><button type="button" class="abrir" data-index="eliminarUbicacion<?php echo $fila['posicion'] . $fila['id_almacen'] . $fila['id_ruta']; ?>">
                     <i class="fas fa-trash"></i>
                 </button>
 

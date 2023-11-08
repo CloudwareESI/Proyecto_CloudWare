@@ -170,4 +170,8 @@ switch ($_POST["opcion"]) {
 
         break;
 }
-header("Location:http://" . $_SERVER["HTTP_HOST"] . "/Proyecto_Cloudware/index.php");
+if ($_POST["id_almacen"] = "N/A") {
+    header("Location:http://" . $_SERVER["HTTP_HOST"] . "/Proyecto_Cloudware?id_almacen=" . $_POST["id_almacen"] . "&Almacenes=1");
+} else {
+    header("Location:http://" . $_SERVER["HTTP_HOST"] . "/Proyecto_Cloudware/index.php?Entrada");
+}

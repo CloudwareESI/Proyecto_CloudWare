@@ -372,7 +372,8 @@ if ($valor == null) {
                                         </select>
                                     </div>
 
-                                    <div class="btnEntrada">
+                                    <div class="contenedorBtn">
+                                        <button type="button" class="cerrar">Cancelar</button>
                                         <input id="btn" type="submit" value="Actualizar">
                                     </div>
 
@@ -392,6 +393,6 @@ if ($valor == null) {
 
 
             <div class="btn">
-                <button type="button" id="btnTabla" class="abrir" data-index="eliminar<? echo $x; ?>">
+                <button type="button" id="btnTabla" class="abrir" data-index="agregar">
                     Agregar Paquete
             </div>

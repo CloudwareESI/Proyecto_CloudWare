@@ -6,14 +6,11 @@ function get_all_almacenes($usuario, $cargo)
 
     if ($cargo == "0" or $cargo == "1") {
         if ($cargo == "0") {
-            $almacenes = llamadoDeAPI(
+            $almacenes = json_decode(llamadoDeAPI(
                 "GET",
                 "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/almacen/modelo_almacen/REST_almacen.php",
                 NULL
-            );
-
-            $valor = array(json_decode($almacenes, true), $cargo);
-
+            ), true);
         } else if ($cargo == "1") {
 
             $asignado = llamadoDeAPI(
@@ -32,9 +29,15 @@ function get_all_almacenes($usuario, $cargo)
                     array($fila["id_almacen"])
                 ), true)[0];
             }
-
-            $valor = array($almacenes, $cargo);
         }
+
+        $localidades = json_decode(llamadoDeAPI(
+            "GET",
+            "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_localidad.php",
+            NULL
+        ), true);
+
+        $valor = array($almacenes, $cargo, $localidades);
     }
 
     $curl = curl_init();
@@ -206,7 +209,6 @@ function get_paquetes_alm($id_alm)
             and !isset($fila["fecha_entrega"])
         ) {
             $paquetes_almacen[$numero_paquetes] = $fila;
-            var_dump($fila);
         }
 
         if ($id_alm == "1") {
@@ -217,7 +219,6 @@ function get_paquetes_alm($id_alm)
                 and !isset($fila["fecha_entrega"])
             ) {
                 $paquetes_almacen[$numero_paquetes] = $fila;
-                var_dump($fila);
             }
         }
         $numero_paquetes = $numero_paquetes + "1";

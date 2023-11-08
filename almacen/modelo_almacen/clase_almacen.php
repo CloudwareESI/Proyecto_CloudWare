@@ -77,9 +77,9 @@ class almacen
 
   public function delete_almacen($id)
   {
-    $id_u = json_decode($id);
-    $query = "DELETE * from almacen where id_almacen = ? ";
-    $this->base_datos->conexion()->execute_query($query, $id_u);
+
+    $query = "DELETE from almacen where id_almacen = ? ";
+    $this->base_datos->conexion()->execute_query($query, $id);
   }
 
   public function update_almacen($variables)
@@ -92,10 +92,9 @@ class almacen
   public function put_almacen($variables)
   {
 
-    $insert = "INSERT INTO almacen VALUES ( NULL, ? , ?, NULL)";
+    $insert = "INSERT INTO almacen VALUES ( NULL, ? , ?, ?)";
 
     $this->base_datos->conexion()->execute_query($insert, $variables);
     var_dump($variables);
-
   }
 }

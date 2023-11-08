@@ -25,7 +25,7 @@ $fechaEntrega = isset($paquete["fecha_entrega"]) ? json_encode($paquete["fecha_e
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <title>QuickCarry</title>
 </head>
-<script src="detener.js"></script>
+
 
 <body>
     <header>
@@ -78,51 +78,84 @@ $fechaEntrega = isset($paquete["fecha_entrega"]) ? json_encode($paquete["fecha_e
     <div class="infoPaquete">
         <h1>Estado actual</h1>
         <br>
-        <p id="msjEstado">
-            TEST
+
+        TEST
+        <?php
+        switch (true) {
+
+            case (isset($paquete[0]["fecha_ingreso"])
+                and !isset($paquete[0]["fecha_transporte"])
+                and !isset($paquete[0]["fecha_recibido"])):
+        ?>
+                <p id="msjEstado">
+                    Su paquete esta en gestion
+                </p>
+                <script src="detener.js"></script>
             <?php
-            switch (true) {
-
-                case (isset($paquete[0]["fecha_ingreso"])
-                    and !isset($paquete[0]["fecha_transporte"])
-                    and !isset($paquete[0]["fecha_recibido"])):
-                    echo "Su paquete esta en gestion ";
-                    ?>
-                    <?php
-                    break;
+                break;
 
 
-                case (isset($paquete[0]["fecha_transporte"])
-                    and !isset($paquete[0]["fecha_recibido"])):
-                    echo "Su paquete se encuentra en camino al almacén";
-                    break;
-
-                case (isset($paquete[0]["fecha_recibido"])
-                    and !isset($paquete[0]["fecha_transporte"])):
-                    echo "Su paquete se encuentra en camino al almacén más cercano";
-                    break;
-
-                case (isset($paquete[0]["fecha_transporte"])
-                    and !isset($paquete["fecha_recibido"])):
-                    echo "Su paquete se encuentra en camino al almacén más cercano";
-                    break;
-
-                case (isset($paquete[0]["fecha_recibido"])
-                    and !isset($paquete[0]["fecha_cargado"])):
-                    echo "Su paquete se encuentra en camino al almacén más cercano";
-                    break;
-
-                case (isset($paquete[0]["fecha_cargado"])
-                    and !isset($paquete[0]["fecha_entrega"])):
-                    echo "Su paquete se encuentra en camino a su residencia";
-                    break;
-
-                case (isset($paquete[0]["fecha_entrega"])):
-                    echo "Su paquete a sido entregado";
-                    break;
-            }
+            case (isset($paquete[0]["fecha_transporte"])
+                and !isset($paquete[0]["fecha_recibido"])):
             ?>
-        </p>
+                <p id="msjEstado">
+                    Su paquete se encuentra en camino al almacén
+                </p>
+                <script src="detener.js"></script>
+            <?php
+                break;
+
+            case (isset($paquete[0]["fecha_recibido"])
+                and !isset($paquete[0]["fecha_transporte"])):
+            ?>
+                <p id="msjEstado">
+                    Su paquete se encuentra en camino al almacén más cercano
+                </p>
+                <script src="detener.js"></script>
+            <?php
+                break;
+
+            case (isset($paquete[0]["fecha_transporte"])
+                and isset($paquete[0]["fecha_recibido"])):
+            ?>
+                <p id="msjEstado">
+                    Su paquete se encuentra en camino al almacén más cercano
+                </p>
+                <script src="detener.js"></script>
+            <?php
+                break;
+
+            case (isset($paquete[0]["fecha_recibido"])
+                and !isset($paquete[0]["fecha_cargado"])):
+            ?>
+                <p id="msjEstado">
+                    Su paquete se encuentra en camino al almacén más cercano
+                </p>
+                <script src="detener.js"></script>
+            <?php
+                break;
+
+            case (isset($paquete[0]["fecha_cargado"])
+                and !isset($paquete[0]["fecha_entrega"])):
+            ?>
+                <p id="msjEstado">
+                    Su paquete se encuentra en camino a su residencia
+                </p>
+                <script src="detener.js"></script>
+            <?php
+                break;
+
+            case (isset($paquete[0]["fecha_entrega"])):
+            ?>
+                <p id="msjEstado">
+                    Su paquete a sido entregado
+                </p>
+                <script src="detener.js"></script>
+        <?php
+                break;
+        }
+        ?>
+
         <!-- Cuadro de información de paquete -->
         <div class="cuadroInfo">
             <h3>Nombre: <?= $paquete[0]["nombre_paquete"]; ?> </h3>
@@ -143,7 +176,7 @@ $fechaEntrega = isset($paquete["fecha_entrega"]) ? json_encode($paquete["fecha_e
 
             <br>
             <h3>Fecha de llegada:</h3>
-            
+
             <?php if (isset($paquete[0]["fecha_entrega"])) {
                 echo "</p>Entregado " . $paquete[0]["fecha_cargado"] . "</p>";
             } else {
