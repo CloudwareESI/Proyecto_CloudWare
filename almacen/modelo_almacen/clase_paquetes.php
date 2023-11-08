@@ -117,15 +117,18 @@ class paquetes
     $query = "SELECT nombre_paquete, peso, 
     dimenciones, fragil, 
     id_paquete, 
-    fecha_recibido, fecha_entrega, fecha_de_entrega,
+    fecha_recibido, fecha_entrega, 
+    fecha_transporte, fecha_de_entrega,
     fecha_cargado, fecha_ingreso,
     id_lote_portador, destino_calle, 
     id_localidad_destino , p.matricula_transporte,
-    nombre_localidad, id_departamento , nombre_departamento , id_almacen
+    nombre_localidad, id_departamento , nombre_departamento ,
+     g.id_almacen ,  u.tempo_trecho
     FROM paquete p 
     INNER JOIN localidad l ON p.id_localidad_destino  = l.id_localidad 
     INNER JOIN departamento d ON l.id_dep = d.id_departamento
 	  LEFT JOIN destinado g ON p.id_lote_portador = g.id_lote
+    LEFT JOIN ubicacion u ON g.id_ruta = u.id_ruta AND g.id_almacen = u.id_almacen
     WHERE  id_paquete = ? ";
     $resultado = $this->base_datos->conexion()->execute_query($query, $id);
     $matriz = array();
@@ -139,15 +142,18 @@ class paquetes
     $query = "SELECT nombre_paquete, peso, 
     dimenciones, fragil, 
     id_paquete, 
-    fecha_recibido, fecha_entrega, fecha_de_entrega,
+    fecha_recibido, fecha_entrega, 
+    fecha_transporte, fecha_de_entrega,
     fecha_cargado, fecha_ingreso,
     id_lote_portador, destino_calle, 
     id_localidad_destino , p.matricula_transporte,
-    nombre_localidad, id_departamento , nombre_departamento , id_almacen
+    nombre_localidad, id_departamento , nombre_departamento ,
+     g.id_almacen ,  u.tempo_trecho
     FROM paquete p 
     INNER JOIN localidad l ON p.id_localidad_destino  = l.id_localidad 
     INNER JOIN departamento d ON l.id_dep = d.id_departamento
-	  LEFT JOIN destinado g ON p.id_lote_portador = g.id_lote ";
+	  LEFT JOIN destinado g ON p.id_lote_portador = g.id_lote
+    LEFT JOIN ubicacion u ON g.id_ruta = u.id_ruta AND g.id_almacen = u.id_almacen ";
     $resultado = $this->base_datos->conexion()->execute_query($query);
     $matriz = array();
     $matriz = $resultado->fetch_all(MYSQLI_ASSOC);
@@ -161,15 +167,18 @@ class paquetes
     $query = "SELECT nombre_paquete, peso, 
     dimenciones, fragil, 
     id_paquete, 
-    fecha_recibido, fecha_entrega, fecha_de_entrega,
+    fecha_recibido, fecha_entrega, 
+    fecha_transporte, fecha_de_entrega,
     fecha_cargado, fecha_ingreso,
     id_lote_portador, destino_calle, 
     id_localidad_destino , p.matricula_transporte,
-    nombre_localidad, id_departamento , nombre_departamento , id_almacen
+    nombre_localidad, id_departamento , nombre_departamento ,
+     g.id_almacen ,  u.tempo_trecho
     FROM paquete p 
     INNER JOIN localidad l ON p.id_localidad_destino  = l.id_localidad 
     INNER JOIN departamento d ON l.id_dep = d.id_departamento
 	  LEFT JOIN destinado g ON p.id_lote_portador = g.id_lote
+    LEFT JOIN ubicacion u ON g.id_ruta = u.id_ruta AND g.id_almacen = u.id_almacen
     WHERE id_almacen  = ?";
     $resultado = $this->base_datos->conexion()->execute_query($query, $id_alm);
     $matriz = array();
@@ -183,15 +192,18 @@ class paquetes
     $query = "SELECT nombre_paquete, peso, 
     dimenciones, fragil, 
     id_paquete, 
-    fecha_recibido, fecha_entrega, fecha_de_entrega,
+    fecha_recibido, fecha_entrega, 
+    fecha_transporte, fecha_de_entrega,
     fecha_cargado, fecha_ingreso,
     id_lote_portador, destino_calle, 
     id_localidad_destino , p.matricula_transporte,
-    nombre_localidad, id_departamento , nombre_departamento , id_almacen
+    nombre_localidad, id_departamento , nombre_departamento ,
+     g.id_almacen ,  u.tempo_trecho
     FROM paquete p 
     INNER JOIN localidad l ON p.id_localidad_destino  = l.id_localidad 
     INNER JOIN departamento d ON l.id_dep = d.id_departamento
 	  LEFT JOIN destinado g ON p.id_lote_portador = g.id_lote
+    LEFT JOIN ubicacion u ON g.id_ruta = u.id_ruta AND g.id_almacen = u.id_almacen
     WHERE id_lote_portador  = ?";
     $resultado = $this->base_datos->conexion()->execute_query($query, $id_lote);
     $matriz = array();
@@ -204,15 +216,18 @@ class paquetes
     $query = "SELECT nombre_paquete, peso, 
     dimenciones, fragil, 
     id_paquete, 
-    fecha_recibido, fecha_entrega, fecha_de_entrega,
+    fecha_recibido, fecha_entrega, 
+    fecha_transporte, fecha_de_entrega,
     fecha_cargado, fecha_ingreso,
     id_lote_portador, destino_calle, 
     id_localidad_destino , p.matricula_transporte,
-    nombre_localidad, id_departamento , nombre_departamento , id_almacen
+    nombre_localidad, id_departamento , nombre_departamento ,
+     g.id_almacen ,  u.tempo_trecho
     FROM paquete p 
     INNER JOIN localidad l ON p.id_localidad_destino  = l.id_localidad 
     INNER JOIN departamento d ON l.id_dep = d.id_departamento
 	  LEFT JOIN destinado g ON p.id_lote_portador = g.id_lote
+    LEFT JOIN ubicacion u ON g.id_ruta = u.id_ruta AND g.id_almacen = u.id_almacen
     WHERE id_lote_portador  = ? and id_paquete= ?";
     $resultado = $this->base_datos->conexion()->execute_query($query, $ids);
     $matriz = array();
@@ -220,21 +235,24 @@ class paquetes
 
     return $matriz;
   }
-  
+
   public function get_paquetes_cam($matricula)
   {
     $query = "SELECT nombre_paquete, peso, 
     dimenciones, fragil, 
     id_paquete, 
-    fecha_recibido, fecha_entrega, fecha_de_entrega,
+    fecha_recibido, fecha_entrega, 
+    fecha_transporte, fecha_de_entrega,
     fecha_cargado, fecha_ingreso,
     id_lote_portador, destino_calle, 
     id_localidad_destino , p.matricula_transporte,
-    nombre_localidad, id_departamento , nombre_departamento , id_almacen
+    nombre_localidad, id_departamento , nombre_departamento ,
+     g.id_almacen ,  u.tempo_trecho
     FROM paquete p 
     INNER JOIN localidad l ON p.id_localidad_destino  = l.id_localidad 
     INNER JOIN departamento d ON l.id_dep = d.id_departamento
 	  LEFT JOIN destinado g ON p.id_lote_portador = g.id_lote
+    LEFT JOIN ubicacion u ON g.id_ruta = u.id_ruta AND g.id_almacen = u.id_almacen
     WHERE matricula_transporte= ?";
     $resultado = $this->base_datos->conexion()->execute_query($query, $matricula);
     $matriz = array();

@@ -3,11 +3,10 @@ session_start();
 $mail = $_POST['mail'];
 $pass = $_POST['password'];
 $login = array($mail, $pass);
-echo session_id();
 
 
 $curl = curl_init();
-curl_setopt($curl, CURLOPT_URL,  "http://127.0.0.1//Proyecto_Cloudware/usuarios/modelo_usuario/verificador.php",);
+curl_setopt($curl, CURLOPT_URL,  "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/usuarios/modelo_usuario/verificador.php",);
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 $json = json_encode($login);
 
@@ -22,22 +21,22 @@ if (curl_errno($curl)) {
     echo 'Error: ' . curl_error($curl);
 } else {
     //$datos =
-     $datos = $response;
+    $datos = $response;
 }
 curl_close($curl);
 
-if(isset($datos)){
-    $variables = json_decode($datos, true);
+$variables = json_decode($datos, true);
+if (isset($variables['id_empleado'])) {
 
-    $_SESSION['id'] = $variables['id_usuario'];
+
+    $_SESSION['id'] = $variables['id_empleado'];
     $_SESSION['cargo'] = $variables['cargo'];
     $_SESSION['nombre'] = $variables['nombre'];
     $_SESSION['apellido'] = $variables['apellido'];
-    var_dump( $_SESSION );
+    var_dump($_SESSION);
+
+    header("Location:http://" . $_SERVER["HTTP_HOST"] . "/Proyecto_Cloudware/index.php?Bienvenido=1");
+} else {
     
-    header("Location:http://localhost/Proyecto_Cloudware/index.php?Bienvenido=1");
-}else{
-
-    header("Location:http://localhost/Proyecto_Cloudware/login.html?error=".json_decode($datos));
+    header("Location:http://" . $_SERVER["HTTP_HOST"] . "/Proyecto_Cloudware/usuarios/views_usuario/login.html?error=".$variables);
 }
-

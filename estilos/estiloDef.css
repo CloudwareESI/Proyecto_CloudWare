@@ -5,6 +5,7 @@
     padding: 0;
     box-sizing: border-box;
     list-style: none;
+    font-family: sans-serif;
 }
 
 
@@ -41,7 +42,7 @@ header a {
 header p {
     text-transform: uppercase;
     letter-spacing: 2px;
-    font-size: 17px;
+    font-size: 1.2em;
     font-weight: bold;
     padding: 30px 0px;
     margin: 0 10px;
@@ -394,12 +395,32 @@ h2 {
 
 .formulario {
     display: flex;
-    flex-direction: column;
+
     justify-content: center;
 
 }
 
-form {
+
+
+.vertical {
+    flex-direction: column;
+}
+
+.formularioPopUp1 {
+    display: flex;
+    flex-direction: column;
+    margin-right: 5%;
+    position: relative;
+}
+
+.formularioPopUp2 {
+    display: flex;
+    margin-left: 5%;
+    flex-direction: column;
+    position: inherit;
+}
+
+.formBase {
     background-color: #24262B;
     color: #eae096;
     padding: 35px 30px;
@@ -407,7 +428,7 @@ form {
     padding-top: 0px;
     box-shadow: 0 0 20px #000000;
     border-radius: 20px;
-    width: 340px;
+
     height: auto;
 }
 
@@ -419,7 +440,7 @@ form {
 .formulario input {
     width: 100%;
     padding: 10px;
-    font-family: 'calibri';
+    font-family: sans-serif;
     font-size: 15px;
     border-top: 0;
     border-left: 0;
@@ -430,6 +451,7 @@ form {
     position: relative;
     top: 0px;
     left: 10px;
+    font-size: 1em;
     pointer-events: none;
     transition: 0.2s;
     color: rgb(223, 217, 217);
@@ -440,7 +462,7 @@ form {
     color: #d2b265;
     text-transform: uppercase;
     letter-spacing: 2px;
-    font-size: 17px;
+    font-size: 1em;
     font-weight: bold;
 }
 
@@ -484,24 +506,21 @@ button {
     background-color: #2f2f2f;
     color: #eae096;
     padding: 10px;
+    margin-right: 100%;
     text-align: center;
     border: 2px solid #d2b265;
     border-radius: 8px;
 }
 
 .formularioModificar label {
+    display: flex;
     position: relative;
-    padding-right: 10px;
     pointer-events: none;
     color: #eae096;
     opacity: 100%;
 }
-/*
-.formularioModificarPopUp{
-    display: flex;
-    justify-content: space-around;
-}
-*/
+
+
 /*------------------FIN FORMULARIOS--------------------------------*/
 
 /*----------------------Estilo Login----------------------------*/
@@ -522,6 +541,7 @@ button {
     width: 70px;
     height: 70px;
     cursor: pointer;
+    font-size: 3em;
     padding: 0;
     /* Esto elimina el relleno que habías definido, ya que ya no es necesario */
 }
@@ -545,7 +565,8 @@ table {
     overflow: hidden;
 
 }
-.tabla{
+
+.tabla {
     align-items: center;
     justify-content: center;
     display: flex;
@@ -590,11 +611,17 @@ table tbody tr:last-of-type {
     display: flex;
     flex-direction: column;
 }
-.tabla i{
+table thead{
+  
+
+}
+
+.tabla i {
     color: #d2b265;
     font-size: 20px;
     cursor: pointer;
 }
+
 .contenedorTablas select {
     background-color: #2f2f2f;
     color: #eae096;
@@ -606,12 +633,108 @@ table tbody tr:last-of-type {
     margin-top: 1.5%;
     margin-left: 10%;
 }
-.selectBoton{
-display: flex;
-position: relative;
+
+.selectBoton select {
+    background-color: #2f2f2f;
+    color: #eae096;
+    padding: 10px;
+    width: fit-content;
+    text-align: center;
+    border: 2px solid #d2b265;
+    border-radius: 8px;
+    margin-top: 1.5%;
+    margin-left: 10%;
+
+
 }
+
+#btnSelectBoton {
+    margin-top: -2.5%;
+    display: flex;
+    margin-left: 79%;
+    position: static;
+    height: fit-content;
+    padding: 6px;
+    border: 2px solid #d2b265;
+    border-radius: 10px;
+    background-color: #484847;
+    width: fit-content;
+    font-size: 1.0em;
+    color: #eae096;
+    transition: 0.5s;
+
+}
+
+#btnSelectBoton2 {
+    margin-top: -2.5%;
+    display: flex;
+    margin-left: 72.5%;
+    position: static;
+    height: fit-content;
+    padding: 6px;
+    border: 2px solid #d2b265;
+    border-radius: 10px;
+    background-color: #484847;
+    width: fit-content;
+    font-size: 1.0em;
+    color: #eae096;
+    transition: 0.5s;
+
+}
+
+#btnSelectBoton3 {
+    margin-top: -2.5%;
+    display: flex;
+    margin-left: 84.5%;
+    position: static;
+    height: fit-content;
+    padding: 6px;
+    border: 2px solid #d2b265;
+    border-radius: 10px;
+    background-color: #484847;
+    width: fit-content;
+    font-size: 1.0em;
+    color: #eae096;
+    transition: 0.5s;
+
+}
+
+#btnSelectBoton4 {
+    margin-top: 2%;
+    display: flex;
+    margin-left: 79%;
+    position: static;
+    height: fit-content;
+    padding: 6px;
+    border: 2px solid #d2b265;
+    border-radius: 10px;
+    background-color: #484847;
+    width: fit-content;
+    font-size: 1.0em;
+    color: #eae096;
+    transition: 0.5s;
+
+}
+
+#btnSelectBoton5 {
+
+    display: flex;
+    margin-left: 73%;;
+    position: static;
+    height: fit-content;
+    padding: 6px;
+    border: 2px solid #d2b265;
+    border-radius: 10px;
+    background-color: #484847;
+    width: fit-content;
+    font-size: 1.0em;
+    color: #eae096;
+    transition: 0.5s;
+
+}
+
+
 .contenedorTablas label {
-    font-size: 3vh;
     color: #eae096;
 }
 
@@ -624,9 +747,9 @@ position: relative;
 
 
 .tablasPaqueteLote {
- padding: 10px;
+    padding: 10px;
 
- margin-left: 10%;
+    margin-left: 10%;
 
 }
 
@@ -635,31 +758,35 @@ position: relative;
     margin-top: 2px;
 
 }
+#th{
+    border-top: 1px solid #d2b265;
+}
+#thRuta1 {
+    background-color: #2f2f2f;
+    border: 1px solid #d2b265;
+}
 
-#thRuta{
-    background-color: #d2b265;
-}
-#btnSelect{
-   
-}
-.selectBoton button{
+
+.selectBoton button {
     display: flex;
     position: relative;
     margin-right: 10%;
 }
-#btnTabla{
+
+#btnTabla {
     margin-top: 1.5%;
+    display: flex;
+    margin-right: 10%;
+    position: static;
     height: fit-content;
-    padding: 3px;
+    padding: 6px;
     border: 2px solid #d2b265;
     border-radius: 10px;
     background-color: #484847;
     width: fit-content;
-    font-size: 1.2em;
+    font-size: 1.0em;
     color: #eae096;
-    display: flex;
-    position: relative;
-    margin-right: 10%;
+    transition: 0.5s;
 }
 
 
@@ -703,8 +830,9 @@ position: relative;
 }
 
 .modal p {
+    color: #eae096;
     opacity: 0.7;
-    font-size: 14px;
+    font-size: 0.9em;
 }
 
 .modal button {
@@ -720,18 +848,26 @@ position: relative;
 }
 
 .contenedorBtn {
- display: flex;
-    background-color: #2f2f2f ;
+    display: flex;
     justify-content: space-between;
 
 }
-
+.btnEntrada{
+    display: flex;
+    margin-left: 5%;
+}
+.btnEntrada1{
+    display: flex;
+    padding-top: 12%;
+    margin-right: 5%;
+}
 #abrir {
-background-color: 0;
+    background-color: 0;
     border: none;
     width: fit-content;
-    
+
 }
+
 #CONFIRMAR {
     height: fit-content;
     padding: 6px;
@@ -744,14 +880,17 @@ background-color: 0;
     transition: 0.5s;
 }
 
+
+
 #abrir i {
     color: #d2b265;
     font-size: 20px;
     cursor: pointer;
-}  
+}
+
 #cerrar {
     cursor: pointer;
-  }
+}
 
 /*-----------------------FIN Estilo popUP------------------*/
 
@@ -805,9 +944,9 @@ background-color: 0;
 }
 
 .opcion i {
-    margin-top: 20%;
+    margin-top: 10%;
     color: #d2b265;
-    font-size: 85px;
+    font-size: 5em;
     transition: all 200ms ease;
     ;
 }
@@ -819,7 +958,7 @@ background-color: 0;
 
 .usuarioCamionero {
     background-color: #24262B;
-    width: 500px;
+    width: 50vh;
     height: 100vh;
     border-radius: 0 0 20px 0;
     text-align: center;
@@ -839,17 +978,17 @@ background-color: 0;
 }
 
 .usuarioCamionero h2 {
-    font-size: 60px;
+    font-size: 2em;
     color: #eae096;
     margin-top: 30px;
 }
 
 .opciones {
     display: flex;
-    margin-left: 250px;
-    margin-top: 70px;
+    margin-left: 35%;
+    margin-top: 4%;
     width: 95vh;
-    height: 250px;
+    height: 175px;
 }
 
 .opcion {
@@ -857,7 +996,6 @@ background-color: 0;
     text-align: center;
     background-color: #24262B;
     width: 30vh;
-    padding: 5px;
     margin: 8px;
     border-radius: 10px;
     border: solid 1px #d2b265;
@@ -866,10 +1004,11 @@ background-color: 0;
 
 .opciones h2 {
     color: #eae096;
-    font-size: 24px;
+    font-size: 1em;
     margin-top: 5%;
 }
-#btnVehiculo{
+
+#btnVehiculo {
     display: none;
     height: fit-content;
     padding: 3px;
@@ -886,16 +1025,17 @@ background-color: 0;
 
 .contenedorMapa {
     text-align: center;
-    margin-top: 20px;
-    margin-left: 20%;
+    margin-top: -30%;
+    margin-left: 10%;
+    margin-right: -60%;
 }
 
 #map {
     display: flex;
-   border-radius: 20px;
+    border-radius: 20px;
     box-shadow: 0 0 50px #000000;
     width: 100%;
-    height: 600px;
+    height: 65vh;
 }
 
 /*--------------------Fin estilo interfaz camionero-------------------------*/
@@ -979,8 +1119,8 @@ background-color: 0;
     padding-top: 0px;
     box-shadow: 0 0 20px #000000;
     border-radius: 20px;
-    width: 340px;
-    height: 40vh;
+    width: 51.75vh;
+    height: 50vh;
     margin: auto 13%;
     text-align: justify;
 }
@@ -1014,16 +1154,21 @@ background-color: 0;
 
 #btn {
     height: fit-content;
-    padding: 3px;
+    padding: 6px;
     border: 2px solid #d2b265;
     border-radius: 10px;
     background-color: #484847;
     width: fit-content;
-    font-size: 1.2em;
+    font-size: 1.0em;
     color: #eae096;
     transition: 0.5s;
 }
 
+.btnEntrada {
+  display: flex;
+  justify-content: right;
+
+}
 
 
 
@@ -1032,20 +1177,20 @@ background-color: 0;
 
 /*-------------------FIN  Estilo seguimiento------------------------------*/
 
-/*footer*/
+/* Estilo footer*/
 
 .contenedorFooter {
     width: 100%;
- 
-   
+
 }
 
 .footer {
-    bottom: 0;
-    width: 100%;
+
+    margin-top:18%;
+    text-align: center;
     background-color: #24262B;
-    padding: 30px 0;
-    
+    padding: 40px;
+
 }
 
 .footer-row {
@@ -1116,13 +1261,8 @@ background-color: 0;
     color: #eae096;
 }
 
-@media (min-width: 768px) {
-    .footer {
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 50px 100px;
-    }
-}
+
+
 /*-------------------------FIN ESTILO FOOTER------------------*/
 /* Estilo Almacen */
 

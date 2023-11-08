@@ -10,13 +10,10 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
 
     $vehiculo = get_vehiculo(array($_GET['matricula']))[0];
 
-    $carga = json_decode(obtener_carga($_GET['matricula'], $vehiculo['rol']), true);
+    $carga = obtener_carga($_GET['matricula'], $vehiculo['rol']);
 
-    $lote0 = $carga[0];
-    //aqui se vera las almacenes a visitar y decidir la ruta que se debe seleccionar
-
-    $ruta = json_decode(obt_ruta(array($lote0["id_ruta"])), true);
-    //Aca se llama a la ruta
+    $destino = $carga['3'];
+    var_dump($destino);
 
 ?>
     <!DOCTYPE html>
@@ -34,12 +31,12 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
         <title>QuickCarry</title>
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-       
+
         <link rel="stylesheet" href="../../leaflet-routing-machine-3.2.12/dist/leaflet-routing-machine.css" />
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
-      
+
 
 
         <script>
@@ -101,7 +98,7 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
 
                     <div class="opcion">
                         <a id="mostrarTabla" href="#"><i class="fa-solid fa-folder-open"></i></a>
-                        <h2>Contenido del camion</h2>
+                        <h2>Carga del camion</h2>
                     </div>
                     <div class="opcion">
                         <a id="enviar" href="../controlador_vehiculos/extra_vehiculo.php?matricula=<?php
@@ -152,7 +149,7 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
                                         <tbody>
                                             <?php
 
-                                            foreach ($carga as $fila) {
+                                            foreach ($carga[0] as $fila) {
                                                 if (!isset($fila["fecha_de_entrega"])) {
 
                                                     echo '<tr>
@@ -188,7 +185,7 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
 
                                         <tbody>
                                             <?php
-                                            foreach ($carga as $fila) {
+                                            foreach ($carga[0]  as $fila) {
                                                 if (!isset($fila["fecha_entrega"])) {
                                                     echo '<tr>
                                                 <td>' . $fila['id_paquete'] . '</td>
@@ -225,7 +222,7 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
                     <div class="contenedorMapa">
                         <div id="map" class="ignore-css"></div>
                     </div>
-                 
+
                     <script src="../../leaflet-routing-machine-3.2.12/dist/leaflet-routing-machine.js">
                     </script>
 
@@ -252,8 +249,50 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
                             }).addTo(map);
                             marker.bindPopup("Mi ubicacion").openPopup()
 
-                            //Switch que se encarga de marcar la ruta /los paquetes
-                            
+
+                            //marca la ruta por varias posiciones
+
+
+
+                            <?php
+                            $destinos = array("Rivera 3674 Montevideo", "Schinca 2540 Montevideo");
+                            foreach ($destinos as $destino) {
+                            ?>
+
+
+
+                                var urlDestino = 'https://nominatim.openstreetmap.org/search?format=json&q=' +
+                                    encodeURIComponent("<?php echo $destino; ?>");
+
+                                    obtenerCords(
+                                        fetch(urlDestino))
+                                    .then(function(response) {
+                                        var data = response.json();
+                                        if (data.length > 0) {
+                                            var lat = parseFloat(data[0].lat);
+
+                                            var lon = parseFloat(data[0].lon);
+
+                                            L.Routing.control({
+                                                waypoints: [
+                                                    L.latLng(latitud, longitud),
+                                                    L.latLng(lat, lon)
+                                                ],
+                                                routeWhileDragging: true
+                                            }).addTo(map);
+                                        } else {
+                                            alert('No se encontró la locacion');
+                                        }
+
+                                    });
+
+
+                            <?php
+                            }
+                            ?>
+
+
+
 
                         });
                     </script>

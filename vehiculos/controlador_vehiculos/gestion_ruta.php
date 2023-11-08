@@ -10,7 +10,7 @@ switch ($op) {
         $rutas = json_decode(
             llamadoDeAPI(
                 "GET",
-                "http://127.0.0.1//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_ruta.php",
+                "http://".$_SERVER["HTTP_HOST"]."//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_ruta.php",
                 NULL
             ),
             true
@@ -42,29 +42,42 @@ switch ($op) {
         }
 
         $datos = array($id, $ubicaciones);
-        llamadoDeAPI("PUT", "http://127.0.0.1//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_ruta.php", $datos);
+        llamadoDeAPI(
+            "PUT",
+            "http://" . $_SERVER["HTTP_HOST"] . "/Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_ruta.php",
+            $datos
+        );
 
         break;
 
     case 'eliminar_ruta':
 
-        $datos = array($id);
-        llamadoDeAPI("DELETE", "http://127.0.0.1//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_ruta.php", $datos);
+        $datos = array($_POST["id"]);
+        llamadoDeAPI(
+            "DELETE",
+            "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_ruta.php",
+            $datos
+        );
 
         break;
 
 
-    case 'eliminar_ruta':
+    case 'eliminar_ubicacion':
 
         $datos = array(
-            $id_almacen,
-            $id_ruta
+            $_POST["id_ruta"],
+            $_POST["id_almacen"]
         );
-        llamadoDeAPI("DELETE", "http://127.0.0.1//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_ruta.php", $datos);
+        var_dump($datos);
+        llamadoDeAPI(
+            "DELETE",
+            "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_ruta.php",
+            $datos
+        );
 
         break;
     default:
         # code...
         break;
 }
-header("Location:http://localhost/Proyecto_Cloudware/Administracion.php");
+//header("Location:http://".$_SERVER["HTTP_HOST"]."/Proyecto_Cloudware/Administracion.php");

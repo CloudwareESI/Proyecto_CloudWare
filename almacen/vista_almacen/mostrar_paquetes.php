@@ -21,7 +21,7 @@ if ($valor == null) {
                     <?php
                     $variables = $valor[$x]; ?>
                     <div class="formulario">
-                        <form action="almacen/controlador_almacen/agregar_paquetes.php" method="post">
+                        <form class="formBase" action="almacen/controlador_almacen/agregar_paquetes.php" method="post">
                             <h2>Modificacion de datos</h2>
 
                             <input type="hidden" name="op" value="modificar">
@@ -29,32 +29,35 @@ if ($valor == null) {
                             <input type="hidden" name="fecha_recibido" value="<?= $fila['fecha_recibido'] ?>">
                             <input type="hidden" name="fecha_entrega" value="<?= $fila['fecha_entrega'] ?>">
                             <input type="hidden" name="id_lote" value="<?= $fila['id_lote_portador'] ?>">
-
+<br>
                             <div class="formularioModificar">
                                 <?= "<p>Nombre actual: " . $fila['nombre_paquete'] . "</p>" ?>
                                 <br>
                                 <label for="matricula">Nombre de paquete:</label>
                                 <input type="text" name="nombre_paquete">
                             </div>
-
+                            <br>
                             <div class="formularioModificar">
                                 <?= "<p>dimenciones actuales: " . $fila['dimenciones'] . "</p>" ?>
                                 <br>
                                 <label for="dimenciones">Nuevas dimenciones:</label>
                                 <input type="text" name="dimenciones">
                             </div>
+                            <br>
                             <div class="formularioModificar">
                                 <?= "<p>Peso actual: " . $fila['peso'] . "</p>" ?>
                                 <br>
                                 <label for="peso">Nuevo peso:</label>
                                 <input type="text" name="peso">
                             </div>
+                            <br>
                             <div class="formularioModificar">
                                 <?= "<p>Fragil?: " . $fila['fragil'] . "</p>" ?>
                                 <br>
                                 <label for="peso">0 para no 1 para si:</label>
                                 <input type="number" name="fragil">
                             </div>
+                            <br>
                             <div class="formularioModificar">
                                 <label for="Localidad destino">Localidad:</label>
 
@@ -70,15 +73,15 @@ if ($valor == null) {
                                 </select>
 
                             </div>
-                            <div class="btn">
-
+                            <br>    
+                            <div class="contenedorBtn">
+                                <button type="button" class="cerrar">Cancelar</button>
                                 <input id="btn" type="submit" value="Actualizar">
 
                             </div>
+                            <br>
                         </form>
                     </div>
-                    <button type="button" class="cerrar">Cancelar</button>
-
                 </div>
             </div>
 
@@ -89,9 +92,9 @@ if ($valor == null) {
                     $variables = $valor["1"][$x];
                     echo '<h2>Eliminar el paquete N°' . $variables['id_paquete'] . ' ' .
                         $variables['nombre_paquete']
-                        . '</h2>
+                        . '</h2><br>
                                     <p>¿Esta seguro que desea eliminar al paquete ' .
-                        $variables['id_paquete'] . '?</p>';
+                        $variables['id_paquete'] . '?</p><br>';
 
                     echo '
                                     <div class="contenedorBtn">
@@ -197,7 +200,8 @@ if ($valor == null) {
 
                         echo '<br>   ';
 
-                        echo '<select name="matricula">';
+                        echo '<div class="selectBoton">
+                        <select name="matricula">';
                         foreach ($valor["2"] as $fila) {
 
                             if ($fila["rol"] == "2") {
@@ -228,8 +232,9 @@ if ($valor == null) {
 
                         ?>
 
-                        <div class="btn">
-                            <input id="btn" class="btn" type="submit" value="Ejecutar">
+                     
+                            <input id="btnSelectBoton3" type="submit" value="Ejecutar">
+                      
                         </div>
                 </form>
             <?php

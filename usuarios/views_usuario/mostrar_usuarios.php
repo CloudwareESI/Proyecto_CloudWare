@@ -67,7 +67,9 @@ if ($valores["0"] == null) {
             case '2':
                 echo "Camionero";
                 break;
-
+            case '3':
+                echo "CRECOM";
+                break;
             default:
                 # code...
                 break;
@@ -84,13 +86,15 @@ if ($valores["0"] == null) {
                 $variables = $valores["0"][$x]; ?>
                 <div class="contenedorFormulario">
 
-                    <form action="usuarios/controlador_usuario/agregar_usu.php" method="post">
+                    <form class="formBase" action="usuarios/controlador_usuario/agregar_usu.php" method="post">
+                        <h2>Modificacion de datos</h2>
                         <div class="formulario">
-                            <h2>Modificacion de datos</h2>
-                            <input type="hidden" name="op" value="modificar">
-                            <input type="hidden" name="id" value="<?= $variables['id_empleado'] ?>">
-                            <input type="hidden" name="viejo" value="<?= $variables['email'] ?>">
-                            <div class="formularioModificarPopUp">
+                            <div class="formularioPopUp1">
+                                <input type="hidden" name="op" value="modificar">
+                                <input type="hidden" name="id" value="<?= $variables['id_empleado'] ?>">
+                                <input type="hidden" name="viejo" value="<?= $variables['email'] ?>">
+
+
                                 <div class="formularioModificar">
                                     <?= "<p>Nombre actual: " . $variables['nombre'] . "</p>" ?>
                                     <label for="nombre">Nuevo nombre:</label>
@@ -125,6 +129,8 @@ if ($valores["0"] == null) {
                                     <input type="text" name="CI">
 
                                 </div>
+                            </div>
+                            <div class="formularioPopUp2">
                                 <div class="formularioModificar">
 
                                     <?= "<p>Telefono actual" . $variables['nro_telefono'] . "</p>" ?>
@@ -134,8 +140,9 @@ if ($valores["0"] == null) {
                                     <input type="text" name="telefono">
 
                                 </div>
-                                <div class="formularioModificar">
 
+                                <div class="formularioModificar">
+                                     
                                     <?= "<p>Insertar nueva contraseña</p>" ?>
 
                                     <label for="apellido">Nueva Contraseña:</label>
@@ -143,25 +150,42 @@ if ($valores["0"] == null) {
                                     <input type="text" name="password">
 
                                 </div>
+                               
                                 <div class="formularioModificar">
-
-                                    <?= "<p>Cargo actual" . $variables['cargo'] . "</p>" ?>
+                             
+                                    <?php echo "<p> Cargo actual: ";
+                                    switch ($fila['cargo']) {
+                                        case '0':
+                                            echo "Administrador";
+                                            break;
+                                        case '1':
+                                            echo "Almacenero";
+                                            break;
+                                        case '2':
+                                            echo "Camionero";
+                                            break;
+                                        case '3':
+                                            echo "CRECOM";
+                                            break;
+                                    }
+                                    echo "</p>"; ?>
 
                                     <label for="cargo">Cargo:</label>
 
                                     <input type="text" name="cargo">
 
                                 </div>
-                                <div class="btn">
-
-                                    <input id="btn" type="submit" value="Actualizar">
-
-                                </div>
                             </div>
+                        </div>
+                        <div class="contenedorBtn">
+                            <button type="button" class="cerrar">Cancelar</button>
+                            <input id="btn" type="submit" value="Actualizar">
+                        </div>
+
                     </form>
                 </div>
             </div>
-            <button class="cerrar">Cancelar</button>
+
 
         </div>
         </div>
@@ -174,15 +198,16 @@ if ($valores["0"] == null) {
         <button class="abrir" data-index="eliminar<? echo $x; ?>"><i class="fas fa-trash"></i></button>
         <div class="contenedorModal" data-index="eliminar<? echo $x; ?>">
             <div class="modal">
+                
                 <?php
                 $variables = $valores["0"][$x];
-                echo '<h2>Eliminar a ' . $variables['nombre'] . ' ' . $variables['apellido'] . '</h2>
-            <p>¿Esta seguro que desea eliminar al usuariov' .
-                    $variables['nombre'] . ' ' . $variables['apellido'] . '?</p>';
+                echo '<h2>Eliminar a ' . $variables['nombre'] . ' ' . $variables['apellido'] . '</h2><br>
+                <p>¿Esta seguro que desea eliminar al usuario ' .
+                    $variables['nombre'] . ' ' . $variables['apellido'] . '?</p><br>';
 
                 echo '
             <div class="contenedorBtn">
-            <button class="cerrar">Cancelar</button>
+            <button type="button" class="cerrar">Cancelar</button>
 
             <form action="usuarios/controlador_usuario/agregar_usu.php" method="post">
                 <input type="hidden" name="op" value="eliminar">
@@ -215,58 +240,69 @@ if ($valores["0"] == null) {
         Agregar
     </button>
 </div>
+
 <div class="contenedorModal" data-index="agregar">
     <div class="modal">
 
-        <div class="contenedorFormulario">
+        <div class="contenedorFormulario ">
 
 
-            <form action="usuarios/controlador_usuario/agregar_usu.php" method="post">
+            <form class="formBase" action="usuarios/controlador_usuario/agregar_usu.php" method="post">
+                <h2>Agregar datos</h2>
                 <div class="formulario">
-                    <h2>Agregar datos</h2>
-                    <input type="hidden" name="op" value="agregar">
-                    <div class="formularioModificar">
-                        <label for="nombre">Nombre:</label>
-                        <input type="text" name="nombre">
-                    </div>
-                    <div class="formularioModificar">
-                        <label for="apellido">Apellido:</label>
-                        <input type="text" name="apellido">
-                    </div>
-                    <div class="formularioModificar">
-                        <label for="apellido">Email:</label>
-                        <input type="text" name="email">
-                    </div>
-                    <div class="formularioModificar">
-                        <label for="apellido">Contraseña:</label>
-                        <input type="text" name="password">
-                    </div>
-                    <div class="formularioModificar">
-                        <label for="apellido">Numero de telefono:</label>
-                        <input type="text" name="telefono">
+                    <div class="formularioPopUp1">
+                        <input type="hidden" name="op" value="agregar">
+                        <div class="formularioModificar">
+                            <label for="nombre">Nombre:</label>
+                            <input type="text" name="nombre">
+                        </div>
+                        <div class="formularioModificar">
+                            <label for="apellido">Apellido:</label>
+                            <input type="text" name="apellido">
+                        </div>
+                        <div class="formularioModificar">
+                            <label for="apellido">Email:</label>
+                            <input type="text" name="email">
+                        </div>
+                        <div class="formularioModificar">
+                            
+                            <label for="apellido">Contraseña:</label>
+                            <input type="text" name="password">
+                        </div>
                     </div>
 
-                    <div class="formularioModificar">
-                        <label for="CI">Cedula de identidad:</label>
-                        <input type="text" name="CI">
-                    </div>
 
-                    <div class="formularioModificar">
-                        <label for="cargo">Cargo:</label>
-                        <input type="text" name="cargo">
+                    <div class="formularioPopUp2">
+                        <div class="formularioModificar">
+                            <label for="apellido">Numero de telefono:</label>
+                            <input type="text" name="telefono">
+                        </div>
+
+                        <div class="formularioModificar">
+                       
+                            <label for="CI">Cedula de identidad:</label>
+                            <input type="text" name="CI">
+                        </div>
+                        
+                        <div class="formularioModificar">
+                     
+                            <label for="cargo">Cargo:</label>
+                            <input type="text" name="cargo">
+                        </div>
                     </div>
                 </div>
-                <input id="btn" type="submit" value="Actualizar">
+                <div class="contenedorBtn">
+                    <button type="button" class="cerrar">Cancelar</button>
+                    <input id="btn" type="submit" value="Actualizar">
+                </div>
             </form>
-            <div class="contenedorBtn">
-                <button class="cerrar">Cancelar</button>
-
-            </div>
         </div>
+
+
 
     </div>
 </div>
-</div>
+
 
 
 
@@ -289,7 +325,6 @@ if ($valores == null) {
     <th>ID</th> 
     <th>Nombre</th> 
     <th>Apellido</th> 
-
     <th>Asignar</th> 
     </tr>
     </thead><tbody>";
@@ -317,7 +352,8 @@ if ($valores == null) {
     }
     echo "</tbody></table></div>";
     echo '<br>';
-    echo '<div class="selectBoton">
+    echo '
+<div class="selectBoton">
     <select name="matricula">';
     foreach ($valores["1"] as $fila) {
         echo "<option value='" . $fila["matricula"] . "'>"
@@ -327,11 +363,12 @@ if ($valores == null) {
 
     echo '</select>
    
- 
-    <input id="btnSelect"  type="submit" value="Cargar en camion">
    
-    </div>
-    </form>';
+    <input id="btnSelectBoton"  type="submit" value="Asignar en camion">
+
+
+    </form>  </div>';
+  
 }
 ?>
 </div>
@@ -378,7 +415,8 @@ if ($valores["0"] == null) {
     }
     echo "</tbody></table></div>";
     echo '<br>';
-    echo '<select name="almacen">';
+    echo '<div class="selectBoton">
+    <select name="almacen">';
     foreach ($valores["2"] as $fila) {
         echo "<option value='" . $fila["id_almacen"] . "'> Almacen:"
             . $fila["id_almacen"] . "-" . $fila["nombre_localidad"] .
@@ -388,10 +426,10 @@ if ($valores["0"] == null) {
 
     echo '</select>
    
-    <div class="btn">
-    <input id="btnTabla" type="submit" value="Asignar empleado/s a almacen">
-    </div>
-    </form>';
+  
+    <input id="btnSelectBoton2" type="submit" value="Asignar empleado/s a almacen">
+ 
+    </form></div>';
 }
 ?>
 

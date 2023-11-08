@@ -71,7 +71,7 @@ function validate($data)
 
 function get_localidades_lista()
 {
-    $L = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_localidad.php", NULL);
+    $L = llamadoDeAPI("GET", "http://".$_SERVER["HTTP_HOST"]."//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_localidad.php", NULL);
 
     $valor = json_decode($L, true);
     return $valor;

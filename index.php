@@ -172,7 +172,7 @@ if (isset($_GET['Bienvenido'])) {
                     get_lotes_alm($_GET['id_almacen']);
                 } else {
 
-                    get_all_almacenes();
+                    get_all_almacenes($_SESSION["id"], $_SESSION["cargo"]);
                 }
             }
         }
@@ -199,7 +199,7 @@ if (isset($_GET['Bienvenido'])) {
     if (isset($_GET['Camiones'])) {
         require("vehiculos/controlador_vehiculos/super_controlador_vehiculos.php");
 
-        get_all_vehiculos();
+        get_all_vehiculos($_SESSION["id"], $_SESSION["cargo"]);
     }
 
     if (
@@ -212,9 +212,9 @@ if (isset($_GET['Bienvenido'])) {
         echo '
         <a href="paquete">  </a>
         <div class="contenedorFormulario">
-            <form id="formPaquete" action="seguimientoDePaquete.php" method="GET">
+            <form class="formBase" id="formPaquete" action="seguimientoDePaquete.php" method="GET">
 
-              <div class="formulario">
+              <div class="formulario vertical">
                     <img src="Imagenes/Logo_quickcarry-sin-fondo1.png" alt="logo" height="70px" width="70px">
                    
                     <h2 id="paquete">Seguimiento de Paquete</h2>

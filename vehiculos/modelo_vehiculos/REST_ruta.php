@@ -12,7 +12,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 		header('content-type: application/json');
 
 
-		if (isset($valor['id_ruta'])) {
+		if (isset($valor)) {
 			$ruta = $rutas->get_ruta($valor);
 
 			$encryptado = json_encode($ruta);
@@ -47,15 +47,14 @@ switch ($_SERVER['REQUEST_METHOD']) {
 		break;
 
 	case 'DELETE':
-		if (isset($valor['id_almacen'])) {
-			$data = file_get_contents("php://input");
-			$valor = json_decode($data, true);
+		$data = file_get_contents("php://input");
+		$valor = json_decode($data, true);
+		if (isset($valor["1"])) {
 
+			echo "A";
 			$rutas->delete_ubicacion($valor);
 			break;
 		}else{
-			$data = file_get_contents("php://input");
-			$valor = json_decode($data, true);
 
 			$rutas->delete_rutas($valor);
 			break;

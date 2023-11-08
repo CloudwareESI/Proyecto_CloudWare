@@ -6,7 +6,11 @@ $data = file_get_contents("php://input");
 
 $valor = json_decode($data, true);
 
-if ($valor == null) {
+var_dump($valor);
+
+$almacenes = $valor[0];
+
+if ($almacenes == null) {
     echo "ERROR JSON VACIO";
 } else {
     echo "<div class='contenedorTablas'>";
@@ -23,7 +27,7 @@ if ($valor == null) {
     <th>Departamento</th> 
     <th>Seleccionar</th> 
     </tr></thead><tbody>";
-    foreach ($valor as $fila) {
+    foreach ($almacenes as $fila) {
         echo '<tr>
     <td>' . $fila['id_almacen'] . '</td>  
     <td>' . $fila['calle'] . '</td> 
@@ -31,7 +35,7 @@ if ($valor == null) {
     <td>' . $fila['nombre_localidad'] . '</td> 
     <td>' . $fila['nombre_departamento'] . '</td>
 
-    <td><div class="box"><a href="http://localhost/Proyecto_Cloudware/index.php?id_almacen=' . $fila['id_almacen'] . '
+    <td><div class="box"><a href="http://' . $_SERVER["HTTP_HOST"] . '/Proyecto_Cloudware/index.php?id_almacen=' . $fila['id_almacen'] . '
         &Almacenes=1
     ">
     

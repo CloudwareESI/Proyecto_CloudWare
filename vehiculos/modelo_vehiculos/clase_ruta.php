@@ -31,7 +31,7 @@ class rutas
   public function get_ruta($id_ruta)
   {
     $query = "SELECT 
-    r.id_ruta, u.id_almacen, id_localidad, nombre_localidad, 
+    r.id_ruta, u.id_almacen, u.posicion, id_localidad, nombre_localidad, 
     id_departamento, nombre_departamento, a.chapa, a.calle
     FROM ruta r
     INNER JOIN  ubicacion u ON r.id_ruta = u.id_ruta
@@ -116,7 +116,6 @@ class rutas
 
   public function delete_ubicacion($vars)
   {
-
     $insert = "DELETE FROM ubicacion
         where id_ruta= ? and id_almacen= ?";
     $this->base_datos->conexion()->execute_query($insert, $vars);

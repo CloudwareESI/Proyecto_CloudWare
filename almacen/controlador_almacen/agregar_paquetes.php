@@ -28,7 +28,7 @@ switch ($op) {
 
         $L = llamadoDeAPI(
             "PUT",
-            "http://127.0.0.1//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php",
+            "http://".$_SERVER["HTTP_HOST"]."//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php",
             $paquete
         );
 
@@ -91,7 +91,7 @@ switch ($op) {
 
         $L = llamadoDeAPI(
             "POST",
-            "http://127.0.0.1//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php",
+            "http://".$_SERVER["HTTP_HOST"]."//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php",
             $paquete
         );
 
@@ -103,7 +103,7 @@ switch ($op) {
         $id = array($_POST["id_paquete"]);
         llamadoDeAPI(
             "DELETE",
-            "http://127.0.0.1//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php",
+            "http://".$_SERVER["HTTP_HOST"]."//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php",
             $id
         );
 
@@ -114,7 +114,7 @@ switch ($op) {
         $id = array($_POST["id_lote"]);
         llamadoDeAPI(
             "DELETE",
-            "http://127.0.0.1//Proyecto_Cloudware/almacen/modelo_almacen/REST_lotes.php",
+            "http://".$_SERVER["HTTP_HOST"]."//Proyecto_Cloudware/almacen/modelo_almacen/REST_lotes.php",
             $id
         );
 
@@ -125,9 +125,9 @@ switch ($op) {
 }
 
 if ($_POST["id_almacen"] = "N/A") {
-    //header("Location:http://localhost/Proyecto_Cloudware?id_almacen=".$_POST["id_almacen"]."&Almacenes=1");
+    //header("Location:http://".$_SERVER["HTTP_HOST"]."/Proyecto_Cloudware?id_almacen=".$_POST["id_almacen"]."&Almacenes=1");
 
 } else {
-    //header("Location:http://localhost/Proyecto_Cloudware/index.php?Entrada");
+    //header("Location:http://".$_SERVER["HTTP_HOST"]."/Proyecto_Cloudware/index.php?Entrada");
 
 }

@@ -50,12 +50,53 @@ class persona
 
   public function get_usuario($id)
   {
+
+
+
     $query = "select * from empleado where  empleado.id_empleado = ? ";
     $resultado = $this->base_datos->conexion()->execute_query($query, $id);
     $matriz = array();
     $matriz = $resultado->fetch_all(MYSQLI_ASSOC);
 
-    return $matriz;
+    switch ($matriz[0]["cargo"]) {
+      case '2':
+        $query = "SELECT 
+        e.id_empleado, 	email, 	
+        nombre, 	apellido, 	CI, 	
+        nro_telefono, 	cargo, 	id_matricula
+           from empleado e 
+         INNER JOIN conduce c on e.id_empleado = c.id_empleado 
+         where  e.id_empleado = ? ";
+        $resultado = $this->base_datos->conexion()->execute_query($query, $id);
+        $empleado = array();
+        $empleado = $resultado->fetch_all(MYSQLI_ASSOC);
+        break;
+
+      case '1':
+        $query = "SELECT         
+        e.id_empleado, 	email, 	
+        nombre, 	apellido, 	CI, 	
+        nro_telefono, 	cargo, 	id_almacen
+        from empleado e 
+        INNER JOIN asignado a on e.id_empleado = a.id_empleado 
+        where  e.id_empleado = ? ";
+        $resultado = $this->base_datos->conexion()->execute_query($query, $id);
+        $empleado = array();
+        $empleado = $resultado->fetch_all(MYSQLI_ASSOC);
+        break;
+      default:
+        $query = "SELECT         
+        id_empleado, 	email, 	
+        nombre, 	apellido, 	CI, 	
+        nro_telefono, 	cargo
+        from empleado
+        where  e.id_empleado = ? ";
+        $resultado = $this->base_datos->conexion()->execute_query($query, $id);
+        $empleado = array();
+        $empleado = $resultado->fetch_all(MYSQLI_ASSOC);
+        break;
+    }
+    return $empleado;
   }
 
   public function get_usuario_all()

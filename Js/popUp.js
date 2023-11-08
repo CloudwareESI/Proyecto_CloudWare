@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
     
     // Función para abrir la ventana modal
     function abrirModal(index) {
+        document.write(index);
         contenedorModales[index].classList.add('show');
     }
     

@@ -1,14 +1,47 @@
 <?php
 
 
-function get_all_vehiculos()
+function get_all_vehiculos($usuario, $cargo)
 {
-    $L = llamadoDeAPI("GET", "http://127.0.0.1//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_vehiculos.php", NULL);
 
-    $valor = json_decode($L, true);
+
+    if ($cargo == "0" or $cargo == "2") {
+        if ($cargo == "0") {
+            $camiones = llamadoDeAPI(
+                "GET",
+                "http://" . $_SERVER["HTTP_HOST"] . "/Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_vehiculos.php",
+                NULL
+            );
+
+            $valor = array(json_decode($camiones, true), $cargo);
+        } else if ($cargo == "2") {
+
+            $conduce = llamadoDeAPI(
+                "GET",
+                "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/usuarios/modelo_usuario/REST_usuario.php",
+                array($usuario)
+            );
+
+
+            foreach (json_decode($conduce, true) as $key => $fila) {
+
+
+                $camiones[$key] = json_decode(llamadoDeAPI(
+                    "GET",
+                    "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_vehiculos.php",
+                    array($fila["id_matricula"])
+                ), true)[0];
+
+            }
+            var_dump($camiones);
+            $valor = array($camiones, $cargo);
+        }
+    }
+
+
 
     $curl = curl_init();
-    curl_setopt($curl, CURLOPT_URL,  "http://127.0.0.1//Proyecto_Cloudware/vehiculos/views_vehiculos/mostrar_vehiculos.php",);
+    curl_setopt($curl, CURLOPT_URL,  "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/vehiculos/views_vehiculos/mostrar_vehiculos.php",);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     $json = json_encode($valor);
 
@@ -31,7 +64,7 @@ function get_vehiculo($id)
 {
     $L = llamadoDeAPI(
         "GET",
-        "http://127.0.0.1//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_vehiculos.php",
+        "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_vehiculos.php",
         $id
     );
 
@@ -41,11 +74,14 @@ function get_vehiculo($id)
 
 function get_vehiculos_lista()
 {
+
+
     $L = llamadoDeAPI(
         "GET",
-        "http://127.0.0.1//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_vehiculos.php",
+        "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_vehiculos.php",
         NULL
     );
+
 
     $valor = json_decode($L, true);
     return $valor;
@@ -55,7 +91,7 @@ function del_vehiculos($id)
 {
     $L = llamadoDeAPI(
         "DELETE",
-        "http://127.0.0.1//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_vehiculos.php",
+        "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_vehiculos.php",
         $id
     );
     return $L;
@@ -69,27 +105,35 @@ function obtener_carga($matricula, $tipo)
     if ($tipo == "1") {
         $carga = llamadoDeAPI(
             "GET",
-            "http://127.0.0.1//Proyecto_Cloudware/almacen/modelo_almacen/REST_lotes.php",
+            "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/almacen/modelo_almacen/REST_lotes.php",
             $id
         );
-        return $carga;
-        $valor = array(json_decode($carga), $matricula, $tipo);
+
+        $lote0 = json_decode($carga, true)[0];
+        $ruta = json_decode(obt_ruta(array($lote0["id_ruta"])), true);
+
+
+        foreach ($ruta as $k => $v) {
+            $destinos[$k] = array($v["calle"] . " " . $v["chapa"]);
+        }
     } else {
+
         $carga = llamadoDeAPI(
             "GET",
-            "http://127.0.0.1//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php",
+            "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php",
             $id
         );
-        return $carga;
-        $valor = array(json_decode($carga), $matricula, $tipo);
-    }
-    $ruta = llamadoDeAPI(
-        "GET",
-        "http://127.0.0.1//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_ruta.php",
-        NULL
-    );
-    $valor[3] = json_decode($ruta, true);
 
+        foreach (json_decode($carga, true) as $k => $v) {
+            $destinos[$k] = array($v["destino_calle"] . " " . $v["nombre_departamento"]);
+        }
+    }
+
+    if (isset($destinos)) {
+        $valor = array(json_decode($carga, true), $matricula, $tipo, $destinos);
+    } else {
+        $valor = array(json_decode($carga, true), $matricula, $tipo, NULL);
+    }
     return $valor;
 }
 
@@ -97,7 +141,7 @@ function obt_ruta($id_ruta)
 {
     $ruta = llamadoDeAPI(
         "GET",
-        "http://127.0.0.1//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_ruta.php",
+        "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_ruta.php",
         $id_ruta
     );
 
@@ -111,9 +155,10 @@ function marcha($matricula)
     $vehiculo = json_decode(
         llamadoDeAPI(
             "GET",
-            "http://127.0.0.1//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_vehiculos.php",
+            "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_vehiculos.php",
             array($matricula)
-        ), true
+        ),
+        true
     )["0"];
 
     var_dump($vehiculo);
@@ -138,7 +183,7 @@ function marcha($matricula)
 
     llamadoDeAPI(
         "POST",
-        "http://127.0.0.1//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_vehiculos.php",
+        "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_vehiculos.php",
         $vehiculo_cambios
     );
     return $vehiculo_cambios;

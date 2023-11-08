@@ -15,7 +15,7 @@ switch ($_POST["opcion"]) {
             $valor = json_decode(
                 llamadoDeAPI(
                     "GET",
-                    "http://127.0.0.1//Proyecto_Cloudware/almacen/modelo_almacen/REST_lotes.php",
+                    "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/almacen/modelo_almacen/REST_lotes.php",
                     $id_lote
                 ),
                 true
@@ -30,7 +30,7 @@ switch ($_POST["opcion"]) {
             );
             llamadoDeAPI(
                 "POST",
-                "http://127.0.0.1//Proyecto_Cloudware/almacen/modelo_almacen/REST_lotes.php",
+                "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/almacen/modelo_almacen/REST_lotes.php",
                 $destinado
             );
         }
@@ -48,7 +48,7 @@ switch ($_POST["opcion"]) {
             $identificador = array('id_paquete' => $id_paquete);
             $valor = llamadoDeAPI(
                 "GET",
-                "http://127.0.0.1//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php",
+                "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php",
                 $identificador
             );
 
@@ -70,7 +70,7 @@ switch ($_POST["opcion"]) {
             );
             $paquetes->llamadoDeAPI(
                 "POST",
-                "http://127.0.0.1//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php",
+                "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php",
                 $paquete
             );
         }
@@ -87,7 +87,7 @@ switch ($_POST["opcion"]) {
 
             $valor = json_decode(llamadoDeAPI(
                 "GET",
-                "http://127.0.0.1//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php",
+                "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php",
                 $id_paquete
             ), true);
 
@@ -122,7 +122,7 @@ switch ($_POST["opcion"]) {
         $id_lote =
             llamadoDeAPI(
                 "PUT",
-                "http://127.0.0.1//Proyecto_Cloudware/almacen/modelo_almacen/REST_lotes.php",
+                "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/almacen/modelo_almacen/REST_lotes.php",
                 $vars,
                 true
             );
@@ -135,7 +135,7 @@ switch ($_POST["opcion"]) {
 
             $valor = json_decode(llamadoDeAPI(
                 "GET",
-                "http://127.0.0.1//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php",
+                "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php",
                 $id_paquete
             ), true);
 
@@ -161,13 +161,13 @@ switch ($_POST["opcion"]) {
             );
             llamadoDeAPI(
                 "POST",
-                "http://127.0.0.1//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php",
+                "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php",
                 $pack
             );
         }
 
-        header("Location:http://localhost/Proyecto_Cloudware/index.php");
+        header("Location:http://" . $_SERVER["HTTP_HOST"] . "/Proyecto_Cloudware/index.php");
 
         break;
 }
-//header("Location:http://localhost/Proyecto_Cloudware/index.php");
+header("Location:http://" . $_SERVER["HTTP_HOST"] . "/Proyecto_Cloudware/index.php");

@@ -1,13 +1,9 @@
---- phpMyAdmin SQL Dump
+-- phpMyAdmin SQL Dump
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
-<<<<<<< HEAD
--- Tiempo de generación: 23-10-2023 a las 09:14:00
-=======
--- Tiempo de generación: 17-10-2023 a las 06:40:37
->>>>>>> 7d0a31440c35cba4c0865310bee07bcd2599288b
+-- Tiempo de generación: 05-11-2023 a las 19:10:16
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -67,7 +63,7 @@ CREATE TABLE `asignado` (
 --
 
 CREATE TABLE `conduce` (
-  `id_vheiculo` varchar(255) NOT NULL,
+  `id_matricula` varchar(7) NOT NULL,
   `id_empleado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -117,10 +113,20 @@ CREATE TABLE `destinado` (
   `id_ruta` int(11) NOT NULL,
   `id_almacen` int(11) NOT NULL,
   `id_lote` int(11) NOT NULL,
-  `matricula` varchar(12) NOT NULL,
+  `matricula` varchar(7) DEFAULT NULL,
   `fecha_de_entrega` datetime DEFAULT NULL,
   `fecha_transporte` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `destinado`
+--
+
+INSERT INTO `destinado` (`id_ruta`, `id_almacen`, `id_lote`, `matricula`, `fecha_de_entrega`, `fecha_transporte`) VALUES
+(0, 1, 6, 'STP1986', '2023-10-30 05:15:39', '2023-10-26 05:52:17'),
+(0, 1, 7, 'STP1986', '2023-11-02 23:33:12', '2023-11-02 13:15:22'),
+(0, 1, 8, 'ATP1982', NULL, '2023-11-02 13:17:13'),
+(0, 1, 9, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -143,12 +149,13 @@ CREATE TABLE `empleado` (
 --
 
 INSERT INTO `empleado` (`id_empleado`, `email`, `nombre`, `apellido`, `CI`, `nro_telefono`, `cargo`) VALUES
-(1, 'long65tyco@gmail.com', 'Jose', 'Maria', 54788621, 935577, 0),
-(3, 'NatLong9905@gmail.com', 'Nataniel', 'Long', 1247789, 934455, 1),
+(1, 'long65tyco@gmail.com', 'Jose', 'Maria', 54788671, 9932571, 0),
+(3, 'NatLong9905@gmail.com', 'Nataniel', 'Rojas', 1247789, 934455, 1),
 (4, 'sam@long', 'Sam', 'Sam', 4365467, 934444, 2),
 (9, 'camionero23@mail.com', 'Manuel', 'Martinez', 5446798, 945678, 2),
 (10, 'almacenero23@mail.com', 'Thomas', 'Torres', 2345678, 999999, 1),
-(11, 'almacenero23@crecom.com', 'Maria', 'Jose', 1256777, 999999, 4);
+(11, 'almacenero23@crecom.com', 'Maria', 'Jose', 1256777, 999999, 4),
+(17, 'mikeschmith12@mail.com', 'Mike', 'Schmith', 54782142, 96785921, 1);
 
 -- --------------------------------------------------------
 
@@ -204,11 +211,13 @@ CREATE TABLE `login` (
 --
 
 INSERT INTO `login` (`email`, `password`) VALUES
+('', '$2y$10$SO0vvojKlvfzBSlJbnuFFOp9iKv27/7BCgsUDqBxiSvZp4bMcaJL.'),
 ('almacenero23@crecom.com', '$2y$10$./5O8MeFqn0OVgY3S2J0oeMGhdD4JwRp6VGAV/ZT37zrfVMP7Eldq'),
 ('almacenero23@mail.com', '$2y$10$./5O8MeFqn0OVgY3S2J0oeMGhdD4JwRp6VGAV/ZT37zrfVMP7Eldq'),
 ('camionero23@mail.com', '$2y$10$./5O8MeFqn0OVgY3S2J0oeMGhdD4JwRp6VGAV/ZT37zrfVMP7Eldq'),
 ('long65tyco@gmail.com', '$2y$10$7PArTXWqqSIw/XU7cpm6OuQsRUrphZ9Ix2nPG9FOcfe6ip96hqAkC'),
-('NatLong9905@gmail.com', 'Nana45'),
+('mikeschmith12@mail.com', '$2y$10$8xFGxyTZ3tiXkjPKfelzhO7RzNhx3MyQBcRvJbKnedXLvCNbare1u'),
+('NatLong9905@gmail.com', '$2y$10$eMMkqvNofKkbiawtZxQEqum8Lb8fLZdd4ek85X8BQYmx0i3rCazDa'),
 ('sam@long', 'TT45OP');
 
 -- --------------------------------------------------------
@@ -219,21 +228,20 @@ INSERT INTO `login` (`email`, `password`) VALUES
 
 CREATE TABLE `lote` (
   `id_lote` int(11) NOT NULL,
-  `fecha_creacion` date NOT NULL,
-  `lote_crecom` date NOT NULL
+  `fecha_creacion` datetime NOT NULL,
+  `lote_crecom` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-<<<<<<< HEAD
-=======
 --
 -- Volcado de datos para la tabla `lote`
 --
 
-INSERT INTO `lote` (`id_lote`, `fecha_creacion`, `fecha_de_entrega`, `fecha_transporte`, `id_almacen`, `matricula_camion`, `id_destino`) VALUES
-(4, '2023-09-17', NULL, NULL, 1, NULL, 1),
-(10, '2023-10-12', NULL, NULL, NULL, NULL, 1);
+INSERT INTO `lote` (`id_lote`, `fecha_creacion`, `lote_crecom`) VALUES
+(6, '2023-10-23 00:00:00', 0),
+(7, '2023-11-02 09:01:41', 1),
+(8, '2023-11-02 09:16:59', 1),
+(9, '2023-11-05 12:33:20', 1);
 
->>>>>>> 7d0a31440c35cba4c0865310bee07bcd2599288b
 -- --------------------------------------------------------
 
 --
@@ -253,7 +261,7 @@ CREATE TABLE `paquete` (
   `fecha_ingreso` date NOT NULL,
   `id_lote_portador` int(11) DEFAULT NULL,
   `id_localidad_destino` int(11) NOT NULL,
-  `matricula_transporte` varchar(12) DEFAULT NULL
+  `matricula_transporte` varchar(7) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -261,17 +269,9 @@ CREATE TABLE `paquete` (
 --
 
 INSERT INTO `paquete` (`id_paquete`, `nombre_paquete`, `dimenciones`, `peso`, `fragil`, `destino_calle`, `fecha_entrega`, `fecha_recibido`, `fecha_cargado`, `fecha_ingreso`, `id_lote_portador`, `id_localidad_destino`, `matricula_transporte`) VALUES
-<<<<<<< HEAD
-(1, 'Botella de vino', 20, 200, 1, 'Reno 1444', NULL, NULL, NULL, '2023-10-23', 0, 33, NULL);
-=======
-(3, '', 500, 500, 1, '8 de octubre 2340', NULL, '2023-09-17', NULL, '2023-09-09', 4, 2, 'STL569'),
-(4, '', 800, 200, 1, '', '2023-09-09', NULL, NULL, '2023-09-09', NULL, 1, 'STP1986'),
-(5, 'Pistones', 15, 100, 0, 'AguaFria 1789', NULL, '2023-09-09', NULL, '2023-09-08', 4, 2, NULL),
-(6, 'GA', 66, 66, 1, 'Flecha 2569', NULL, NULL, NULL, '2023-09-09', 4, 2, NULL),
-(7, 'pack de vasos ', 700, 1000, 1, 'Pje. Dr. Francisco Schinca 2540', NULL, NULL, NULL, '2023-09-08', 4, 2, NULL),
-(8, 'botellas', 700, 500, 1, '', NULL, NULL, NULL, '2023-09-10', 10, 2, NULL),
-(9, 'Agua', 50, 50, 0, 'Aduana 2156', NULL, NULL, NULL, '2023-09-17', 10, 1, NULL);
->>>>>>> 7d0a31440c35cba4c0865310bee07bcd2599288b
+(4, 'Agua', 200, 200, 1, 'Schinca 2540', NULL, NULL, NULL, '2023-11-02', 7, 2, NULL),
+(5, 'Trampolin', 800, 12000, 0, 'Salto 1234', NULL, NULL, NULL, '2023-11-02', 8, 34, NULL),
+(6, 'Casco de moto', 500, 1000, 0, 'Schinca 2540', NULL, NULL, NULL, '2023-11-05', NULL, 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -289,7 +289,8 @@ CREATE TABLE `ruta` (
 
 INSERT INTO `ruta` (`id_ruta`) VALUES
 (0),
-(1);
+(1),
+(2);
 
 -- --------------------------------------------------------
 
@@ -300,15 +301,23 @@ INSERT INTO `ruta` (`id_ruta`) VALUES
 CREATE TABLE `ubicacion` (
   `id_ruta` int(11) NOT NULL,
   `id_almacen` int(11) NOT NULL,
-  `posicion` int(11) NOT NULL
+  `posicion` int(11) NOT NULL,
+  `tempo_trecho` time DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `ubicacion`
 --
 
-INSERT INTO `ubicacion` (`id_ruta`, `id_almacen`, `posicion`) VALUES
-(0, 1, 0);
+INSERT INTO `ubicacion` (`id_ruta`, `id_almacen`, `posicion`, `tempo_trecho`) VALUES
+(0, 1, 0, NULL),
+(1, 1, 0, NULL),
+(2, 1, 0, '00:00:00'),
+(2, 2, 1, '01:25:00'),
+(1, 3, 1, NULL),
+(2, 3, 2, '01:25:00'),
+(2, 4, 3, '01:25:00'),
+(1, 5, 3, NULL);
 
 -- --------------------------------------------------------
 
@@ -317,11 +326,20 @@ INSERT INTO `ubicacion` (`id_ruta`, `id_almacen`, `posicion`) VALUES
 --
 
 CREATE TABLE `vehiculo` (
-  `matricula` varchar(12) NOT NULL,
+  `matricula` varchar(7) NOT NULL,
   `estado` int(11) NOT NULL,
   `modelo` varchar(255) DEFAULT NULL,
   `rol` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `vehiculo`
+--
+
+INSERT INTO `vehiculo` (`matricula`, `estado`, `modelo`, `rol`) VALUES
+('ATP1982', 1, 'Citroen', 1),
+('STL569', 0, 'Camioneta', 2),
+('STP1986', 1, 'Camión pesado', 1);
 
 --
 -- Índices para tablas volcadas
@@ -345,7 +363,7 @@ ALTER TABLE `asignado`
 -- Indices de la tabla `conduce`
 --
 ALTER TABLE `conduce`
-  ADD PRIMARY KEY (`id_vheiculo`,`id_empleado`),
+  ADD PRIMARY KEY (`id_matricula`,`id_empleado`),
   ADD KEY `conduce_ibfk_2` (`id_empleado`);
 
 --
@@ -419,15 +437,12 @@ ALTER TABLE `vehiculo`
 --
 
 --
-<<<<<<< HEAD
-=======
 -- AUTO_INCREMENT de la tabla `almacen`
 --
 ALTER TABLE `almacen`
   MODIFY `id_almacen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
->>>>>>> 7d0a31440c35cba4c0865310bee07bcd2599288b
 -- AUTO_INCREMENT de la tabla `departamento`
 --
 ALTER TABLE `departamento`
@@ -437,32 +452,26 @@ ALTER TABLE `departamento`
 -- AUTO_INCREMENT de la tabla `empleado`
 --
 ALTER TABLE `empleado`
-  MODIFY `id_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `localidad`
 --
 ALTER TABLE `localidad`
   MODIFY `id_localidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
-<<<<<<< HEAD
-=======
 
 --
 -- AUTO_INCREMENT de la tabla `lote`
 --
 ALTER TABLE `lote`
-  MODIFY `id_lote` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
->>>>>>> 7d0a31440c35cba4c0865310bee07bcd2599288b
+  MODIFY `id_lote` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `paquete`
 --
 ALTER TABLE `paquete`
-  MODIFY `id_paquete` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-  ALTER TABLE `almacen`
-  MODIFY `id_almacen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-ALTER TABLE `lote`
-  MODIFY `id_lote` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_paquete` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- Restricciones para tablas volcadas
 --
@@ -484,7 +493,7 @@ ALTER TABLE `asignado`
 -- Filtros para la tabla `conduce`
 --
 ALTER TABLE `conduce`
-  ADD CONSTRAINT `conduce_ibfk_1` FOREIGN KEY (`id_vheiculo`) REFERENCES `vehiculo` (`matricula`),
+  ADD CONSTRAINT `conduce_ibfk_1` FOREIGN KEY (`id_matricula`) REFERENCES `vehiculo` (`matricula`),
   ADD CONSTRAINT `conduce_ibfk_2` FOREIGN KEY (`id_empleado`) REFERENCES `empleado` (`id_empleado`);
 
 --

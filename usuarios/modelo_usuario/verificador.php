@@ -42,7 +42,8 @@ if (isset($valor["0"]) && isset($valor["1"])) {
             if ($linea['email'] === $usuario && password_verify($password, $login['password']) === true) {
 
 
-                $usu_sql = "SELECT * FROM empleado WHERE email='$usuario'";
+                $usu_sql = "SELECT * FROM empleado WHERE email='$usuario'
+                ";
 
                 $result_usu = mysqli_query($conn->conexion(), $usu_sql);
                 $linea_usu = mysqli_fetch_assoc($result_usu);
@@ -55,21 +56,21 @@ if (isset($valor["0"]) && isset($valor["1"])) {
                 echo $encryptado;
                 exit();
             } else {
-
-                header("Location:http://localhost/Proyecto_Cloudware/login.html?error=Incorect User name or password"); //si la password esta incorrecta nos devuelve al login
-
+                header('content-type: application/json');
+                $error = json_encode("Usuario o contraseña incorrectos"); //si la password esta incorrecta nos devuelve al login
+                echo $error;    
                 exit();
             }
         } else {
             header('content-type: application/json');
-            json_encode("Incorect User name or password");
+            $error = json_encode("Usuario o contraseña incorrectos");
             echo $error;
             exit();
         }
     }
 } else {
-
-    header("Location:http://localhost/Proyecto_Cloudware/login.html"); //si falta la password nos devuelve a login
-
+    header('content-type: application/json');
+    $error = json_encode("Usuario o contraseña no insertados"); //si falta la password nos devuelve a login
+    echo $error;    
     exit();
 }

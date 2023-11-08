@@ -23,7 +23,7 @@ switch ($op) {
         $login = array($email, $password);
         $valor = array($op, $persona, $login);
 
-        $L = llamadoDeAPI("PUT", "http://127.0.0.1//Proyecto_Cloudware/usuarios/modelo_usuario/REST_usuario.php", $valor);
+        $L = llamadoDeAPI("PUT", "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/usuarios/modelo_usuario/REST_usuario.php", $valor);
 
         break;
 
@@ -49,7 +49,7 @@ switch ($op) {
         $login = array($email, $password, $email_viejo);
         $valor = array($persona, $login);
 
-        $L = llamadoDeAPI("POST", "http://127.0.0.1//Proyecto_Cloudware/usuarios/modelo_usuario/REST_usuario.php", $valor);
+        $L = llamadoDeAPI("POST", "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/usuarios/modelo_usuario/REST_usuario.php", $valor);
         echo "<br> Proyecto_CloudwareProyecto_Cloudware";
         break;
 
@@ -59,7 +59,7 @@ switch ($op) {
         foreach ($id as $fila) {
             $asignar = array($matricula, $fila);
             $valor = array($op, $asignar);
-            $L = llamadoDeAPI("PUT", "http://127.0.0.1//Proyecto_Cloudware/usuarios/modelo_usuario/REST_usuario.php", $valor);
+            $L = llamadoDeAPI("PUT", "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/usuarios/modelo_usuario/REST_usuario.php", $valor);
         }
 
         break;
@@ -70,7 +70,7 @@ switch ($op) {
         foreach ($id as $fila) {
             $asignar = array($almacen, $fila);
             $valor = array($op, $asignar);
-            $L = llamadoDeAPI("PUT", "http://127.0.0.1//Proyecto_Cloudware/usuarios/modelo_usuario/REST_usuario.php", $valor);
+            $L = llamadoDeAPI("PUT", "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/usuarios/modelo_usuario/REST_usuario.php", $valor);
         }
 
         break;
@@ -79,9 +79,9 @@ switch ($op) {
         $id = array($_POST['id']);
         var_dump($id);
 
-        $L = llamadoDeAPI("DELETE", "http://127.0.0.1//Proyecto_Cloudware/usuarios/modelo_usuario/REST_usuario.php", $id);
+        $L = llamadoDeAPI("DELETE", "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/usuarios/modelo_usuario/REST_usuario.php", $id);
 
         break;
 }
-header("Location:http://localhost/Proyecto_Cloudware/index.php?Usuarios");
+header("Location:http://" . $_SERVER["HTTP_HOST"] . "/Proyecto_Cloudware/index.php?Usuarios");
 ?>

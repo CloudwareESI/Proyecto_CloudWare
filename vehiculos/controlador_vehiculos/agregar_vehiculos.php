@@ -14,7 +14,11 @@ switch ($op) {
 
         $vehiculos = array($matricula, $estado, $modelo, $rol);
 
-        $L = llamadoDeAPI("PUT", "http://127.0.0.1//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_vehiculos.php", $vehiculos);
+        $L = llamadoDeAPI(
+            "PUT",
+            "http://127.0.0.1//".$_SERVER["HTTP_HOST"]."/vehiculos/modelo_vehiculos/REST_vehiculos.php",
+            $vehiculos
+        );
 
         break;
 
@@ -30,15 +34,20 @@ switch ($op) {
 
         $vehiculos = array($estado, $modelo, $rol, $matricula_vieja);
 
-        $L = llamadoDeAPI("POST", "http://127.0.0.1//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_vehiculos.php", $vehiculos);
-
-        echo "<br> Proyecto_CloudwareProyecto_Cloudware";
+        $L = llamadoDeAPI(
+            "POST",
+            "http://127.0.0.1//".$_SERVER["HTTP_HOST"]."/vehiculos/modelo_vehiculos/REST_vehiculos.php",
+            $vehiculos
+        );
         break;
 
     case 'eliminar':
-        echo "<br> Proyecto_Cloudware ".$_POST["matricula"] ;
         $id = array($_POST["matricula"]);
-        $L = llamadoDeAPI("DELETE", "http://127.0.0.1//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_vehiculos.php", $id);
+        $L = llamadoDeAPI(
+            "DELETE",
+            "http://127.0.0.1//".$_SERVER["HTTP_HOST"]."/vehiculos/modelo_vehiculos/REST_vehiculos.php",
+            $id
+        );
 
         break;
 
@@ -46,6 +55,6 @@ switch ($op) {
         # code...
         break;
 }
-header("Location:http://localhost/Proyecto_Cloudware/index.php?Camiones");
+header("Location:http://".$_SERVER["HTTP_HOST"]."/Proyecto_Cloudware/index.php?Camiones");
 
 ?>

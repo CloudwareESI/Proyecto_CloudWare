@@ -3,6 +3,7 @@ include "config.php";
 
 class base_de_datos {
 
+
 public $sname = "localhost";
 
 public $unmae = "root";

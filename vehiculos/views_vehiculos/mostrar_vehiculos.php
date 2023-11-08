@@ -2,9 +2,11 @@
 
 $data = file_get_contents("php://input");
 $valor = json_decode($data, true);
+
+$camiones = $valor[0];
+
 $x = 0;
-var_dump($valor);
-if ($valor == null) {
+if ($camiones == null) {
     echo "ERROR JSON VACIO";
 } else {
     echo "<script src='Js/popUp.js'></script>
@@ -15,12 +17,18 @@ if ($valor == null) {
     <thead>
     <tr>
     <th>Matricula</th> <th>Modelo</th> 
-    <th>Estado</th> <th>Rol</th> 
-    <th>Modificar</th> 
-    <th>Eliminar</th> 
-    <th>Seleccionar</th> </tr>
+    <th>Estado</th> <th>Rol</th>";
+    if ($valor[1] == "0") {
+?>
+        <th>Modificar</th>
+        <th>Eliminar</th>
+        <?php
+    }
+
+
+    echo "<th>Seleccionar</th> </tr>
     </thead><tbody>";
-    foreach ($valor as $fila) {
+    foreach ($camiones as $fila) {
         echo '<tr>
     <td>' . $fila['matricula'] . '</td>  
     <td>' . $fila['modelo'] . '</td>
@@ -53,118 +61,128 @@ if ($valor == null) {
                 echo "N/A";
                 break;
         }
-?>
-        </td>
-        <td>
-            <button class="abrir" data-index="modificar<? echo $x; ?>"><i class="fas fa-wrench"></i></button>
+        if ($valor[1] == "0") {
+        ?>
+            </td>
+            <td>
+                <button class="abrir" data-index="modificar<? echo $x; ?>"><i class="fas fa-wrench"></i></button>
 
-            <div class="contenedorModal" data-index="modificar<? echo $x; ?>">
-                <div class="modal">
-                    <?php
-                    $variables = $valor[$x]; ?>
-                    <div class="contenedorFormulario">
-                        <form action="vehiculos/controlador_vehiculos/agregar_vehiculos.php" method="post">
+                <div class="contenedorModal" data-index="modificar<? echo $x; ?>">
+                    <div class="modal">
+                        <?php
+                        $variables = $camiones[$x]; ?>
+                        <div class="contenedorFormulario">
+                            <form class="formBase" action="vehiculos/controlador_vehiculos/agregar_vehiculos.php" method="post">
 
-                            <div class="formulario">
-                                <h2>Modificacion de datos</h2>
+                                <div class="formulario vertical">
+                                    <h2>Modificacion de datos</h2>
 
-                                <input type="hidden" name="op" value="modificar">
-                                <input type="hidden" name="matricula_vieja" value="<?= $variables['matricula'] ?>">
-                                <div class="formularioModificar">
-                                    <?= "<p>Matricula actual: " . $variables['matricula'] . "</p>" ?>
-                                    <label for="matricula">Nueva matricula:</label>
-                                    <input type="text" name="matricula"><br>
+                                    <input type="hidden" name="op" value="modificar">
+                                    <input type="hidden" name="matricula_vieja" value="<?= $variables['matricula'] ?>">
+                                    <div class="formularioModificar">
+                                        <?= "<p>Matricula actual: " . $variables['matricula'] . "</p>" ?>
+                                        <label for="matricula">Nueva matricula:</label>
+                                        <input type="text" name="matricula"><br>
+                                    </div>
+                                    <div class="formularioModificar">
+                                        <?php echo "<p>Estado actual: ";
+                                        switch ($variables['estado']) {
+                                            case '1':
+                                                echo "Detenido";
+                                                break;
+                                            case '0':
+                                                echo "En marcha";
+                                                break;
+                                            case '2':
+                                                echo "Dañado";
+                                                break;
+                                        }
+                                        echo "</p>"; ?>
+
+
+                                        <label for="estado">Nuevo estado:</label>
+                                        <select id="selectCamion" name="estado">
+                                            <option value="0">
+                                                Detenido
+                                            </option>
+                                            <option value="1">
+                                                En marcha
+                                            </option>
+                                            <option value="2">
+                                                Dañado
+                                            </option>
+                                        </select>
+                                    </div>
+
+                                    <div class="formularioModificar">
+                                        <?= "<p>Modelo actual: " .
+                                            $variables['modelo'] .
+                                            "</p>" ?>
+
+                                        <label for="modelo">Nuevo modelo:</label>
+
+                                        <input type="text" name="modelo"><br><br>
+
+
+                                        <?php echo "<p>Rol actual: ";
+                                        switch ($variables['rol']) {
+                                            case '1':
+                                                echo "Camion";
+                                                break;
+                                            case '2':
+                                                echo "Camioneta";
+                                                break;
+                                            default:
+                                                echo "N/A";
+                                                break;
+                                        }
+
+                                        echo "</p>" ?>
+                                    </div>
+                                    <div class="formularioModificar">
+                                        <label for="rol">Nuevo Rol:</label>
+                                        <select name="rol">
+                                            <option value="1">
+                                                Camion
+                                            </option>
+                                            <option value="2">
+                                                Camioneta
+                                            </option>
+                                        </select>
+                                    </div>
+
                                 </div>
-                                <div class="formularioModificar">
-                                    <?php echo "<p>Estado actual: ";
-                                    switch ($variables['estado']) {
-                                        case '1':
-                                            echo "Detenido";
-                                            break;
-                                        case '0':
-                                            echo "En marcha";
-                                            break;
-                                        case '2':
-                                            echo "Dañado";
-                                            break;
-                                    }
-                                    echo "</p>"; ?>
-
-
-                                    <label for="estado">Nuevo estado:</label>
-                                    <select id="selectCamion" name="estado">
-                                        <option value="0">
-                                            Detenido
-                                        </option>
-                                        <option value="1">
-                                            En marcha
-                                        </option>
-                                        <option value="2">
-                                            Dañado
-                                        </option>
-                                    </select>
-                                </div>
-
-                                <div class="formularioModificar">
-                                    <?= "<p>Modelo actual: " .
-                                        $variables['modelo'] .
-                                        "</p>" ?>
-
-                                    <label for="modelo">Nuevo modelo:</label>
-
-                                    <input type="text" name="modelo"><br><br>
-
-
-                                    <?php echo "<p>Rol actual: ";
-                                    switch ($variables['rol']) {
-                                        case '1':
-                                            echo "Camion";
-                                            break;
-                                        case '2':
-                                            echo "Camioneta";
-                                            break;
-                                        default:
-                                            echo "N/A";
-                                            break;
-                                    }
-
-                                    echo "</p>" ?>
-                                </div>
-                                <div class="formularioModificar">
-                                    <label for="rol">Nuevo Rol:</label>
-                                    <select name="rol">
-                                        <option value="1">
-                                            Camion
-                                        </option>
-                                        <option value="2">
-                                            Camioneta
-                                        </option>
-                                    </select>
-                                </div>
-                                <div class="btn">
+                                <div class="contenedorBtn">
+                                    <button id="btn" type="button" class="cerrar">Cancelar</button>
                                     <input id="btn" type="submit" value="Actualizar">
                                 </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
+
+
+
+
                     </div>
-                    <button class="cerrar">Cancelar</button>
-
                 </div>
-            </div>
 
 
-        <td>
+            <td>
 
-            <button type="button" class="abrir" data-index="eliminar<? echo $x; ?>"><i class="fas fa-trash"></i></button>
-            <div class="contenedorModal" data-index="eliminar<? echo $x; ?>">
-                <div class="modal">
-                    <?php
-                    $variables = $valor[$x];
-                    echo '<h2>Eliminar camion ' . $variables['matricula'] . '</h2>
+                <button 
+                type="button" 
+                class="abrir" data-index="eliminar<? echo $x; ?>">
+                <i class="fas fa-trash"></i>
+                </button>
+                <div class="contenedorModal" data-index="eliminar<? echo $x; ?>">
+                    <div class="modal">
+
+                        <?php
+                        $variables = $camiones[$x];
+                        echo '<h2>Eliminar camion ' . $variables['matricula'] . '</h2><br>
                 <p>¿Esta seguro que desea eliminar al camion ' .
-                        $variables['matricula'] . '?</p>';
+                            $variables['matricula'] . '?</p><br>';
 
-                    echo '
+                        echo '
                 <div class="contenedorBtn">
                 <button class="cerrar">Cancelar</button>
 
@@ -173,19 +191,20 @@ if ($valor == null) {
                     <input type="hidden" name="matricula" value="' . $variables["matricula"] . '">
                     <input id="CONFIRMAR" type="submit" name="CONFIRMAR" class="CONFIRMAR" value="CONFIRMAR" />
                 </form>
-
+ 
             </div>
                 ';
 
-                    ?>
+                        ?>
 
 
+                    </div>
                 </div>
-            </div>
 
-    <?php echo '</td>
+    <?php }
+        echo '</td>
         <td>
-        <a href="http://localhost/Proyecto_Cloudware/vehiculos/views_vehiculos/vehiculo.php?matricula='
+        <a href="http://' . $_SERVER["HTTP_HOST"] . '/Proyecto_Cloudware/vehiculos/views_vehiculos/vehiculo.php?matricula='
             . $fila['matricula'] . '&rol='
             . $fila['rol'] . '&estado='
             . $fila['estado'] . '
@@ -205,8 +224,8 @@ if ($valor == null) {
         <div class="modal">
             <div class="contenedorFormulario">
 
-                <div class="formulario">
-                    <form action="vehiculos/controlador_vehiculos/agregar_vehiculos.php" method="post">
+                <div class="formulario vertical">
+                    <form class="formBase" action="vehiculos/controlador_vehiculos/agregar_vehiculos.php" method="post">
                         <h2>Agregar datos</h2>
                         <br>
                         <br>
@@ -250,26 +269,35 @@ if ($valor == null) {
                             </select>
                         </div>
 
-                        <div class="btn">
+                        <div class="contenedorBtn">
+                            <button id="btn" type="button" class="cerrar">Cancelar</button>
                             <input id="btn" type="submit" value="Actualizar">
                         </div>
+
+                    </form>
                 </div>
             </div>
 
-            <div class="contenedorBtn">
-                <button class="cerrar">Cancelar</button>
 
-            </div>
+
+
+
+
+
 
 
 
         </div>
     </div>
 
-
- <div class="btn">
-        <button type="button" id="btnTabla" class="abrir" data-index="eliminar<? echo $x; ?>">
-            Agregar
-</div>
+    <?php
+    if ($valor[1] == "0") {
+    ?>
+        <div class="btn">
+            <button type="button" id="btnTabla" class="abrir" data-index="eliminar<? echo $x; ?>">
+                Agregar
+        </div>
+    <?php
+    } ?>
     </div>
     </div>

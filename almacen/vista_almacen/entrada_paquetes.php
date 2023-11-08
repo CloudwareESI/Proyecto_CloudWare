@@ -20,7 +20,7 @@ if ($valor == null) {
                     <?php
                     $variables = $valor[$x]; ?>
                     <div class="formulario">
-                        <form action="almacen/controlador_almacen/agregar_paquetes.php" method="post">
+                        <form class="formBase" action="almacen/controlador_almacen/agregar_paquetes.php" method="post">
                             <h2>Modificacion de datos</h2>
 
                             <input type="hidden" name="op" value="modificar">
@@ -28,37 +28,42 @@ if ($valor == null) {
                             <input type="hidden" name="fecha_recibido" value="<?= $fila['fecha_recibido'] ?>">
                             <input type="hidden" name="fecha_entrega" value="<?= $fila['fecha_entrega'] ?>">
                             <input type="hidden" name="id_lote" value="<?= $fila['id_lote_portador'] ?>">
-
+                            <br>
                             <div class="formularioModificar">
+
                                 <?= "<p>Nombre actual: " . $fila['nombre_paquete'] . "</p>" ?>
-                                <br>
+
                                 <label for="matricula">Nombre de paquete:</label>
                                 <input type="text" name="nombre_paquete">
                             </div>
-
+                            <br>
                             <div class="formularioModificar">
                                 <?= "<p>dimenciones actuales: " . $fila['dimenciones'] . "</p>" ?>
-                                <br>
+
                                 <label for="dimenciones">Nuevas dimenciones:</label>
                                 <input type="text" name="dimenciones">
                             </div>
+                            <br>
                             <div class="formularioModificar">
                                 <?= "<p>Peso actual: " . $fila['peso'] . "</p>" ?>
-                                <br>
+
                                 <label for="peso">Nuevo peso:</label>
                                 <input type="text" name="peso">
                             </div>
+                            <br>
                             <div class="formularioModificar">
                                 <?= "<p>Fragil?: " . $fila['fragil'] . "</p>" ?>
-                                <br>
+
                                 <label for="peso">0 para no 1 para si:</label>
                                 <input type="number" name="fragil">
                             </div>
+                            <br>
                             <div class="formularioModificar">
                                 <label for="Localidad destino">Localidad:</label>
-
+                                <br>
                                 <select name="localidad_destino">
-                                    <br>
+
+
                                     <?php
                                     foreach ($valor["4"] as $localidad) {
                                         echo "<option value='" . $localidad["id_localidad"] . "'>"
@@ -69,14 +74,16 @@ if ($valor == null) {
                                 </select>
 
                             </div>
-                            <div class="btn">
-
+                            <br>
+                            <div class="contenedorBtn">
+                                <button type="button" class="cerrar">Cancelar</button>
                                 <input id="btn" type="submit" value="Actualizar">
-
                             </div>
+                            <br>
                         </form>
+
                     </div>
-                    <button type="button" class="cerrar">Cancelar</button>
+
 
                 </div>
             </div>
@@ -88,9 +95,9 @@ if ($valor == null) {
                     $variables = $valor["0"][$x];
                     echo '<h2>Eliminar el paquete N°' . $variables['id_paquete'] . ' ' .
                         $variables['nombre_paquete']
-                        . '</h2>
+                        . '</h2><br>
                                     <p>¿Esta seguro que desea eliminar al paquete ' .
-                        $variables['id_paquete'] . '?</p>';
+                        $variables['id_paquete'] . '?</p><br>';
 
                     echo '
                         <div class="contenedorBtn">
@@ -197,7 +204,7 @@ if ($valor == null) {
                 Lotes para enviar a central.
             </h3>
             <?php $x = 0;
-            var_dump($x);
+
             foreach ($valor["1"] as $fila) {
 
                 if (isset($fila["fecha_de_entrega"])) {
@@ -210,9 +217,9 @@ if ($valor == null) {
                                 <?php
 
                                 echo '<h2>Eliminar el lote N°' . $fila['id_lote']
-                                    . '</h2>
+                                    . '</h2><br>
                                     <p>¿Esta seguro que desea eliminar al lote ' .
-                                    $fila['id_lote'] . '?</p>';
+                                    $fila['id_lote'] . '?</p><br>';
 
                                 echo '
                         <div class="contenedorBtn">
@@ -236,6 +243,7 @@ if ($valor == null) {
                     }
                 }
             }
+
             $y = 0;
             ?>
             <div class="tabla">
@@ -271,11 +279,12 @@ if ($valor == null) {
                                         '">
                 </td>
 
-                <td> '; ?>
+                <td> ';
+                        ?>
                                     <button type="button" class="abrir" data-index="eliminarPqt<? echo $y; ?>"><i class="fas fa-trash"></i></button>
 
                     <?php echo '
-            </td>
+                </td>
                 </tr>
             
                 ';
@@ -298,9 +307,9 @@ if ($valor == null) {
                         echo '</select>
             <br>
             <input type="hidden" id="opcion" name="opcion" value="lote">
-            <div class="btn">
-            <input id="btnTabla" class="btn" type="submit" value="Cargar en camion">
-            </div>
+          
+            <input id="btnSelectBoton" class="btn" type="submit" value="Cargar en camion">
+         
             </form>';
                     }
                     ?>
@@ -317,55 +326,64 @@ if ($valor == null) {
 
                         <form action="almacen/controlador_almacen/agregar_paquetes.php" method="post">
                             <h2>Agregar datos</h2>
-                            <div class="formulario">
-                                <input type="hidden" name="op" value="agregar">
-                                <input type="hidden" name="id_almacen" value="N/A">
-                                <input type="hidden" name="id_almacen" value=<?php $_GET = "id_almacen" ?>>
+                            <div class="formulario formBase">
+                                <div class="formularioPopUp1">
+                                    <input type="hidden" name="op" value="agregar">
+                                    <input type="hidden" name="id_almacen" value="N/A">
+                                    <input type="hidden" name="id_almacen" value=<?php $_GET = "id_almacen" ?>>
 
-                                <div class="formularioModificar">
-                                    <label for="nombre_paquete">Nombre:</label>
-                                    <input type="text" name="nombre_paquete">
+                                    <div class="formularioModificar">
+                                        <label for="nombre_paquete">Nombre:</label>
+                                        <input type="text" name="nombre_paquete">
+                                    </div>
+                                    <div class="formularioModificar">
+                                        <label for="dimenciones">Dimenciones:</label>
+                                        <input type="text" name="dimenciones">
+                                    </div>
+                                    <div class="formularioModificar">
+                                        <label for="peso">Peso:</label>
+                                        <input type="text" name="peso">
+                                    </div>
+
+                                    <div class="btnEntrada1">
+                                        <button id="btn" type="button" class="cerrar">Cancelar</button>
+                                    </div>
                                 </div>
-                                <div class="formularioModificar">
-                                    <label for="dimenciones">Dimenciones:</label>
-                                    <input type="text" name="dimenciones">
-                                </div>
-                                <div class="formularioModificar">
-                                    <label for="peso">Peso:</label>
-                                    <input type="text" name="peso">
-                                </div>
-                                <div class="formularioModificar">
-                                    <?= "<p>Fragil?:</p>" ?>
-                                    <label for="peso">0 para no 1 para si:</label>
-                                    <input type="number" name="fragil">
-                                </div>
-                                <div class="formularioModificar">
-                                    <label for="Calle destino">Calle_destino:</label>
-                                    <input type="text" name="calle_destino">
-                                </div>
-                                <div class="formularioModificar">
-                                    <label for="Localidad destino">Localidad:</label>
-                                    <select name="localidad_destino">
-                                        <?php
-                                        foreach ($valor["4"] as $fila) {
-                                            echo "<option value='" . $fila["id_localidad"] . "'>"
-                                                . $fila["nombre_localidad"] . " " . $fila["nombre_departamento"] .
-                                                "</option>";
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
-                                <div class="btn">
-                                    <input id="btn" type="submit" value="Actualizar">
+                                <div class="formularioPopUp2">
+                                    <div class="formularioModificar">
+                                        <?= "<p>Fragil?:</p>" ?>
+                                        <label for="peso">0 para no 1 para si:</label>
+                                        <input type="number" name="fragil">
+                                    </div>
+                                    <div class="formularioModificar">
+                                        <label for="Calle destino">Calle_destino:</label>
+                                        <input type="text" name="calle_destino">
+                                    </div>
+                                    <div class="formularioModificar">
+                                        <label for="Localidad destino">Localidad:</label>
+                                        <select name="localidad_destino">
+                                            <?php
+                                            foreach ($valor["4"] as $fila) {
+                                                echo "<option value='" . $fila["id_localidad"] . "'>"
+                                                    . $fila["nombre_localidad"] . " " . $fila["nombre_departamento"] .
+                                                    "</option>";
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+
+                                    <div class="btnEntrada">
+                                        <input id="btn" type="submit" value="Actualizar">
+                                    </div>
+
                                 </div>
                             </div>
+
+
                         </form>
                     </div>
 
-                    <div class="contenedorBtn">
-                        <button type="button" class="cerrar">Cancelar</button>
 
-                    </div>
 
 
 

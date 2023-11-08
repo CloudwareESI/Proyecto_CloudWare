@@ -24,9 +24,9 @@ if ($valor == null) {
                     <?php
 
                     echo '<h2>Eliminar el lote N°' . $fila['id_lote']
-                        . '</h2>
+                        . '</h2><br>
                                     <p>¿Esta seguro que desea eliminar al lote ' .
-                        $fila['id_lote'] . '?</p>';
+                        $fila['id_lote'] . '?</p><br>';
 
                     echo '
                         <div class="contenedorBtn">
@@ -93,7 +93,8 @@ if ($valor == null) {
                 if ($valor["0"] == "1") {
 
                     echo '<br>';
-                    echo '<select name="matricula">';
+                    echo ' <div class="selectBoton">
+                    <select name="matricula">';
                     foreach ($valor["2"] as $fila) {
 
                         if ($fila["rol"] == "1") {
@@ -107,8 +108,8 @@ if ($valor == null) {
                     echo '</select>
         <input type="hidden" name="opcion" value="lote">
         <br>
-        <div class="btn">
-    <input id="btn" class="btn" type="submit" value="Cargar">
+       
+    <input id="btnSelectBoton3" type="submit" value="Cargar">
     </div>
     </form>
     
