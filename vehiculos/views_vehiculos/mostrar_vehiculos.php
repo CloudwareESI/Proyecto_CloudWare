@@ -168,10 +168,8 @@ if ($camiones == null) {
 
             <td>
 
-                <button 
-                type="button" 
-                class="abrir" data-index="eliminar<? echo $x; ?>">
-                <i class="fas fa-trash"></i>
+                <button type="button" class="abrir" data-index="eliminar<? echo $x; ?>">
+                    <i class="fas fa-trash"></i>
                 </button>
                 <div class="contenedorModal" data-index="eliminar<? echo $x; ?>">
                     <div class="modal">
@@ -205,10 +203,7 @@ if ($camiones == null) {
         echo '</td>
         <td>
         <a href="http://' . $_SERVER["HTTP_HOST"] . '/Proyecto_Cloudware/vehiculos/views_vehiculos/vehiculo.php?matricula='
-            . $fila['matricula'] . '&rol='
-            . $fila['rol'] . '&estado='
-            . $fila['estado'] . '
-        ">
+            . $fila['matricula'] . '&rol=' . $fila['rol'] . '&estado=' . $fila['estado'] . '">
         <button>  <i class="fa-solid fa-check"></i></button></a>
         </td>
         </tr>';

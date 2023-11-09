@@ -313,16 +313,44 @@ function del_almacen_almacen($id_a)
 function entrada_paquetes($rol)
 {
 
-    $paquetes = llamadoDeAPI(
+    $paquetes_todos = json_decode(llamadoDeAPI(
         "GET",
         "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php",
         NULL
-    );
-    $lotes = llamadoDeAPI(
+    ), true);
+    $x = 0;
+
+    $paquetes = array();
+    foreach ($paquetes_todos as $value) {
+        if (!isset($value["id_lote_portador"])) {
+            if (!isset($value["fecha_recibido"])) {
+                echo "<br>";
+                $paquetes[$x] = $value;
+                $x++;
+            }
+        }
+    }
+
+
+    $lotes_todos = json_decode(llamadoDeAPI(
         "GET",
         "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/almacen/modelo_almacen/REST_lotes.php",
         NULL
-    );
+    ), true);
+
+    $x = 0;
+    $lotes = array();
+    foreach ($lotes_todos as $value) {
+        if (!isset($value["fecha_transporte"])) {
+            if (!isset($value["fecha_de_entrega"])) {
+                if ($value["id_almacen"] == "1") {
+                    echo "<br>";
+                    $lotes[$x] = $value;
+                    $x++;
+                }
+            }
+        }
+    }
 
     $vehiculos = llamadoDeAPI(
         "GET",
@@ -336,8 +364,8 @@ function entrada_paquetes($rol)
     );
 
     $valor = array(
-        json_decode($paquetes, true),
-        json_decode($lotes, true),
+        $paquetes,
+        $lotes,
         json_decode($vehiculos, true),
         $rol,
         json_decode($localidades, true)

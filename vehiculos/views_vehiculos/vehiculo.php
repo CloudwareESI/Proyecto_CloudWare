@@ -13,7 +13,6 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
     $carga = obtener_carga($_GET['matricula'], $vehiculo['rol']);
 
     $destino = $carga['3'];
-    var_dump($destino);
 
 ?>
     <!DOCTYPE html>
@@ -43,7 +42,7 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
             $(document).ready(function() {
                 $("#mostrarTabla").click(function() {
                     $("#tablaCarga").fadeIn();
-                    $("#btn").fadeIn();
+                    $("#btnVehiculo").fadeIn();
                 });
             });
 
@@ -135,8 +134,9 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
                                     case '1':
                             ?>
                                         <input type="hidden" name="opcion" value="lote">
-                                        <input type="hidden" name="rol" value="<? echo $_GET['rol']; ?>">
-                                        <input type="hidden" name="matricula" value="<? echo $_GET['matricula']; ?>">
+                                        <input type="hidden" name="rol" value="<?= $_GET['rol']; ?>">
+                                        <input type="hidden" name="matricula" value="<?= $_GET['matricula']; ?>">
+                                        <input type="hidden" name="estado" value="<?= $_GET['estado']; ?>">
 
                                         <thead>
                                             <tr>

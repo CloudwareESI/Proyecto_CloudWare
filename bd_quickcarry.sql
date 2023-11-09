@@ -37,41 +37,11 @@ CREATE TABLE `almacen` (
 --
 -- Volcado de datos para la tabla `almacen`
 --
-
-INSERT INTO `almacen` (`id_almacen`, `calle`, `chapa`, `id_localidad_almacen`) VALUES
-(1, 'a', 1111, 1),
-(2, 'a', 1101, 3),
-(3, 'd', 5555, 37),
-(4, 'f', 7777, 30),
-(5, 'e', 8896, 22);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `asignado`
---
-
-CREATE TABLE `asignado` (
-  `id_almacen` int(11) NOT NULL,
-  `id_empleado` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `conduce`
---
-
-CREATE TABLE `conduce` (
-  `id_matricula` varchar(7) NOT NULL,
-  `id_empleado` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
 --
 -- Estructura de tabla para la tabla `departamento`
 --
+
+
 
 CREATE TABLE `departamento` (
   `id_departamento` int(11) NOT NULL,
@@ -102,6 +72,75 @@ INSERT INTO `departamento` (`id_departamento`, `nombre_departamento`) VALUES
 (17, 'Soriano'),
 (18, 'Tacuarembó'),
 (19, 'Treinta y Tres');
+
+CREATE TABLE `localidad` (
+  `id_localidad` int(11) NOT NULL,
+  `nombre_localidad` varchar(255) NOT NULL,
+  `id_dep` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `localidad`
+--
+
+INSERT INTO `localidad` (`id_localidad`, `nombre_localidad`, `id_dep`) VALUES
+(1, 'Centro', 10),
+(2, 'Union', 10),
+(3, 'Colonia del sacramento', 4),
+(22, 'Artigas', 1),
+(23, 'Canelones', 2),
+(24, 'Melo', 3),
+(25, 'Durazno', 5),
+(26, 'Trinidad', 6),
+(27, 'Florida', 7),
+(28, 'Minas', 8),
+(29, 'Maldonado', 9),
+(30, 'Paysandú', 11),
+(31, 'Fray Bentos', 12),
+(32, 'Rivera', 13),
+(33, 'Rocha', 14),
+(34, 'Salto', 15),
+(35, 'San José de Mayo', 16),
+(36, 'Mercedes', 17),
+(37, 'Tacuarembó', 18),
+(38, 'Treinta y Tres', 19);
+
+
+INSERT INTO `almacen` (`id_almacen`, `calle`, `chapa`, `id_localidad_almacen`) VALUES
+(1, 'Bulevar General Artigas', 1825, 1),
+(2, 'Domingo Baqué', 465, 3),
+(3, 'Doctor Domingo Catalina', 130, 37),
+(4, 'Bulevar General Artigas', 770, 30),
+(5, 'Wilson Ferreira Aldunate', 340, 22);
+
+
+
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `asignado`
+--
+
+CREATE TABLE `asignado` (
+  `id_almacen` int(11) NOT NULL,
+  `id_empleado` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `conduce`
+--
+
+CREATE TABLE `conduce` (
+  `id_matricula` varchar(7) NOT NULL,
+  `id_empleado` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+
 
 -- --------------------------------------------------------
 
@@ -163,37 +202,6 @@ INSERT INTO `empleado` (`id_empleado`, `email`, `nombre`, `apellido`, `CI`, `nro
 -- Estructura de tabla para la tabla `localidad`
 --
 
-CREATE TABLE `localidad` (
-  `id_localidad` int(11) NOT NULL,
-  `nombre_localidad` varchar(255) NOT NULL,
-  `id_dep` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `localidad`
---
-
-INSERT INTO `localidad` (`id_localidad`, `nombre_localidad`, `id_dep`) VALUES
-(1, 'Centro', 10),
-(2, 'Union', 10),
-(3, 'Colonia del sacramento', 4),
-(22, 'Artigas', 1),
-(23, 'Canelones', 2),
-(24, 'Melo', 3),
-(25, 'Durazno', 5),
-(26, 'Trinidad', 6),
-(27, 'Florida', 7),
-(28, 'Minas', 8),
-(29, 'Maldonado', 9),
-(30, 'Paysandú', 11),
-(31, 'Fray Bentos', 12),
-(32, 'Rivera', 13),
-(33, 'Rocha', 14),
-(34, 'Salto', 15),
-(35, 'San José de Mayo', 16),
-(36, 'Mercedes', 17),
-(37, 'Tacuarembó', 18),
-(38, 'Treinta y Tres', 19);
 
 -- --------------------------------------------------------
 
@@ -211,7 +219,6 @@ CREATE TABLE `login` (
 --
 
 INSERT INTO `login` (`email`, `password`) VALUES
-('', '$2y$10$SO0vvojKlvfzBSlJbnuFFOp9iKv27/7BCgsUDqBxiSvZp4bMcaJL.'),
 ('almacenero23@crecom.com', '$2y$10$./5O8MeFqn0OVgY3S2J0oeMGhdD4JwRp6VGAV/ZT37zrfVMP7Eldq'),
 ('almacenero23@mail.com', '$2y$10$./5O8MeFqn0OVgY3S2J0oeMGhdD4JwRp6VGAV/ZT37zrfVMP7Eldq'),
 ('camionero23@mail.com', '$2y$10$./5O8MeFqn0OVgY3S2J0oeMGhdD4JwRp6VGAV/ZT37zrfVMP7Eldq'),

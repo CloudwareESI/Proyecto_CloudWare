@@ -611,10 +611,8 @@ table tbody tr:last-of-type {
     display: flex;
     flex-direction: column;
 }
-table thead{
-  
 
-}
+table thead {}
 
 .tabla i {
     color: #d2b265;
@@ -719,7 +717,8 @@ table thead{
 #btnSelectBoton5 {
 
     display: flex;
-    margin-left: 73%;;
+    margin-left: 73%;
+    ;
     position: static;
     height: fit-content;
     padding: 6px;
@@ -758,9 +757,11 @@ table thead{
     margin-top: 2px;
 
 }
-#th{
+
+#th {
     border-top: 1px solid #d2b265;
 }
+
 #thRuta1 {
     background-color: #2f2f2f;
     border: 1px solid #d2b265;
@@ -852,15 +853,18 @@ table thead{
     justify-content: space-between;
 
 }
-.btnEntrada{
+
+.btnEntrada {
     display: flex;
     margin-left: 5%;
 }
-.btnEntrada1{
+
+.btnEntrada1 {
     display: flex;
     padding-top: 12%;
     margin-right: 5%;
 }
+
 #abrir {
     background-color: 0;
     border: none;
@@ -1075,13 +1079,41 @@ table thead{
     border-radius: 20px;
 }
 
-.seguimiento .seguir .carga {
+
+.carga1 {
+    padding-top: 5px;
+    height: 12px;
+    border-radius: 20px;
+    background-color: #eae096;
+    animation: seguimiento 2s cubic-bezier(0, 0, 0, 0) infinite;
+}
+
+.carga2 {
+    padding-top: 5px;
+    height: 12px;
+    border-radius: 20px;
+    background-color: #eae096;
+    animation: seguimiento 2s cubic-bezier(0, 0, 0, 0) infinite;
+}
+
+
+.carga3 {
     padding-top: 5px;
     height: 12px;
     border-radius: 20px;
     background-color: #eae096;
     animation: seguimiento 2s cubic-bezier(0, 0, 0, 0)infinite;
 }
+
+.carga4 {
+    padding-top: 5px;
+    height: 12px;
+    border-radius: 20px;
+    background-color: #eae096;
+    animation: seguimiento 2s cubic-bezier(0, 0, 0, 0)infinite;
+}
+
+
 
 @keyframes seguimiento {
     0% {
@@ -1165,8 +1197,8 @@ table thead{
 }
 
 .btnEntrada {
-  display: flex;
-  justify-content: right;
+    display: flex;
+    justify-content: right;
 
 }
 
@@ -1186,7 +1218,7 @@ table thead{
 
 .footer {
 
-    margin-top:18%;
+    margin-top: 18%;
     text-align: center;
     background-color: #24262B;
     padding: 40px;

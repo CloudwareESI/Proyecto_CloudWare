@@ -23,13 +23,13 @@ if ($valor == null) {
                     <div class="formulario">
                         <form class="formBase" action="almacen/controlador_almacen/agregar_paquetes.php" method="post">
                             <h2>Modificacion de datos</h2>
-
+                            <input type="hidden" name="id_almacen" value="<?= $valor["0"] ?>">
                             <input type="hidden" name="op" value="modificar">
                             <input type="hidden" name="id_paquete" value="<?= $fila['id_paquete'] ?>">
                             <input type="hidden" name="fecha_recibido" value="<?= $fila['fecha_recibido'] ?>">
                             <input type="hidden" name="fecha_entrega" value="<?= $fila['fecha_entrega'] ?>">
                             <input type="hidden" name="id_lote" value="<?= $fila['id_lote_portador'] ?>">
-<br>
+                            <br>
                             <div class="formularioModificar">
                                 <?= "<p>Nombre actual: " . $fila['nombre_paquete'] . "</p>" ?>
                                 <br>
@@ -73,7 +73,7 @@ if ($valor == null) {
                                 </select>
 
                             </div>
-                            <br>    
+                            <br>
                             <div class="contenedorBtn">
                                 <button type="button" class="cerrar">Cancelar</button>
                                 <input id="btn" type="submit" value="Actualizar">
@@ -119,6 +119,7 @@ if ($valor == null) {
         <div class="tabla">
             <table>
                 <form action="almacen/controlador_almacen/cargar_carga.php" method="post">
+
                     <thead>
                         <tr>
                             <th>Codigo</th>
@@ -179,10 +180,10 @@ if ($valor == null) {
                         }
 
                         echo "</tbody></table>
-                    </div></div>";
+                            </div></div>";
 
                         echo '
-        <input type="hidden" name="id_almacen" value="' . $valor["0"] . '">';
+                            <input type="hidden" name="id_almacen" value="' . $valor["0"] . '">';
                         ?>
                         <div class="tablasPaqueteLote">
                             <label for="cargar_paquete">Cargar paquete</label>
@@ -232,11 +233,11 @@ if ($valor == null) {
 
                         ?>
 
-                     
-                            <input id="btnSelectBoton3" type="submit" value="Ejecutar">
-                      
-                        </div>
-                </form>
-            <?php
-        }
-            ?>
+                        <input type="hidden" name="id_almacen" value="<?php echo $valor["0"]; ?>">
+                        <input id="btnSelectBoton3" type="submit" value="Ejecutar">
+
+        </div>
+        </form>
+    <?php
+}
+    ?>

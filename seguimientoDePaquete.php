@@ -44,7 +44,7 @@ $fechaEntrega = isset($paquete["fecha_entrega"]) ? json_encode($paquete["fecha_e
         <i id="barra1" class="fa-solid fa-house-laptop"></i>
         <div class="seguimiento">
             <div class="seguir">
-                <div class="carga">
+                <div class="carga1">
                 </div>
             </div>
         </div>
@@ -52,7 +52,7 @@ $fechaEntrega = isset($paquete["fecha_entrega"]) ? json_encode($paquete["fecha_e
         <i id="barra2" class="fa-solid fa-truck-arrow-right"></i>
         <div class="seguimiento">
             <div class="seguir">
-                <div class="carga">
+                <div class="carga2">
                 </div>
             </div>
         </div>
@@ -60,7 +60,7 @@ $fechaEntrega = isset($paquete["fecha_entrega"]) ? json_encode($paquete["fecha_e
 
         <div class="seguimiento">
             <div class="seguir">
-                <div class="carga">
+                <div class="carga3">
                 </div>
             </div>
         </div>
@@ -68,7 +68,7 @@ $fechaEntrega = isset($paquete["fecha_entrega"]) ? json_encode($paquete["fecha_e
 
         <div class="seguimiento">
             <div class="seguir">
-                <div class="carga">
+                <div class="carga4">
                 </div>
             </div>
         </div>
@@ -90,7 +90,8 @@ $fechaEntrega = isset($paquete["fecha_entrega"]) ? json_encode($paquete["fecha_e
                 <p id="msjEstado">
                     Su paquete esta en gestion
                 </p>
-                <script src="detener.js"></script>
+
+                <script src="js/carga1.js"></script>
             <?php
                 break;
 
@@ -101,7 +102,7 @@ $fechaEntrega = isset($paquete["fecha_entrega"]) ? json_encode($paquete["fecha_e
                 <p id="msjEstado">
                     Su paquete se encuentra en camino al almacén
                 </p>
-                <script src="detener.js"></script>
+                <script src="js/carga2.js"></script>
             <?php
                 break;
 
@@ -111,7 +112,7 @@ $fechaEntrega = isset($paquete["fecha_entrega"]) ? json_encode($paquete["fecha_e
                 <p id="msjEstado">
                     Su paquete se encuentra en camino al almacén más cercano
                 </p>
-                <script src="detener.js"></script>
+
             <?php
                 break;
 
@@ -121,7 +122,7 @@ $fechaEntrega = isset($paquete["fecha_entrega"]) ? json_encode($paquete["fecha_e
                 <p id="msjEstado">
                     Su paquete se encuentra en camino al almacén más cercano
                 </p>
-                <script src="detener.js"></script>
+
             <?php
                 break;
 
@@ -131,7 +132,7 @@ $fechaEntrega = isset($paquete["fecha_entrega"]) ? json_encode($paquete["fecha_e
                 <p id="msjEstado">
                     Su paquete se encuentra en camino al almacén más cercano
                 </p>
-                <script src="detener.js"></script>
+
             <?php
                 break;
 
@@ -141,7 +142,7 @@ $fechaEntrega = isset($paquete["fecha_entrega"]) ? json_encode($paquete["fecha_e
                 <p id="msjEstado">
                     Su paquete se encuentra en camino a su residencia
                 </p>
-                <script src="detener.js"></script>
+
             <?php
                 break;
 
@@ -150,7 +151,7 @@ $fechaEntrega = isset($paquete["fecha_entrega"]) ? json_encode($paquete["fecha_e
                 <p id="msjEstado">
                     Su paquete a sido entregado
                 </p>
-                <script src="detener.js"></script>
+
         <?php
                 break;
         }
