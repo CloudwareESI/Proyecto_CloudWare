@@ -1074,7 +1074,6 @@ table thead {}
 
 .seguimiento .seguir {
     width: 90%;
-
     border: 2px solid #d2b265;
     border-radius: 20px;
 }
@@ -1112,8 +1111,10 @@ table thead {}
     background-color: #eae096;
     animation: seguimiento 2s cubic-bezier(0, 0, 0, 0)infinite;
 }
-
-
+ 
+.detener-animacion {
+    animation: seguimiento 0s cubic-bezier(0, 0, 0, 0) 1 forwards;
+}
 
 @keyframes seguimiento {
     0% {
@@ -1135,6 +1136,7 @@ table thead {}
 .tituloSeguimiento h1 {
     font-size: 40px;
     color: #d2b265;
+
 }
 
 .tituloSeguimiento h2 {
@@ -1151,37 +1153,60 @@ table thead {}
     padding-top: 0px;
     box-shadow: 0 0 20px #000000;
     border-radius: 20px;
-    width: 51.75vh;
-    height: 50vh;
-    margin: auto 13%;
+    width: 80vh;
+    height: 40vh;
+    margin: auto 30%;
     text-align: justify;
 }
 
 .infoPaquete h1 {
-    font-size: 40px;
+    font-size: 2em;
     color: #d2b265;
+    text-align: center;
+    padding-top: 5%;
+
 }
 
 .infoPaquete p {
     text-transform: none;
+    text-align: center;
+    padding-bottom:3% ;
 }
 
 .cuadroInfo {
-    margin-top: 10%;
-    width: 220px;
-    height: 20vh;
+    display: flex;
     justify-content: center;
-    text-align: justify;
-    background-color: #24262B;
+}
+.cuadroInfo p{
+    border-bottom: 2px solid #d2b265;
+    border-radius: 5px;
+}
 
+}
+.cuadroInfo1 {
+    display: flex;
+    flex-direction: column;
+    margin-right: 15%;
+    position: relative;
+}
+
+.cuadroInfo2 {
+    display: flex;
+    margin-left: 15%;
+    flex-direction: column;
+    position: inherit;
 }
 
 .cuadroInfo h3 {
-    border-bottom: 2px solid #d2b265;
-    border-radius: 5px;
+   
     color: #d2b265;
     font-size: 20px;
 }
+.cuadroInfoDatos{
+    display: flex;
+
+}
+
 
 
 #btn {

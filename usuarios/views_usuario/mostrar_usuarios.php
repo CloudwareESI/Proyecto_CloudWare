@@ -67,11 +67,11 @@ if ($valores["0"] == null) {
             case '2':
                 echo "Camionero";
                 break;
-            case '3':
+            case '4':
                 echo "CRECOM";
                 break;
             default:
-                # code...
+                echo $fila['cargo'];
                 break;
         }
         echo '
@@ -142,7 +142,7 @@ if ($valores["0"] == null) {
                                 </div>
 
                                 <div class="formularioModificar">
-                                     
+
                                     <?= "<p>Insertar nueva contraseña</p>" ?>
 
                                     <label for="apellido">Nueva Contraseña:</label>
@@ -150,9 +150,9 @@ if ($valores["0"] == null) {
                                     <input type="text" name="password">
 
                                 </div>
-                               
+
                                 <div class="formularioModificar">
-                             
+
                                     <?php echo "<p> Cargo actual: ";
                                     switch ($fila['cargo']) {
                                         case '0':
@@ -164,27 +164,44 @@ if ($valores["0"] == null) {
                                         case '2':
                                             echo "Camionero";
                                             break;
-                                        case '3':
+                                        case '4':
                                             echo "CRECOM";
+                                            break;
+                                        default:
+                                            echo $fila['cargo'];
                                             break;
                                     }
                                     echo "</p>"; ?>
 
                                     <label for="cargo">Cargo:</label>
 
-                                    <input type="text" name="cargo">
-
+                                    <select name="cargo">
+                                        <option value="0">
+                                            Admin
+                                        </option>
+                                        <option value="2">
+                                            Almacenero
+                                        </option>
+                                        <option value="3">
+                                            Camionero
+                                        </option>
+                                        <option value="4">
+                                            Crecom
+                                        </option>
+                                    </select>
                                 </div>
+
                             </div>
                         </div>
-                        <div class="contenedorBtn">
-                            <button type="button" class="cerrar">Cancelar</button>
-                            <input id="btn" type="submit" value="Actualizar">
-                        </div>
-
-                    </form>
                 </div>
+                <div class="contenedorBtn">
+                    <button type="button" class="cerrar">Cancelar</button>
+                    <input id="btn" type="submit" value="Actualizar">
+                </div>
+
+                </form>
             </div>
+        </div>
 
 
         </div>
@@ -198,7 +215,7 @@ if ($valores["0"] == null) {
         <button class="abrir" data-index="eliminar<? echo $x; ?>"><i class="fas fa-trash"></i></button>
         <div class="contenedorModal" data-index="eliminar<? echo $x; ?>">
             <div class="modal">
-                
+
                 <?php
                 $variables = $valores["0"][$x];
                 echo '<h2>Eliminar a ' . $variables['nombre'] . ' ' . $variables['apellido'] . '</h2><br>
@@ -265,7 +282,7 @@ if ($valores["0"] == null) {
                             <input type="text" name="email">
                         </div>
                         <div class="formularioModificar">
-                            
+
                             <label for="apellido">Contraseña:</label>
                             <input type="text" name="password">
                         </div>
@@ -279,15 +296,28 @@ if ($valores["0"] == null) {
                         </div>
 
                         <div class="formularioModificar">
-                       
+
                             <label for="CI">Cedula de identidad:</label>
                             <input type="text" name="CI">
                         </div>
-                        
+
                         <div class="formularioModificar">
-                     
+
                             <label for="cargo">Cargo:</label>
-                            <input type="text" name="cargo">
+                            <select name="cargo">
+                                <option value="0">
+                                    Admin
+                                </option>
+                                <option value="2">
+                                    Almacenero
+                                </option>
+                                <option value="3">
+                                    Camionero
+                                </option>
+                                <option value="4">
+                                    Crecom
+                                </option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -368,7 +398,6 @@ if ($valores == null) {
 
 
     </form>  </div>';
-  
 }
 ?>
 </div>

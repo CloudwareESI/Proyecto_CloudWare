@@ -4,7 +4,9 @@ require_once "db/funciones_utiles.php";
 require_once "almacen/controlador_almacen/super_controlador_almacen.php";
 
 $paquete = get_paquete($_GET["Codigo"]);
-var_dump($paquete);
+//foreach ($paquete[0] as $key => $value) {
+   // echo $key. " " . $value. "<br>";
+//}
 // Obtén el valor de fecha_entrega y pásalo como una variable JavaScript
 
 $fechaEntrega = isset($paquete["fecha_entrega"]) ? json_encode($paquete["fecha_entrega"]) : 'undefined';
@@ -78,23 +80,27 @@ $fechaEntrega = isset($paquete["fecha_entrega"]) ? json_encode($paquete["fecha_e
     <div class="infoPaquete">
         <h1>Estado actual</h1>
         <br>
-
-        TEST
         <?php
         switch (true) {
 
-            case (isset($paquete[0]["fecha_ingreso"])
-                and !isset($paquete[0]["fecha_transporte"])
-                and !isset($paquete[0]["fecha_recibido"])):
+            case (isset($paquete[0]["fecha_entrega"])):
         ?>
                 <p id="msjEstado">
-                    Su paquete esta en gestion
+                    Su paquete a sido entregado
                 </p>
-
-                <script src="js/carga1.js"></script>
+                <script src="js/detenerSeguimiento.js"></script>
             <?php
                 break;
 
+            case (isset($paquete[0]["fecha_cargado"])
+                and !isset($paquete[0]["fecha_entrega"])):
+            ?>
+                <p id="msjEstado">
+                    Su paquete se encuentra en camino a su residencia
+                </p>
+                <script src="js/carga4.js"></script>
+            <?php
+                break;
 
             case (isset($paquete[0]["fecha_transporte"])
                 and !isset($paquete[0]["fecha_recibido"])):
@@ -106,13 +112,37 @@ $fechaEntrega = isset($paquete["fecha_entrega"]) ? json_encode($paquete["fecha_e
             <?php
                 break;
 
+            case (isset($paquete[0]["fecha_ingreso"])
+                and !isset($paquete[0]["fecha_transporte"])
+                and $paquete[0]["id_almacen"] = "1" ):
+            ?>
+                <p id="msjEstado">
+                    Su paquete esta en gestion
+                </p>
+
+                <script src="js/carga1.js"></script>
+            <?php
+                break;
+
             case (isset($paquete[0]["fecha_recibido"])
-                and !isset($paquete[0]["fecha_transporte"])):
+                and !isset($paquete[0]["fecha_transporte"])
+                and $paquete[0]["id_almacen"] != "1" ):
             ?>
                 <p id="msjEstado">
                     Su paquete se encuentra en camino al almacén más cercano
                 </p>
+                <script src="js/carga3.js"></script>
+            <?php
+                break;
 
+            case (isset($paquete[0]["fecha_transporte"])
+                and isset($paquete[0]["fecha_recibido"]) 
+                and $paquete[0]["id_almacen"] != "1" ):
+            ?>
+                <p id="msjEstado">
+                    Su paquete se encuentra en camino al almacén más cercano
+                </p>
+                <script src="js/carga3.js"></script>
             <?php
                 break;
 
@@ -122,7 +152,7 @@ $fechaEntrega = isset($paquete["fecha_entrega"]) ? json_encode($paquete["fecha_e
                 <p id="msjEstado">
                     Su paquete se encuentra en camino al almacén más cercano
                 </p>
-
+                <script src="js/carga3.js"></script>
             <?php
                 break;
 
@@ -130,26 +160,7 @@ $fechaEntrega = isset($paquete["fecha_entrega"]) ? json_encode($paquete["fecha_e
                 and !isset($paquete[0]["fecha_cargado"])):
             ?>
                 <p id="msjEstado">
-                    Su paquete se encuentra en camino al almacén más cercano
-                </p>
-
-            <?php
-                break;
-
-            case (isset($paquete[0]["fecha_cargado"])
-                and !isset($paquete[0]["fecha_entrega"])):
-            ?>
-                <p id="msjEstado">
-                    Su paquete se encuentra en camino a su residencia
-                </p>
-
-            <?php
-                break;
-
-            case (isset($paquete[0]["fecha_entrega"])):
-            ?>
-                <p id="msjEstado">
-                    Su paquete a sido entregado
+                    Su paquete se encuentra en gestion
                 </p>
 
         <?php
@@ -159,32 +170,44 @@ $fechaEntrega = isset($paquete["fecha_entrega"]) ? json_encode($paquete["fecha_e
 
         <!-- Cuadro de información de paquete -->
         <div class="cuadroInfo">
-            <h3>Nombre: <?= $paquete[0]["nombre_paquete"]; ?> </h3>
+            <div class="cuadroInfo1">
 
+            <div class="cuadroInfoDatos">
+            <h3>Nombre:</h3> <p><?= $paquete[0]["nombre_paquete"]; ?> </p>
+            </div>
             <br>
-            <h3>Peso: <?= $paquete[0]["peso"]; ?> gramos</h3>
-
+            <div class="cuadroInfoDatos">
+            <h3>Peso:</h3> <p><?= $paquete[0]["peso"]; ?> gramos</p>
+            </div>
             <br>
-            <h3>Tamaño: <?= $paquete[0]["dimenciones"]; ?> cm3</h3>
-
+            <div class="cuadroInfoDatos">
+            <h3>Tamaño:</h3> <p><?= $paquete[0]["dimenciones"]; ?> cm3</p>
+            </div>
             <br>
+            </div>
+            <div class="cuadroInfo2">
+                
             <h3>Fecha de salida: </h3>
             <?php if (isset($paquete[0]["fecha_cargado"])) {
-                echo "</p>" . $paquete[0]["fecha_cargado"] . "</p>";
+                echo "<p>" . $paquete[0]["fecha_cargado"] . "</p>";
             } else {
                 echo "<p>Todavia no a salido en transporte a su residencia </p>";
             } ?>
 
+            
             <br>
             <h3>Fecha de llegada:</h3>
-
             <?php if (isset($paquete[0]["fecha_entrega"])) {
-                echo "</p>Entregado " . $paquete[0]["fecha_cargado"] . "</p>";
-            } else {
+                echo "<p>Entregado " . $paquete[0]["fecha_entrega"] . "</p>";
+            } else if(isset($paquete[0]["fecha_cargado"])){
+                echo "<p>En camino desde la almacen  ".$paquete[0]["almacen"]."</p>";
+            }
+            else
+            {
                 echo "<p>Todavia no se entrego </p>";
             } ?>
 
-
+        </div>
         </div>
 
     </div>

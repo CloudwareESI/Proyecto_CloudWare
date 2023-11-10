@@ -3,7 +3,7 @@ require_once "../../db/funciones_utiles.php";
 require_once "super_controlador_almacen.php";
 
 var_dump($_POST);
-
+echo "<br>";
 switch ($_POST["opcion"]) {
     case 'lote':
         $matricula = $_POST['matricula'];
@@ -42,33 +42,40 @@ switch ($_POST["opcion"]) {
     case 'paquete':
         $matricula = $_POST['matricula'];
 
-        foreach ($_POST["paquete"] as $fila) {
+        foreach ($_POST["paquetes"] as $fila) {
             $id_paquete = array($fila);
 
-            $identificador = array('id_paquete' => $id_paquete);
-            $valor = llamadoDeAPI(
+            $identificador = array('id_paquete' => $fila);
+            $valor = json_decode(llamadoDeAPI(
                 "GET",
                 "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php",
                 $identificador
-            );
+            ), true);
 
             $valor_extraido =  $valor[0];
+
+            echo "<br>";
+            var_dump($valor_extraido);
+            echo "<br>";
+
+
             $paquete = array(
                 $valor_extraido["nombre_paquete"],
                 $valor_extraido["dimenciones"],
                 $valor_extraido["peso"],
                 $valor_extraido["fragil"],
                 $valor_extraido["destino_calle"],
-                $valor_extraido["fecha_recibido"],
                 $valor_extraido["fecha_entrega"],
-                $valor_extraido["fecha_cargado"],
+                $valor_extraido["fecha_recibido"],
+                date('Y-m-d H:i:s'),
                 $valor_extraido["fecha_ingreso"],
                 $valor_extraido["id_lote_portador"],
                 $valor_extraido["id_localidad_destino"],
                 $matricula,
                 $valor_extraido["id_paquete"]
             );
-            $paquetes->llamadoDeAPI(
+
+            llamadoDeAPI(
                 "POST",
                 "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php",
                 $paquete
@@ -177,6 +184,7 @@ switch ($_POST["opcion"]) {
 
         break;
 }
+var_dump($_POST["id_almacen"]);
 if ($_POST["id_almacen"] = "N/A") {
 
     header("Location:http://" . $_SERVER["HTTP_HOST"] . "/Proyecto_Cloudware/index.php?Entrada");

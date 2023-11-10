@@ -119,6 +119,8 @@ if ($valor == null) {
             </div>
 
 
+
+
         <?php $x = $x + 1;
         }
         ?>
@@ -197,6 +199,83 @@ if ($valor == null) {
         ';
 
                 ?>
+
+                <div class="contenedorModal" data-index="agregar">
+                    <div class="modal">
+                        <div class="contenedorFormulario">
+
+                            <form action="almacen/controlador_almacen/agregar_paquetes.php" method="post">
+                                <h2>Agregar datos</h2>
+                                <div class="formulario formBase">
+                                    <div class="formularioPopUp1">
+                                        <input type="hidden" name="op" value="agregar">
+                                        <input type="hidden" name="id_almacen" value="N/A">
+                                        <input type="hidden" name="id_almacen" value=<?php $_GET = "id_almacen" ?>>
+
+                                        <div class="formularioModificar">
+                                            <label for="nombre_paquete">Nombre:</label>
+                                            <input type="text" name="nombre_paquete">
+                                        </div>
+                                        <div class="formularioModificar">
+                                            <label for="dimenciones">Dimenciones:</label>
+                                            <input type="text" name="dimenciones">
+                                        </div>
+                                        <div class="formularioModificar">
+                                            <label for="peso">Peso:</label>
+                                            <input type="text" name="peso">
+                                        </div>
+
+                                        <div class="btnEntrada1">
+                                            <button id="btn" type="button" class="cerrar">Cancelar</button>
+                                        </div>
+                                    </div>
+                                    <div class="formularioPopUp2">
+                                        <div class="formularioModificar">
+                                            <?= "<p>Fragil?:</p>" ?>
+                                            <label for="peso">0 para no 1 para si:</label>
+                                            <input type="number" name="fragil">
+                                        </div>
+                                        <div class="formularioModificar">
+                                            <label for="Calle destino">Calle_destino:</label>
+                                            <input type="text" name="calle_destino">
+                                        </div>
+                                        <div class="formularioModificar">
+                                            <label for="Localidad destino">Localidad:</label>
+                                            <select name="localidad_destino">
+                                                <?php
+                                                foreach ($valor["4"] as $fila) {
+                                                    echo "<option value='" . $fila["id_localidad"] . "'>"
+                                                        . $fila["nombre_localidad"] . " " . $fila["nombre_departamento"] .
+                                                        "</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+
+                                        <div class="contenedorBtn">
+
+                                            <input id="btn" type="submit" value="Actualizar">
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                            </form>
+                        </div>
+
+
+
+
+
+                    </div>
+                </div>
+
+
+                <div class="btn">
+                    <button type="button" id="btnTabla" class="abrir" data-index="agregar">
+                        Agregar Paquete
+                </div>
         </div>
 
         <div class='contenedorTablas'>
@@ -313,86 +392,4 @@ if ($valor == null) {
             </form>';
                     }
                     ?>
-            </div>
-
-
-
-
-
-
-            <div class="contenedorModal" data-index="agregar">
-                <div class="modal">
-                    <div class="contenedorFormulario">
-
-                        <form action="almacen/controlador_almacen/agregar_paquetes.php" method="post">
-                            <h2>Agregar datos</h2>
-                            <div class="formulario formBase">
-                                <div class="formularioPopUp1">
-                                    <input type="hidden" name="op" value="agregar">
-                                    <input type="hidden" name="id_almacen" value="N/A">
-                                    <input type="hidden" name="id_almacen" value=<?php $_GET = "id_almacen" ?>>
-
-                                    <div class="formularioModificar">
-                                        <label for="nombre_paquete">Nombre:</label>
-                                        <input type="text" name="nombre_paquete">
-                                    </div>
-                                    <div class="formularioModificar">
-                                        <label for="dimenciones">Dimenciones:</label>
-                                        <input type="text" name="dimenciones">
-                                    </div>
-                                    <div class="formularioModificar">
-                                        <label for="peso">Peso:</label>
-                                        <input type="text" name="peso">
-                                    </div>
-
-                                    <div class="btnEntrada1">
-                                        <button id="btn" type="button" class="cerrar">Cancelar</button>
-                                    </div>
-                                </div>
-                                <div class="formularioPopUp2">
-                                    <div class="formularioModificar">
-                                        <?= "<p>Fragil?:</p>" ?>
-                                        <label for="peso">0 para no 1 para si:</label>
-                                        <input type="number" name="fragil">
-                                    </div>
-                                    <div class="formularioModificar">
-                                        <label for="Calle destino">Calle_destino:</label>
-                                        <input type="text" name="calle_destino">
-                                    </div>
-                                    <div class="formularioModificar">
-                                        <label for="Localidad destino">Localidad:</label>
-                                        <select name="localidad_destino">
-                                            <?php
-                                            foreach ($valor["4"] as $fila) {
-                                                echo "<option value='" . $fila["id_localidad"] . "'>"
-                                                    . $fila["nombre_localidad"] . " " . $fila["nombre_departamento"] .
-                                                    "</option>";
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
-
-                                    <div class="contenedorBtn">
-                                        <button type="button" class="cerrar">Cancelar</button>
-                                        <input id="btn" type="submit" value="Actualizar">
-                                    </div>
-
-                                </div>
-                            </div>
-
-
-                        </form>
-                    </div>
-
-
-
-
-
-                </div>
-            </div>
-
-
-            <div class="btn">
-                <button type="button" id="btnTabla" class="abrir" data-index="agregar">
-                    Agregar Paquete
             </div>

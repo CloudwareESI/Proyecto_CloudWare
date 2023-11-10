@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `almacen` (
   `id_almacen` int(11) NOT NULL,
-  `calle` varchar(11) NOT NULL,
+  `calle` varchar(200) NOT NULL,
   `chapa` int(4) NOT NULL,
   `id_localidad_almacen` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -135,7 +135,11 @@ CREATE TABLE `asignado` (
 
 CREATE TABLE `conduce` (
   `id_matricula` varchar(7) NOT NULL,
-  `id_empleado` int(11) NOT NULL
+  `id_empleado` int(11) NOT NULL,
+CONSTRAINT checkMatriculaConduce CHECK (char_length(matricula) = 7
+AND substring(matricula,1,1) REGEXP '^[A-N]{1}$'
+AND substring(matricula,2,2) REGEXP '^[A-X]{2}$'
+AND substring(matricula,4,4) REGEXP '^[0-9]{4}$')
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -155,8 +159,12 @@ CREATE TABLE `destinado` (
   `matricula` varchar(7) DEFAULT NULL,
   `fecha_de_entrega` datetime DEFAULT NULL,
   `fecha_transporte` datetime DEFAULT NULL
+CONSTRAINT checkMatriculaVehiculos CHECK (char_length(matricula) = 7
+AND substring(matricula,1,1) REGEXP '^[A-N]{1}$'
+AND substring(matricula,2,1) REGEXP '^[T]{1}$'
+AND substring(matricula,3,1) REGEXP '^[P]{1}$'                                          
+AND substring(matricula,4,4) REGEXP '^[0-9]{4}$')
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 --
 -- Volcado de datos para la tabla `destinado`
 --
@@ -181,6 +189,8 @@ CREATE TABLE `empleado` (
   `CI` int(11) NOT NULL,
   `nro_telefono` int(11) DEFAULT NULL,
   `cargo` int(11) NOT NULL
+  ,
+    CONSTRAINT correoEmp check(email REGEXP '^[a-zA-Z0-9@.]+$')
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -212,6 +222,8 @@ INSERT INTO `empleado` (`id_empleado`, `email`, `nombre`, `apellido`, `CI`, `nro
 CREATE TABLE `login` (
   `email` varchar(32) NOT NULL,
   `password` varchar(255) NOT NULL
+    ,
+    CONSTRAINT correoLog check(email REGEXP '^[a-zA-Z0-9@.]+$')
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -336,8 +348,12 @@ CREATE TABLE `vehiculo` (
   `matricula` varchar(7) NOT NULL,
   `estado` int(11) NOT NULL,
   `modelo` varchar(255) DEFAULT NULL,
-  `rol` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `rol` int(11) NOT NULL,
+CONSTRAINT checkMatriculaVehiculos CHECK (char_length(matricula) = 7
+AND substring(matricula,1,1) REGEXP '^[A-N]{1}$'
+AND substring(matricula,2,2) REGEXP '^[A-X]{2}$'
+AND substring(matricula,4,4) REGEXP '^[0-9]{4}$')
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `vehiculo`
