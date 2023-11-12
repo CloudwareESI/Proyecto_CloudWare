@@ -38,5 +38,5 @@ if (isset($variables['id_empleado'])) {
     header("Location:http://" . $_SERVER["HTTP_HOST"] . "/Proyecto_Cloudware/index.php?Bienvenido=1");
 } else {
     
-    header("Location:http://" . $_SERVER["HTTP_HOST"] . "/Proyecto_Cloudware/usuarios/views_usuario/login.html?error=".$variables);
+    header("Location:http://" . $_SERVER["HTTP_HOST"] . "/Proyecto_Cloudware/usuarios/views_usuario/login.php?error=".$variables);
 }

@@ -2,6 +2,18 @@
 session_start();
 include "db/funciones_utiles.php";
 
+if (isset($_GET["color"])) {
+    switch ($_GET["color"]) {
+        case 'blanco':
+            $_SESSION['color'] = "blanco";
+            break;
+        case 'negro':
+            $_SESSION['color'] = "negro";
+            break;
+    }
+} elseif (!isset($_SESSION['color'])) {
+    $_SESSION['color'] = "negro";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +25,16 @@ include "db/funciones_utiles.php";
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="icon" type="image/jpg" href="Imagenes/Logo_quickcarry-sin-fondo.png">
-    <link rel="stylesheet" href="estilos/estiloDef.css">
+    <?php switch ($_SESSION["color"]) {
+        case 'negro':
+            echo     '<link rel="stylesheet" href="estilos/estiloDef.css">';
+            break;
+        case 'blanco':
+            echo     '<link rel="stylesheet" href="estilos/estiloColor.css">';
+            break;
+    }
+    ?>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <title>QuickCarry</title>
 </head>
@@ -124,7 +145,11 @@ if (isset($_GET['Bienvenido'])) {
     if (
         isset($_GET['Inicio'])
         or
+        isset($_GET['Bienvenido'])
+        or
         (isset($_GET['Seguimiento']))
+        or
+        (isset($_GET['color']))
         or
         empty($_GET)
     ) {
@@ -188,7 +213,7 @@ if (isset($_GET['Bienvenido'])) {
                 entrada_paquetes($_SESSION['cargo']);
     ?>
 
-    <?php
+        <?php
             }
         }
     }
@@ -205,35 +230,51 @@ if (isset($_GET['Bienvenido'])) {
     if (
         isset($_GET['Inicio'])
         or
+        isset($_GET['Bienvenido'])
+        or
         (isset($_GET['Seguimiento']))
         or
+        (isset($_GET['color']))
+        or
+
         empty($_GET)
     ) {
-        echo '
-        <a href="paquete">  </a>
+        ?>
+
+        <a href="paquete"> </a>
         <div class="contenedorFormulario">
             <form class="formBase" id="formPaquete" action="seguimientoDePaquete.php" method="GET">
 
-              <div class="formulario vertical">
-                    <img src="Imagenes/Logo_quickcarry-sin-fondo1.png" alt="logo" height="70px" width="70px">
-                   
+                <div class="formulario vertical">
+                    <?php switch ($_SESSION["color"]) {
+                        case 'negro':
+                            echo
+                            '<img src="Imagenes/Logo_quickcarry-sin-fondo1.png" alt="logo" height="70px" width="70px">';
+                            break;
+                        case 'blanco':
+                            echo
+                            '<img src="Imagenes/Logo_quickcarry-VERDE.png" alt="logo" height="70px" width="70px">';
+                            break;
+                    }
+                    ?>
+
                     <h2 id="paquete">Seguimiento de Paquete</h2>
-                        <br>
+                    <br>
                     <div>
                         <input type="text" class="controles" name="Codigo" id="Codigo" placeholder="Codigo:" maxlength="32" required>
                         <label for="myInput" id="paquete">Codigo:</label>
-                </div>
+                    </div>
                     <br>
                     <div class="btn">
-                    <button>Ingresar</button>
+                        <button>Ingresar</button>
                     </div>
-                  
-                    </div> 
-            </form>
-             
+
                 </div>
-              
-        ';
+            </form>
+
+        </div>
+
+    <?php
     }
 
     if (isset($_GET['Usuarios']) and  $_SESSION['cargo'] == "0") {
@@ -259,14 +300,29 @@ if (isset($_GET['Bienvenido'])) {
     <!-- Menu derecha -->
     <aside class="menuLateral">
         <ul class="columna">
-            <li class="botones"><a href="usuarios/views_usuario/login.html">
-                    <img src="Imagenes/imagen-perfil.png" alt="perfil" height="40px" width="40px"></a>
+            <li class="botones"><a href="usuarios/views_usuario/login.php">
+                    <i class="fa-regular fa-circle-user"></i></a>
             </li>
             <li>
-                <div id="tema">
-                    <div class="boton"></div>
-                </div>
-                <script src="Js/boton.js"></script>
+                <a href='?color=<?php
+                                if (isset($_SESSION['color'])) {
+                                    switch ($_SESSION['color']) {
+                                        case 'blanco':
+                                            echo "negro";
+                                            break;
+                                        case 'negro':
+                                            echo "blanco";
+                                            break;
+                                        default:
+                                            echo "negro";
+                                            break;
+                                    }
+                                }
+                                ?>'>
+                    <div id="tema">
+                        <div class="boton"></div>
+                    </div>
+                </a>
             </li>
             <li>
                 <a href="terminar.php"><i class="fa-regular fa-circle-xmark"></i></a>
@@ -286,7 +342,6 @@ if (isset($_GET['Bienvenido'])) {
                     <h4>Comapañia</h4>
                     <ul>
                         <li><a href="sobreNosotrosQC.html">Nosotros</a></li>
-                        <li><a href="sobreNosotros.html">Cloudware</a></li>
                     </ul>
                 </div>
 

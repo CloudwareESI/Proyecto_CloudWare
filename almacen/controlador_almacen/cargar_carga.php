@@ -88,7 +88,7 @@ switch ($_POST["opcion"]) {
     case 'formar':
         $locacion = NULL;
 
-        if ($_POST["id_almacen"] = "N/A") {
+        if ($_POST["id_almacen"] == "N/A") {
 
             header("Location:http://" . $_SERVER["HTTP_HOST"] . "/Proyecto_Cloudware/index.php?Entrada");
         } else {
@@ -184,10 +184,13 @@ switch ($_POST["opcion"]) {
 
         break;
 }
-var_dump($_POST["id_almacen"]);
-if ($_POST["id_almacen"] = "N/A") {
 
-    header("Location:http://" . $_SERVER["HTTP_HOST"] . "/Proyecto_Cloudware/index.php?Entrada");
+if ($_POST["id_almacen"] == "N/A") {
+    //echo $_POST["id_almacen"];
+    header("Location:http://".$_SERVER["HTTP_HOST"]."/Proyecto_Cloudware/index.php?Entrada");
+
 } else {
-    header("Location:http://" . $_SERVER["HTTP_HOST"] . "/Proyecto_Cloudware?id_almacen=" . $_POST["id_almacen"] . "&Almacenes=1");
+    //echo $_POST["id_almacen"];
+    header("Location:http://".$_SERVER["HTTP_HOST"]."/Proyecto_Cloudware?id_almacen=".$_POST["id_almacen"]."&Almacenes=1");
+
 }

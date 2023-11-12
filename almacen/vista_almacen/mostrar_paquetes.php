@@ -11,7 +11,7 @@ if ($valor == null) {
 ?> <div class='contenedorTablas'>
         <script src='Js/popUp.js'></script>
         <h3>
-            Gestion de datos de el almacen N°" <?php echo $valor["0"]; ?>
+            Gestion de datos de el almacen N° <?php echo $valor["0"]; ?>
         </h3>
         <?php
         foreach ($valor["1"] as $fila) { ?>
@@ -89,7 +89,7 @@ if ($valor == null) {
                 <div class="modal">
 
                     <?php
-                    $variables = $valor["1"][$x];
+                    $variables = $fila;
                     echo '<h2>Eliminar el paquete N°' . $variables['id_paquete'] . ' ' .
                         $variables['nombre_paquete']
                         . '</h2><br>

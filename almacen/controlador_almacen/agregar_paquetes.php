@@ -2,6 +2,8 @@
 include "../../db/funciones_utiles.php";
 $op = $_POST['op'];
 
+var_dump($_POST);
+
 switch ($op) {
 
     case 'agregar':
@@ -124,11 +126,12 @@ switch ($op) {
         break;
 }
 
-if ($_POST["id_almacen"] = "N/A") {
-
+if ($_POST["id_almacen"] == "N/A") {
+    //echo $_POST["id_almacen"];
     header("Location:http://".$_SERVER["HTTP_HOST"]."/Proyecto_Cloudware/index.php?Entrada");
 
 } else {
+    //echo $_POST["id_almacen"];
     header("Location:http://".$_SERVER["HTTP_HOST"]."/Proyecto_Cloudware?id_almacen=".$_POST["id_almacen"]."&Almacenes=1");
 
 }

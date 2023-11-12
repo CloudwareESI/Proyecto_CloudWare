@@ -16,7 +16,6 @@ if ($valor == null) {
             <div class="contenedorModal" data-index="eliminarUbicacion<? echo $fila['posicion'] . $fila['id_almacen'] . $fila['id_ruta']; ?>">
                 <div class="modal">
                     <?php
-                    echo "TEXTO TEST eliminarUbicacion" . json_encode($fila);
 
                     echo '<h2>Eliminar ubicacion numero ' . $fila['posicion'] . ' de la ruta ' . $fila['id_ruta'] . '</h2><br>
                             <p>¿Esta seguro que desea eliminar a la ubicacion ' .
@@ -106,7 +105,10 @@ if ($valor == null) {
 <div class="selectBoton">
     <br>
     <form action="vehiculos/views_vehiculos/agregar_ruta.php" method="POST">
+
+        <label id="btnSelectLabel" for="ubicaciones">Numero de trechos</label>
         <input id="btnSelectBoton5" type="number" name="ubicaciones">
+
         <input id="btnSelectBoton4" type="submit" value="Agregar una ruta">
 
 
@@ -137,10 +139,10 @@ if ($valor == null) {
                             <?= $subvalor[0]['id_ruta'] ?>
                         </td>
                         <td>
-                            <?php 
+                            <?php
                             $Ubicaciones = 0;
                             foreach ($subvalor as $llave => $valor) {
-                                $Ubicaciones=$Ubicaciones+1;
+                                $Ubicaciones = $Ubicaciones + 1;
                             }
                             echo $Ubicaciones;
                             ?>
@@ -150,7 +152,6 @@ if ($valor == null) {
                             <div class="contenedorModal" data-index="eliminarRuta<?php echo $key; ?><?php echo $subvalor[0]['id_ruta']; ?>">
                                 <div class="modal">
                                     <?php
-                                    echo "TEXTO TEST eliminarUbicacion" . json_encode($subvalor);
                                     echo '<h2>Eliminar ruta ' . $subvalor[0]['id_ruta']  . '</h2><br>
                                 <p>¿Esta seguro que desea eliminar a la ruta ' .
                                         $subvalor[0]['id_ruta']  . '?</p><br> ';
@@ -167,7 +168,6 @@ if ($valor == null) {
                                     ?>
                                 </div>
                             </div>
-                            <p>eliminarRuta<?php echo $key . $subvalor[0]['id_ruta']; ?></p>
                             <button type="button" class="abrir" data-index="eliminarRuta<?php echo $key . $subvalor[0]['id_ruta']; ?>">
                                 <i class="fas fa-trash"></i>
                             </button>

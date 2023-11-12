@@ -193,13 +193,14 @@ if ($valores["0"] == null) {
 
                             </div>
                         </div>
-                </div>
-                <div class="contenedorBtn">
-                    <button type="button" class="cerrar">Cancelar</button>
-                    <input id="btn" type="submit" value="Actualizar">
+                        <div class="contenedorBtn">
+                            <button type="button" class="cerrar">Cancelar</button>
+                            <input id="btn" type="submit" value="Actualizar">
+                        </div>
+
+                    </form>
                 </div>
 
-                </form>
             </div>
         </div>
 

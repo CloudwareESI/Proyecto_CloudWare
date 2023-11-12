@@ -9,12 +9,17 @@
 }
 
 
-/* Body , Header , nav*/
+/* Body , Header , nav*
+#50C77D
+#259Es4
+#SEEB94
+#2F754A
+#1F4D30 */
 
 body {
     height: 90vh;
     flex-direction: column;
-    background-color: #2f2f2f;
+    background-color: #EBEBEB;
     text-transform: capitalize;
     transition: background-color 0.17s ease;
 }
@@ -34,7 +39,7 @@ header ul {
 
 header a {
     text-decoration: none;
-    color: #d2b265;
+    color: #2F754A  ;
     padding: 16px 18px;
     cursor: pointer;
 }
@@ -57,7 +62,7 @@ header p::after {
     position: absolute;
     width: 100%;
     height: 2px;
-    border: 0px solid #eae096;
+    border: 0px solid #50C77D;
     border-bottom-left-radius: 10px;
 }
 
@@ -71,18 +76,18 @@ header p:hover::after {
 
 @keyframes showunderline {
     0% {
-        background: #eae096;
+        background: #50C77D;
         transform: translateX(-100%);
         opacity: 0%;
     }
 
     50% {
-        background: #eae096;
+        background: #50C77D;
         opacity: 50%;
     }
 
     100% {
-        background: #eae096;
+        background: #50C77D;
         transform: translateX(0%);
         opacity: 100%;
     }
@@ -116,7 +121,7 @@ radio {
     height: 80%;
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 0 20px #eae096;
+    box-shadow: 0 0 20px #1F4D30;
 }
 
 
@@ -209,7 +214,7 @@ radio {
     content: "";
     display: inline-block;
     border: 1px solid white;
-    background: #d2b265;
+    background: #2F754A;
     width: 20px;
     height: 20px;
     margin: 3px 3px;
@@ -244,7 +249,7 @@ input[type="radio"]:checked+label.btnSlider {
 
 input[type="radio"]:checked+label.btnSlider::after {
     transform: scale(1.1, 1.1);
-    background: #eae096;
+    background: #50C77D;
 }
 
 /*=====================================================================================
@@ -305,14 +310,14 @@ input[type="radio"]:checked+label.btnSlider::after {
     top: 30%;
     transform: translatey(-50%);
     padding: 1em 0.5em 1em 1em;
-    background: #24262B;
+    background: #1F4D30;
     border-radius: 0.5em 0 0 0.5em;
     box-shadow: #00000059 0px 5px 15px;
     transition: all 300ms ease;
 }
 
 .menuLateral:hover {
-    box-shadow: -8px 0px 20px #eae096;
+    box-shadow: -8px 0px 20px #259E54;
     padding: 1em;
 }
 
@@ -325,24 +330,24 @@ input[type="radio"]:checked+label.btnSlider::after {
 }
 
 .botones a {
-    color: #d2b265;
+    color: #50C77D;
     font-size: 2rem;
     transition: all 200ms ease;
 }
 
 .botones a:visited {
-    color: #d2b265;
+    color: #50C77D;
 }
 
 .botones a:hover {
-    color: #eae096;
+    color: #50C77D;
     font-size: 1.75rem;
 }
 
 li i {
     display: flex;
     padding-top: 5px;
-    color: #d2b265;
+    color: #50C77D;
     font-size: 30px;
     margin-left: 10%;
 }
@@ -361,21 +366,13 @@ li i {
 .boton {
     position: absolute;
     top: 0;
-    left: 0;
+    left: 20px;
     width: 20px;
     height: 20px;
     transform: scale(.7);
-    background-color: #d2b265;
+    background-color: #50C77D;
     border-radius: 25PX;
 
-}
-
-#tema.active .boton {
-    left: 20px;
-}
-
-body.active {
-    background-color: #fff;
 }
 
 
@@ -388,7 +385,7 @@ img {
 
 h2 {
     font-size: 4.5vh;
-    color: #d2b265;
+    color: #50C77D;
     text-align: center;
 }
 
@@ -427,8 +424,8 @@ h2 {
 }
 
 .formBase {
-    background-color: #24262B;
-    color: #eae096;
+    background-color: #1F4D30;
+    color: #50C77D;
     padding: 35px 30px;
     padding-bottom: 0;
     padding-top: 0px;
@@ -465,7 +462,7 @@ h2 {
 }
 
 .formulario p {
-    color: #d2b265;
+    color: #50C77D;
     text-transform: uppercase;
     letter-spacing: 2px;
     font-size: 1em;
@@ -477,7 +474,7 @@ h2 {
     top: -60px;
     left: 6px;
     font-size: 15px;
-    color: #eae096;
+    color: #50C77D;
     opacity: 100%;
 }
 
@@ -485,11 +482,14 @@ input,
 textarea {
     padding: 2px;
     border-radius: 10px;
-    background-color: #24262B;
-    border-bottom: 2px solid #d2b265;
-    ;
+    background-color: #ffffff33;
+    border-bottom: 2px solid #50C77D;;
     outline: none;
-    color: #d2b265;
+    color: #EBEBEB;
+}
+
+input::placeholder{
+    color: #EBEBEB;
 }
 
 .btn {
@@ -498,23 +498,24 @@ textarea {
 }
 
 button {
+    cursor: pointer;
     height: fit-content;
-    border: 2px solid #d2b265;
+    border: 2px solid #50C77D;
     border-radius: 10px;
-    background-color: #484847;
+    background-color: #1F4D30;
     width: 85px;
     font-size: 1.2em;
-    color: #eae096;
+    color: #EBEBEB;
     transition: 0.5s;
 }
 
 .formulario select {
-    background-color: #2f2f2f;
-    color: #eae096;
+    background-color: #1F4D30;
+    color: #EBEBEB;
     padding: 10px;
     margin-right: 100%;
     text-align: center;
-    border: 2px solid #d2b265;
+    border: 2px solid #50C77D;
     border-radius: 8px;
 }
 
@@ -522,7 +523,7 @@ button {
     display: flex;
     position: relative;
     pointer-events: none;
-    color: #eae096;
+    color: #EBEBEB;
     opacity: 100%;
 }
 
@@ -542,16 +543,19 @@ button {
 
 .home a {
     text-decoration: none;
-    color: none;
     display: inline-block;
     width: 70px;
     height: 70px;
     cursor: pointer;
     font-size: 3em;
     padding: 0;
+    color: #50C77D;
+   
     /* Esto elimina el relleno que habías definido, ya que ya no es necesario */
 }
-
+.home i{
+    color: #50C77D;
+}
 
 
 
@@ -566,7 +570,7 @@ table {
     font-family: sans-serif;
     width: 80%;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    color: #ffffff;
+    color: #EBEBEB;
     border-radius: 5px 5px 0 0;
     overflow: hidden;
 
@@ -579,8 +583,8 @@ table {
 }
 
 table thead tr {
-    background-color: #d2b265;
-    color: #ffffff;
+    background-color: #50C77D;
+    color: #EBEBEB;
     text-align: middle;
 }
 
@@ -592,20 +596,21 @@ table td {
 
 table tbody tr {
     border-bottom: 1px solid #000000;
+    background-color: #1F4D30;
 }
 
 table tbody tr:nth-of-type(even) {
-    background-color: #ffffff33;
+    background-color: #2F754A;
 }
 
 table tbody tr:last-of-type {
-    border-bottom: 2px solid #eae096;
+    border-bottom: 2px solid #50C77D;
 }
 
 /*Tablas*/
 
 .contenedorTablas h3 {
-    color: #d2b265;
+    color: #2F754A;
     text-transform: uppercase;
     letter-spacing: 2px;
     font-size: 17px;
@@ -621,30 +626,30 @@ table tbody tr:last-of-type {
 
 
 .tabla i {
-    color: #d2b265;
+    color: #50C77D;
     font-size: 20px;
     cursor: pointer;
 }
 
 .contenedorTablas select {
-    background-color: #2f2f2f;
-    color: #eae096;
+    background-color: #1F4D30;
+    color: #EBEBEB;
     padding: 10px;
     width: fit-content;
     text-align: center;
-    border: 2px solid #d2b265;
+    border: 2px solid #50C77D;
     border-radius: 8px;
     margin-top: 1.5%;
     margin-left: 10%;
 }
 
 .selectBoton select {
-    background-color: #2f2f2f;
-    color: #eae096;
+    background-color: #1F4D30;
+    color: #EBEBEB;
     padding: 10px;
     width: fit-content;
     text-align: center;
-    border: 2px solid #d2b265;
+    border: 2px solid #50C77D;
     border-radius: 8px;
     margin-top: 1.5%;
     margin-left: 10%;
@@ -659,12 +664,12 @@ table tbody tr:last-of-type {
     position: static;
     height: fit-content;
     padding: 6px;
-    border: 2px solid #d2b265;
+    border: 2px solid #50C77D;
     border-radius: 10px;
-    background-color: #484847;
+    background-color: #1F4D30;
     width: fit-content;
     font-size: 1.0em;
-    color: #eae096;
+    color: #EBEBEB;
     transition: 0.5s;
 
 }
@@ -676,12 +681,12 @@ table tbody tr:last-of-type {
     position: static;
     height: fit-content;
     padding: 6px;
-    border: 2px solid #d2b265;
+    border: 2px solid #50C77D;
     border-radius: 10px;
-    background-color: #484847;
+    background-color: #1F4D30;
     width: fit-content;
     font-size: 1.0em;
-    color: #eae096;
+    color: #EBEBEB;
     transition: 0.5s;
 
 }
@@ -693,12 +698,12 @@ table tbody tr:last-of-type {
     position: static;
     height: fit-content;
     padding: 6px;
-    border: 2px solid #d2b265;
+    border: 2px solid #50C77D;
     border-radius: 10px;
-    background-color: #484847;
+    background-color: #1F4D30;
     width: fit-content;
     font-size: 1.0em;
-    color: #eae096;
+    color: #EBEBEB;
     transition: 0.5s;
 
 }
@@ -710,12 +715,12 @@ table tbody tr:last-of-type {
     position: static;
     height: fit-content;
     padding: 6px;
-    border: 2px solid #d2b265;
+    border: 2px solid #50C77D;
     border-radius: 10px;
-    background-color: #484847;
+    background-color: #1F4D30;
     width: fit-content;
     font-size: 1.0em;
-    color: #eae096;
+    color: #EBEBEB;
     transition: 0.5s;
 
 }
@@ -723,37 +728,36 @@ table tbody tr:last-of-type {
 #btnSelectBoton5 {
 
     display: flex;
-    margin-left: 73%;
+    margin-left: 73%; ;
     position: static;
     height: fit-content;
     padding: 6px;
-    border: 2px solid #d2b265;
+    border: 2px solid #50C77D;
     border-radius: 10px;
-    background-color: #484847;
+    background-color: #1F4D30;
     width: fit-content;
     font-size: 1.0em;
-    color: #eae096;
+    color: #EBEBEB;
     transition: 0.5s;
 
 }
-
 #btnSelectLabel{
     display: flex;
     margin-left: 74%;
     position: static;
     font-size: 3vh;
-    color: #eae096;
+    color: #50C77D;
 }
 
 
 .contenedorTablas label {
-    color: #eae096;
+    color: #50C77D;
 }
 
 
 .tablasPaqueteLote label {
     font-size: 3vh;
-    color: #eae096;
+    color: #50C77D;
 }
 
 
@@ -772,12 +776,12 @@ table tbody tr:last-of-type {
 }
 
 #th {
-    border-top: 1px solid #d2b265;
+    border-top: 1px solid #50C77D;
 }
 
 #thRuta1 {
-    background-color: #2f2f2f;
-    border: 1px solid #d2b265;
+    background-color: #1F4D30;
+    border: 1px solid #50C77D;
 }
 
 
@@ -794,12 +798,12 @@ table tbody tr:last-of-type {
     position: static;
     height: fit-content;
     padding: 6px;
-    border: 2px solid #d2b265;
+    border: 2px solid #50C77D;
     border-radius: 10px;
-    background-color: #484847;
+    background-color: #2F754A;
     width: fit-content;
     font-size: 1.0em;
-    color: #eae096;
+    color: #EBEBEB;
     transition: 0.5s;
 }
 
@@ -828,7 +832,8 @@ table tbody tr:last-of-type {
 }
 
 .modal {
-    background-color: #2f2f2f;
+    background-color: #1F4D30;
+    border: 1px solid #50C77D;
     width: auto;
     max-width: 100%;
     padding: 30px 50px;
@@ -839,12 +844,12 @@ table tbody tr:last-of-type {
 
 .modal h2 {
     margin: 0;
-    color: #d2b265;
+    color: #50C77D;
     font-size: 35px;
 }
 
 .modal p {
-    color: #eae096;
+    color: #EBEBEB;
     opacity: 0.7;
     font-size: 0.9em;
 }
@@ -852,12 +857,12 @@ table tbody tr:last-of-type {
 .modal button {
     height: fit-content;
     padding: 6px;
-    border: 2px solid #d2b265;
+    border: 2px solid #50C77D;
     border-radius: 10px;
-    background-color: #484847;
+    background-color: #1F4D30;
     width: fit-content;
     font-size: 1.0em;
-    color: #eae096;
+    color: #EBEBEB;
     transition: 0.5s;
 }
 
@@ -888,19 +893,19 @@ table tbody tr:last-of-type {
 #CONFIRMAR {
     height: fit-content;
     padding: 6px;
-    border: 2px solid #d2b265;
+    border: 2px solid #50C77D;
     border-radius: 10px;
-    background-color: #484847;
+    background-color: #1F4D30;
     width: fit-content;
     font-size: 1.0em;
-    color: #eae096;
+    color: #EBEBEB;
     transition: 0.5s;
 }
 
 
 
 #abrir i {
-    color: #d2b265;
+    color: #50C77D;
     font-size: 20px;
     cursor: pointer;
 }
@@ -917,16 +922,16 @@ table tbody tr:last-of-type {
     justify-content: center;
     width: 350px;
     font-size: 15px;
-    border: 1px solid #eae096;
+    border: 1px solid #50C77D;
     border-radius: 10px;
-    background-color: #2f2f2f;
-    color: #eae096;
+    background-color: #1F4D30;
+    color: #EBEBEB;
 }
 
 #destino option {
     font-size: 15px;
-    background-color: #2f2f2f;
-    color: #d2b265;
+    background-color: #1F4D30;
+    color: #EBEBEB;
 }
 
 /*-------------------FIN  Estilo modificar------------------------------*/
@@ -962,7 +967,7 @@ table tbody tr:last-of-type {
 
 .opcion i {
     margin-top: 10%;
-    color: #d2b265;
+    color: #50C77D;
     font-size: 5em;
     transition: all 200ms ease;
     ;
@@ -974,7 +979,7 @@ table tbody tr:last-of-type {
 
 
 .usuarioCamionero {
-    background-color: #24262B;
+    background-color: #1F4D30;
     width: 50vh;
     height: 100vh;
     border-radius: 0 0 20px 0;
@@ -985,8 +990,8 @@ table tbody tr:last-of-type {
 .usuarioCamionero i {
     margin-top: 10%;
     font-size: 180px;
-    color: #d2b265;
-    border: solid 1px #d2b265;
+    color: #50C77D;
+    border: solid 1px #50C77D;
     padding: 35px;
     padding-top: 30px;
     border-radius: 120px;
@@ -996,7 +1001,7 @@ table tbody tr:last-of-type {
 
 .usuarioCamionero h2 {
     font-size: 2em;
-    color: #eae096;
+    color: #EBEBEB;
     margin-top: 30px;
 }
 
@@ -1015,12 +1020,12 @@ table tbody tr:last-of-type {
     width: 30vh;
     margin: 8px;
     border-radius: 10px;
-    border: solid 1px #d2b265;
-    box-shadow: #eae096 0px 5px 5px -15px inset, #eae096 0px 10px 30px -17px inset;
+    border: solid 1px #50C77D;
+    box-shadow: #2F754A 0px 5px 5px -15px inset, #50C77D 0px 10px 30px -17px inset;
 }
 
 .opciones h2 {
-    color: #eae096;
+    color: #50C77D;
     font-size: 1em;
     margin-top: 5%;
 }
@@ -1029,12 +1034,12 @@ table tbody tr:last-of-type {
     display: none;
     height: fit-content;
     padding: 3px;
-    border: 2px solid #d2b265;
+    border: 2px solid #259E54;
     border-radius: 10px;
-    background-color: #484847;
+    background-color: #1F4D30;
     width: fit-content;
     font-size: 1.2em;
-    color: #eae096;
+    color: #EBEBEB;
     transition: 0.5s;
     margin-top: 10%;
 }
@@ -1050,7 +1055,7 @@ table tbody tr:last-of-type {
 #map {
     display: flex;
     border-radius: 20px;
-    box-shadow: 0 0 50px #000000;
+    box-shadow: 0 0 50px #1F4D30;
     width: 100%;
     height: 65vh;
 }
@@ -1073,7 +1078,7 @@ table tbody tr:last-of-type {
     height: fit-content;
     margin-top: 45px;
     font-size: 40px;
-    color: #eae096;
+    color: #50C77D;
     border-radius: 20px;
 
 }
@@ -1087,7 +1092,7 @@ table tbody tr:last-of-type {
 
 .seguimiento .seguir {
     width: 90%;
-    border: 2px solid #d2b265;
+    border: 2px solid #50C77D;
     border-radius: 20px;
 }
 
@@ -1096,7 +1101,7 @@ table tbody tr:last-of-type {
     padding-top: 5px;
     height: 12px;
     border-radius: 20px;
-    background-color: #eae096;
+    background-color: #50C77D;
     animation: seguimiento 2s cubic-bezier(0, 0, 0, 0) infinite;
 }
 
@@ -1104,7 +1109,7 @@ table tbody tr:last-of-type {
     padding-top: 5px;
     height: 12px;
     border-radius: 20px;
-    background-color: #eae096;
+    background-color: #50C77D;
     animation: seguimiento 2s cubic-bezier(0, 0, 0, 0) infinite;
 }
 
@@ -1113,7 +1118,7 @@ table tbody tr:last-of-type {
     padding-top: 5px;
     height: 12px;
     border-radius: 20px;
-    background-color: #eae096;
+    background-color: #50C77D;
     animation: seguimiento 2s cubic-bezier(0, 0, 0, 0)infinite;
 }
 
@@ -1121,7 +1126,7 @@ table tbody tr:last-of-type {
     padding-top: 5px;
     height: 12px;
     border-radius: 20px;
-    background-color: #eae096;
+    background-color: #50C77D;
     animation: seguimiento 2s cubic-bezier(0, 0, 0, 0)infinite;
 }
  
@@ -1148,19 +1153,19 @@ table tbody tr:last-of-type {
 
 .tituloSeguimiento h1 {
     font-size: 40px;
-    color: #d2b265;
+    color: #259E54;
 
 }
 
 .tituloSeguimiento h2 {
     font-size: 4.5vh;
-    color: #d2b265;
+    color: #50C77D;
     text-align: justify;
 }
 
 .infoPaquete {
     background-color: #24262B;
-    color: #eae096;
+    color: #EBEBEB;
     padding: 35px 30px;
     padding-bottom: 0;
     padding-top: 0px;
@@ -1174,7 +1179,7 @@ table tbody tr:last-of-type {
 
 .infoPaquete h1 {
     font-size: 2em;
-    color: #d2b265;
+    color: #259E54;
     text-align: center;
     padding-top: 5%;
 
@@ -1191,7 +1196,7 @@ table tbody tr:last-of-type {
     justify-content: center;
 }
 .cuadroInfo p{
-    border-bottom: 2px solid #d2b265;
+    border-bottom: 2px solid #50C77D;
     border-radius: 5px;
 }
 
@@ -1212,7 +1217,7 @@ table tbody tr:last-of-type {
 
 .cuadroInfo h3 {
    
-    color: #d2b265;
+    color: #2F754A;
     font-size: 20px;
 }
 .cuadroInfoDatos{
@@ -1225,12 +1230,12 @@ table tbody tr:last-of-type {
 #btn {
     height: fit-content;
     padding: 6px;
-    border: 2px solid #d2b265;
+    border: 2px solid #50C77D;
     border-radius: 10px;
-    background-color: #484847;
+    background-color: #1F4D30;
     width: fit-content;
     font-size: 1.0em;
-    color: #eae096;
+    color: #EBEBEB;
     transition: 0.5s;
 }
 
@@ -1258,7 +1263,7 @@ table tbody tr:last-of-type {
 
     margin-top: 18%;
     text-align: center;
-    background-color: #24262B;
+    background-color: #1F4D30;
     padding: 40px;
 
 }
@@ -1275,10 +1280,10 @@ table tbody tr:last-of-type {
 
 .enlaces h4 {
     font-size: 20px;
-    color: #eae096;
+    color: #50C77D;
     margin-bottom: 25px;
     font-weight: 500;
-    border-bottom: 2px solid #d2b265;
+    border-bottom: 2px solid #2F754A;
     padding-bottom: 10px;
     display: inline-block;
 }
@@ -1286,14 +1291,14 @@ table tbody tr:last-of-type {
 .enlaces ul li a {
     font-size: 18px;
     text-decoration: none;
-    color: #d2b265;
+    color: #50C77D  ;
     display: block;
     margin-bottom: 15px;
     transition: all .3s ease;
 }
 
 .enlaces ul li a:hover {
-    color: #d2b265;
+    color: #2F754A  ;
     padding-left: 6px;
 }
 
@@ -1306,7 +1311,7 @@ table tbody tr:last-of-type {
     text-align: center;
     line-height: 40px;
     border-radius: 50%;
-    color: #d2b265;
+    color: #50C77D  ;
     transition: all .5s ease;
 }
 
@@ -1315,7 +1320,7 @@ table tbody tr:last-of-type {
 }
 
 .redes a:hover {
-    color: #eae096;
+    color: #50C77D;
     font-size: 1.45rem;
     ;
 }
@@ -1328,7 +1333,7 @@ table tbody tr:last-of-type {
 }
 
 .enlaces i:hover {
-    color: #eae096;
+    color: #50C77D;
 }
 
 
@@ -1387,3 +1392,11 @@ header img {
 .ignore-css {
     all: unset;
 }
+
+/* paleta
+#S0C77D
+#259E54
+#SEEB94
+#2F754A
+#1F4D30
+*/

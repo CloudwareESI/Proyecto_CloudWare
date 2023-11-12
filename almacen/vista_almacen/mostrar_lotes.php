@@ -8,7 +8,7 @@ if ($valor == null) {
 ?>
 
     <div class='contenedorTablas'>
-        <h3>Lotes de el almacen N°" <?php echo $valor["0"]; ?>
+        <h3>Lotes de el almacen N° <?php echo $valor["0"]; ?>
         </h3>
 
 
@@ -26,14 +26,14 @@ if ($valor == null) {
                         . '</h2><br>
                                     <p>¿Esta seguro que desea eliminar al lote ' .
                         $fila['id_lote'] . '?</p><br>';
-
+                    echo $valor["0"];
                     echo '
                         <div class="contenedorBtn">
                         <button type="button" class="cerrar">Cancelar</button>
 
                         <form action="almacen/controlador_almacen/agregar_paquetes.php" method="post">
                             <input type="hidden" name="op" value="eliminarLote">
-                            <input type="hidden" name="id_almacen" value="N/A">
+                            <input type="hidden" name="id_almacen" value="'.$valor["0"].'">
                             <input type="hidden" name="id_lote" value="' . $fila["id_lote"] . '">
                             <input id="CONFIRMAR" type="submit" name="CONFIRMAR" class="CONFIRMAR" value="CONFIRMAR" />
                         </form>

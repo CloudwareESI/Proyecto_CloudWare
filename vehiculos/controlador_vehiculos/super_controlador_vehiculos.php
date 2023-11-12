@@ -31,7 +31,6 @@ function get_all_vehiculos($usuario, $cargo)
                     "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_vehiculos.php",
                     array($fila["id_matricula"])
                 ), true)[0];
-
             }
             var_dump($camiones);
             $valor = array($camiones, $cargo);
@@ -109,10 +108,18 @@ function obtener_carga($matricula, $tipo)
             $id
         );
 
-        $lote0 = json_decode($carga, true)[0];
-        $ruta = json_decode(obt_ruta(array($lote0["id_ruta"])), true);
+        if (isset(json_decode($carga, true)[0])) {
+
+            $lote0 = json_decode($carga, true)[0];
+            $ruta = json_decode(obt_ruta(array($lote0["id_ruta"])), true);
+
+        }else{
+
+            $ruta = json_decode(obt_ruta(array(0)), true);
+        }
 
 
+    
         foreach ($ruta as $k => $v) {
             $destinos[$k] = array($v["calle"] . " " . $v["chapa"]);
         }

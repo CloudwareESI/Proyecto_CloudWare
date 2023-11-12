@@ -1,31 +1,7 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Servidor: 127.0.0.1
--- Tiempo de generación: 05-11-2023 a las 19:10:16
--- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.2.4
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Base de datos: `base_quickcarry`
---
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `almacen`
---
 
 CREATE TABLE `almacen` (
   `id_almacen` int(11) NOT NULL,
@@ -34,23 +10,11 @@ CREATE TABLE `almacen` (
   `id_localidad_almacen` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `almacen`
---
---
--- Estructura de tabla para la tabla `departamento`
---
-
-
 
 CREATE TABLE `departamento` (
   `id_departamento` int(11) NOT NULL,
   `nombre_departamento` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `departamento`
---
 
 INSERT INTO `departamento` (`id_departamento`, `nombre_departamento`) VALUES
 (1, 'Artigas'),
@@ -79,9 +43,6 @@ CREATE TABLE `localidad` (
   `id_dep` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `localidad`
---
 
 INSERT INTO `localidad` (`id_localidad`, `nombre_localidad`, `id_dep`) VALUES
 (1, 'Centro', 10),
@@ -113,44 +74,18 @@ INSERT INTO `almacen` (`id_almacen`, `calle`, `chapa`, `id_localidad_almacen`) V
 (4, 'Bulevar General Artigas', 770, 30),
 (5, 'Wilson Ferreira Aldunate', 340, 22);
 
-
-
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `asignado`
---
-
 CREATE TABLE `asignado` (
   `id_almacen` int(11) NOT NULL,
   `id_empleado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `conduce`
---
-
 CREATE TABLE `conduce` (
   `id_matricula` varchar(7) NOT NULL,
   `id_empleado` int(11) NOT NULL,
-CONSTRAINT checkMatriculaConduce CHECK (char_length(matricula) = 7
-AND substring(matricula,1,1) REGEXP '^[A-N]{1}$'
-AND substring(matricula,2,2) REGEXP '^[A-X]{2}$'
-AND substring(matricula,4,4) REGEXP '^[0-9]{4}$')
+CONSTRAINT `checkMatriculaConduce` CHECK (substring(`id_matricula`,1,1) REGEXP '^[A-S]{1}$'
+AND substring(`id_matricula`,2,2) REGEXP '^[A-X]{2}$'
+AND substring(`id_matricula`,4,4) REGEXP '^[0-9]{4}$')
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
-
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `destinado`
---
 
 CREATE TABLE `destinado` (
   `id_ruta` int(11) NOT NULL,
@@ -158,28 +93,18 @@ CREATE TABLE `destinado` (
   `id_lote` int(11) NOT NULL,
   `matricula` varchar(7) DEFAULT NULL,
   `fecha_de_entrega` datetime DEFAULT NULL,
-  `fecha_transporte` datetime DEFAULT NULL
-CONSTRAINT checkMatriculaVehiculos CHECK (char_length(matricula) = 7
-AND substring(matricula,1,1) REGEXP '^[A-N]{1}$'
-AND substring(matricula,2,1) REGEXP '^[T]{1}$'
-AND substring(matricula,3,1) REGEXP '^[P]{1}$'                                          
-AND substring(matricula,4,4) REGEXP '^[0-9]{4}$')
+  `fecha_transporte` datetime DEFAULT NULL,
+CONSTRAINT `checkMatriculaDestinado` CHECK (substring(`matricula`,1,1) REGEXP '^[A-S]{1}$'
+AND substring(`matricula`,2,1) REGEXP '^[T]{1}$'
+AND substring(`matricula`,3,1) REGEXP '^[P]{1}$'                                          
+AND substring(`matricula`,4,4) REGEXP '^[0-9]{4}$')
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
---
--- Volcado de datos para la tabla `destinado`
---
 
 INSERT INTO `destinado` (`id_ruta`, `id_almacen`, `id_lote`, `matricula`, `fecha_de_entrega`, `fecha_transporte`) VALUES
 (0, 1, 6, 'STP1986', '2023-10-30 05:15:39', '2023-10-26 05:52:17'),
 (0, 1, 7, 'STP1986', '2023-11-02 23:33:12', '2023-11-02 13:15:22'),
 (0, 1, 8, 'ATP1982', NULL, '2023-11-02 13:17:13'),
 (0, 1, 9, NULL, NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `empleado`
---
 
 CREATE TABLE `empleado` (
   `id_empleado` int(11) NOT NULL,
@@ -190,12 +115,8 @@ CREATE TABLE `empleado` (
   `nro_telefono` int(11) DEFAULT NULL,
   `cargo` int(11) NOT NULL
   ,
-    CONSTRAINT correoEmp check(email REGEXP '^[a-zA-Z0-9@.]+$')
+    CONSTRAINT `correoEmp` check(`email` REGEXP '^[a-zA-Z0-9@.]+$')
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `empleado`
---
 
 INSERT INTO `empleado` (`id_empleado`, `email`, `nombre`, `apellido`, `CI`, `nro_telefono`, `cargo`) VALUES
 (1, 'long65tyco@gmail.com', 'Jose', 'Maria', 54788671, 9932571, 0),
@@ -206,29 +127,12 @@ INSERT INTO `empleado` (`id_empleado`, `email`, `nombre`, `apellido`, `CI`, `nro
 (11, 'almacenero23@crecom.com', 'Maria', 'Jose', 1256777, 999999, 4),
 (17, 'mikeschmith12@mail.com', 'Mike', 'Schmith', 54782142, 96785921, 1);
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `localidad`
---
-
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `login`
---
-
 CREATE TABLE `login` (
   `email` varchar(32) NOT NULL,
-  `password` varchar(255) NOT NULL
-    ,
-    CONSTRAINT correoLog check(email REGEXP '^[a-zA-Z0-9@.]+$')
+  `password` varchar(255) NOT NULL,
+    
+    CONSTRAINT `correoLog` check(`email` REGEXP '^[a-zA-Z0-9@.]+$')
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `login`
---
 
 INSERT INTO `login` (`email`, `password`) VALUES
 ('almacenero23@crecom.com', '$2y$10$./5O8MeFqn0OVgY3S2J0oeMGhdD4JwRp6VGAV/ZT37zrfVMP7Eldq'),
@@ -239,33 +143,17 @@ INSERT INTO `login` (`email`, `password`) VALUES
 ('NatLong9905@gmail.com', '$2y$10$eMMkqvNofKkbiawtZxQEqum8Lb8fLZdd4ek85X8BQYmx0i3rCazDa'),
 ('sam@long', 'TT45OP');
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `lote`
---
-
 CREATE TABLE `lote` (
   `id_lote` int(11) NOT NULL,
   `fecha_creacion` datetime NOT NULL,
   `lote_crecom` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `lote`
---
-
 INSERT INTO `lote` (`id_lote`, `fecha_creacion`, `lote_crecom`) VALUES
 (6, '2023-10-23 00:00:00', 0),
 (7, '2023-11-02 09:01:41', 1),
 (8, '2023-11-02 09:16:59', 1),
 (9, '2023-11-05 12:33:20', 1);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `paquete`
---
 
 CREATE TABLE `paquete` (
   `id_paquete` int(11) NOT NULL,
@@ -283,39 +171,22 @@ CREATE TABLE `paquete` (
   `matricula_transporte` varchar(7) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `paquete`
---
 
 INSERT INTO `paquete` (`id_paquete`, `nombre_paquete`, `dimenciones`, `peso`, `fragil`, `destino_calle`, `fecha_entrega`, `fecha_recibido`, `fecha_cargado`, `fecha_ingreso`, `id_lote_portador`, `id_localidad_destino`, `matricula_transporte`) VALUES
 (4, 'Agua', 200, 200, 1, 'Schinca 2540', NULL, NULL, NULL, '2023-11-02', 7, 2, NULL),
 (5, 'Trampolin', 800, 12000, 0, 'Salto 1234', NULL, NULL, NULL, '2023-11-02', 8, 34, NULL),
 (6, 'Casco de moto', 500, 1000, 0, 'Schinca 2540', NULL, NULL, NULL, '2023-11-05', NULL, 2, NULL);
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `ruta`
---
-
 CREATE TABLE `ruta` (
   `id_ruta` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `ruta`
---
 
 INSERT INTO `ruta` (`id_ruta`) VALUES
 (0),
 (1),
 (2);
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `ubicacion`
---
 
 CREATE TABLE `ubicacion` (
   `id_ruta` int(11) NOT NULL,
@@ -324,9 +195,6 @@ CREATE TABLE `ubicacion` (
   `tempo_trecho` time DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `ubicacion`
---
 
 INSERT INTO `ubicacion` (`id_ruta`, `id_almacen`, `posicion`, `tempo_trecho`) VALUES
 (0, 1, 0, NULL),
@@ -338,203 +206,113 @@ INSERT INTO `ubicacion` (`id_ruta`, `id_almacen`, `posicion`, `tempo_trecho`) VA
 (2, 4, 3, '01:25:00'),
 (1, 5, 3, NULL);
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `vehiculo`
---
-
 CREATE TABLE `vehiculo` (
   `matricula` varchar(7) NOT NULL,
   `estado` int(11) NOT NULL,
   `modelo` varchar(255) DEFAULT NULL,
   `rol` int(11) NOT NULL,
-CONSTRAINT checkMatriculaVehiculos CHECK (char_length(matricula) = 7
-AND substring(matricula,1,1) REGEXP '^[A-N]{1}$'
-AND substring(matricula,2,2) REGEXP '^[A-X]{2}$'
-AND substring(matricula,4,4) REGEXP '^[0-9]{4}$')
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CONSTRAINT `checkMatriculaVehiculos` CHECK (substring(`matricula`,1,1) REGEXP '^[A-S]{1}$'
+AND substring(`matricula`,2,2) REGEXP '^[A-X]{2}$'
+AND substring(`matricula`,4,4) REGEXP '^[0-9]{4}$')
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `vehiculo`
---
 
 INSERT INTO `vehiculo` (`matricula`, `estado`, `modelo`, `rol`) VALUES
 ('ATP1982', 1, 'Citroen', 1),
-('STL569', 0, 'Camioneta', 2),
+('STL5691', 0, 'Camioneta', 2),
 ('STP1986', 1, 'Camión pesado', 1);
 
---
--- Índices para tablas volcadas
---
 
---
--- Indices de la tabla `almacen`
---
 ALTER TABLE `almacen`
   ADD PRIMARY KEY (`id_almacen`),
   ADD KEY `almacen_ibfk_1` (`id_localidad_almacen`);
 
---
--- Indices de la tabla `asignado`
---
+
 ALTER TABLE `asignado`
   ADD PRIMARY KEY (`id_almacen`,`id_empleado`),
   ADD KEY `asignado_ibfk_2` (`id_empleado`);
 
---
--- Indices de la tabla `conduce`
---
 ALTER TABLE `conduce`
   ADD PRIMARY KEY (`id_matricula`,`id_empleado`),
   ADD KEY `conduce_ibfk_2` (`id_empleado`);
 
---
--- Indices de la tabla `departamento`
---
 ALTER TABLE `departamento`
   ADD PRIMARY KEY (`id_departamento`);
 
---
--- Indices de la tabla `destinado`
---
 ALTER TABLE `destinado`
   ADD PRIMARY KEY (`id_almacen`,`id_ruta`,`id_lote`) USING BTREE,
   ADD KEY `fk_lote` (`id_lote`),
   ADD KEY `fk_vehiculo` (`matricula`);
 
---
--- Indices de la tabla `empleado`
---
 ALTER TABLE `empleado`
   ADD PRIMARY KEY (`id_empleado`);
 
---
--- Indices de la tabla `localidad`
---
 ALTER TABLE `localidad`
   ADD PRIMARY KEY (`id_localidad`);
 
---
--- Indices de la tabla `login`
---
 ALTER TABLE `login`
   ADD PRIMARY KEY (`email`);
 
---
--- Indices de la tabla `lote`
---
 ALTER TABLE `lote`
   ADD PRIMARY KEY (`id_lote`);
 
---
--- Indices de la tabla `paquete`
---
 ALTER TABLE `paquete`
   ADD PRIMARY KEY (`id_paquete`),
   ADD KEY `id_lote_portador` (`id_lote_portador`),
   ADD KEY `id_localidad_destino` (`id_localidad_destino`),
   ADD KEY `matricula_transporte` (`matricula_transporte`);
 
---
--- Indices de la tabla `ruta`
---
+
 ALTER TABLE `ruta`
   ADD PRIMARY KEY (`id_ruta`);
 
---
--- Indices de la tabla `ubicacion`
---
+
 ALTER TABLE `ubicacion`
   ADD PRIMARY KEY (`id_almacen`,`id_ruta`),
   ADD KEY `ubicacion_ibfk_1` (`id_ruta`);
 
---
--- Indices de la tabla `vehiculo`
---
 ALTER TABLE `vehiculo`
   ADD PRIMARY KEY (`matricula`);
 
---
--- AUTO_INCREMENT de las tablas volcadas
---
 
---
--- AUTO_INCREMENT de la tabla `almacen`
---
 ALTER TABLE `almacen`
   MODIFY `id_almacen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
---
--- AUTO_INCREMENT de la tabla `departamento`
---
+
 ALTER TABLE `departamento`
   MODIFY `id_departamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
---
--- AUTO_INCREMENT de la tabla `empleado`
---
 ALTER TABLE `empleado`
   MODIFY `id_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
---
--- AUTO_INCREMENT de la tabla `localidad`
---
 ALTER TABLE `localidad`
   MODIFY `id_localidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
---
--- AUTO_INCREMENT de la tabla `lote`
---
+
 ALTER TABLE `lote`
   MODIFY `id_lote` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
---
--- AUTO_INCREMENT de la tabla `paquete`
---
+
 ALTER TABLE `paquete`
   MODIFY `id_paquete` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `almacen`
---
 ALTER TABLE `almacen`
   ADD CONSTRAINT `almacen_ibfk_1` FOREIGN KEY (`id_localidad_almacen`) REFERENCES `localidad` (`id_localidad`);
 
---
--- Filtros para la tabla `asignado`
---
 ALTER TABLE `asignado`
   ADD CONSTRAINT `asignado_ibfk_1` FOREIGN KEY (`id_almacen`) REFERENCES `almacen` (`id_almacen`),
   ADD CONSTRAINT `asignado_ibfk_2` FOREIGN KEY (`id_empleado`) REFERENCES `empleado` (`id_empleado`);
 
---
--- Filtros para la tabla `conduce`
---
 ALTER TABLE `conduce`
   ADD CONSTRAINT `conduce_ibfk_1` FOREIGN KEY (`id_matricula`) REFERENCES `vehiculo` (`matricula`),
   ADD CONSTRAINT `conduce_ibfk_2` FOREIGN KEY (`id_empleado`) REFERENCES `empleado` (`id_empleado`);
 
---
--- Filtros para la tabla `destinado`
---
 ALTER TABLE `destinado`
   ADD CONSTRAINT `fk_lote` FOREIGN KEY (`id_lote`) REFERENCES `lote` (`id_lote`),
   ADD CONSTRAINT `fk_ubicacion` FOREIGN KEY (`id_almacen`,`id_ruta`) REFERENCES `ubicacion` (`id_almacen`, `id_ruta`),
   ADD CONSTRAINT `fk_vehiculo` FOREIGN KEY (`matricula`) REFERENCES `vehiculo` (`matricula`);
 
---
--- Filtros para la tabla `ubicacion`
---
 ALTER TABLE `ubicacion`
   ADD CONSTRAINT `ubicacion_ibfk_1` FOREIGN KEY (`id_ruta`) REFERENCES `ruta` (`id_ruta`),
   ADD CONSTRAINT `ubicacion_ibfk_2` FOREIGN KEY (`id_almacen`) REFERENCES `almacen` (`id_almacen`);
 COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

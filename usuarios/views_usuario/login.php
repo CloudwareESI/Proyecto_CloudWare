@@ -1,3 +1,6 @@
+<?php 
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -8,14 +11,26 @@
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="icon" type="image/jpg" href="../../Imagenes/Logo_quickcarry-sin-fondo.png">
-    <link rel="stylesheet" href="../../estilos/estiloDef.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <?php switch ($_SESSION["color"]) { 
+        case 'negro':
+            ?>
+            <link rel="stylesheet" href="../../estilos/estiloDef.css">
+            <?php
+            break;
+        case 'blanco':
+            ?>
+            <link rel="stylesheet" href="../../estilos/estiloColor.css">
+            <?php
+            break; } 
+    ?>
     <title>QuickCarry</title>
 </head>
 
 <body>
-    <header>
+<header>
         <div class="home">
-           <a href="../../index.php"><img src="../../imagenes/imagen-home.png" width="70px" height="70px"></a>
+           <a href="../../index.php"><i class="fa-solid fa-reply"></i></a>
         </div>
     </header>
 
@@ -24,7 +39,17 @@
 
         <div class="formulario vertical">
 
-            <img src="../../Imagenes/Logo_quickcarry-sin-fondo.png" alt="logo" height="70px" width="70px">
+        <?php switch ($_SESSION["color"]) { 
+            case 'negro':
+                echo     
+                '<img src="../../Imagenes/Logo_quickcarry-sin-fondo1.png" alt="logo" height="70px" width="70px">'; 
+                break;
+            case 'blanco':
+                echo     
+                '<img src="../../Imagenes/Logo_quickcarry-VERDE.png" alt="logo" height="70px" width="70px">';
+                break; } 
+        ?>
+            
 
             <h2>Iniciar sesion</h2>
 

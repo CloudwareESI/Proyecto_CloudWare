@@ -1,6 +1,4 @@
 <?php
-
-
 session_start();
 if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
 
@@ -25,7 +23,18 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="icon" type="image/jpg" href="../../../Imagenes/Logo_quickcarry-sin-fondo.png">
-        <link rel="stylesheet" href="../../estilos/estiloDef.css">
+        <?php switch ($_SESSION["color"]) { 
+        case 'negro':
+            ?>
+            <link rel="stylesheet" href="../../estilos/estiloDef.css">
+            <?php
+            break;
+        case 'blanco':
+            ?>
+            <link rel="stylesheet" href="../../estilos/estiloColor.css">
+            <?php
+            break; } 
+        ?>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
         <title>QuickCarry</title>
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
