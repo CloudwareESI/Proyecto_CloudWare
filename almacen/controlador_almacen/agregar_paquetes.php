@@ -113,6 +113,7 @@ switch ($op) {
 }
 
 if (!isset($_POST["id_almacen"])) {
+    echo "entrada";
     header("Location:http://" . $_SERVER["HTTP_HOST"] . "/Proyecto_Cloudware/index.php?Entrada");
 } else {
     echo $_POST["id_almacen"];

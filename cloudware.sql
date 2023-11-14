@@ -70,6 +70,9 @@ CREATE TABLE `login` (
     CONSTRAINT `correoLog` check(`email` REGEXP '^[a-zA-Z0-9@.]+$')
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+
+
+
 CREATE TABLE `lote` (
   `id_lote` int(11) NOT NULL,
   `fecha_creacion` datetime NOT NULL,
@@ -217,11 +220,9 @@ COMMIT;
 INSERT INTO `empleado` (`id_empleado`, `email`, `nombre`, `apellido`, `CI`, `nro_telefono`, `cargo`) VALUES
 (1, 'long65tyco@gmail.com', 'Jose', 'Maria', 54788671, 9932571, 0),
 (3, 'NatLong9905@gmail.com', 'Nataniel', 'Rojas', 1247789, 934455, 1),
-(4, 'sam@long', 'Sam', 'Sam', 4365467, 934444, 2),
 (9, 'camionero23@mail.com', 'Manuel', 'Martinez', 5446798, 945678, 2),
 (10, 'almacenero23@mail.com', 'Thomas', 'Torres', 2345678, 999999, 1),
-(11, 'almacenero23@crecom.com', 'Maria', 'Jose', 1256777, 999999, 4),
-(17, 'mikeschmith12@mail.com', 'Mike', 'Schmith', 54782142, 96785921, 1);
+(11, 'almacenero23@crecom.com', 'Maria', 'Jose', 1256777, 999999, 4);
 
 INSERT INTO `vehiculo` (`matricula`, `estado`, `modelo`, `rol`, `peso_maximo`) VALUES
 ('ATP1982', 0, 'Citroen', 1, 15000),
@@ -229,13 +230,11 @@ INSERT INTO `vehiculo` (`matricula`, `estado`, `modelo`, `rol`, `peso_maximo`) V
 ('STP1986', 1, 'Camión pesado', 1, 15000);
 
 INSERT INTO `login` (`email`, `password`) VALUES
-('almacenero23@crecom.com', '$2y$10$./5O8MeFqn0OVgY3S2J0oeMGhdD4JwRp6VGAV/ZT37zrfVMP7Eldq'),
-('almacenero23@mail.com', '$2y$10$./5O8MeFqn0OVgY3S2J0oeMGhdD4JwRp6VGAV/ZT37zrfVMP7Eldq'),
-('camionero23@mail.com', '$2y$10$./5O8MeFqn0OVgY3S2J0oeMGhdD4JwRp6VGAV/ZT37zrfVMP7Eldq'),
 ('long65tyco@gmail.com', '$2y$10$7PArTXWqqSIw/XU7cpm6OuQsRUrphZ9Ix2nPG9FOcfe6ip96hqAkC'),
-('mikeschmith12@mail.com', '$2y$10$8xFGxyTZ3tiXkjPKfelzhO7RzNhx3MyQBcRvJbKnedXLvCNbare1u'),
 ('NatLong9905@gmail.com', '$2y$10$eMMkqvNofKkbiawtZxQEqum8Lb8fLZdd4ek85X8BQYmx0i3rCazDa'),
-('sam@long', 'TT45OP');
+('camionero23@mail.com', '$2y$10$kkpXVU8z/od8kq4cfcOW7OYbsPS.C13BS/cZSVzq5TRcYcrcx/OKa'),
+('almacenero23@mail.com', '$2y$10$IR3OD.sqbFn4ocNYFr/nDO.Z1Mn67F1tGWK9yQTsAESZZNTtI.E4S'),
+('almacenero23@crecom.com', '$2y$10$USNexGc.aBx2Lob3Ncq6OONat713EHpyEdYuKU002eTwHeM39FdEK');
 
 INSERT INTO `departamento` (`id_departamento`, `nombre_departamento`) VALUES
 (1, 'Artigas'),

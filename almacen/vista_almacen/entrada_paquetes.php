@@ -323,7 +323,6 @@ if ($valor == null) {
 
                         <form action="almacen/controlador_almacen/agregar_paquetes.php" method="post">
                             <input type="hidden" name="op" value="eliminarLote">
-                            <input type="hidden" name="id_almacen" value="N/A">
                             <input type="hidden" name="id_lote" value="' . $fila["id_lote"] . '">
                             <input id="CONFIRMAR" type="submit" name="CONFIRMAR" class="CONFIRMAR" value="CONFIRMAR" />
                         </form>

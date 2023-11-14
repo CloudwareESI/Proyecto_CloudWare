@@ -89,102 +89,104 @@ switch ($_POST["opcion"]) {
         $locacion = NULL;
         if (!isset($_POST['paquetes'])) {
             if (!isset($_POST["id_almacen"])) {
-                echo $_POST["id_almacen"];
-                //header("Location:http://" . $_SERVER["HTTP_HOST"] . "/Proyecto_Cloudware/index.php?Entrada");
+                echo "entrada";
+                header("Location:http://" . $_SERVER["HTTP_HOST"] . "/Proyecto_Cloudware/index.php?Entrada");
             } else {
                 echo $_POST["id_almacen"];
-                //header("Location:http://" . $_SERVER["HTTP_HOST"] . "/Proyecto_Cloudware?id_almacen=" . $_POST["id_almacen"] . "&Almacenes=1");
+                header("Location:http://" . $_SERVER["HTTP_HOST"] . "/Proyecto_Cloudware?id_almacen=" . $_POST["id_almacen"] . "&Almacenes=1");
             }
-        }
-
-        foreach ($_POST["paquetes"] as $fila) {
-            $id_paquete = array("id_paquete" => $fila);
-
-            $valor = json_decode(llamadoDeAPI(
-                "GET",
-                "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php",
-                $id_paquete
-            ), true);
-
-
-            $paquete = $valor[0];
-
-
-            echo "<br>";
-            if (isset($locacion)) {
-                if ($locacion === $paquete["id_localidad_destino"]) {
-                    echo "misma Locacion";
-                } else {
-                }
-            } else {
-                $locacion = $paquete["id_localidad_destino"];
-            }
-        }
-
-        $vars_destino = explode("|", $_POST["destino"]);
-
-        //Marcamos si hay una alamacen destino
-        if (isset($_POST["destino"])) {
-            $var_destin = array($vars_destino["0"], $vars_destino["1"], NULL);
-            $var_lote = array("0");
         } else {
-            $var_destino = array("0", "1", NULL);
-            $var_lote = array("1");
-        }
-        $vars = array($var_lote, $var_destino);
+
+            foreach ($_POST["paquetes"] as $fila) {
+                $id_paquete = array("id_paquete" => $fila);
+
+                $valor = json_decode(llamadoDeAPI(
+                    "GET",
+                    "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php",
+                    $id_paquete
+                ), true);
 
 
-        $id_lote =
-            llamadoDeAPI(
-                "PUT",
-                "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/almacen/modelo_almacen/REST_lotes.php",
-                $vars,
-                true
-            );
-
-        var_dump($id_lote);
+                $paquete = $valor[0];
 
 
-        foreach ($_POST["paquetes"] as $fila) {
-            $id_paquete = array("id_paquete" => $fila);
+                echo "<br>";
+                if (isset($locacion)) {
+                    if ($locacion === $paquete["id_localidad_destino"]) {
+                        echo "misma Locacion";
+                    } else {
+                    }
+                } else {
+                    $locacion = $paquete["id_localidad_destino"];
+                }
+            }
 
-            $valor = json_decode(llamadoDeAPI(
-                "GET",
-                "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php",
-                $id_paquete
-            ), true);
+            $vars_destino = explode("|", $_POST["destino"]);
 
-            $paquete = $valor[0];
-            var_dump($paquete);
+            //Marcamos si hay una alamacen destino
+            if (isset($_POST["destino"])) {
+                $var_destin = array($vars_destino["0"], $vars_destino["1"], NULL);
+                $var_lote = array("0");
+            } else {
+                $var_destino = array("0", "1", NULL);
+                $var_lote = array("1");
+            }
+            $vars = array($var_lote, $var_destino);
 
-            echo "<br>";
-            var_dump($paquete);
-            $pack = array(
-                $paquete['nombre_paquete'],
-                $paquete['dimenciones'],
-                $paquete['peso'],
-                $paquete['fragil'],
-                $paquete['destino_calle'],
-                $paquete['fecha_entrega'],
-                $paquete['fecha_recibido'],
-                $paquete['fecha_cargado'],
-                $paquete['fecha_ingreso'],
-                $id_lote,
-                $paquete['id_localidad_destino'],
-                $paquete['matricula_transporte'],
-                $paquete['id_paquete'],
-            );
-            llamadoDeAPI(
-                "POST",
-                "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php",
-                $pack
-            );
+
+            $id_lote =
+                llamadoDeAPI(
+                    "PUT",
+                    "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/almacen/modelo_almacen/REST_lotes.php",
+                    $vars,
+                    true
+                );
+
+            var_dump($id_lote);
+
+
+            foreach ($_POST["paquetes"] as $fila) {
+                $id_paquete = array("id_paquete" => $fila);
+
+                $valor = json_decode(llamadoDeAPI(
+                    "GET",
+                    "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php",
+                    $id_paquete
+                ), true);
+
+                $paquete = $valor[0];
+                var_dump($paquete);
+
+                echo "<br>";
+                var_dump($paquete);
+                $pack = array(
+                    $paquete['nombre_paquete'],
+                    $paquete['dimenciones'],
+                    $paquete['peso'],
+                    $paquete['fragil'],
+                    $paquete['destino_calle'],
+                    $paquete['fecha_entrega'],
+                    $paquete['fecha_recibido'],
+                    $paquete['fecha_cargado'],
+                    $paquete['fecha_ingreso'],
+                    $id_lote,
+                    $paquete['id_localidad_destino'],
+                    $paquete['matricula_transporte'],
+                    $paquete['id_paquete'],
+                );
+                llamadoDeAPI(
+                    "POST",
+                    "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php",
+                    $pack
+                );
+            }
         }
 
         break;
 }
 
 if (!isset($_POST["id_almacen"])) {
+    echo "entrada";
     header("Location:http://" . $_SERVER["HTTP_HOST"] . "/Proyecto_Cloudware/index.php?Entrada");
 } else {
     echo $_POST["id_almacen"];
