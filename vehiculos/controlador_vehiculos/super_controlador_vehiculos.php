@@ -120,7 +120,7 @@ function obtener_carga($matricula, $tipo)
 
     
         foreach ($ruta as $k => $v) {
-            $destinos[$k] = array($v["calle"] . " " . $v["chapa"]);
+            $destinos[$k] = $v["calle"] . " " . $v["chapa"]. " " . $v["nombre_departamento"];
         }
     } else {
 
@@ -131,7 +131,7 @@ function obtener_carga($matricula, $tipo)
         );
 
         foreach (json_decode($carga, true) as $k => $v) {
-            $destinos[$k] = array($v["destino_calle"] . " " . $v["nombre_departamento"]);
+            $destinos[$k] = $v["destino_calle"] . " " . $v["nombre_departamento"];
         }
     }
 

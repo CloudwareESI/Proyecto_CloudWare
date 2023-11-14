@@ -51,6 +51,7 @@ function llamadoDeAPI($method, $url, $data)
     if (curl_errno($curl)) {
         echo 'Error: ' . curl_error($curl);
     } else {
+        //Solo abilitar la linea de abajo para debug
         //echo "<br>" . $response . "<br>";
         return $response;
     }

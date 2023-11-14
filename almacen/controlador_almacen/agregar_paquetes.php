@@ -3,7 +3,7 @@ include "../../db/funciones_utiles.php";
 $op = $_POST['op'];
 
 var_dump($_POST);
-
+echo "<br>";
 switch ($op) {
 
     case 'agregar':
@@ -30,7 +30,7 @@ switch ($op) {
 
         $L = llamadoDeAPI(
             "PUT",
-            "http://".$_SERVER["HTTP_HOST"]."//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php",
+            "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php",
             $paquete
         );
 
@@ -38,6 +38,14 @@ switch ($op) {
 
 
     case 'modificar':
+
+        $identificador = array('id_paquete' => $_POST['id_paquete']);
+        $valor = json_decode(llamadoDeAPI(
+            "GET",
+            "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php",
+            $identificador
+        ), true)[0];
+
         $nombre_paquete = $_POST['nombre_paquete'];
 
         $dimenciones = $_POST['dimenciones'];
@@ -48,52 +56,30 @@ switch ($op) {
 
         $id_paquete = $_POST['id_paquete'];
 
-        $fecha_recibido = $_POST['fecha_recibido'];
-        if (isset($fecha_recibido)) {
-            $fecha_recibido = NULL;
-        }
 
-        $fecha_entrega = $_POST['fecha_entrega'];
-        if (isset($fecha_entrega)) {
-            $fecha_entrega = NULL;
-        }
-        $fecha_cargado = $_POST['fecha_entrega'];
-        if (isset($fecha_entrega)) {
-            $fecha_entrega = NULL;
-        }
 
-        $id_lote = $_POST['id_lote'];
-        if (isset($id_lote)) {
-            $id_lote = NULL;
-        }
-        $matricula_transporte = $_POST['matricula_transporte'];
-        if (isset($matricula_transporte)) {
-            $matricula_transporte = NULL;
-        }
-
-        $id_almacen = $_POST['id_almacen'];
-
-        $id_cruce = $_POST['id_cruce'];
 
         $paquete = array(
             $nombre_paquete,
             $dimenciones,
             $peso,
             $fragil,
-            $destino_calle,
-            $fecha_recibido,
-            $fecha_entrega,
-            $fecha_cargado,
-            $fecha_ingreso,
-            $id_lote,
-            $id_localidad_destino,
-            $matricula_transporte,
-            $id_paquete,
+            $_POST['calle_destino'],
+            $valor["fecha_recibido"],
+            $valor["fecha_entrega"],
+            $valor["fecha_cargado"],
+            $valor["fecha_ingreso"],
+            $valor["id_lote_portador"],
+            $_POST['localidad_destino'],
+            $valor["matricula_transporte"],
+            $_POST['id_paquete']
         );
-
+        echo "<br>";
+        var_dump($paquete);
+        echo "<br>";
         $L = llamadoDeAPI(
             "POST",
-            "http://".$_SERVER["HTTP_HOST"]."//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php",
+            "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php",
             $paquete
         );
 
@@ -105,7 +91,7 @@ switch ($op) {
         $id = array($_POST["id_paquete"]);
         llamadoDeAPI(
             "DELETE",
-            "http://".$_SERVER["HTTP_HOST"]."//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php",
+            "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php",
             $id
         );
 
@@ -116,7 +102,7 @@ switch ($op) {
         $id = array($_POST["id_lote"]);
         llamadoDeAPI(
             "DELETE",
-            "http://".$_SERVER["HTTP_HOST"]."//Proyecto_Cloudware/almacen/modelo_almacen/REST_lotes.php",
+            "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/almacen/modelo_almacen/REST_lotes.php",
             $id
         );
 
@@ -126,12 +112,9 @@ switch ($op) {
         break;
 }
 
-if ($_POST["id_almacen"] == "N/A") {
-    //echo $_POST["id_almacen"];
-    header("Location:http://".$_SERVER["HTTP_HOST"]."/Proyecto_Cloudware/index.php?Entrada");
-
+if (isset($_POST["id_almacen"])) {
+    header("Location:http://" . $_SERVER["HTTP_HOST"] . "/Proyecto_Cloudware/index.php?Entrada");
 } else {
-    //echo $_POST["id_almacen"];
-    header("Location:http://".$_SERVER["HTTP_HOST"]."/Proyecto_Cloudware?id_almacen=".$_POST["id_almacen"]."&Almacenes=1");
-
+    echo $_POST["id_almacen"];
+    header("Location:http://" . $_SERVER["HTTP_HOST"] . "/Proyecto_Cloudware?id_almacen=" . $_POST["id_almacen"] . "&Almacenes=1");
 }

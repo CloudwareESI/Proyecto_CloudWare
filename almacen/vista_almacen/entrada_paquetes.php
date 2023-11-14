@@ -15,74 +15,92 @@ if ($valor == null) {
         foreach ($valor["0"] as $fila) { ?>
 
 
-            <div class="contenedorModal" data-index="modificarPqt<? echo $x; ?>">
+            <div class="contenedorModal" data-index="modificar">
                 <div class="modal">
-                    <?php
-                    $variables = $valor[$x]; ?>
-                    <div class="formulario">
-                        <form class="formBase" action="almacen/controlador_almacen/agregar_paquetes.php" method="post">
-                            <h2>Modificacion de datos</h2>
+                    <div class="contenedorFormulario">
 
-                            <input type="hidden" name="op" value="modificar">
-                            <input type="hidden" name="id_paquete" value="<?= $fila['id_paquete'] ?>">
-                            <input type="hidden" name="fecha_recibido" value="<?= $fila['fecha_recibido'] ?>">
-                            <input type="hidden" name="fecha_entrega" value="<?= $fila['fecha_entrega'] ?>">
-                            <input type="hidden" name="id_lote" value="<?= $fila['id_lote_portador'] ?>">
-                            <br>
-                            <div class="formularioModificar">
+                        <form action="almacen/controlador_almacen/agregar_paquetes.php" method="post">
+                            <?php
+                            $variables = $valor[$x]; ?>
+                            <form class="formBase" action="almacen/controlador_almacen/agregar_paquetes.php" method="post">
+                                <h2>Modificacion de datos</h2>
+                                <div class="formulario formBase">
+                                    <div class="formularioPopUp1">
+                                        <input type="hidden" name="op" value="modificar">
+                                        <input type="hidden" name="id_paquete" value="<?= $fila['id_paquete'] ?>">
+                                        <br>
+                                        <div class="formularioModificar">
 
-                                <?= "<p>Nombre actual: " . $fila['nombre_paquete'] . "</p>" ?>
+                                            <?= "<p>Nombre actual: " . $fila['nombre_paquete'] . "</p>" ?>
 
-                                <label for="matricula">Nombre de paquete:</label>
-                                <input type="text" name="nombre_paquete">
-                            </div>
-                            <br>
-                            <div class="formularioModificar">
-                                <?= "<p>dimenciones actuales: " . $fila['dimenciones'] . "</p>" ?>
+                                            <label for="matricula">Nombre de paquete:</label>
+                                            <input type="text" name="nombre_paquete">
+                                        </div>
+                                        <br>
+                                        <div class="formularioModificar">
+                                            <?= "<p>dimenciones actuales: " . $fila['dimenciones'] . "</p>" ?>
 
-                                <label for="dimenciones">Nuevas dimenciones:</label>
-                                <input type="text" name="dimenciones">
-                            </div>
-                            <br>
-                            <div class="formularioModificar">
-                                <?= "<p>Peso actual: " . $fila['peso'] . "</p>" ?>
+                                            <label for="dimenciones">Nuevas dimenciones:</label>
+                                            <input type="text" name="dimenciones">
+                                        </div>
+                                        <br>
+                                        <div class="formularioModificar">
+                                            <?= "<p>Peso actual: " . $fila['peso'] . "</p>" ?>
 
-                                <label for="peso">Nuevo peso:</label>
-                                <input type="text" name="peso">
-                            </div>
-                            <br>
-                            <div class="formularioModificar">
-                                <?= "<p>Fragil?: " . $fila['fragil'] . "</p>" ?>
+                                            <label for="peso">Nuevo peso:</label>
+                                            <input type="text" name="peso">
+                                        </div>
+                                        <div class="btnEntrada1">
+                                            <button id="btn" type="button" class="cerrar">Cancelar</button>
+                                        </div>
+                                    </div>
+                                    <div class="formularioPopUp2">
+                                        <br>
+                                        <div class="formularioModificar">
+                                            <?= "<p>Fragil?: " . $fila['fragil'] . "</p>" ?>
 
-                                <label for="peso">0 para no 1 para si:</label>
-                                <input type="number" name="fragil">
-                            </div>
-                            <br>
-                            <div class="formularioModificar">
-                                <label for="Localidad destino">Localidad:</label>
-                                <br>
-                                <select name="localidad_destino">
+                                            <label for="peso">0 para no 1 para si:</label>
+                                            <input type="number" name="fragil">
+                                        </div>
+                                        <br>
+                                        <div class="formularioModificar">
+                                            <?= "<p>Destino actual: " . $fila['destino_calle'] . "</p>" ?>
+                                            <label for="Calle destino">Calle_destino:</label>
+                                            <input type="text" name="calle_destino">
+                                        </div>
+
+                                        <br>
+                                        <div class="formularioModificar">
+                                            <label for="Localidad destino">Localidad:</label>
+                                            <br>
+                                            <select name="localidad_destino">
 
 
-                                    <?php
-                                    foreach ($valor["4"] as $localidad) {
-                                        echo "<option value='" . $localidad["id_localidad"] . "'>"
-                                            . $localidad["nombre_localidad"] . " " . $localidad["nombre_departamento"] .
-                                            "</option>";
-                                    }
-                                    ?>
-                                </select>
+                                                <?php
+                                                foreach ($valor["4"] as $localidad) {
+                                                    echo "<option value='" . $localidad["id_localidad"] . "'>"
+                                                        . $localidad["nombre_localidad"] . " " . $localidad["nombre_departamento"] .
+                                                        "</option>";
+                                                }
+                                                ?>
+                                            </select>
 
-                            </div>
-                            <br>
-                            <div class="contenedorBtn">
-                                <button type="button" class="cerrar">Cancelar</button>
-                                <input id="btn" type="submit" value="Actualizar">
-                            </div>
-                            <br>
-                        </form>
+                                        </div>
+                                        <br>
+                                        <div class="contenedorBtn">
 
+                                            <input id="btn" type="submit" value="Actualizar">
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                            </form>
                     </div>
+
+
+
 
 
                 </div>
@@ -209,7 +227,6 @@ if ($valor == null) {
                                 <div class="formulario formBase">
                                     <div class="formularioPopUp1">
                                         <input type="hidden" name="op" value="agregar">
-                                        <input type="hidden" name="id_almacen" value="N/A">
                                         <input type="hidden" name="id_almacen" value=<?php $_GET = "id_almacen" ?>>
 
                                         <div class="formularioModificar">

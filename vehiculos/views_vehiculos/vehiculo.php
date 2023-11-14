@@ -10,8 +10,9 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
 
     $carga = obtener_carga($_GET['matricula'], $vehiculo['rol']);
 
-    $destino = $carga['3'];
+    $destinos = $carga['3'];
 
+                    
 ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -23,17 +24,18 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="icon" type="image/jpg" href="../../Imagenes/Logo_quickcarry-sin-fondo.png">
-        <?php switch ($_SESSION["color"]) { 
-        case 'negro':
-            ?>
-            <link rel="stylesheet" href="../../estilos/estiloDef.css">
+        <?php switch ($_SESSION["color"]) {
+            case 'negro':
+        ?>
+                <link rel="stylesheet" href="../../estilos/estiloDef.css">
             <?php
-            break;
-        case 'blanco':
+                break;
+            case 'blanco':
             ?>
-            <link rel="stylesheet" href="../../estilos/estiloColor.css">
-            <?php
-            break; } 
+                <link rel="stylesheet" href="../../estilos/estiloColor.css">
+        <?php
+                break;
+        }
         ?>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
         <title>QuickCarry</title>
@@ -143,9 +145,9 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
                                     case '1':
                             ?>
                                         <input type="hidden" name="opcion" value="lote">
-                                        <input type="hidden" name="rol" value="<?php echo $_GET['rol'];?>">
-                                        <input type="hidden" name="matricula" value="<?php echo $_GET['matricula'];?>">
-                                        <input type="hidden" name="estado" value="<?php echo $_GET['estado'];?>">
+                                        <input type="hidden" name="rol" value="<?php echo $_GET['rol']; ?>">
+                                        <input type="hidden" name="matricula" value="<?php echo $_GET['matricula']; ?>">
+                                        <input type="hidden" name="estado" value="<?php echo $_GET['estado']; ?>">
 
                                         <thead>
                                             <tr>
@@ -184,9 +186,9 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
                                     case '2':
                                     ?>
                                         <input type="hidden" name="opcion" value="paquete">
-                                        <input type="hidden" name="rol" value="<?php echo $_GET['rol'];?>">
-                                        <input type="hidden" name="matricula" value="<?php echo $_GET['matricula'];?>">
-                                        <input type="hidden" name="estado" value="<?php echo $_GET['estado'];?>">
+                                        <input type="hidden" name="rol" value="<?php echo $_GET['rol']; ?>">
+                                        <input type="hidden" name="matricula" value="<?php echo $_GET['matricula']; ?>">
+                                        <input type="hidden" name="estado" value="<?php echo $_GET['estado']; ?>">
                                         <thead>
                                             <tr>
                                                 <th>ID Paquete</th>
@@ -218,13 +220,13 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
                                         break;
                                 }
                             } ?>
-   </table>
+                    </table>
 
-                            <div class="btn">
-                                <input id="btnVehiculo" class="btn" type="submit" value="Entregar">
-                            </div>
-                        </form>
-                 
+                    <div class="btn">
+                        <input id="btnVehiculo" class="btn" type="submit" value="Entregar">
+                    </div>
+                    </form>
+
 
 
                 </div>
@@ -267,7 +269,6 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
 
 
                             <?php
-                            $destinos = array("Rivera 3674 Montevideo", "Schinca 2540 Montevideo");
                             foreach ($destinos as $destino) {
                             ?>
 
@@ -276,10 +277,11 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
                                 var urlDestino = 'https://nominatim.openstreetmap.org/search?format=json&q=' +
                                     encodeURIComponent("<?php echo $destino; ?>");
 
-                                    obtenerCords(
-                                        fetch(urlDestino))
+                                fetch(urlDestino)
                                     .then(function(response) {
-                                        var data = response.json();
+                                        return response.json();
+                                    })
+                                    .then(function(data) {
                                         if (data.length > 0) {
                                             var lat = parseFloat(data[0].lat);
 

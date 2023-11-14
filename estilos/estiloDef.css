@@ -578,17 +578,19 @@ table {
     display: flex;
 }
 
-table thead tr {
+.tabla thead tr {
     background-color: #d2b265;
     color: #ffffff;
     text-align: middle;
 }
 
-table th,
-table td {
+.tabla table th,
+.tabla table td {
     padding: 12px 15px;
     text-align: center;
+   
 }
+
 
 table tbody tr {
     border-bottom: 1px solid #000000;
@@ -828,7 +830,7 @@ table tbody tr:last-of-type {
 }
 
 .modal {
-    background-color: #2f2f2f;
+    background-color: #24262B;
     border: 1px solid #eae096;
     width: auto;
     max-width: 100%;
@@ -1048,6 +1050,14 @@ table tbody tr:last-of-type {
     margin-bottom:15%;
     margin-left: 10%;
     margin-right: -45%;
+}
+
+.contenedorMapa table{
+    align-items: center;
+}
+.contenedorMapa table td {
+color: #d2b265;
+background-color: #2f2f2f;
 }
 
 #map {
@@ -1337,56 +1347,3 @@ table tbody tr:last-of-type {
 
 
 /*-------------------------FIN ESTILO FOOTER------------------*/
-/* Estilo Almacen */
-
-.imgPeque {
-    width: 50px;
-    height: 50px
-}
-
-
-
-.icnEliminar {
-    width: 1em;
-    height: auto;
-}
-
-.icnModificar {
-    width: 1em;
-    height: auto;
-}
-
-.icnAniadir {
-    width: 50px;
-    height: 50px;
-
-}
-
-.btnAniadir {
-    border: 4px outset #2f2f2f;
-    border-radius: 15px;
-    background-color: #2f2f2f;
-    color: #d2b265;
-}
-
-
-header img {
-    height: 70px;
-    width: 79.05px;
-    margin: 0px 0px 10px 0;
-
-}
-
-.icnEliminar {
-    width: 1em;
-    height: auto;
-}
-
-.icnModificar {
-    width: 1em;
-    height: auto;
-}
-
-.ignore-css {
-    all: unset;
-}

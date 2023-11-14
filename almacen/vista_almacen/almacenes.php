@@ -80,7 +80,7 @@ if ($almacenes == null) {
 
             <td>
                 <button type="button" class="abrir" data-index="eliminarAlm<? echo $key; ?>">
-                    <i class="fas fa-wrench"></i>
+                    <i class="fas fa-trash"></i>
                 </button>
             </td>
 

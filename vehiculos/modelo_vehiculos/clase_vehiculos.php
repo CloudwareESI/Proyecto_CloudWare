@@ -55,7 +55,42 @@ class vehiculos
     $matriz = array();
     $matriz = $resultado->fetch_all(MYSQLI_ASSOC);
 
-    return $matriz;
+    if ($matriz[0]["rol"] == 1) {
+      $query = "SELECT v.matricula, 
+      v.estado , 
+      v.modelo, 
+      v.rol, 
+      v.peso_maximo, 
+      SUM(p.peso)/1000 AS carga_actual
+      FROM `vehiculo` v 
+      LEFT JOIN destinado l ON v.matricula = l.matricula 
+      LEFT JOIN paquete p ON l.id_lote = p.id_lote_portador
+      WHERE p.fecha_entrega IS NULL 
+      AND l.fecha_de_entrega IS NULL
+      AND v.matricula = ?
+      GROUP BY v.matricula";
+
+    } else if($matriz[0]["rol"] == 2){
+      $query = "SELECT v.matricula, 
+      v.estado , 
+      v.modelo, 
+      v.rol, 
+      v.peso_maximo, 
+      SUM(p.peso)/1000 AS carga_actual
+      FROM `vehiculo` v
+      LEFT JOIN paquete p ON v.matricula = p.matricula_transporte
+      WHERE p.fecha_entrega IS NULL
+      AND v.matricula = ?
+      GROUP BY v.matricula";
+
+    }else{
+      $query = "select * from vehiculo where  matricula = ? ";
+    }
+
+    $resultado = $this->base_datos->conexion()->execute_query($query, $id);
+    $vehiculo = array();
+    $vehiculo = $resultado->fetch_all(MYSQLI_ASSOC);
+    return $vehiculo;
   }
 
   public function get_vehiculos_all()
@@ -83,14 +118,13 @@ class vehiculos
     $insert = "UPDATE vehiculo SET estado= ? , modelo= ?, rol= ? where vehiculo.matricula= ? ";
 
     $this->base_datos->conexion()->execute_query($insert, $variables);
-
   }
 
   public function put_vehiculos($variables)
   {
 
     //matricula estado modelo id_almacen
-  $insert = "INSERT INTO vehiculo VALUES (?, ? , ? , ?)";
-  $this->base_datos->conexion()->execute_query($insert, $variables);
+    $insert = "INSERT INTO vehiculo VALUES (?, ? , ? , ?)";
+    $this->base_datos->conexion()->execute_query($insert, $variables);
   }
 }
