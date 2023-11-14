@@ -97,7 +97,8 @@ if ($valor == null) {
                     foreach ($valor["2"] as $fila) {
 
                         if ($fila["rol"] == "1") {
-                            echo "<option value='" . $fila["matricula"] . "'>"
+                            echo "<option value='" . $fila["matricula"] . 
+                            " carga maxima" . $fila["peso_maximo"] . "'>"
                                 . $fila["matricula"] .
                                 "</option>";
                         }

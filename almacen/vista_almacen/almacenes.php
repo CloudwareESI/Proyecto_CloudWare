@@ -146,8 +146,13 @@ if ($almacenes == null) {
     </div>
 </div>
 
-
+<?php 
+if ($valor[1] == 0) {
+    ?>
 <div class="btn">
     <button type="button" id="btnTabla" class="abrir" data-index="agregar_alm">
-        Agregar Paquete
+        Agregar Almacen
 </div>
+<?php
+}
+?>

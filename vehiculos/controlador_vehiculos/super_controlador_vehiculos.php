@@ -32,7 +32,6 @@ function get_all_vehiculos($usuario, $cargo)
                     array($fila["id_matricula"])
                 ), true)[0];
             }
-            var_dump($camiones);
             $valor = array($camiones, $cargo);
         }
     }

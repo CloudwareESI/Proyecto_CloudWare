@@ -17,7 +17,7 @@ if ($camiones == null) {
     <thead>
     <tr>
     <th>Matricula</th> <th>Modelo</th> 
-    <th>Estado</th> <th>Rol</th>";
+    <th>Estado</th> <th>Rol</th> <th>Peso Maximo</th>";
     if ($valor[1] == "0") {
 ?>
         <th>Modificar</th>
@@ -61,6 +61,9 @@ if ($camiones == null) {
                 echo "N/A";
                 break;
         }
+        echo '<td>'.
+        $fila["peso_maximo"]
+        .' kg</td>';
         if ($valor[1] == "0") {
         ?>
             </td>
@@ -121,9 +124,9 @@ if ($camiones == null) {
 
                                         <label for="modelo">Nuevo modelo:</label>
 
-                                        <input type="text" name="modelo"><br><br>
+                                        <input type="text" name="modelo">
 
-
+                                        </div>
                                         <?php echo "<p>Rol actual: ";
                                         switch ($variables['rol']) {
                                             case '1':
@@ -138,7 +141,8 @@ if ($camiones == null) {
                                         }
 
                                         echo "</p>" ?>
-                                    </div>
+                                    
+                             
                                     <div class="formularioModificar">
                                         <label for="rol">Nuevo Rol:</label>
                                         <select name="rol">
@@ -151,6 +155,11 @@ if ($camiones == null) {
                                         </select>
                                     </div>
 
+                                    <?php echo "<p>peso maximo actual: ".$variables["peso_maximo"]." kg</p>";?>
+                                    <div class="formularioModificar">
+                                        <label for="rol">Nuevo Peso maximo (kg):</label>
+                                        <input type="number" name="peso_maximo">
+                                    </div>
                                 </div>
                                 <div class="contenedorBtn">
                                     <button id="btn" type="button" class="cerrar">Cancelar</button>
@@ -263,7 +272,10 @@ if ($camiones == null) {
                                 </option>
                             </select>
                         </div>
-
+                        <div class="formularioModificar">
+                                        <label for="rol">Peso maximo (kg):</label>
+                                        <input type="number" name="peso_maximo">
+                                    </div>
                         <div class="contenedorBtn">
                             <button id="btn" type="button" class="cerrar">Cancelar</button>
                             <input id="btn" type="submit" value="Actualizar">

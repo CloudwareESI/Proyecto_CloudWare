@@ -253,7 +253,7 @@ class paquetes
     INNER JOIN departamento d ON l.id_dep = d.id_departamento
 	  LEFT JOIN destinado g ON p.id_lote_portador = g.id_lote
     LEFT JOIN ubicacion u ON g.id_ruta = u.id_ruta AND g.id_almacen = u.id_almacen
-    WHERE matricula_transporte= ?";
+    WHERE matricula_transporte= ? AND fecha_entrega IS NULL";
     $resultado = $this->base_datos->conexion()->execute_query($query, $matricula);
     $matriz = array();
     $matriz = $resultado->fetch_all(MYSQLI_ASSOC);

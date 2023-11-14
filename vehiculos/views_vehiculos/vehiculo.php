@@ -22,7 +22,7 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="icon" type="image/jpg" href="../../../Imagenes/Logo_quickcarry-sin-fondo.png">
+        <link rel="icon" type="image/jpg" href="../../Imagenes/Logo_quickcarry-sin-fondo.png">
         <?php switch ($_SESSION["color"]) { 
         case 'negro':
             ?>
@@ -101,7 +101,7 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
 
                     <div class="opcion">
                         <a id="seleccionarRuta" href="#"><i class="fa-solid fa-road"></i></a>
-                        <h2>Seleccionar ruta</h2>
+                        <h2>Mostrar ruta</h2>
                     </div>
 
                     <div class="opcion">
@@ -143,9 +143,9 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
                                     case '1':
                             ?>
                                         <input type="hidden" name="opcion" value="lote">
-                                        <input type="hidden" name="rol" value="<?= $_GET['rol']; ?>">
-                                        <input type="hidden" name="matricula" value="<?= $_GET['matricula']; ?>">
-                                        <input type="hidden" name="estado" value="<?= $_GET['estado']; ?>">
+                                        <input type="hidden" name="rol" value="<?php echo $_GET['rol'];?>">
+                                        <input type="hidden" name="matricula" value="<?php echo $_GET['matricula'];?>">
+                                        <input type="hidden" name="estado" value="<?php echo $_GET['estado'];?>">
 
                                         <thead>
                                             <tr>
@@ -184,6 +184,9 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
                                     case '2':
                                     ?>
                                         <input type="hidden" name="opcion" value="paquete">
+                                        <input type="hidden" name="rol" value="<?php echo $_GET['rol'];?>">
+                                        <input type="hidden" name="matricula" value="<?php echo $_GET['matricula'];?>">
+                                        <input type="hidden" name="estado" value="<?php echo $_GET['estado'];?>">
                                         <thead>
                                             <tr>
                                                 <th>ID Paquete</th>
@@ -215,13 +218,13 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
                                         break;
                                 }
                             } ?>
-
+   </table>
 
                             <div class="btn">
                                 <input id="btnVehiculo" class="btn" type="submit" value="Entregar">
                             </div>
                         </form>
-                    </table>
+                 
 
 
                 </div>

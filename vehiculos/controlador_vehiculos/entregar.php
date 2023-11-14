@@ -118,5 +118,7 @@ switch ($_POST["opcion"]) {
         echo "esto no deberia pasar";
         break;
 }
+
+
 header("Location:http://".$_SERVER["HTTP_HOST"]."/Proyecto_Cloudware/vehiculos/views_vehiculos/vehiculo.php?rol=".
 $_POST['rol']."&matricula=".$_POST['matricula']."&estado=".$_POST['estado']);

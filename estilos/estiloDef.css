@@ -723,7 +723,7 @@ table tbody tr:last-of-type {
 #btnSelectBoton5 {
 
     display: flex;
-    margin-left: 73%;
+    margin-left: 77%;
     position: static;
     height: fit-content;
     padding: 6px;
@@ -829,13 +829,15 @@ table tbody tr:last-of-type {
 
 .modal {
     background-color: #2f2f2f;
+    border: 1px solid #eae096;
     width: auto;
     max-width: 100%;
     padding: 30px 50px;
     border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 4px #eae096;
     text-align: center;
 }
+
 
 .modal h2 {
     margin: 0;
@@ -1042,9 +1044,10 @@ table tbody tr:last-of-type {
 
 .contenedorMapa {
     text-align: center;
-    margin-top: -30%;
+    margin-top: -15%;
+    margin-bottom:15%;
     margin-left: 10%;
-    margin-right: -60%;
+    margin-right: -45%;
 }
 
 #map {
@@ -1259,7 +1262,7 @@ table tbody tr:last-of-type {
     margin-top: 18%;
     text-align: center;
     background-color: #24262B;
-    padding: 40px;
+    padding: 70px;
 
 }
 

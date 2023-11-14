@@ -1,5 +1,4 @@
 <?php
-include "config.php";
 
 class base_de_datos {
 
