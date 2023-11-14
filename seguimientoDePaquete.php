@@ -23,18 +23,25 @@ $fechaEntrega = isset($paquete["fecha_entrega"]) ? json_encode($paquete["fecha_e
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="icon" type="image/jpg" href="Imagenes/Logo_quickcarry-sin-fondo.png">
-    <link rel="stylesheet" href="estilos/estiloDef.css">
+    <?php switch ($_SESSION["color"]) {
+        case 'negro':
+            echo     '<link rel="stylesheet" href="estilos/estiloDef.css">';
+            break;
+        case 'blanco':
+            echo     '<link rel="stylesheet" href="estilos/estiloColor.css">';
+            break;
+    }
+    ?>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <title>QuickCarry</title>
 </head>
 
 
 <body>
-    <header>
+<header>
         <div class="home">
-            <a href="http://localhost/Proyecto_Cloudware/"><img src="imagenes/imagen-home.png" width="70px" height="70px"></a>
-
-
+           <a href="index.php"><i class="fa-solid fa-reply"></i></a>
+        </div>
     </header>
     <div class="tituloSeguimiento">
         <h1>Delivery de QuickCarry</h1>

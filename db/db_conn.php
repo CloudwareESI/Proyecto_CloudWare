@@ -1,30 +1,30 @@
 <?php
 
-class base_de_datos {
+class base_de_datos
+{
 
 
-public $sname = "localhost";
+  public $sname = "localhost";
 
-public $unmae = "root";
+  public $unmae = "root";
 
-public $password = "";
+  public $password = "";
 
-public $db_name = "base_quickcarry";
+  public $db_name = "cloudware";
 
-public function __construct() {
+  public function __construct()
+  {
   }
 
-public function conexion() {
+  public function conexion()
+  {
     $conn = mysqli_connect($this->sname, $this->unmae, $this->password, $this->db_name); //conecta a la base de datos por medio de root
 
 
     if (!$conn) {
-    
-        echo "Connection failed!";
+      echo "error de conexion";
     }
+
     return $conn;
+  }
 }
-
-}
-
-

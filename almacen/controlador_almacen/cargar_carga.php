@@ -87,14 +87,15 @@ switch ($_POST["opcion"]) {
 
     case 'formar':
         $locacion = NULL;
-
-        if ($_POST["id_almacen"] == "N/A") {
-
-            header("Location:http://" . $_SERVER["HTTP_HOST"] . "/Proyecto_Cloudware/index.php?Entrada");
-        } else {
-            header("Location:http://" . $_SERVER["HTTP_HOST"] . "/Proyecto_Cloudware?id_almacen=" . $_POST["id_almacen"] . "&Almacenes=1");
+        if (!isset($_POST['paquetes'])) {
+            if (!isset($_POST["id_almacen"])) {
+                echo $_POST["id_almacen"];
+                //header("Location:http://" . $_SERVER["HTTP_HOST"] . "/Proyecto_Cloudware/index.php?Entrada");
+            } else {
+                echo $_POST["id_almacen"];
+                //header("Location:http://" . $_SERVER["HTTP_HOST"] . "/Proyecto_Cloudware?id_almacen=" . $_POST["id_almacen"] . "&Almacenes=1");
+            }
         }
-
 
         foreach ($_POST["paquetes"] as $fila) {
             $id_paquete = array("id_paquete" => $fila);
@@ -180,17 +181,12 @@ switch ($_POST["opcion"]) {
             );
         }
 
-        header("Location:http://" . $_SERVER["HTTP_HOST"] . "/Proyecto_Cloudware/index.php");
-
         break;
 }
 
-if ($_POST["id_almacen"] == "N/A") {
-    //echo $_POST["id_almacen"];
-    header("Location:http://".$_SERVER["HTTP_HOST"]."/Proyecto_Cloudware/index.php?Entrada");
-
+if (!isset($_POST["id_almacen"])) {
+    header("Location:http://" . $_SERVER["HTTP_HOST"] . "/Proyecto_Cloudware/index.php?Entrada");
 } else {
-    //echo $_POST["id_almacen"];
-    header("Location:http://".$_SERVER["HTTP_HOST"]."/Proyecto_Cloudware?id_almacen=".$_POST["id_almacen"]."&Almacenes=1");
-
+    echo $_POST["id_almacen"];
+    header("Location:http://" . $_SERVER["HTTP_HOST"] . "/Proyecto_Cloudware?id_almacen=" . $_POST["id_almacen"] . "&Almacenes=1");
 }
