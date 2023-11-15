@@ -123,7 +123,6 @@ if ($valor == null) {
 
                         <form action="almacen/controlador_almacen/agregar_paquetes.php" method="post">
                             <input type="hidden" name="op" value="eliminar">
-                            <input type="hidden" name="id_almacen" value="N/A">
                             <input type="hidden" name="id_paquete" value="' . $variables["id_paquete"] . '">
                             <input id="CONFIRMAR" type="submit" name="CONFIRMAR" class="CONFIRMAR" value="CONFIRMAR" />
                         </form>
@@ -227,8 +226,6 @@ if ($valor == null) {
                                 <div class="formulario formBase">
                                     <div class="formularioPopUp1">
                                         <input type="hidden" name="op" value="agregar">
-                                        <input type="hidden" name="id_almacen" value=<?php $_GET = "id_almacen" ?>>
-
                                         <div class="formularioModificar">
                                             <label for="nombre_paquete">Nombre:</label>
                                             <input type="text" name="nombre_paquete">
@@ -271,7 +268,7 @@ if ($valor == null) {
 
                                         <div class="contenedorBtn">
 
-                                            <input id="btn" type="submit" value="Actualizar">
+                                            <input id="btn" type="submit" value="Agregar">
                                         </div>
 
                                     </div>

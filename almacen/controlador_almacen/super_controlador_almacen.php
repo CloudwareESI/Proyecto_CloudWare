@@ -133,7 +133,7 @@ function get_lotes_alm($id_alm)
 
         if (
             $fila["id_almacen"] == $id_alm
-            and isset($fila["fecha_de_entrega"])
+            and isset($fila["fecha_de_entrega"] )  
         ) {
             $lotes_almacen[$numero_lotes] = $fila;
         }
@@ -141,9 +141,9 @@ function get_lotes_alm($id_alm)
         if ($id_alm == "1") {
             if (
                 $fila["id_almacen"] != $id_alm
-                and !isset($fila["fecha_de_entrega"])
+                and !isset($fila["fecha_de_entrega"]) and !isset($fila["matricula"]) 
             ) {
-                $paquetes_lotes[$numero_lotes] = $fila;
+                $lotes_almacen[$numero_lotes] = $fila;
             }
         }
         $numero_lotes = $numero_lotes + "1";

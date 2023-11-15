@@ -47,7 +47,8 @@ CREATE TABLE `destinado` (
 CONSTRAINT `checkMatriculaDestinado` CHECK (substring(`matricula`,1,1) REGEXP '^[A-S]{1}$'
 AND substring(`matricula`,2,1) REGEXP '^[T]{1}$'
 AND substring(`matricula`,3,1) REGEXP '^[P]{1}$'                                          
-AND substring(`matricula`,4,4) REGEXP '^[0-9]{4}$')
+AND substring(`matricula`,4,4) REGEXP '^[0-9]{4}$'),
+CONSTRAINT `checkFechaEntregaLote` CHECK (`fecha_de_entrega`>=`fecha_transporte`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
@@ -90,7 +91,12 @@ CREATE TABLE `paquete` (
   `fecha_ingreso` date NOT NULL,
   `id_lote_portador` int(11) DEFAULT NULL,
   `id_localidad_destino` int(11) NOT NULL,
-  `matricula_transporte` varchar(7) DEFAULT NULL
+  `matricula_transporte` varchar(7) DEFAULT NULL,
+CONSTRAINT `checkMatriculaTransporte` CHECK (substring(`matricula_transporte`,1,1) REGEXP '^[A-S]{1}$'
+AND substring(`matricula_transporte`,2,1) REGEXP '^[T]{1}$'
+AND substring(`matricula_transporte`,3,1) REGEXP '^[L,M]{1}$'                                          
+AND substring(`matricula_transporte`,4,4) REGEXP '^[0-9]{4}$'),
+CONSTRAINT `checkFechas` CHECK (`fecha_entrega`>=`fecha_cargado`>=`fecha_recibido`>=`fecha_ingreso`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 

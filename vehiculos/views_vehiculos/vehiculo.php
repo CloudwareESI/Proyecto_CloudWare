@@ -93,10 +93,16 @@ if ($_SESSION['cargo'] == "2" or $_SESSION['cargo'] == "0") {
 
     <body>
         <div class="contenedorInterfaz">
+            
             <div class="usuarioCamionero">
+            <div class="home">
+           <a href="../../index.php?Camiones"><i   id="home" class="fa-solid fa-reply"></i></a>
+        </div>
+        <div class="camionero">
                 <i class="fa-solid fa-user-large"></i>
                 <h2>Bienvenido <?php echo $_SESSION['nombre']; ?>!
                 </h2>
+                </div>
             </div>
             <div class="contenedorOpciones">
                 <div class="opciones">

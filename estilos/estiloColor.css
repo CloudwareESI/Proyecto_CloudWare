@@ -983,6 +983,11 @@ table tbody tr:last-of-type {
 }
 
 .usuarioCamionero i {
+    font-size: 100%;
+    color: #50C77D;
+
+}
+.camionero i{
     margin-top: 10%;
     font-size: 180px;
     color: #50C77D;
@@ -991,9 +996,7 @@ table tbody tr:last-of-type {
     padding-top: 30px;
     border-radius: 120px;
 
-
 }
-
 .usuarioCamionero h2 {
     font-size: 2em;
     color: #EBEBEB;
@@ -1081,7 +1084,7 @@ background-color: #1F4D30;
     height: fit-content;
     margin-top: 45px;
     font-size: 40px;
-    color: #50C77D;
+    color: #259E54;
     border-radius: 20px;
 
 }

@@ -274,11 +274,11 @@ if ($camiones == null) {
                         </div>
                         <div class="formularioModificar">
                                         <label for="rol">Peso maximo (kg):</label>
-                                        <input type="number" name="peso_maximo">
+                                        <input type="number" min="0" name="peso_maximo">
                                     </div>
                         <div class="contenedorBtn">
                             <button id="btn" type="button" class="cerrar">Cancelar</button>
-                            <input id="btn" type="submit" value="Actualizar">
+                            <input id="btn" type="submit" value="Agregar">
                         </div>
 
                     </form>

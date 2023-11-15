@@ -90,6 +90,12 @@ class vehiculos
     $resultado = $this->base_datos->conexion()->execute_query($query, $id);
     $vehiculo = array();
     $vehiculo = $resultado->fetch_all(MYSQLI_ASSOC);
+    if (!isset($vehiculo[0])){
+      $query = "select * from vehiculo where  matricula = ? ";
+      $resultado = $this->base_datos->conexion()->execute_query($query, $id);
+      $vehiculo = array();
+      $vehiculo = $resultado->fetch_all(MYSQLI_ASSOC);
+    }
     return $vehiculo;
   }
 
@@ -115,7 +121,7 @@ class vehiculos
     echo "<br>";
     var_dump($variables);
     echo "<br>";
-    $insert = "UPDATE vehiculo SET estado= ? , modelo= ?, rol= ? where vehiculo.matricula= ? ";
+    $insert = "UPDATE vehiculo SET estado= ? , modelo= ?, rol= ?, peso_maximo = ? where vehiculo.matricula= ? ";
 
     $this->base_datos->conexion()->execute_query($insert, $variables);
   }
@@ -124,7 +130,7 @@ class vehiculos
   {
 
     //matricula estado modelo id_almacen
-    $insert = "INSERT INTO vehiculo VALUES (?, ? , ? , ?)";
+    $insert = "INSERT INTO vehiculo VALUES (?, ? , ? , ?, ?)";
     $this->base_datos->conexion()->execute_query($insert, $variables);
   }
 }

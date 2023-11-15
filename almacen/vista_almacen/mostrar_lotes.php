@@ -26,7 +26,6 @@ if ($valor == null) {
                         . '</h2><br>
                                     <p>¿Esta seguro que desea eliminar al lote ' .
                         $fila['id_lote'] . '?</p><br>';
-                    echo $valor["0"];
                     echo '
                         <div class="contenedorBtn">
                         <button type="button" class="cerrar">Cancelar</button>
@@ -67,6 +66,7 @@ if ($valor == null) {
 
                     echo '
             <form action="almacen/controlador_almacen/cargar_carga.php" method="post">
+            <input type="hidden" name="id_almacen" value="' . $valor["0"] . '">
             <tr>
             <td>' . $fila['id_lote'] . '</td>  
             <td>' . $fila['fecha_creacion'] . '</td>';

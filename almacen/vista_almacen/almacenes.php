@@ -129,7 +129,7 @@ if ($almacenes == null) {
 
                         <div class="contenedorBtn">
                             <button type="button" class="cerrar">Cancelar</button>
-                            <input id="btn" type="submit" value="Actualizar">
+                            <input id="btn" type="submit" value="Agregar">
                         </div>
 
                     </div>

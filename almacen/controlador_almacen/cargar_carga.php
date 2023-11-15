@@ -2,8 +2,6 @@
 require_once "../../db/funciones_utiles.php";
 require_once "super_controlador_almacen.php";
 
-var_dump($_POST);
-echo "<br>";
 switch ($_POST["opcion"]) {
     case 'lote':
         $matricula = $_POST['matricula'];
@@ -54,9 +52,6 @@ switch ($_POST["opcion"]) {
 
             $valor_extraido =  $valor[0];
 
-            echo "<br>";
-            var_dump($valor_extraido);
-            echo "<br>";
 
 
             $paquete = array(
@@ -108,10 +103,11 @@ switch ($_POST["opcion"]) {
 
 
                 $paquete = $valor[0];
-
+                echo "<br>". $paquete["id_localidad_destino"] . "<br>";
 
                 echo "<br>";
                 if (isset($locacion)) {
+                    
                     if ($locacion === $paquete["id_localidad_destino"]) {
                         echo "misma Locacion";
                     } else {
@@ -121,11 +117,12 @@ switch ($_POST["opcion"]) {
                 }
             }
 
-            $vars_destino = explode("|", $_POST["destino"]);
+            
 
             //Marcamos si hay una alamacen destino
             if (isset($_POST["destino"])) {
-                $var_destin = array($vars_destino["0"], $vars_destino["1"], NULL);
+                $vars_destino = explode("|", $_POST["destino"]);
+                $var_destino = array($vars_destino["0"], $vars_destino["1"], NULL);
                 $var_lote = array("0");
             } else {
                 $var_destino = array("0", "1", NULL);
@@ -142,7 +139,7 @@ switch ($_POST["opcion"]) {
                     true
                 );
 
-            var_dump($id_lote);
+
 
 
             foreach ($_POST["paquetes"] as $fila) {
@@ -155,10 +152,9 @@ switch ($_POST["opcion"]) {
                 ), true);
 
                 $paquete = $valor[0];
-                var_dump($paquete);
+
 
                 echo "<br>";
-                var_dump($paquete);
                 $pack = array(
                     $paquete['nombre_paquete'],
                     $paquete['dimenciones'],

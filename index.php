@@ -66,7 +66,7 @@ if (isset($_GET['Bienvenido'])) {
                     </a>
                 </li>
                 <li>
-                    <a href="#paquete">
+                    <a href="index.php#paquete">
                         <p>Mi Paquete</p>
                     </a>
                 </li>
@@ -243,7 +243,7 @@ if (isset($_GET['Bienvenido'])) {
 
         <a href="paquete"> </a>
         <div class="contenedorFormulario">
-            <form class="formBase" id="formPaquete" action="seguimientoDePaquete.php" method="GET">
+            <form id="paquete" class="formBase" id="formPaquete" action="seguimientoDePaquete.php" method="GET">
 
                 <div class="formulario vertical">
                     <?php switch ($_SESSION["color"]) {
@@ -258,7 +258,7 @@ if (isset($_GET['Bienvenido'])) {
                     }
                     ?>
 
-                    <h2 id="paquete">Seguimiento de Paquete</h2>
+                    <h2>Seguimiento de Paquete</h2>
                     <br>
                     <div>
                         <input type="text" class="controles" name="Codigo" id="Codigo" placeholder="Codigo:" maxlength="32" required>

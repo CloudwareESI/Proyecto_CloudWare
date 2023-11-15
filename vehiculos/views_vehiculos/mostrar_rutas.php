@@ -107,7 +107,7 @@ if ($valor == null) {
     <form action="vehiculos/views_vehiculos/agregar_ruta.php" method="POST">
 
         <label id="btnSelectLabel" for="ubicaciones">Numero de trechos</label>
-        <input id="btnSelectBoton5" type="number" name="ubicaciones">
+        <input id="btnSelectBoton5" type="number" min="0" name="ubicaciones">
 
         <input id="btnSelectBoton4" type="submit" value="Agregar una ruta">
 

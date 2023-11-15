@@ -113,13 +113,13 @@ $fechaEntrega = isset($paquete["fecha_entrega"]) ? json_encode($paquete["fecha_e
                 and !isset($paquete[0]["fecha_recibido"])):
             ?>
                 <p id="msjEstado">
-                    Su paquete se encuentra en camino al almacén
+                    Su paquete se encuentra en camino al almacén principal
                 </p>
-                <script src="js/carga2.js"></script>
+                <script src="js/carga1.js"></script>
             <?php
                 break;
 
-            case (isset($paquete[0]["fecha_ingreso"])
+            case (isset($paquete[0]["fecha_recibido"])
                 and !isset($paquete[0]["fecha_transporte"])
                 and $paquete[0]["id_almacen"] = "1" ):
             ?>
@@ -127,12 +127,12 @@ $fechaEntrega = isset($paquete["fecha_entrega"]) ? json_encode($paquete["fecha_e
                     Su paquete esta en gestion
                 </p>
 
-                <script src="js/carga1.js"></script>
+                <script src="js/carga2.js"></script>
             <?php
                 break;
 
             case (isset($paquete[0]["fecha_recibido"])
-                and !isset($paquete[0]["fecha_transporte"])
+                and !isset($paquete[0]["fecha_de_entrega"])
                 and $paquete[0]["id_almacen"] != "1" ):
             ?>
                 <p id="msjEstado">

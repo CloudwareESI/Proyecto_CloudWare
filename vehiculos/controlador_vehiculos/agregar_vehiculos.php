@@ -12,11 +12,13 @@ switch ($op) {
 
         $rol = $_POST['rol'];
 
-        $vehiculos = array($matricula, $estado, $modelo, $rol);
+        $peso = $_POST["peso_maximo"];
+
+        $vehiculos = array($matricula, $estado, $modelo, $rol, $peso);
 
         $L = llamadoDeAPI(
             "PUT",
-            "http://127.0.0.1//".$_SERVER["HTTP_HOST"]."/vehiculos/modelo_vehiculos/REST_vehiculos.php",
+            "http://".$_SERVER["HTTP_HOST"]."/Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_vehiculos.php",
             $vehiculos
         );
 
@@ -32,11 +34,13 @@ switch ($op) {
 
         $rol = $_POST['rol'];
 
-        $vehiculos = array($estado, $modelo, $rol, $matricula_vieja);
+        $peso = $_POST["peso_maximo"];
+
+        $vehiculos = array($estado, $modelo, $rol, $peso, $matricula_vieja);
 
         $L = llamadoDeAPI(
             "POST",
-            "http://127.0.0.1//".$_SERVER["HTTP_HOST"]."/vehiculos/modelo_vehiculos/REST_vehiculos.php",
+            "http://".$_SERVER["HTTP_HOST"]."/Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_vehiculos.php",
             $vehiculos
         );
         break;
@@ -45,7 +49,7 @@ switch ($op) {
         $id = array($_POST["matricula"]);
         $L = llamadoDeAPI(
             "DELETE",
-            "http://127.0.0.1//".$_SERVER["HTTP_HOST"]."/vehiculos/modelo_vehiculos/REST_vehiculos.php",
+            "http://".$_SERVER["HTTP_HOST"]."/Proyecto_Cloudware/vehiculos/modelo_vehiculos/REST_vehiculos.php",
             $id
         );
 

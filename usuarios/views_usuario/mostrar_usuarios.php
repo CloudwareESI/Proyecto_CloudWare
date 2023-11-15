@@ -324,7 +324,7 @@ if ($valores["0"] == null) {
                 </div>
                 <div class="contenedorBtn">
                     <button type="button" class="cerrar">Cancelar</button>
-                    <input id="btn" type="submit" value="Actualizar">
+                    <input id="btn" type="submit" value="Agregar">
                 </div>
             </form>
         </div>

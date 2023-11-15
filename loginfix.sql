@@ -17,3 +17,16 @@ INSERT INTO `login` (`email`, `password`) VALUES
 ('camionero23@mail.com', '$2y$10$kkpXVU8z/od8kq4cfcOW7OYbsPS.C13BS/cZSVzq5TRcYcrcx/OKa'),
 ('NatLong9905@gmail.com', '$2y$10$eMMkqvNofKkbiawtZxQEqum8Lb8fLZdd4ek85X8BQYmx0i3rCazDa');
 
+INSERT INTO `conduce` (`id_matricula`, `id_empleado`) VALUES
+('ATP1982', 9),
+('STL5691', 9),
+('STP1986', 9);
+
+INSERT INTO `asignado` (`id_almacen`, `id_empleado`) VALUES
+(1, 3),
+(1, 10),
+(3, 10),
+(4, 3),
+(4, 10),
+(5, 3),
+(5, 10);

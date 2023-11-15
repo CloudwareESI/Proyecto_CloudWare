@@ -113,9 +113,9 @@ switch ($op) {
 }
 
 if (!isset($_POST["id_almacen"])) {
-    echo "entrada";
+    echo "<br>entrada";
     header("Location:http://" . $_SERVER["HTTP_HOST"] . "/Proyecto_Cloudware/index.php?Entrada");
 } else {
-    echo $_POST["id_almacen"];
+    echo "<br> almacen detectada".$_POST["id_almacen"];
     header("Location:http://" . $_SERVER["HTTP_HOST"] . "/Proyecto_Cloudware?id_almacen=" . $_POST["id_almacen"] . "&Almacenes=1");
 }

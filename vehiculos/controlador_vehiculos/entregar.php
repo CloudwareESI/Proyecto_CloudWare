@@ -17,9 +17,6 @@ switch ($_POST["opcion"]) {
                 ),
                 true
             );
-            echo "<br>";
-            var_dump($id_lote);
-            echo "<br>";
 
             $paquetes = json_decode(
                 llamadoDeAPI(
@@ -29,10 +26,6 @@ switch ($_POST["opcion"]) {
                 ),
                 true
             );
-
-            echo "<br>";
-            var_dump($paquetes);
-            echo "<br>";
 
             if ($valor[0]["id_ruta"] = 1) {
 
@@ -81,8 +74,6 @@ switch ($_POST["opcion"]) {
         foreach ($_POST["paquetes"] as $fila) {
 
             $identificador = array('id_paquete' => $fila);
-            var_dump($identificador);
-            echo "<br>";
             $valor = json_decode(llamadoDeAPI(
                 "GET",
                 "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/almacen/modelo_almacen/REST_paquetes.php",

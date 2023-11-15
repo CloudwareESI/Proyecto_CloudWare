@@ -106,21 +106,19 @@ function obtener_carga($matricula, $tipo)
             "http://" . $_SERVER["HTTP_HOST"] . "//Proyecto_Cloudware/almacen/modelo_almacen/REST_lotes.php",
             $id
         );
-
         if (isset(json_decode($carga, true)[0])) {
 
             $lote0 = json_decode($carga, true)[0];
             $ruta = json_decode(obt_ruta(array($lote0["id_ruta"])), true);
-
-        }else{
+        } else {
 
             $ruta = json_decode(obt_ruta(array(0)), true);
         }
 
 
-    
+
         foreach ($ruta as $k => $v) {
-            $destinos[$k] = $v["calle"] . " " . $v["chapa"]. " " . $v["nombre_departamento"];
+            $destinos[$k] = $v["calle"] . " " . $v["chapa"] . " " . $v["nombre_departamento"];
         }
     } else {
 
