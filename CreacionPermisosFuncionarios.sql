@@ -1,6 +1,4 @@
-CREATE USER 'admin_quickcarry_cw'@'localhost' IDENTIFIED BY '123';
-GRANT ALL PRIVILEGES ON * . * TO 'admin_quickcarry_cw'@'localhost' WITH GRANT OPTION; 
-FLUSH PRIVILEGES;
+
 
 
 CREATE USER 'almacenero_quickcarry_cw'@'localhost' IDENTIFIED BY '123';

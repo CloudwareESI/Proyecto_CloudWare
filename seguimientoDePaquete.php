@@ -2,14 +2,20 @@
 session_start();
 require_once "db/funciones_utiles.php";
 require_once "almacen/controlador_almacen/super_controlador_almacen.php";
-
+if (isset($_GET["color"])) {
+    switch ($_GET["color"]) {
+        case 'blanco':
+            $_SESSION['color'] = "blanco";
+            break;
+        case 'negro':
+            $_SESSION['color'] = "negro";
+            break;
+    }
+} elseif (!isset($_SESSION['color'])) {
+    $_SESSION['color'] = "negro";
+}
 $paquete = get_paquete($_GET["Codigo"]);
-//foreach ($paquete[0] as $key => $value) {
-   // echo $key. " " . $value. "<br>";
-//}
-// Obtén el valor de fecha_entrega y pásalo como una variable JavaScript
-
-$fechaEntrega = isset($paquete["fecha_entrega"]) ? json_encode($paquete["fecha_entrega"]) : 'undefined';
+//var_dump($paquete);
 
 ?>
 
@@ -90,6 +96,7 @@ $fechaEntrega = isset($paquete["fecha_entrega"]) ? json_encode($paquete["fecha_e
         <?php
         switch (true) {
 
+
             case (isset($paquete[0]["fecha_entrega"])):
         ?>
                 <p id="msjEstado">
@@ -168,10 +175,25 @@ $fechaEntrega = isset($paquete["fecha_entrega"]) ? json_encode($paquete["fecha_e
             ?>
                 <p id="msjEstado">
                     Su paquete se encuentra en gestion
+                    <script src="js/carga3.js"></script>
                 </p>
 
         <?php
                 break;
+
+            case (isset($paquete[0]["fecha_ingreso"])
+                and !isset($paquete[0]["Id_lote_portador"])
+                ):
+            ?>
+                <p id="msjEstado">
+                    Su paquete a sido ingresado
+                    <script src="js/carga1.js"></script>
+                </p>
+
+        <?php
+                break;
+
+
         }
         ?>
 

@@ -47,7 +47,8 @@ CREATE TABLE `destinado` (
 CONSTRAINT `checkMatriculaDestinado` CHECK (substring(`matricula`,1,1) REGEXP '^[A-S]{1}$'
 AND substring(`matricula`,2,1) REGEXP '^[T]{1}$'
 AND substring(`matricula`,3,1) REGEXP '^[P]{1}$'                                          
-AND substring(`matricula`,4,4) REGEXP '^[0-9]{4}$')
+AND substring(`matricula`,4,4) REGEXP '^[0-9]{4}$'),
+CONSTRAINT `checkFechaEntregaLote` CHECK (`fecha_de_entrega`>=`fecha_transporte`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
@@ -70,9 +71,6 @@ CREATE TABLE `login` (
     CONSTRAINT `correoLog` check(`email` REGEXP '^[a-zA-Z0-9@.]+$')
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-
-
-
 CREATE TABLE `lote` (
   `id_lote` int(11) NOT NULL,
   `fecha_creacion` datetime NOT NULL,
@@ -93,7 +91,12 @@ CREATE TABLE `paquete` (
   `fecha_ingreso` date NOT NULL,
   `id_lote_portador` int(11) DEFAULT NULL,
   `id_localidad_destino` int(11) NOT NULL,
-  `matricula_transporte` varchar(7) DEFAULT NULL
+  `matricula_transporte` varchar(7) DEFAULT NULL,
+CONSTRAINT `checkMatriculaTransporte` CHECK (substring(`matricula_transporte`,1,1) REGEXP '^[A-S]{1}$'
+AND substring(`matricula_transporte`,2,1) REGEXP '^[T]{1}$'
+AND substring(`matricula_transporte`,3,1) REGEXP '^[L,M]{1}$'                                          
+AND substring(`matricula_transporte`,4,4) REGEXP '^[0-9]{4}$'),
+CONSTRAINT `checkFechas` CHECK (`fecha_entrega`>=`fecha_cargado`>=`fecha_recibido`>=`fecha_ingreso`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
@@ -121,7 +124,6 @@ CONSTRAINT `checkMatriculaVehiculos` CHECK (substring(`matricula`,1,1) REGEXP '^
 AND substring(`matricula`,2,2) REGEXP '^[A-X]{2}$'
 AND substring(`matricula`,4,4) REGEXP '^[0-9]{4}$')
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 
 ALTER TABLE `almacen`
   ADD PRIMARY KEY (`id_almacen`),
@@ -217,6 +219,7 @@ ALTER TABLE `ubicacion`
   ADD CONSTRAINT `ubicacion_ibfk_2` FOREIGN KEY (`id_almacen`) REFERENCES `almacen` (`id_almacen`);
 COMMIT;
 
+
 INSERT INTO `empleado` (`id_empleado`, `email`, `nombre`, `apellido`, `CI`, `nro_telefono`, `cargo`) VALUES
 (1, 'long65tyco@gmail.com', 'Jose', 'Maria', 54788671, 9932571, 0),
 (3, 'NatLong9905@gmail.com', 'Nataniel', 'Rojas', 1247789, 934455, 1),
@@ -231,10 +234,10 @@ INSERT INTO `vehiculo` (`matricula`, `estado`, `modelo`, `rol`, `peso_maximo`) V
 
 INSERT INTO `login` (`email`, `password`) VALUES
 ('long65tyco@gmail.com', '$2y$10$7PArTXWqqSIw/XU7cpm6OuQsRUrphZ9Ix2nPG9FOcfe6ip96hqAkC'),
-('NatLong9905@gmail.com', '$2y$10$eMMkqvNofKkbiawtZxQEqum8Lb8fLZdd4ek85X8BQYmx0i3rCazDa'),
-('camionero23@mail.com', '$2y$10$kkpXVU8z/od8kq4cfcOW7OYbsPS.C13BS/cZSVzq5TRcYcrcx/OKa'),
+('almacenero23@crecom.com', '$2y$10$USNexGc.aBx2Lob3Ncq6OONat713EHpyEdYuKU002eTwHeM39FdEK'),
 ('almacenero23@mail.com', '$2y$10$IR3OD.sqbFn4ocNYFr/nDO.Z1Mn67F1tGWK9yQTsAESZZNTtI.E4S'),
-('almacenero23@crecom.com', '$2y$10$USNexGc.aBx2Lob3Ncq6OONat713EHpyEdYuKU002eTwHeM39FdEK');
+('camionero23@mail.com', '$2y$10$kkpXVU8z/od8kq4cfcOW7OYbsPS.C13BS/cZSVzq5TRcYcrcx/OKa'),
+('NatLong9905@gmail.com', '$2y$10$eMMkqvNofKkbiawtZxQEqum8Lb8fLZdd4ek85X8BQYmx0i3rCazDa');
 
 INSERT INTO `departamento` (`id_departamento`, `nombre_departamento`) VALUES
 (1, 'Artigas'),
@@ -289,30 +292,38 @@ INSERT INTO `almacen` (`id_almacen`, `calle`, `chapa`, `id_localidad_almacen`) V
 INSERT INTO `ruta` (`id_ruta`) VALUES
 (0),
 (1),
-(2);
+(2),
+(3);
 
 INSERT INTO `ubicacion` (`id_ruta`, `id_almacen`, `posicion`, `tempo_trecho`) VALUES
 (0, 1, 0, NULL),
 (1, 1, 0, NULL),
 (2, 1, 0, '00:00:00'),
+(3, 1, 0, '00:00:00'),
 (2, 2, 1, '01:25:00'),
 (1, 3, 1, NULL),
 (2, 3, 2, '01:25:00'),
 (2, 4, 3, '01:25:00'),
-(1, 5, 3, NULL);
+(3, 4, 1, '04:00:00'),
+(1, 5, 3, NULL),
+(3, 5, 2, '02:00:00');
 
 INSERT INTO `lote` (`id_lote`, `fecha_creacion`, `lote_crecom`) VALUES
-(6, '2023-10-23 00:00:00', 0),
 (7, '2023-11-02 09:01:41', 1),
-(8, '2023-11-02 09:16:59', 1),
-(9, '2023-11-05 12:33:20', 1);
-
+(18, '2023-11-15 07:20:04', 1),
+(20, '2023-11-15 09:50:10', 1),
+(21, '2023-11-15 14:50:54', 0),
+(22, '2023-11-15 11:03:20', 1),
+(23, '2023-11-15 11:06:17', 0),
+(24, '2023-11-15 11:26:47', 0);
 
 INSERT INTO `destinado` (`id_ruta`, `id_almacen`, `id_lote`, `matricula`, `fecha_de_entrega`, `fecha_transporte`) VALUES
-(0, 1, 6, 'STP1986', '2023-10-30 05:15:39', '2023-10-26 05:52:17'),
 (0, 1, 7, 'STP1986', '2023-11-02 23:33:12', '2023-11-02 13:15:22'),
-(0, 1, 8, 'ATP1982', NULL, '2023-11-02 13:17:13'),
-(0, 1, 9, NULL, NULL, NULL);
+(0, 1, 18, 'ATP1982', '2023-11-15 15:04:49', '2023-11-15 13:08:12'),
+(0, 1, 20, 'ATP1982', '2023-11-15 15:04:49', '2023-11-15 13:50:41'),
+(0, 1, 22, 'ATP1982', '2023-11-15 15:04:49', '2023-11-15 15:03:26'),
+(0, 1, 23, 'ATP1982', '2023-11-15 15:23:51', '2023-11-15 15:23:06'),
+(2, 2, 24, 'ATP1982', '2023-11-15 15:31:00', '2023-11-15 15:29:20');
 
 INSERT INTO `paquete` (`id_paquete`, `nombre_paquete`, `dimenciones`, `peso`, `fragil`, `destino_calle`, `fecha_entrega`, `fecha_recibido`, `fecha_cargado`, `fecha_ingreso`, `id_lote_portador`, `id_localidad_destino`, `matricula_transporte`) VALUES
 (4, 'Agua', 220, 250, 0, 'Schinca 2540', NULL, NULL, NULL, '2023-11-02', 7, 2, NULL),
@@ -325,3 +336,63 @@ INSERT INTO `paquete` (`id_paquete`, `nombre_paquete`, `dimenciones`, `peso`, `f
 (11, 'Pelota de golf', 150, 200, 0, 'Schinca 2540', NULL, NULL, NULL, '2023-11-14', NULL, 2, NULL),
 (12, 'Litro Agua tonica', 500, 1000, 1, 'Schinca 2540', NULL, NULL, NULL, '2023-11-14', NULL, 2, NULL),
 (13, 'Bate de beisbol', 200, 200, 0, 'Schinca 2540', NULL, NULL, NULL, '2023-11-14', NULL, 2, NULL);
+
+
+
+
+INSERT INTO `asignado` (`id_almacen`, `id_empleado`) VALUES
+(1, 3),
+(1, 10),
+(2, 10),
+(3, 3),
+(3, 10),
+(4, 3),
+(4, 10),
+(5, 3),
+(5, 10);
+
+INSERT INTO `conduce` (`id_matricula`, `id_empleado`) VALUES
+('ATP1982', 9),
+('STL5691', 9),
+('STP1986', 9);
+
+
+CREATE USER 'almacenero_quickcarry_cw'@'localhost' IDENTIFIED BY '123';
+GRANT SELECT,UPDATE,INSERT,DELETE ON cloudware.paquete TO 'almacenero_quickcarry_cw'@'localhost'; 
+GRANT SELECT,UPDATE,INSERT,DELETE ON cloudware.lote TO 'almacenero_quickcarry_cw'@'localhost'; 
+GRANT SELECT,UPDATE,INSERT,DELETE ON cloudware.destinado TO 'almacenero_quickcarry_cw'@'localhost'; 
+GRANT SELECT ON cloudware.ruta TO 'almacenero_quickcarry_cw'@'localhost'; 
+GRANT SELECT ON cloudware.almacen TO 'almacenero_quickcarry_cw'@'localhost'; 
+GRANT SELECT ON cloudware.asignado TO 'almacenero_quickcarry_cw'@'localhost'; 
+GRANT SELECT ON cloudware.empleado TO 'almacenero_quickcarry_cw'@'localhost'; 
+FLUSH PRIVILEGES;
+
+CREATE USER 'empaquetador_crecom_cw'@'localhost' IDENTIFIED BY '123';
+GRANT SELECT,UPDATE,INSERT,DELETE ON cloudware.paquete TO 'empaquetador_crecom_cw'@'localhost'; 
+GRANT SELECT,UPDATE,INSERT,DELETE ON cloudware.lote TO 'empaquetador_crecom_cw'@'localhost'; 
+GRANT SELECT,UPDATE,INSERT,DELETE ON cloudware.destinado TO 'empaquetador_crecom_cw'@'localhost'; 
+GRANT SELECT ON cloudware.ruta TO 'empaquetador_crecom_cw'@'localhost'; 
+GRANT SELECT ON cloudware.almacen TO 'empaquetador_crecom_cw'@'localhost'; 
+GRANT SELECT ON cloudware.empleado TO 'empaquetador_crecom_cw'@'localhost'; 
+FLUSH PRIVILEGES;
+
+CREATE USER 'externo_seguimiento_cw'@'localhost' IDENTIFIED BY '123';
+GRANT SELECT ON cloudware.paquete TO 'externo_seguimiento_cw'@'localhost'; 
+GRANT SELECT ON cloudware.lote TO 'externo_seguimiento_cw'@'localhost'; 
+GRANT SELECT ON cloudware.destinado TO 'externo_seguimiento_cw'@'localhost'; 
+GRANT SELECT ON cloudware.ruta TO 'externo_seguimiento_cw'@'localhost'; 
+GRANT SELECT ON cloudware.almacen TO 'externo_seguimiento_cw'@'localhost'; 
+FLUSH PRIVILEGES;
+
+
+CREATE USER 'camionero_quickcarry_cw'@'localhost' IDENTIFIED BY '123';
+GRANT SELECT,UPDATE ON cloudware.paquete TO 'camionero_quickcarry_cw'@'localhost'; 
+GRANT SELECT,UPDATE,INSERT ON cloudware.destinado TO 'camionero_quickcarry_cw'@'localhost'; 
+GRANT SELECT,UPDATE,INSERT ON cloudware.vehiculo TO 'camionero_quickcarry_cw'@'localhost'; 
+GRANT SELECT,UPDATE,INSERT ON cloudware.lote TO 'camionero_quickcarry_cw'@'localhost'; 
+GRANT SELECT ON cloudware.ubicacion TO 'camionero_quickcarry_cw'@'localhost'; 
+GRANT SELECT ON cloudware.ruta TO 'camionero_quickcarry_cw'@'localhost';
+GRANT SELECT ON cloudware.almacen TO 'camionero_quickcarry_cw'@'localhost';  
+GRANT SELECT ON cloudware.empleado TO 'camionero_quickcarry_cw'@'localhost'; 
+GRANT SELECT ON cloudware.conduce TO 'camionero_quickcarry_cw'@'localhost'; 
+FLUSH PRIVILEGES;

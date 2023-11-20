@@ -18,7 +18,7 @@ class base_de_datos
 
   public function conexion()
   {
-    $conn = mysqli_connect($this->sname, $this->unmae, $this->password, $this->db_name); //conecta a la base de datos por medio de root
+    $conn = mysqli_connect('192.168.5.50','lucas.caballero','54798621','cloudware'); //conecta a la base de datos por medio de root
 
 
     if (!$conn) {
