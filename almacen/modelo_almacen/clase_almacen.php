@@ -46,7 +46,7 @@ class almacen
     nombre_localidad, id_dep, 
     nombre_departamento  
     FROM almacen a 
-    INNER JOIN Localidad l ON a. id_localidad_almacen  = l.id_localidad 
+    INNER JOIN localidad l ON a. id_localidad_almacen  = l.id_localidad 
     INNER JOIN departamento d ON l.id_dep = d.id_departamento
     where  id_almacen = ? ";
     $resultado = $this->base_datos->conexion()->execute_query($query, $id_almacen);

@@ -21,7 +21,7 @@ function get_all_almacenes($usuario, $cargo)
 
 
             foreach (json_decode($asignado, true) as $key => $fila) {
-
+		
 
                 $almacenes[$key] = json_decode(llamadoDeAPI(
                     "GET",

@@ -341,7 +341,7 @@ if (isset($_GET['Bienvenido'])) {
                 <div class="enlaces">
                     <h4>Comapañia</h4>
                     <ul>
-                        <li><a href="sobreNosotrosQC.html">Nosotros</a></li>
+                        <li><a href="">Nosotros</a></li>
                     </ul>
                 </div>
 
@@ -355,7 +355,7 @@ if (isset($_GET['Bienvenido'])) {
                 <div class="enlaces">
                     <h4>ayuda</h4>
                     <ul>
-                        <li><a href="">¿Cómo utilizar nuestra página?</a></li>
+                        <li><a href="contraseñas.php">Contraseñas de prueba</a></li>
                     </ul>
                 </div>
                 <div class="enlaces">

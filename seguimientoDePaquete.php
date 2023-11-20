@@ -229,7 +229,7 @@ $paquete = get_paquete($_GET["Codigo"]);
             <?php if (isset($paquete[0]["fecha_entrega"])) {
                 echo "<p>Entregado " . $paquete[0]["fecha_entrega"] . "</p>";
             } else if(isset($paquete[0]["fecha_cargado"])){
-                echo "<p>En camino desde la almacen  ".$paquete[0]["almacen"]."</p>";
+                echo "<p>En camino desde la almacen  ".$paquete[0]["id_almacen"]."</p>";
             }
             else
             {

@@ -92,14 +92,11 @@ if ($valor == null) {
                 if ($valor["0"] == "1") {
 
                     echo '<br>';
-                    echo ' <div class="selectBoton">
-                    <select name="matricula">';
+                    echo '<select name="matricula">';
                     foreach ($valor["2"] as $fila) {
-
                         if ($fila["rol"] == "1") {
-                            echo "<option value='" . $fila["matricula"] . 
-                            " carga maxima" . $fila["peso_maximo"] . "'>"
-                                . $fila["matricula"] .
+                            echo "<option value='" . $fila["matricula"] . "'>"
+                                . $fila["matricula"] . " carga maxima" . $fila["peso_maximo"] .
                                 "</option>";
                         }
                     }
