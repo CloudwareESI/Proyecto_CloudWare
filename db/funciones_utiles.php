@@ -52,7 +52,7 @@ function llamadoDeAPI($method, $url, $data)
         echo 'Error: ' . curl_error($curl);
     } else {
         //Solo habilitar la linea de abajo para debug
-        echo "<br>" . $response . "<br>";
+        //echo "<br>" . $response . "<br>";
         return $response;
     }
     curl_close($curl);
