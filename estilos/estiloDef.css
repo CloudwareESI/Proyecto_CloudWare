@@ -936,7 +936,25 @@ table tbody tr:last-of-type {
 
 /*-------------------FIN  Estilo modificar------------------------------*/
 
+.contraseñas{
+    background-color: #24262B;
+    color: #eae096;
+    padding: 35px 30px;
+    padding-bottom: 0;
+    padding-top: 0px;
+    box-shadow: 0 0 20px #000000;
+    border-radius: 20px;
+    width: 80vh;
+    height: fit-content;
+    margin: auto 30%;
+    text-align: center;
+}
+.contenedorContraseñas{
+    display: flex;
+  flex-direction: column;
+  justify-content: center;
 
+}
 
 
 /*-------------------Estilo interfaz caminero----------------------------*/
