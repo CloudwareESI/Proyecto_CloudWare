@@ -17,6 +17,11 @@ if (isset($_GET["color"])) {
 $paquete = get_paquete($_GET["Codigo"]);
 //var_dump($paquete);
 
+if (!isset($paquete["0"])) {
+    echo "A";
+    header("Location:http://".$_SERVER["HTTP_HOST"]."/Proyecto_Cloudware/index.php#paquete");
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -94,6 +99,7 @@ $paquete = get_paquete($_GET["Codigo"]);
         <h1>Estado actual</h1>
         <br>
         <?php
+
         switch (true) {
 
 

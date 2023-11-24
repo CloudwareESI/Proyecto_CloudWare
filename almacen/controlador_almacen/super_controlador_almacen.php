@@ -207,6 +207,8 @@ function get_paquetes_alm($id_alm)
             $fila["id_almacen"] == $id_alm
             and isset($fila["fecha_de_entrega"])
             and !isset($fila["fecha_entrega"])
+            and !isset($fila["fecha_entrega"])
+            and !isset($fila["matricula_transporte"])
         ) {
             $paquetes_almacen[$numero_paquetes] = $fila;
         }
@@ -217,6 +219,7 @@ function get_paquetes_alm($id_alm)
                 and isset($fila["id_lote"])
                 and !isset($fila["fecha_de_entrega"])
                 and !isset($fila["fecha_entrega"])
+                and !isset($fila["matricula_transporte"])
             ) {
                 $paquetes_almacen[$numero_paquetes] = $fila;
             }
